@@ -9,7 +9,7 @@ public class GameObjectSpawner : MonoBehaviour
     public GameObject enemy;
     public GameObject deadBodyContainer;
     public RoomsController roomsController;
-    public int maxDeadBodysMap = 20; 
+    public int maxDeadBodysMap = 12; 
     public int maxDeadBodyRoom = 2;
 
     int playerSpawnRoom = 5;
@@ -19,17 +19,28 @@ public class GameObjectSpawner : MonoBehaviour
     List<int> spawnersUsed = new List<int>();
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         foreach (GameObject room in roomsController.rooms)
         {
             roomTags.Add(room.tag);
         }
+
+        // No queremos jugador que el jugador spawnee en la sala central. Por tanto mientras la sala random sea 5 (sala central)
+        // seguirá generando números. 
+
         while (playerSpawnRoom == 5)
         {
             playerSpawnRoom = Random.Range(1, 10);
         }
+
+        //La suma de salas diamentralmente opuestas siempre suma 10, así que le restamos a 10 la sala del jugador para obtener
+        //la sala del enemigo
+
         enemySpawnRoom = 10 - playerSpawnRoom;
+
+        //Esto es para que spawnee el jugador
+
         for (int i = 0; i < roomsController.rooms.Count; i++)
         {
             if(i == playerSpawnRoom - 1)
@@ -37,6 +48,9 @@ public class GameObjectSpawner : MonoBehaviour
                 Instantiate(player, roomsController.rooms[i].transform.position, Quaternion.identity);
             }
         }
+
+        //Esto es para que spawnee el enemigo
+
         for (int i = 0; i < roomsController.rooms.Count; i++)
         {
             if(i == enemySpawnRoom - 1)
@@ -45,7 +59,12 @@ public class GameObjectSpawner : MonoBehaviour
             }
         }
 
+        //Esto recoge todos los spawns posibles y crea un cadáver en unos de esos spawns. Los spawns los coge de una lista en RoomSpawner
+
         int spawnPosition = Random.Range(0, deadBodyContainer.GetComponent<RoomSpawner>().spawners.Count);
+
+        //Esto comprueba en qué sala está el tag, para añadir 1 a la cantidad de spawners usados en la sala que haya tocado
+
         for (int i = 0; i < roomTags.Count; i++)
         {
             if(deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnPosition].tag == roomTags[i])
@@ -53,7 +72,10 @@ public class GameObjectSpawner : MonoBehaviour
                 roomsController.currentSpawnersUsed[i]++;
             }
         }
+
         spawnersUsed.Add(spawnPosition);
+
+        //Esto crea una cantidad de cadáveres pasada desde el editor en el objeto GameObjectSpawner
 
         for (int i = 0; i < maxDeadBodysMap; i++)
         {
@@ -61,12 +83,18 @@ public class GameObjectSpawner : MonoBehaviour
             while (spawnable == false)
             {
                 bool canSpawn = true;
+
+                //Hace lo mismo de arriba
                 spawnPosition = Random.Range(0, deadBodyContainer.GetComponent<RoomSpawner>().spawners.Count);
+
+                //Comprueba que no se haya usado esa posición de spawn antes.
                 for (int j = 0; j < spawnersUsed.Count; j++)
                 {
                     if(spawnPosition == spawnersUsed[j])
                         canSpawn = false;
                 }
+
+                //Comprueba si se ha alcanzado el límite de spawns por sala. El límite se asigna al valor maxDeadBodyRoom.
 
                 for (int j = 0; j < roomTags.Count; j++)
                 {
@@ -84,43 +112,6 @@ public class GameObjectSpawner : MonoBehaviour
                     }
                 }
 
-                
-                /*if(canSpawn && roomsController.currentSpawnersUsed[i] < maxDeadBodyRoom/*&& deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnPosition].tag == roomTag)
-                {
-                    roomsController.currentSpawnersUsed[i]++;
-                }*/
-
-                /*switch(deadBodyContainer.GetComponent<RoomSpawner>().spawners[i].tag)
-                {
-                    case "Room0":
-                        if(roomsController.currentSpawnersUsed[i] >= maxDeadBodyRoom)
-                        {
-                            canSpawn = false;
-                        }
-                        else
-                        {
-                            roomsController.currentSpawnersUsed[i]++;
-                        }
-                        break;
-                    case "Room1":
-                        break;
-                    case "Room2":
-                        break;
-                    case "Room3":
-                        break;
-                    case "Room4":
-                        break;
-                    case "Room5":
-                        break;
-                    case "Room6":
-                        break;
-                    case "Room7":
-                        break;
-                    case "Room8":
-                        break;
-
-                }*/
-
                 if(canSpawn)
                     spawnable = true;
 
@@ -129,16 +120,5 @@ public class GameObjectSpawner : MonoBehaviour
             spawnersUsed.Add(spawnPosition);
             Instantiate(deadBody, deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnersUsed[i]].transform.position, Quaternion.identity, deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnersUsed[i]].transform);
         }
-
-        foreach (int bodys in roomsController.currentSpawnersUsed)
-        {
-            
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
