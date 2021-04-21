@@ -28,7 +28,6 @@ public class EnemyAI : MonoBehaviour
         if(distanceToTarget > 0.5f)
         {
             enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
-            Debug.Log(distanceToTarget);
             //enemy.SetDestination(target.transform.position);
         }
         else
@@ -37,7 +36,6 @@ public class EnemyAI : MonoBehaviour
             target = waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
             //enemy.SetDestination(target.transform.position);
             enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
-            Debug.Log("Holi");
         }
         
     }

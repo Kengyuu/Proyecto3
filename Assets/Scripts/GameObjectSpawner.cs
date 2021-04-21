@@ -14,50 +14,22 @@ public class GameObjectSpawner : MonoBehaviour
 
     int playerSpawnRoom = 5;
     int enemySpawnRoom = 5;
+    int currentBodysSpawned = 0;
     List <string> roomTags = new List<string>();
 
     List<int> spawnersUsed = new List<int>();
     
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         foreach (GameObject room in roomsController.rooms)
         {
             roomTags.Add(room.tag);
         }
 
-        // No queremos jugador que el jugador spawnee en la sala central. Por tanto mientras la sala random sea 5 (sala central)
-        // seguirá generando números. 
+        playerSpawnRoom = SpawnPlayer();
 
-        while (playerSpawnRoom == 5)
-        {
-            playerSpawnRoom = Random.Range(1, 10);
-        }
-
-        //La suma de salas diamentralmente opuestas siempre suma 10, así que le restamos a 10 la sala del jugador para obtener
-        //la sala del enemigo
-
-        enemySpawnRoom = 10 - playerSpawnRoom;
-
-        //Esto es para que spawnee el jugador
-
-        for (int i = 0; i < roomsController.rooms.Count; i++)
-        {
-            if(i == playerSpawnRoom - 1)
-            {
-                Instantiate(player, roomsController.rooms[i].transform.position, Quaternion.identity);
-            }
-        }
-
-        //Esto es para que spawnee el enemigo
-
-        for (int i = 0; i < roomsController.rooms.Count; i++)
-        {
-            if(i == enemySpawnRoom - 1)
-            {
-                Instantiate(enemy, roomsController.rooms[i].transform.position, Quaternion.identity);
-            }
-        }
+        SpawnEnemy();
 
         //Esto recoge todos los spawns posibles y crea un cadáver en unos de esos spawns. Los spawns los coge de una lista en RoomSpawner
 
@@ -77,7 +49,91 @@ public class GameObjectSpawner : MonoBehaviour
 
         //Esto crea una cantidad de cadáveres pasada desde el editor en el objeto GameObjectSpawner
 
-        for (int i = 0; i < maxDeadBodysMap; i++)
+        SpawnBodys(maxDeadBodysMap);
+    }
+
+    void Update()
+    {
+        // Test Spawn New Bodys
+        if(Input.GetMouseButtonDown(0))
+        {
+            /*currentBodysSpawned = 10;
+            spawnersUsed.Clear();
+            for (int j = 0; j < roomTags.Count; j++)
+            {
+                roomsController.currentSpawnersUsed[j] = 0;
+            }
+            SpawnBodys(maxDeadBodysMap - currentBodysSpawned);*/
+            ClearBodys(spawnersUsed[0]);
+        }
+
+    }
+
+    void ClearBodys(int spawnPosition)
+    {
+        if(spawnPosition >= 0)
+        {
+            spawnersUsed.Remove(spawnPosition);
+            for (int i = 0; i < roomTags.Count; i++)
+            {
+                if(deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnPosition].tag == roomTags[i])
+                {
+                    roomsController.currentSpawnersUsed[i]--;
+                }
+            }
+            currentBodysSpawned--;
+        }
+        
+    }
+
+    public int SpawnPlayer()
+    {
+        // No queremos jugador que el jugador spawnee en la sala central. Por tanto mientras la sala random sea 5 (sala central)
+        // seguirá generando números. 
+
+        while (playerSpawnRoom == 5)
+        {
+            playerSpawnRoom = Random.Range(1, 10);
+        }
+
+        //Esto es para que spawnee el jugador
+
+        for (int i = 0; i < roomsController.rooms.Count; i++)
+        {
+            if(i == playerSpawnRoom - 1)
+            {
+                Instantiate(player, roomsController.rooms[i].transform.position, Quaternion.identity);
+            }
+        }
+
+        return playerSpawnRoom;
+    }
+
+
+    public void SpawnEnemy()
+    {
+        //La suma de salas diamentralmente opuestas siempre suma 10, así que le restamos a 10 la sala del jugador para obtener
+        //la sala del enemigo
+
+        enemySpawnRoom = 10 - playerSpawnRoom;
+
+        //Esto es para que spawnee el enemigo
+
+        for (int i = 0; i < roomsController.rooms.Count; i++)
+        {
+            if(i == enemySpawnRoom - 1)
+            {
+                Instantiate(enemy, roomsController.rooms[i].transform.position, Quaternion.identity);
+            }
+        }
+    }
+
+    //numberBodys = maxDeadBodysMap - currentBodysSpawned;
+    // First time --> currentBodysSpawned = 0, so --> numberBodys = maxDeadBodysMap
+    public void SpawnBodys(int numberBodys)
+    {
+        int spawnPosition = -1;
+        for (int i = 0; i < numberBodys; i++)
         {
             bool spawnable = false;
             while (spawnable == false)
@@ -103,7 +159,6 @@ public class GameObjectSpawner : MonoBehaviour
                         if(roomsController.currentSpawnersUsed[j] < maxDeadBodyRoom)
                         {
                             roomsController.currentSpawnersUsed[j]++;
-                            
                         }
                         else
                         {
@@ -118,7 +173,8 @@ public class GameObjectSpawner : MonoBehaviour
             }
             
             spawnersUsed.Add(spawnPosition);
-            Instantiate(deadBody, deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnersUsed[i]].transform.position, Quaternion.identity, deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnersUsed[i]].transform);
+            Instantiate(deadBody, deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnersUsed[i]].transform.position, Quaternion.identity);
+            currentBodysSpawned++;
         }
     }
 }
