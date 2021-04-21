@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 19044189}
   m_Layer: 0
   m_Name: Room7DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 24576340}
   m_Layer: 0
   m_Name: Room5DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 35433366}
   m_Layer: 0
   m_Name: Room5DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 36628848}
   m_Layer: 0
   m_Name: Room8DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 77112835}
   m_Layer: 0
   m_Name: Room5DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 122883745}
   m_Layer: 0
   m_Name: Room1
-  m_TagString: Untagged
+  m_TagString: Room1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 184421785}
   m_Layer: 0
   m_Name: Room1DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 187953348}
   m_Layer: 0
   m_Name: Room6DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 189386639}
   m_Layer: 0
   m_Name: Room5DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 224691835}
   m_Layer: 0
   m_Name: Room4DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -576,6 +576,17 @@ MonoBehaviour:
   - {fileID: 1242058527}
   - {fileID: 694367137}
   - {fileID: 1691754058}
+  currentSpawnersUsed: 000000000000000000000000000000000000000000000000000000000000000000000000
+  roomTags:
+  - Room1
+  - Room2
+  - Room3
+  - Room4
+  - Room5
+  - Room6
+  - Room7
+  - Room8
+  - Room9
 --- !u!4 &233550549
 Transform:
   m_ObjectHideFlags: 0
@@ -601,7 +612,7 @@ GameObject:
   - component: {fileID: 279039480}
   m_Layer: 0
   m_Name: Room6DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -726,7 +737,7 @@ GameObject:
   - component: {fileID: 322840288}
   m_Layer: 0
   m_Name: Room9DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room9
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -756,7 +767,7 @@ GameObject:
   - component: {fileID: 350516248}
   m_Layer: 0
   m_Name: Room6DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -786,7 +797,7 @@ GameObject:
   - component: {fileID: 365359382}
   m_Layer: 0
   m_Name: Room2DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -816,7 +827,7 @@ GameObject:
   - component: {fileID: 373060783}
   m_Layer: 0
   m_Name: Room9DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room9
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -846,7 +857,7 @@ GameObject:
   - component: {fileID: 523337126}
   m_Layer: 0
   m_Name: Room5DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -877,7 +888,7 @@ GameObject:
   - component: {fileID: 544293469}
   m_Layer: 0
   m_Name: Room5
-  m_TagString: Untagged
+  m_TagString: Room5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -925,7 +936,7 @@ GameObject:
   - component: {fileID: 545943756}
   m_Layer: 0
   m_Name: Room6DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -955,7 +966,7 @@ GameObject:
   - component: {fileID: 562594248}
   m_Layer: 0
   m_Name: Room2DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -986,7 +997,7 @@ GameObject:
   - component: {fileID: 674357161}
   m_Layer: 0
   m_Name: Room3
-  m_TagString: Untagged
+  m_TagString: Room3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1034,7 +1045,7 @@ GameObject:
   - component: {fileID: 676751259}
   m_Layer: 0
   m_Name: Room3DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1065,7 +1076,7 @@ GameObject:
   - component: {fileID: 694367139}
   m_Layer: 0
   m_Name: Room8
-  m_TagString: Untagged
+  m_TagString: Room8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1206,7 +1217,7 @@ GameObject:
   - component: {fileID: 715756631}
   m_Layer: 0
   m_Name: Room3DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1236,7 +1247,7 @@ GameObject:
   - component: {fileID: 775579812}
   m_Layer: 0
   m_Name: Room8DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1266,7 +1277,7 @@ GameObject:
   - component: {fileID: 780620399}
   m_Layer: 0
   m_Name: Room8DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1296,7 +1307,7 @@ GameObject:
   - component: {fileID: 800838734}
   m_Layer: 0
   m_Name: Room2DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1459,7 +1470,7 @@ GameObject:
   - component: {fileID: 890790933}
   m_Layer: 0
   m_Name: Room1DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1489,7 +1500,7 @@ GameObject:
   - component: {fileID: 890940081}
   m_Layer: 0
   m_Name: Room7DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1602,7 +1613,7 @@ GameObject:
   - component: {fileID: 981382895}
   m_Layer: 0
   m_Name: Room2DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1632,7 +1643,7 @@ GameObject:
   - component: {fileID: 995436147}
   m_Layer: 0
   m_Name: Room7DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1662,7 +1673,7 @@ GameObject:
   - component: {fileID: 1231987205}
   m_Layer: 0
   m_Name: Room1DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1693,7 +1704,7 @@ GameObject:
   - component: {fileID: 1242058529}
   m_Layer: 0
   m_Name: Room7
-  m_TagString: Untagged
+  m_TagString: Room7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1741,7 +1752,7 @@ GameObject:
   - component: {fileID: 1276352207}
   m_Layer: 0
   m_Name: Room4DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1771,7 +1782,7 @@ GameObject:
   - component: {fileID: 1280772885}
   m_Layer: 0
   m_Name: Room2DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1801,7 +1812,7 @@ GameObject:
   - component: {fileID: 1353302524}
   m_Layer: 0
   m_Name: Room4DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1831,7 +1842,7 @@ GameObject:
   - component: {fileID: 1354710972}
   m_Layer: 0
   m_Name: Room4DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1956,7 +1967,7 @@ GameObject:
   - component: {fileID: 1389673385}
   m_Layer: 0
   m_Name: Room4DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1986,7 +1997,7 @@ GameObject:
   - component: {fileID: 1408170158}
   m_Layer: 0
   m_Name: Room3DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2396,7 +2407,7 @@ GameObject:
   - component: {fileID: 1549960774}
   m_Layer: 0
   m_Name: Room8DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2426,7 +2437,7 @@ GameObject:
   - component: {fileID: 1555643395}
   m_Layer: 0
   m_Name: Room3DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2456,7 +2467,7 @@ GameObject:
   - component: {fileID: 1582443414}
   m_Layer: 0
   m_Name: Room1DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2487,7 +2498,7 @@ GameObject:
   - component: {fileID: 1655905003}
   m_Layer: 0
   m_Name: Room2
-  m_TagString: Untagged
+  m_TagString: Room2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2535,7 +2546,7 @@ GameObject:
   - component: {fileID: 1673410888}
   m_Layer: 0
   m_Name: Room7DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2566,7 +2577,7 @@ GameObject:
   - component: {fileID: 1691754060}
   m_Layer: 0
   m_Name: Room9
-  m_TagString: Untagged
+  m_TagString: Room9
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2615,7 +2626,7 @@ GameObject:
   - component: {fileID: 1712501787}
   m_Layer: 0
   m_Name: Room4
-  m_TagString: Untagged
+  m_TagString: Room4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2663,7 +2674,7 @@ GameObject:
   - component: {fileID: 1743167577}
   m_Layer: 0
   m_Name: Room9DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room9
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2693,7 +2704,7 @@ GameObject:
   - component: {fileID: 1749068643}
   m_Layer: 0
   m_Name: Room8DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2723,7 +2734,7 @@ GameObject:
   - component: {fileID: 1781460626}
   m_Layer: 0
   m_Name: Room6DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2753,7 +2764,7 @@ GameObject:
   - component: {fileID: 1790086849}
   m_Layer: 0
   m_Name: Room9DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room9
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2783,7 +2794,7 @@ GameObject:
   - component: {fileID: 1814939146}
   m_Layer: 0
   m_Name: Room7DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2947,7 +2958,7 @@ GameObject:
   - component: {fileID: 1946073852}
   m_Layer: 0
   m_Name: Room3DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2977,7 +2988,7 @@ GameObject:
   - component: {fileID: 1979140411}
   m_Layer: 0
   m_Name: Room9DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room9
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3008,7 +3019,7 @@ GameObject:
   - component: {fileID: 1998116549}
   m_Layer: 0
   m_Name: Room6
-  m_TagString: Untagged
+  m_TagString: Room6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3056,7 +3067,7 @@ GameObject:
   - component: {fileID: 2012258235}
   m_Layer: 0
   m_Name: Room1DeadBodySpawner
-  m_TagString: Untagged
+  m_TagString: Room1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3105,12 +3116,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadBody: {fileID: 2406975544627933003, guid: 3831d04530a548d48a65b1c9e010bb57, type: 3}
-  totem: {fileID: 2219240265064096857, guid: 3cd982dfbc255454a93be4be005c0522, type: 3}
   player: {fileID: 5027638999722530174, guid: c9b14fa75213d80448d08fdf76223ea7, type: 3}
   enemy: {fileID: 864447610606656395, guid: fbd2fd88815d2584eab174600c3d28d9, type: 3}
   deadBodyContainer: {fileID: 1898692048}
   roomsController: {fileID: 233550548}
-  maxDeadBodysMap: 20
+  maxDeadBodysMap: 12
+  maxDeadBodyRoom: 2
 --- !u!4 &2047715770
 Transform:
   m_ObjectHideFlags: 0
