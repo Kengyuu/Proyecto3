@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  corpseDetectionRadius: 10
+  currentState: 0
 --- !u!195 &20940604
 NavMeshAgent:
   m_ObjectHideFlags: 0

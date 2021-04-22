@@ -11,6 +11,7 @@ public class FSM_CorpseWander : MonoBehaviour
 
     float distanceToTarget;
     GameObject waypointsList;
+    GameObject corpse;
 
     public float corpseDetectionRadius = 10f;
  
@@ -54,7 +55,13 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
 
             case State.WANDERING:
-               
+
+                corpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", 0.5f);
+                if(corpse != null)
+                {
+                    Debug.Log(corpse.name);
+                    ChangeState(State.GOINGTOCORPSE);
+                }
                 if (distanceToTarget <= 0.5f)
                 {
                     ChangeState(State.WANDERING); 
@@ -65,6 +72,7 @@ public class FSM_CorpseWander : MonoBehaviour
                  {
                     ChangeState(State.WANDERING);
                  }*/
+                 Debug.Log("Holi");
 
                 break;
             
@@ -101,7 +109,9 @@ public class FSM_CorpseWander : MonoBehaviour
 
                 break;
             case State.GOINGTOCORPSE:
-                //enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+
+                target = corpse;
+                enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 break;
 
         }
