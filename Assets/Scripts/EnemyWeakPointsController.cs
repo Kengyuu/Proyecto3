@@ -43,14 +43,10 @@ public class EnemyWeakPointsController : MonoBehaviour
 
      public void TakeDamage(GameObject wp)
     {
-        Debug.Log("Estoy funcionando");
         if(currentWeakPoints > 0)
         {
-            //wp.SetActive(false);
             currentWeakPoints--;
             spawnersUsed.Remove(wp.GetComponent<WeakPoint>().spawnPosition);
-            //wp.GetComponent<WeakPoint>().TakeDamage();
-            //SpawnWeakPoints(weakPointsMax - currentWeakPoints);
         }
     }
 
