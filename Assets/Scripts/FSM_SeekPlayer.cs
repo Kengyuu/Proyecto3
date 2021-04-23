@@ -66,8 +66,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
             case State.GOTOLASTPLAYERPOSITION:
 
-                enemy.SetDestination(lastPlayerPosition);
-
                 if (enemy.remainingDistance < 0.5f)
                 {
                     GetComponent<FSM_CorpseWander>().enabled = true;
@@ -125,7 +123,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
             case State.GOTOLASTPLAYERPOSITION:
                 lastPlayerPosition = Player.transform.position;
-
+                enemy.SetDestination(lastPlayerPosition);
                 break;
             case State.ATTACKING:
                 enemy.isStopped = true;

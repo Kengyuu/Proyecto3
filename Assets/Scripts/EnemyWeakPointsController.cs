@@ -41,13 +41,23 @@ public class EnemyWeakPointsController : MonoBehaviour
         }*/
     }
 
-     public void TakeDamage(GameObject wp)
+    public void TakeDamage(GameObject wp)
     {
         if(currentWeakPoints > 0)
         {
             currentWeakPoints--;
             spawnersUsed.Remove(wp.GetComponent<WeakPoint>().spawnPosition);
         }
+
+        if(currentWeakPoints == 0)
+        {
+            GetStunned();
+        }
+    }
+
+    public void GetStunned()
+    {
+        Debug.Log("No puto, me estuniaste");
     }
 
     void SpawnWeakPoints(int numberWeakPoints)

@@ -72,10 +72,10 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
             case State.GOINGTOCORPSE:
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.corpsePickUpRadius)
-                 {
-                    target.SetActive(false);
-                    ChangeState(State.WANDERING);
-                 }
+                {
+                target.SetActive(false);
+                ChangeState(State.WANDERING);
+                }
 
                 break;
             
