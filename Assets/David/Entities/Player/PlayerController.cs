@@ -13,6 +13,8 @@ public class PlayerController : EntityController
     public KeyCode m_DownKeyCode = KeyCode.S;
     public KeyCode m_JumpKeyCode = KeyCode.Space;
     public KeyCode m_RunKeyCode = KeyCode.LeftShift;
+    public KeyCode m_DashKeyCode = KeyCode.Space;
+    public KeyCode m_ShootKeyCode = KeyCode.Mouse0;
     public KeyCode m_DebugLockAngleKeyCode = KeyCode.I;
     public KeyCode m_DebugLockKeyCode = KeyCode.O;
     
@@ -28,6 +30,19 @@ public class PlayerController : EntityController
     private float m_TimeSinceLastGround = 0.0f;
     private float m_VerticalSpeed = 0.0f;
     private CharacterController m_CharacterController = null;
+
+    [Header("Player Dash")]
+    public Vector3 m_dashDirection;
+    public const float m_maxDashTime = 1.0f;
+    public float m_dashDistance = 10;
+    public float m_dashStoppingSpeed = 0.1f;
+    public bool m_PlayerDashing = false;
+    float currentDashTime = m_maxDashTime;
+    float dashSpeed = 6;
+
+    [Header("Player Shoot")]
+    public LayerMask m_ShootLayers;
+    public float m_MaxShootDistance = 50f;
 
     [Header("Camera Controller")]
     public Camera m_Camera = null;
@@ -110,8 +125,68 @@ public class PlayerController : EntityController
 #endif
         //Player FPS
         if (!GameManager.Instance.GetIsCameraLocked()) CameraMovement(); //Allow Camera movement with mouse
-        if (GameManager.Instance.GetPlayerCanMove()) PlayerMovement(); //Allow Player movement
+        if (GameManager.Instance.GetPlayerCanMove()) //Allow Player movement
+        {
+            PlayerMovement();
+            PlayerDash();
+            PlayerShoot();
+        }
     }//End Update
+
+    private void PlayerDash()
+    {
+        if (Input.GetKeyDown(m_DashKeyCode) && !m_PlayerDashing)
+        {
+            Debug.Log("Dashing");
+            currentDashTime = 0;
+            m_PlayerDashing = true;
+
+        }
+
+        if (currentDashTime < m_maxDashTime)
+        {
+            m_dashDirection = transform.forward * m_dashDistance;
+            currentDashTime += m_dashStoppingSpeed;
+        }
+        else
+        {
+            m_dashDirection = Vector3.zero;
+            m_PlayerDashing = false;
+        }
+        m_CharacterController.Move(m_dashDirection * Time.deltaTime * dashSpeed);
+    }
+
+    private void PlayerShoot()
+    {
+        if (Input.GetKeyDown(m_ShootKeyCode))
+        {
+            Debug.Log("SHOOTING");
+            RaycastHit hit;
+
+            if(Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
+            {
+                //Debug.Log(hit.transform.name);
+
+                string tag = hit.transform.tag;
+
+                switch (tag)
+                {
+                    case "Corpse":
+                        Debug.Log("Corpse hitted, changing tag + disabling GameObject");
+                        //hit.transform.tag = "CorpseDisabled";
+                        hit.transform.gameObject.SetActive(false);
+                        break;
+
+                    case "WeakPoint":
+                        Debug.Log("Enemy WeakPoint hitted, calling Enemy TakeDamage()");
+                        //hit.transform.GetComponent<EnemyWeakPointsController>().TakeDamage();
+                        break;
+                }
+            }
+
+        }
+    }
+
 
     private void CameraMovement()
     {
@@ -127,9 +202,7 @@ public class PlayerController : EntityController
         if (!m_AngleLocked)
         {
             //set the new vars to move the camera...
-            //m_Yaw = m_Yaw + l_MouseAxisX * m_YawRotationalSpeed * Time.deltaTime;
             m_Yaw = m_Yaw + l_MouseAxisX * m_YawRotationalSpeed;
-            //m_Pitch = m_Pitch + l_MouseAxisY * m_PitchRotationalSpeed * Time.deltaTime;
             m_Pitch = m_Pitch + l_MouseAxisY * m_PitchRotationalSpeed;
             m_Pitch = Mathf.Clamp(m_Pitch, m_MinPitch, m_MaxPitch);
         }
@@ -142,18 +215,11 @@ public class PlayerController : EntityController
     private void PlayerMovement()
     {
         //Player movement...
-        //-----------------
         Vector3 l_Movement = Vector3.zero;
 
-        //Para yaw 0 ->   forward (0,0,1)
-        //Para yaw 90 ->  forward (1,0,0)
-        //Para yaw 180 -> forward (0,0,-1)
-        //Para yaw 270 -> forward (-1,0,0)
         Vector3 l_Right = transform.right;
         Vector3 l_Forward = transform.forward;
-        //Lo Siguiente es exactamente igual que las dos líneas anteriores, de forma MANUAL:
-        //Vector3 l_Forward = new Vector3(Mathf.Sin(m_Yaw * Mathf.Deg2Rad), 0, Mathf.Cos(m_Yaw * Mathf.Deg2Rad));
-        //Vector3 l_Right = new Vector3(Mathf.Sin((m_Yaw + 90.0f) * Mathf.Deg2Rad), 0, Mathf.Cos((m_Yaw + 90.0f) * Mathf.Deg2Rad));
+
 
         l_Right.y = 0.0f;
         l_Right.Normalize();
@@ -214,16 +280,12 @@ public class PlayerController : EntityController
     {
         //Save data to GameManager
         GameManager.Instance.SetPlayerHealth(m_Life);
-        GameManager.Instance.SetPlayerShield(m_Shield);
-        GameManager.Instance.SetPlayerAmmo(m_Ammo);
     }
 
     private void LoadPlayerData()
     {
         //Load data from GameManager
         m_Life = GameManager.Instance.GetPlayerHealth();
-        m_Shield = GameManager.Instance.GetPlayerShield();
-        m_Ammo = GameManager.Instance.GetPlayerAmmo();
     }
 
     private void RestartGame()
@@ -264,6 +326,11 @@ public class PlayerController : EntityController
             yield return null;
         }
         m_IsFading = false;
+    }
+
+    public void GetDamage(int dmg)
+    {
+        GameManager.Instance.SetPlayerHealth(dmg);
     }
 
     private void OnTriggerEnter(Collider col)

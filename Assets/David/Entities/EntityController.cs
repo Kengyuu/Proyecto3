@@ -5,12 +5,8 @@ using UnityEngine;
 public class EntityController : MonoBehaviour
 {
     [Header("Stats")]
-    public float m_Life = 0.0f;
-    public float m_MaxLife = 0.0f;
-    public float m_Shield = 0.0f;
-    public float m_MaxShield = 0.0f;
-    public float m_Ammo = 0.0f;
-    public float m_MaxAmmo = 0.0f;
+    [Range(0, 3)] public int m_Life = 0;
+    [Range(0, 3)] public int m_MaxLife = 3;
 
     public virtual void Die()
     {
