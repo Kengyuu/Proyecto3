@@ -6,6 +6,7 @@ public class WeakPoint : MonoBehaviour
 {
     // Start is called before the first frame update
     [HideInInspector]public int spawnPosition;
+    public EnemyWeakPointsController enemyWeakPointsController;
     void Start()
     {
         
@@ -17,9 +18,10 @@ public class WeakPoint : MonoBehaviour
         
     }
 
-    public void DisableWP()
+    public void TakeDamage()
     {
         spawnPosition = -1;
+        enemyWeakPointsController.TakeDamage(gameObject);
         gameObject.SetActive(false);
     }
 }

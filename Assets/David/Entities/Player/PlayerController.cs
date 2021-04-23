@@ -167,7 +167,7 @@ public class PlayerController : EntityController
             {
                 //Debug.Log(hit.transform.name);
 
-                string tag = hit.transform.tag;
+                string tag = hit.collider.transform.tag;
 
                 switch (tag)
                 {
@@ -179,7 +179,7 @@ public class PlayerController : EntityController
 
                     case "WeakPoint":
                         Debug.Log("Enemy WeakPoint hitted, calling Enemy TakeDamage()");
-                        //hit.transform.GetComponent<EnemyWeakPointsController>().TakeDamage();
+                        hit.collider.transform.GetComponent<WeakPoint>().TakeDamage();
                         break;
                 }
             }

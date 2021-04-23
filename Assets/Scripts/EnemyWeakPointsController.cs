@@ -17,33 +17,39 @@ public class EnemyWeakPointsController : MonoBehaviour
             weakPointsList.Add(weakPoint);
         }
     }*/
+    void Start()
+    {
+        SpawnWeakPoints(weakPointsMax-currentWeakPoints);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        /*if(Input.GetMouseButtonDown(0))
         {
             for (int i = 0; i < weakPoint.Length; i++)
             {
-                DisableWeakPoints(weakPoint[i]);
+                TakeDamage(weakPoint[i]);
             }
             /*currentWeakPoints = 0;
             spawnersUsed.Clear();
             for (int i = 0; i < weakPoint.Length; i++)
             {
                 weakPoint[i].SetActive(false);
-            }*/
+            }
             SpawnWeakPoints(weakPointsMax - currentWeakPoints);
-        }
+        }*/
     }
 
-    void DisableWeakPoints(GameObject wp)
+     public void TakeDamage(GameObject wp)
     {
+        Debug.Log("Estoy funcionando");
         if(currentWeakPoints > 0)
         {
+            //wp.SetActive(false);
             currentWeakPoints--;
             spawnersUsed.Remove(wp.GetComponent<WeakPoint>().spawnPosition);
-            wp.GetComponent<WeakPoint>().DisableWP();
+            //wp.GetComponent<WeakPoint>().TakeDamage();
             //SpawnWeakPoints(weakPointsMax - currentWeakPoints);
         }
     }

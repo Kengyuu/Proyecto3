@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4921594132885340542}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.05
+  m_BaseOffset: 0.35
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!54 &1512017345634838353
@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosition: 0
+  enemyWeakPointsController: {fileID: 4921594132885340542}
 --- !u!1 &3342129963471531812
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosition: 0
+  enemyWeakPointsController: {fileID: 4921594132885340542}
 --- !u!1 &3932132313992640225
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosition: 0
+  enemyWeakPointsController: {fileID: 4921594132885340542}
 --- !u!1 &6067259373210811964
 GameObject:
   m_ObjectHideFlags: 0
