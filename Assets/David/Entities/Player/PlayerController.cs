@@ -127,6 +127,7 @@ public class PlayerController : EntityController
         if (!GameManager.Instance.GetIsCameraLocked()) CameraMovement(); //Allow Camera movement with mouse
         if (GameManager.Instance.GetPlayerCanMove()) //Allow Player movement
         {
+            Debug.Log("MOVING");
             PlayerMovement();
             PlayerDash();
             PlayerShoot();
@@ -165,7 +166,7 @@ public class PlayerController : EntityController
 
             if(Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
             {
-                //Debug.Log(hit.transform.name);
+                Debug.Log(hit.transform.name);
 
                 string tag = hit.collider.transform.tag;
 
