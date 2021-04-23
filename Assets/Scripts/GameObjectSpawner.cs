@@ -64,7 +64,11 @@ public class GameObjectSpawner : MonoBehaviour
                 roomsController.currentSpawnersUsed[j] = 0;
             }
             SpawnBodys(maxDeadBodysMap - currentBodysSpawned);*/
-            ClearBodys(spawnersUsed[0]);
+            if(spawnersUsed.Count > 0)
+            {
+                ClearBodys(spawnersUsed[0]);
+            }
+            
         }
 
     }

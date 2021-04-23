@@ -9,9 +9,11 @@ public class FSM_CorpseWander : MonoBehaviour
     NavMeshAgent enemy;
     public GameObject target;
 
-    float distanceToTarget;
+    public float corpsePickUpRadius = 2f;
     GameObject waypointsList;
     GameObject corpse;
+
+    float closeEnoughTarget;
 
     public float corpseDetectionRadius = 10f;
  
@@ -46,7 +48,7 @@ public class FSM_CorpseWander : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distanceToTarget = new Vector2(transform.position.x - target.transform.position.x, transform.position.z - target.transform.position.z).magnitude;
+        //distanceToTarget = new Vector2(transform.position.x - target.transform.position.x, transform.position.z - target.transform.position.z).magnitude;
 
         switch (currentState)
         {
@@ -56,23 +58,23 @@ public class FSM_CorpseWander : MonoBehaviour
 
             case State.WANDERING:
 
-                corpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", 0.5f);
+                corpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", corpseDetectionRadius);
+                //Debug.Log(corpse.name);
                 if(corpse != null)
                 {
-                    Debug.Log(corpse.name);
                     ChangeState(State.GOINGTOCORPSE);
                 }
-                if (distanceToTarget <= 0.5f)
+                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= 0.5f)
                 {
                     ChangeState(State.WANDERING); 
                 }
                 break;
             case State.GOINGTOCORPSE:
-                /* if (distanceToTarget <= 0.5f)
+                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= corpsePickUpRadius)
                  {
+                    target.SetActive(false);
                     ChangeState(State.WANDERING);
-                 }*/
-                 Debug.Log("Holi");
+                 }
 
                 break;
             
@@ -91,7 +93,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 
                 break;
             case State.GOINGTOCORPSE:
-                
+                target = null;
                 break;
         }
 
@@ -109,7 +111,6 @@ public class FSM_CorpseWander : MonoBehaviour
 
                 break;
             case State.GOINGTOCORPSE:
-
                 target = corpse;
                 enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 break;

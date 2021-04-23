@@ -46,7 +46,10 @@ public class DetectionFunctions : MonoBehaviour
             return null;
         }
 	}
-    public static float DistanceToTarget (GameObject user, GameObject target) {
-		return (target.transform.position - user.transform.position).magnitude;
+    public static float DistanceToTarget (GameObject user, GameObject target) 
+    {
+        Vector3 distance = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
+        target.transform.position.z - user.transform.position.z);
+		return (distance).magnitude;
 	}
 }
