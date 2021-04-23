@@ -111,7 +111,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
             case State.ATTACKING:
                 enemy.isStopped = false;
-
+                Arm.SetActive(false);
                 break;
         }
 
