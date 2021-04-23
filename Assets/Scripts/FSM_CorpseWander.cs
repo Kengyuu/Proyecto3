@@ -9,13 +9,13 @@ public class FSM_CorpseWander : MonoBehaviour
     NavMeshAgent enemy;
     public GameObject target;
 
-    public float corpsePickUpRadius = 2f;
+    private Enemy_BLACKBOARD blackboard;
     GameObject waypointsList;
     GameObject corpse;
 
-    float closeEnoughTarget;
+    //float closeEnoughTarget;
 
-    public float corpseDetectionRadius = 10f;
+   
  
     public enum State {INITIAL, WANDERING, GOINGTOCORPSE};
     public State currentState;
@@ -25,6 +25,7 @@ public class FSM_CorpseWander : MonoBehaviour
     void Start()
     {
         enemy = GetComponent<NavMeshAgent>();
+        blackboard = GetComponent<Enemy_BLACKBOARD>();
         waypointsList = GameObject.FindGameObjectWithTag("SpawnersContainer");
         int spawnPosition = Random.Range(0, waypointsList.GetComponent<RoomSpawner>().spawners.Count);
         target = waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
@@ -58,7 +59,7 @@ public class FSM_CorpseWander : MonoBehaviour
 
             case State.WANDERING:
 
-                corpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", corpseDetectionRadius);
+                corpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
                 if(corpse != null)
                 {
@@ -70,7 +71,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 }
                 break;
             case State.GOINGTOCORPSE:
-                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= corpsePickUpRadius)
+                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.corpsePickUpRadius)
                  {
                     target.SetActive(false);
                     ChangeState(State.WANDERING);
@@ -78,6 +79,13 @@ public class FSM_CorpseWander : MonoBehaviour
 
                 break;
             
+        }
+
+        if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
+        {
+            gameObject.GetComponent<FSM_SeekPlayer>().enabled = true;
+            gameObject.GetComponent<FSM_SeekPlayer>().ReEnter();
+            this.enabled = false;
         }
         
 
