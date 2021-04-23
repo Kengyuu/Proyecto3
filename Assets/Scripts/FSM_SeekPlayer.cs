@@ -9,10 +9,15 @@ public class FSM_SeekPlayer : MonoBehaviour
     NavMeshAgent enemy;
     private Enemy_BLACKBOARD blackboard;
     GameObject Player;
+
+    public GameObject target;
+    public GameObject savedCorpse;
+   
+
     public Vector3 lastPlayerPosition;
     Transform child;
     GameObject Arm;
-    public enum State { INITIAL, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
+    public enum State { INITIAL, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, WANDERING,ATTACKING};
     public State currentState;
 
 
@@ -72,6 +77,19 @@ public class FSM_SeekPlayer : MonoBehaviour
                     GetComponent<FSM_CorpseWander>().ReEnter();
                     this.enabled = false;
                 }
+                break;
+            case State.WANDERING:
+
+                savedCorpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
+                //Debug.Log(corpse.name);
+                if (savedCorpse != null)
+                {
+                    blackboard.lastCorpseSeen = savedCorpse;
+                }
+                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= 0.5f)
+                {
+                    ChangeState(State.WANDERING);
+                }
 
                 break;
             case State.ATTACKING:
@@ -128,6 +146,13 @@ public class FSM_SeekPlayer : MonoBehaviour
             case State.ATTACKING:
                 enemy.isStopped = true;
                 Arm.SetActive(true);
+                break;
+
+            case State.WANDERING:
+                int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
+                target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
+                //enemy.SetDestination(target.transform.position);
+                enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 break;
 
         }

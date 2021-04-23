@@ -120,8 +120,12 @@ MonoBehaviour:
   corpsePickUpRadius: 2
   corpseDetectionRadius: 10
   playerDetectionRadius: 10
+  cooldownToGrabCorpse: 3
   Player: {fileID: 0}
   distanceToAttack: 3
+  enemyCorpses: 0
+  playerCorpses: 0
+  remainingCorpses: 0
 --- !u!114 &20940603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8456623638847497767
 Transform:
   m_ObjectHideFlags: 0
