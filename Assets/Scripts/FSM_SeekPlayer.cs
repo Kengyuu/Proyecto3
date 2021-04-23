@@ -10,7 +10,8 @@ public class FSM_SeekPlayer : MonoBehaviour
     private Enemy_BLACKBOARD blackboard;
     GameObject Player;
     public Vector3 lastPlayerPosition;
-   
+    Transform child;
+    GameObject Arm;
     public enum State { INITIAL, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
     public State currentState;
 
@@ -21,7 +22,8 @@ public class FSM_SeekPlayer : MonoBehaviour
         enemy = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player");
         blackboard = GetComponent<Enemy_BLACKBOARD>();
-       
+        child = gameObject.transform.GetChild(2);
+        Arm = child.gameObject;
     }
 
     public void Exit()
@@ -127,12 +129,21 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
             case State.ATTACKING:
                 enemy.isStopped = true;
-
+                Arm.SetActive(true);
                 break;
 
         }
 
         currentState = newState;
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("hit");
+            //other.gameObject.GetComponent<PlayerController>().GetDamage(0);
+        }
     }
 }
