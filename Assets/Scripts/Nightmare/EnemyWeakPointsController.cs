@@ -19,7 +19,7 @@ public class EnemyWeakPointsController : MonoBehaviour
     }*/
     void Start()
     {
-        SpawnWeakPoints(weakPointsMax-currentWeakPoints);
+        SpawnWeakPoints();
     }
 
     // Update is called once per frame
@@ -60,10 +60,11 @@ public class EnemyWeakPointsController : MonoBehaviour
         Debug.Log("No puto, me estuniaste");
     }
 
-    public void SpawnWeakPoints(int numberWeakPoints)
+    public void SpawnWeakPoints()
     {
         int spawnPosition = -1;
-        for (int i = 0; i < numberWeakPoints; i++)
+        int spawnQuantity = weakPointsMax - currentWeakPoints;
+        for (int i = 0; i < spawnQuantity; i++)
         {
             bool spawnable = false;
             while(spawnable == false)

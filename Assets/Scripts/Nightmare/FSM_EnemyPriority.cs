@@ -156,7 +156,7 @@ public class FSM_EnemyPriority : MonoBehaviour
                 if (currentStunTime >= stunTime)
                 {
                     currentStunTime = 0;
-                    GetComponent<EnemyWeakPointsController>().SpawnWeakPoints(3);
+                    GetComponent<EnemyWeakPointsController>().SpawnWeakPoints();
                     ChangeState(State.CORPSEWANDER);
                 }
                

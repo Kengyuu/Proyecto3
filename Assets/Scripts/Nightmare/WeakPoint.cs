@@ -21,7 +21,7 @@ public class WeakPoint : MonoBehaviour
     public void TakeDamage()
     {
         
-        spawnPosition = -1;
+       
         enemyWeakPointsController.TakeDamage(gameObject);
         gameObject.SetActive(false);
     }
