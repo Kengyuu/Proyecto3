@@ -7,7 +7,7 @@ public class EnemyWeakPointsController : MonoBehaviour
     public List<Transform> weakPointsList;
     List<int> spawnersUsed = new List<int>();
     public int weakPointsMax = 3;
-    int currentWeakPoints = 0;
+    public int currentWeakPoints = 0;
     public GameObject[] weakPoint;
     // Start is called before the first frame update
     /*void Awake()
@@ -60,7 +60,7 @@ public class EnemyWeakPointsController : MonoBehaviour
         Debug.Log("No puto, me estuniaste");
     }
 
-    void SpawnWeakPoints(int numberWeakPoints)
+    public void SpawnWeakPoints(int numberWeakPoints)
     {
         int spawnPosition = -1;
         for (int i = 0; i < numberWeakPoints; i++)

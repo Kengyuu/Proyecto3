@@ -33,13 +33,12 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     public void Exit()
     {
-
-
-
+        this.enabled = false;
     }
 
     public void ReEnter()
     {
+        this.enabled = true;
         currentState = State.INITIAL;
 
     }
@@ -52,7 +51,26 @@ public class FSM_SeekPlayer : MonoBehaviour
         switch (currentState)
         {
             case State.INITIAL:
-                ChangeState(State.SEEKINGPLAYER);
+                ChangeState(State.WANDERING);
+                break;
+
+            case State.WANDERING:
+
+                savedCorpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
+                //Debug.Log(corpse.name);
+                if (savedCorpse != null)
+                {
+                    blackboard.lastCorpseSeen = savedCorpse;
+                }
+                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= 0.5f)
+                {
+                    ChangeState(State.WANDERING);
+                }
+
+                if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
+                {
+                    ChangeState(State.SEEKINGPLAYER);
+                }
                 break;
 
             case State.SEEKINGPLAYER:
@@ -73,25 +91,13 @@ public class FSM_SeekPlayer : MonoBehaviour
 
                 if (enemy.remainingDistance < 0.5f)
                 {
-                    GetComponent<FSM_CorpseWander>().enabled = true;
-                    GetComponent<FSM_CorpseWander>().ReEnter();
-                    this.enabled = false;
+                   gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = false;
+                    gameObject.GetComponent<FSM_EnemyPriority>().ReEnter();
                 }
                 break;
-            case State.WANDERING:
+            
 
-                savedCorpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
-                //Debug.Log(corpse.name);
-                if (savedCorpse != null)
-                {
-                    blackboard.lastCorpseSeen = savedCorpse;
-                }
-                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= 0.5f)
-                {
-                    ChangeState(State.WANDERING);
-                }
-
-                break;
+               
             case State.ATTACKING:
 
                 transform.LookAt(Player.transform,transform.up);
@@ -141,6 +147,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
             case State.GOTOLASTPLAYERPOSITION:
                 lastPlayerPosition = Player.transform.position;
+
                 enemy.SetDestination(lastPlayerPosition);
                 break;
             case State.ATTACKING:
@@ -149,6 +156,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
 
             case State.WANDERING:
+                Debug.Log("Holi");
                 int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
                 target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
                 //enemy.SetDestination(target.transform.position);

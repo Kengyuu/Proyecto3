@@ -36,13 +36,13 @@ public class FSM_CorpseWander : MonoBehaviour
 
     public void Exit()
     {
-        
-
-        
+        enemy.isStopped = false;
+        this.enabled = false;
     }
 
     public void ReEnter()
     {
+        this.enabled = true;
         currentState = State.INITIAL;
         
     }
@@ -59,7 +59,10 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
 
             case State.WANDERING:
-
+                if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
+                {
+                    gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = true;
+                }
                 corpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
                 if(corpse != null)
@@ -70,18 +73,25 @@ public class FSM_CorpseWander : MonoBehaviour
                 {
                     ChangeState(State.WANDERING); 
                 }
+                
                 break;
             case State.GOINGTOCORPSE:
+                if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
+                {
+                    gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = true;
+                }
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.corpsePickUpRadius)
                 {
-                
-                ChangeState(State.GRABBINGCORPSE);
+                    ChangeState(State.GRABBINGCORPSE);
                 }
-
+                
                 break;
 
             case State.GRABBINGCORPSE:
-               
+                if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
+                {
+                    gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = true;
+                }
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                 if (blackboard.cooldownToGrabCorpse <= 0)
                 {
@@ -94,12 +104,7 @@ public class FSM_CorpseWander : MonoBehaviour
             
         }
 
-        if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
-        {
-            gameObject.GetComponent<FSM_SeekPlayer>().enabled = true;
-            gameObject.GetComponent<FSM_SeekPlayer>().ReEnter();
-            this.enabled = false;
-        }
+        
         
 
     }
@@ -111,9 +116,13 @@ public class FSM_CorpseWander : MonoBehaviour
         switch (currentState)
         {
             case State.WANDERING:
-                
+                //target = null;
                 break;
             case State.GOINGTOCORPSE:
+                //target = null;
+                
+                blackboard.enemyCorpses++;
+                blackboard.remainingCorpses--;
                 enemy.isStopped = false;
                 break;
         }
@@ -146,7 +155,6 @@ public class FSM_CorpseWander : MonoBehaviour
             case State.GRABBINGCORPSE:
                 enemy.isStopped = true;
                 blackboard.cooldownToGrabCorpse = 3f;
-                blackboard.enemyCorpses++;
                 break;
 
         }

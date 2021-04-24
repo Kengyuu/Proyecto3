@@ -130,6 +130,8 @@ public class GameObjectSpawner : MonoBehaviour
                 Instantiate(enemy, roomsController.rooms[i].transform.position, Quaternion.identity);
             }
         }
+
+        GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses = maxDeadBodysMap;
     }
 
     //numberBodys = maxDeadBodysMap - currentBodysSpawned;
