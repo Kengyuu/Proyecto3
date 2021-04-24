@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class DetectionFunctions : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public static GameObject FindObjectInArea (GameObject user, string tag, float radius) {
 
 		GameObject [] targets = GameObject.FindGameObjectsWithTag(tag);
@@ -46,10 +36,13 @@ public class DetectionFunctions : MonoBehaviour
             return null;
         }
 	}
+
     public static float DistanceToTarget (GameObject user, GameObject target) 
     {
         Vector3 distance = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
         target.transform.position.z - user.transform.position.z);
 		return (distance).magnitude;
 	}
+
+   
 }

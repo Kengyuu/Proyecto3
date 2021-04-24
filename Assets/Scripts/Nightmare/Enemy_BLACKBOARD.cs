@@ -18,6 +18,7 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     public GameObject Player;
     public float distanceToAttack = 5f;
 
+    public float senseRadius = 10f;
     public int enemyCorpses;
     public int playerCorpses;
     public int remainingCorpses;

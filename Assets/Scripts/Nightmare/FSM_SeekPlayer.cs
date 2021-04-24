@@ -17,7 +17,7 @@ public class FSM_SeekPlayer : MonoBehaviour
     public Vector3 lastPlayerPosition;
     Transform child;
     GameObject Arm;
-    public enum State { INITIAL, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, WANDERING,ATTACKING};
+    public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
     public State currentState;
 
 
@@ -89,14 +89,17 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
             case State.GOTOLASTPLAYERPOSITION:
 
+                
+
                 if (enemy.remainingDistance < 0.5f)
                 {
-                   gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = false;
-                    gameObject.GetComponent<FSM_EnemyPriority>().ReEnter();
+                    
+                   gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = false;                
+                   gameObject.GetComponent<FSM_EnemyPriority>().ReEnter();
                 }
                 break;
-            
 
+          
                
             case State.ATTACKING:
 
@@ -150,6 +153,8 @@ public class FSM_SeekPlayer : MonoBehaviour
 
                 enemy.SetDestination(lastPlayerPosition);
                 break;
+
+            
             case State.ATTACKING:
                 enemy.isStopped = true;
                 Arm.SetActive(true);
