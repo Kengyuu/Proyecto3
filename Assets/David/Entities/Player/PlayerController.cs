@@ -176,11 +176,19 @@ public class PlayerController : EntityController
                         Debug.Log("Corpse hitted, changing tag + disabling GameObject");
                         //hit.transform.tag = "CorpseDisabled";
                         hit.transform.gameObject.SetActive(false);
+
+                        //ESTO ES SOLO PARA TESTEO
+                        GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().playerCorpses++;
+                        GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses--;
+
+
                         break;
 
                     case "WeakPoint":
                         Debug.Log("Enemy WeakPoint hitted, calling Enemy TakeDamage()");
                         hit.collider.transform.GetComponent<WeakPoint>().TakeDamage();
+                        
+                        
                         break;
                 }
             }

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class FSM_EnemyPriority : MonoBehaviour
 {
     // Start is called before the first frame update
-    //NavMeshAgent enemy;
+    NavMeshAgent enemy;
     private Enemy_BLACKBOARD blackboard;
     private FSM_CorpseWander corpseWander;
     private FSM_SeekPlayer seekPlayer;
@@ -22,10 +22,11 @@ public class FSM_EnemyPriority : MonoBehaviour
 
     int totalCorpses;
     public float stunTime;
-    float currentStunTime;
+    public float currentStunTime;
 
     void Start()
     {
+        enemy = GetComponent<NavMeshAgent>();
         currentStunTime = 0f;
         Player = GameObject.FindGameObjectWithTag("Player");
         corpseWander = GetComponent<FSM_CorpseWander>();
@@ -63,6 +64,7 @@ public class FSM_EnemyPriority : MonoBehaviour
 
                 if(GetComponent<EnemyWeakPointsController>().currentWeakPoints <= 0)
                 {
+                    Debug.Log("Stunned");
                     ChangeState(State.STUNNED);
                 }
 
@@ -108,6 +110,7 @@ public class FSM_EnemyPriority : MonoBehaviour
 
                 if(GetComponent<EnemyWeakPointsController>().currentWeakPoints <= 0)
                 {
+                    Debug.Log("Stunned");
                     ChangeState(State.STUNNED);
                 }
 
@@ -148,16 +151,15 @@ public class FSM_EnemyPriority : MonoBehaviour
 
                 break;
             case State.STUNNED:
-                if(currentStunTime < stunTime)
+               
+                currentStunTime += Time.deltaTime;
+                if (currentStunTime >= stunTime)
                 {
-                    currentStunTime += Time.deltaTime;
-                }
-                else
-                {
+                    currentStunTime = 0;
                     GetComponent<EnemyWeakPointsController>().SpawnWeakPoints(3);
                     ChangeState(State.CORPSEWANDER);
                 }
-                
+               
                 break;
 
 
@@ -181,6 +183,7 @@ public class FSM_EnemyPriority : MonoBehaviour
 
                 break;
             case State.STUNNED:
+                enemy.isStopped = false;
                 currentStunTime = 0;
                 break;
         }
@@ -197,6 +200,7 @@ public class FSM_EnemyPriority : MonoBehaviour
                 seekPlayer.ReEnter();
                 break;
             case State.STUNNED:
+                enemy.isStopped = true;
                 currentStunTime = 0;
                 break;
 
