@@ -181,4 +181,12 @@ public class FSM_SeekPlayer : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().GetDamage(-1);
         }
     }
+
+    void OnDrawGizmos()
+    {
+        if(!Application.isPlaying)
+            return ;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, blackboard.senseRadius);
+    }
 }

@@ -35,7 +35,7 @@ Transform:
   m_GameObject: {fileID: 864447610606656395}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.14, z: 0}
-  m_LocalScale: {x: 1, y: 1.93, z: 1}
+  m_LocalScale: {x: 1.9462, y: 6.7888293, z: 1.9462}
   m_Children:
   - {fileID: 81859096082348861}
   - {fileID: 3260560529196192331}
@@ -126,6 +126,7 @@ MonoBehaviour:
   lastCorpseSeen: {fileID: 0}
   Player: {fileID: 0}
   distanceToAttack: 3
+  senseRadius: 20
   enemyCorpses: 0
   playerCorpses: 0
   remainingCorpses: 12

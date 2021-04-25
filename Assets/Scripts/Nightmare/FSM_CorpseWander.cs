@@ -18,7 +18,7 @@ public class FSM_CorpseWander : MonoBehaviour
 
    
  
-    public enum State {INITIAL, WANDERING, GOINGTOCORPSE, GRABBINGCORPSE, TERMINATED};
+    public enum State {INITIAL, WANDERING, GOINGTOCORPSE, GRABBINGCORPSE};
     public State currentState;
 
     
@@ -61,7 +61,6 @@ public class FSM_CorpseWander : MonoBehaviour
                 if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
                 {
                     gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = true;
-                    ChangeState(State.TERMINATED);
                 }
                 corpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
@@ -91,7 +90,6 @@ public class FSM_CorpseWander : MonoBehaviour
                 if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
                 {
                     gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = true;
-                    ChangeState(State.TERMINATED);
                 }
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                 if (blackboard.cooldownToGrabCorpse <= 0)
@@ -101,9 +99,6 @@ public class FSM_CorpseWander : MonoBehaviour
                     blackboard.cooldownToGrabCorpse = 3f;
                     break;
                 }
-                break;
-            
-            case State.TERMINATED:
                 break;
         }
     }
@@ -157,5 +152,13 @@ public class FSM_CorpseWander : MonoBehaviour
 
         currentState = newState;
         
+    }
+
+    void OnDrawGizmos()
+    {
+        if(!Application.isPlaying)
+            return ;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, blackboard.senseRadius);
     }
 }

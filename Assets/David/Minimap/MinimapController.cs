@@ -6,6 +6,12 @@ public class MinimapController : MonoBehaviour
 {
     public Transform m_Player;
 
+    void Start()
+    {
+        if(m_Player == null)
+            m_Player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     private void LateUpdate()
     {
         Vector3 newPosition = m_Player.position;

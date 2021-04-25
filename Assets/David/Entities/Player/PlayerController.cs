@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(m_ShootKeyCode) && !m_IsPlayerShooting)
         {
             Debug.Log("INICIO CASTEO DEL DISPARO");
-            GameManager.Instance.SetPlayerCanMove(false);
+            //GameManager.Instance.SetPlayerCanMove(false);
             //GameManager.Instance.SetIsCameraLocked(true);
             m_IsPlayerShooting = true;
             Invoke("Shoot", m_ShootCastingTime);
@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-        GameManager.Instance.SetPlayerCanMove(true);
+        //GameManager.Instance.SetPlayerCanMove(true);
         //GameManager.Instance.SetIsCameraLocked(false);
         m_IsPlayerShooting = false;
     }
