@@ -22,7 +22,10 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     public int enemyCorpses;
     public int playerCorpses;
     public int remainingCorpses;
-   
+
+    [Header("Score")]
+    public ScoreManager m_ScoreManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,6 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<ScoreManager>();
     }
 }

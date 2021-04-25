@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerController : EntityController
+public class PlayerController : MonoBehaviour
 {
     [Header("Player Inputs")]
     public KeyCode m_LeftKeyCode = KeyCode.A;
@@ -19,18 +19,14 @@ public class PlayerController : EntityController
     public KeyCode m_DebugLockKeyCode = KeyCode.O;
     
     [Header("Player Data")]
-    public Transform m_StartGamePosition = null;
     [Range(0, 20f)] public float m_Speed = 12f;
-    [Range(0, 1f)] public float m_AirSpeedFactor = 0.75f; //Reduce movement while in air
-    [Range(0, 10f)] public float m_FallSpeedMultiplier = 5f;
-    [Range(0, 30f)] public float m_JumpForce = 15f;
-    [Range(0,0.5f)] public float m_JumpThresholdSinceLastGround = 0.1f;
     [Range(0, 5f)] public float m_RunSpeedMultiplier = 1.5f;
     [SerializeField] private bool m_OnGround = false;
-    private float m_TimeSinceLastGround = 0.0f;
-    private float m_VerticalSpeed = 0.0f;
     private CharacterController m_CharacterController = null;
     [SerializeField] bool m_PlayerStunned = false;
+    private PlayerBlackboard blackboard;
+
+    
 
     [Header("Player Dash")]
     public Vector3 m_dashDirection;
@@ -54,7 +50,6 @@ public class PlayerController : EntityController
     [Header("Camera Controller")]
     public Camera m_Camera = null;
     public Transform m_PitchController = null;
-
     //Camera settings
     public float m_MinPitch = -45;
     public float m_MaxPitch = 50f;
@@ -68,12 +63,14 @@ public class PlayerController : EntityController
     private bool m_AngleLocked = false;
     private bool m_AimLocked = true;
 
-    [Header("Player Canvas")]
-    public TextMeshProUGUI TopBannerText = null;
-    public TextMeshProUGUI TopText = null;
-    public Image m_BlackScreen = null;
-    public float m_FadeTime = 1.8f;
-    private bool m_IsFading = false;
+    [Header("Player Jump data")]
+    [Range(0, 1f)] public float m_AirSpeedFactor = 0.75f; //Reduce movement while in air
+    [Range(0, 10f)] public float m_FallSpeedMultiplier = 5f;
+    [Range(0, 30f)] public float m_JumpForce = 15f;
+    [Range(0, 0.5f)] public float m_JumpThresholdSinceLastGround = 0.1f;
+    private float m_TimeSinceLastGround = 0.0f;
+    private float m_VerticalSpeed = 0.0f;
+
 
     private void Awake()
     {
@@ -84,21 +81,11 @@ public class PlayerController : EntityController
             m_Camera = Camera.main;
         if (m_PitchController == null) 
             m_PitchController = GameObject.FindGameObjectWithTag("PitchController").transform; //Need tag
-        if (TopBannerText == null)
-            TopBannerText = GameObject.FindGameObjectWithTag("TopBannerText").GetComponent<TextMeshProUGUI>(); //Need tag
-        if (TopText == null)
-            TopText = GameObject.FindGameObjectWithTag("TopText").GetComponent<TextMeshProUGUI>(); //Need tag
-        if (m_BlackScreen == null)
-            m_BlackScreen = GameObject.FindGameObjectWithTag("BlackScreen").GetComponent<Image>(); //Need tag
+        if (blackboard == null) blackboard = GetComponent<PlayerBlackboard>();
     }//End Awake
 
     void Start()
     {
-        //Set initial position to player
-        if (m_StartGamePosition == null) m_StartGamePosition = transform;
-        transform.position = m_StartGamePosition.position;
-        transform.rotation = m_StartGamePosition.rotation;
-
         //Assing Yaw and Pitch vars
         m_Yaw = transform.rotation.eulerAngles.y;
         m_Pitch = m_PitchController.localRotation.eulerAngles.x;
@@ -108,12 +95,6 @@ public class PlayerController : EntityController
 
         //Lock the cursor @ start
         Cursor.lockState = CursorLockMode.Locked;
-
-        //Clear any banner text
-        ClearPlayerText();
-
-        //FadeIn screen
-        StartCoroutine(Fade(0));
     }//End Start
 
     private void Update()
@@ -240,8 +221,10 @@ public class PlayerController : EntityController
                     Debug.Log("Corpse hitted, changing tag + disabling GameObject");
                     //hit.transform.tag = "CorpseDisabled";
                     hit.transform.gameObject.SetActive(false);
+                    blackboard.m_PlayerCorpses++;
+                    blackboard.m_ScoreManager.addPlayerCorpse(1);
 
-                    //ESTO ES SOLO PARA TESTEO
+                    //ESTO ES SOLO PARA TESTEO - ESTA DUPLICADO ACTUALMENTE!!!!!!!!!!!!!!!!!
                     GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().playerCorpses++;
                     GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses--;
                     break;
@@ -334,84 +317,28 @@ public class PlayerController : EntityController
         m_TimeSinceLastGround += Time.deltaTime; //Time to check last time on ground
 
         //Check if player collides from below with anything (no matter sides) and set vertical speed to 0 to start falling
-        m_OnGround = (l_CollisionFlags & CollisionFlags.CollidedBelow) != 0;
+        //m_OnGround = (l_CollisionFlags & CollisionFlags.CollidedBelow) != 0;
+        m_OnGround = m_CharacterController.isGrounded;
 
         if (m_OnGround) m_TimeSinceLastGround = 0.0f; //Player IS on ground
         if (m_OnGround || ((l_CollisionFlags & CollisionFlags.CollidedAbove) != 0 && m_VerticalSpeed >= 0f)) m_VerticalSpeed = 0.0f;
     }
 
-    private void ClearPlayerText()
-    {
-        TopBannerText.SetText("");
-        TopText.SetText("");
-    }
-
-    private void SavePlayerData()
-    {
-        //Save data to GameManager
-        GameManager.Instance.SetPlayerHealth(m_Life);
-    }
-
-    private void LoadPlayerData()
-    {
-        //Load data from GameManager
-        m_Life = GameManager.Instance.GetPlayerHealth();
-    }
 
     private void RestartGame()
     {
-        //Do stuff
-        //Maybe update player stats like HP, Shield, Ammo, etc. Before saving data (?)
-        SavePlayerData();
-        //Restart player position to last Checkpoint or something.
-        //ClearPlayerText();
-        //StartCoroutine(Fade(0));
+        //TBD
     }
-
-    public override void Die()
-    {
-        //Make player die from override parent
-        //Lock stuff:
-        GameManager.Instance.SetIsPlayerAlive(false);
-        GameManager.Instance.SetIsCameraLocked(true);
-        GameManager.Instance.SetPlayerCanMove(false);
-        //Fade and Show message:
-        StartCoroutine(Fade(1));
-        TopBannerText.SetText("You died");
-        TopText.SetText("Loading last checkpoint...");
-    }
-
-    IEnumerator Fade(float toColor)
-    {
-        /* toColor Range: [0,1]
-         * 0 = FadeOut
-         * 1 = FadeIn
-         */
-        m_IsFading = true;
-        Color curColor = m_BlackScreen.color;
-        while (Mathf.Abs(curColor.a - toColor) > 0.0001f)
-        {
-            curColor.a = Mathf.Lerp(curColor.a, toColor, m_FadeTime * Time.deltaTime);
-            m_BlackScreen.color = curColor;
-            yield return null;
-        }
-        m_IsFading = false;
-    }
-
-
-    //TEST ENEMY
-    public Enemy_BLACKBOARD m_EnemyBlackboard;
 
     public void GetDamage(int dmg)
     {
-        if(m_Life > 0) m_Life += dmg;
+        if(blackboard.m_Life > 0) blackboard.m_Life += dmg;
 
-        if (m_Life == 0)
+        if (blackboard.m_Life == 0)
         {
             //GAME OVER HERE
-            m_EnemyBlackboard = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>();
-            Debug.Log("GAME OVER CORPSES: " + m_EnemyBlackboard.enemyCorpses);
-            if(m_EnemyBlackboard.enemyCorpses >= 10f)
+            Debug.Log("GAME OVER CORPSES: " + GameManager.Instance.GetEnemy().GetComponent<Enemy_BLACKBOARD>().enemyCorpses);
+            if(GameManager.Instance.GetEnemy().GetComponent<Enemy_BLACKBOARD>().enemyCorpses >= 10f)
             {
                 Debug.Log("GAME OVER ----------- CAGASTE");
                 m_PlayerStunned = true;
@@ -433,7 +360,7 @@ public class PlayerController : EntityController
 
     private void RestoreLife()
     {
-        m_Life = m_MaxLife;
+        blackboard.m_Life = blackboard.m_MaxLife;
         GameManager.Instance.SetPlayerCanMove(true);
         GameManager.Instance.SetIsCameraLocked(false);
         m_PlayerStunned = false;

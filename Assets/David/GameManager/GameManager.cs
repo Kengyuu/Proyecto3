@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,15 +24,16 @@ public class GameManager : MonoBehaviour
     public GameState gameState { get; private set; }
 
     [Header("Player data")]
-    private GameObject m_Player;
-    private Transform m_CurrentCheckpoint;
-    private int m_PlayerHealth;
-    private bool m_IsPlayerAlive;
-    private bool m_PlayerCanMove;
-    private bool m_IsCameraLocked;
-    
+    [SerializeField] private GameObject m_Player;
+    [SerializeField] private bool m_IsPlayerAlive;
+    [SerializeField] private bool m_PlayerCanMove;
+    [SerializeField] private bool m_IsCameraLocked;
+
+    [Header("Enemy data")]
+    [SerializeField] private GameObject m_Enemy;
+
     [Header("Game State")]
-    private bool m_IsGameActive;
+    [SerializeField] private bool m_IsGameActive;
     
     private void Awake()
     {
@@ -55,11 +57,12 @@ public class GameManager : MonoBehaviour
     {
         //PlayerData
         m_Player = null;
-        m_PlayerHealth = 0;
         m_IsPlayerAlive = true;
         m_PlayerCanMove = true;
         m_IsCameraLocked = false;
-        m_CurrentCheckpoint = null;
+
+        //EnemyData
+        m_Enemy = null;
 
         //Game State
         m_IsGameActive = true;
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (m_Player == null) m_Player = GameObject.FindObjectOfType<PlayerController>().gameObject;
+        if (m_Enemy == null) m_Enemy = GameObject.FindObjectOfType<Enemy_BLACKBOARD>().gameObject;
     }
 
     public void SetGameState(GameState state)
@@ -94,22 +98,13 @@ public class GameManager : MonoBehaviour
     }
     //--------------------
 
-    //PlayerData
+    //Player
     public GameObject GetPlayer()
     {
         return m_Player;
     }
 
-    public void SetPlayerHealth(int value)
-    {
-        m_PlayerHealth = value;
-    }
-    public int GetPlayerHealth()
-    {
-        return m_PlayerHealth;
-    }
-
-
+    //Alive
     public bool GetIsPlayerAlive()
     {
         return m_IsPlayerAlive;
@@ -119,6 +114,7 @@ public class GameManager : MonoBehaviour
         m_IsPlayerAlive = value;
     }
 
+    //Movement
     public bool GetPlayerCanMove()
     {
         return m_PlayerCanMove;
@@ -128,8 +124,18 @@ public class GameManager : MonoBehaviour
         m_PlayerCanMove = value;
     }
 
+    //Camera movement
+    public bool GetIsCameraLocked()
+    {
+        return m_IsCameraLocked;
+    }
+    public void SetIsCameraLocked(bool value)
+    {
+        m_IsCameraLocked = value;
+    }
+
     //--------------------
-    //Other data
+    //Game active?
     public bool GetIsGameActive()
     {
         return m_IsGameActive;
@@ -139,13 +145,39 @@ public class GameManager : MonoBehaviour
         m_IsGameActive = value;
     }
 
-    public bool GetIsCameraLocked()
+    //Enemy
+    public GameObject GetEnemy()
     {
-        return m_IsCameraLocked;
+        return m_Enemy;
     }
-    public void SetIsCameraLocked(bool value)
-    {
-        m_IsCameraLocked = value;
-    }
+
+
     //--------------------
 }//End GameManager
+
+
+public class DependencyInjector
+{
+    static Dictionary<Type, System.Object> dependencies = new Dictionary<Type, System.Object>();
+    public static T GetDependency<T>()
+    {
+        if (!dependencies.ContainsKey(typeof(T)))
+        {
+            Debug.LogError("Cannot find: " + typeof(T).ToString() +".");
+            /*return null;*/
+            return default(T);
+        }
+        return (T)dependencies[typeof(T)];
+    }
+    public static void AddDependency<T>(System.Object obj)
+    {
+        if (dependencies.ContainsKey(typeof(T)))
+        {
+            Debug.Log("There's already an object of type: " + typeof(T).ToString());
+            Debug.Log("Object 1: " + dependencies[typeof(T)].GetType().ToString());
+            Debug.Log("Object 2: " + obj.GetType().ToString());
+            dependencies.Remove(typeof(T));
+        }
+        dependencies.Add(typeof(T), obj);
+    }
+}
