@@ -28,13 +28,10 @@ public class FSM_EnemyPriority : MonoBehaviour
     {
         enemy = GetComponent<NavMeshAgent>();
         currentStunTime = 0f;
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameManager.Instance.GetPlayer();
         corpseWander = GetComponent<FSM_CorpseWander>();
         seekPlayer = GetComponent<FSM_SeekPlayer>();
         blackboard = GetComponent<Enemy_BLACKBOARD>();
-        totalCorpses = blackboard.enemyCorpses + blackboard.playerCorpses + blackboard.remainingCorpses;
-        //child = gameObject.transform.GetChild(2);
-        //Arm = child.gameObject;
     }
 
     public void Exit()
@@ -121,19 +118,19 @@ public class FSM_EnemyPriority : MonoBehaviour
 
                 if(blackboard.enemyCorpses >= 4 && blackboard.enemyCorpses <= 6)
                 {
-                    if(blackboard.playerCorpses < blackboard.enemyCorpses && (blackboard.enemyCorpses - blackboard.playerCorpses) > 2)
+                    if(blackboard.playerCorpses < blackboard.enemyCorpses && (blackboard.enemyCorpses - blackboard.playerCorpses) > 2 && !playerSeen)
                     {
                         ChangeState(State.CORPSEWANDER);
                     }
-                    if(blackboard.playerCorpses == blackboard.enemyCorpses && blackboard.enemyCorpses != 6)
+                    if(blackboard.playerCorpses == blackboard.enemyCorpses && blackboard.enemyCorpses != 6 && !playerSeen)
                     {
-                        ChangeState(State.SEEKPLAYER);
+                        ChangeState(State.CORPSEWANDER);
                     }
                 }
 
                 if(blackboard.enemyCorpses >= 7 && blackboard.enemyCorpses <= 9)
                 {
-                    if(blackboard.remainingCorpses > 0)
+                    if(blackboard.remainingCorpses > 0 && !playerSeen)
                     {
                         ChangeState(State.CORPSEWANDER);
                     }
@@ -141,9 +138,10 @@ public class FSM_EnemyPriority : MonoBehaviour
 
                 if(blackboard.enemyCorpses < 4)
                 {
-                    if(blackboard.playerCorpses < 8)
+                    if(blackboard.playerCorpses < 8 && !playerSeen)
                     {
                         ChangeState(State.CORPSEWANDER);
+                        Debug.Log("Los devuelvo yo");
                     }
                 }
 
@@ -194,7 +192,7 @@ public class FSM_EnemyPriority : MonoBehaviour
 
             case State.CORPSEWANDER:
                 corpseWander.ReEnter();
-                playerSeen = false;
+                //playerSeen = false;
                 break;
             case State.SEEKPLAYER:
                 seekPlayer.ReEnter();

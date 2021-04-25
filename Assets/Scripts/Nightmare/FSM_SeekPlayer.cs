@@ -161,7 +161,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                Debug.Log("Holi");
                 int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
                 target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
                 //enemy.SetDestination(target.transform.position);
