@@ -39,6 +39,9 @@ public class PlayerController : EntityController
     public bool m_PlayerDashing = false;
     float currentDashTime = m_maxDashTime;
     float dashSpeed = 6;
+    int m_DashDirection = 0;
+    float m_DashCooldown = 0f;
+    float m_DashMaxCooldown = 3f;
 
     [Header("Player Shoot")]
     public LayerMask m_ShootLayers;
@@ -127,7 +130,6 @@ public class PlayerController : EntityController
         if (!GameManager.Instance.GetIsCameraLocked()) CameraMovement(); //Allow Camera movement with mouse
         if (GameManager.Instance.GetPlayerCanMove()) //Allow Player movement
         {
-            Debug.Log("MOVING");
             PlayerMovement();
             PlayerDash();
             PlayerShoot();
@@ -136,38 +138,72 @@ public class PlayerController : EntityController
 
     private void PlayerDash()
     {
-        if (Input.GetKeyDown(m_DashKeyCode) && !m_PlayerDashing)
-        {
-            Debug.Log("Dashing");
-            currentDashTime = 0;
-            m_PlayerDashing = true;
+        if (m_DashCooldown > 0f) m_DashCooldown -= Time.deltaTime;
+        else m_DashCooldown = 0f;
 
+        if (Input.GetKeyDown(m_DashKeyCode) && !m_PlayerDashing && m_DashCooldown == 0f)
+        {
+            currentDashTime = 0;
+            m_DashCooldown = m_DashMaxCooldown;
+
+            if (Input.GetKey(m_UpKeyCode))
+            {
+                m_DashDirection = 1;
+            }
+            if (Input.GetKey(m_RightKeyCode))
+            {
+                m_DashDirection = 2;
+            }
+            if (Input.GetKey(m_LeftKeyCode))
+            {
+                m_DashDirection = 3;
+            }
+            if (Input.GetKey(m_DownKeyCode))
+            {
+                m_DashDirection = 0;
+            }
+
+            m_PlayerDashing = true;
         }
 
         if (currentDashTime < m_maxDashTime)
         {
-            m_dashDirection = transform.forward * m_dashDistance;
+            if (m_DashDirection == 1)
+            {
+                m_dashDirection = transform.forward * m_dashDistance;
+            }
+            else if (m_DashDirection == 2)
+            {
+                m_dashDirection = transform.right * m_dashDistance;
+            }
+            else if (m_DashDirection == 3)
+            {
+                m_dashDirection = -transform.right * m_dashDistance;
+            }
+            else if (m_DashDirection == 0)
+            {
+                m_dashDirection = Vector3.zero;
+            }
+
             currentDashTime += m_dashStoppingSpeed;
         }
         else
         {
             m_dashDirection = Vector3.zero;
             m_PlayerDashing = false;
+            m_DashDirection = 0;
         }
         m_CharacterController.Move(m_dashDirection * Time.deltaTime * dashSpeed);
-    }
+    }//End PlayerDash()
 
     private void PlayerShoot()
     {
         if (Input.GetKeyDown(m_ShootKeyCode))
         {
-            Debug.Log("SHOOTING");
             RaycastHit hit;
 
             if(Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
             {
-                Debug.Log(hit.transform.name);
-
                 string tag = hit.collider.transform.tag;
 
                 switch (tag)
@@ -180,15 +216,11 @@ public class PlayerController : EntityController
                         //ESTO ES SOLO PARA TESTEO
                         GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().playerCorpses++;
                         GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses--;
-
-
                         break;
 
                     case "WeakPoint":
                         Debug.Log("Enemy WeakPoint hitted, calling Enemy TakeDamage()");
                         hit.collider.transform.GetComponent<WeakPoint>().TakeDamage();
-                        
-                        
                         break;
                 }
             }
