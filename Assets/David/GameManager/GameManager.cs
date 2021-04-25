@@ -34,7 +34,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Game State")]
     [SerializeField] private bool m_IsGameActive;
-    
+
+    [Header("Score Manager")]
+    public ScoreManager m_ScoreManager;
+
     private void Awake()
     {
         if (instance == null)
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour
         m_IsPlayerAlive = true;
         m_PlayerCanMove = true;
         m_IsCameraLocked = false;
+        m_ScoreManager = null;
 
         //EnemyData
         m_Enemy = null;
@@ -72,6 +76,7 @@ public class GameManager : MonoBehaviour
     {
         if (m_Player == null) m_Player = GameObject.FindObjectOfType<PlayerController>().gameObject;
         if (m_Enemy == null) m_Enemy = GameObject.FindObjectOfType<Enemy_BLACKBOARD>().gameObject;
+        if (m_ScoreManager == null) m_ScoreManager = GameObject.FindObjectOfType<ScoreManager>();
     }
 
     public void SetGameState(GameState state)

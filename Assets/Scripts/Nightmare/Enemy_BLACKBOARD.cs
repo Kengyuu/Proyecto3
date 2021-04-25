@@ -23,20 +23,11 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     public int playerCorpses;
     public int remainingCorpses;
 
-    [Header("Score")]
-    public ScoreManager m_ScoreManager;
-
 
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         waypointsList = GameObject.FindGameObjectWithTag("SpawnersContainer");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<ScoreManager>();
     }
 }

@@ -120,9 +120,11 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
             case State.GOINGTOCORPSE:
                 //target = null;
-                blackboard.m_ScoreManager.addEnemyCorpse(1);
                 blackboard.enemyCorpses++;
+                GameManager.Instance.m_ScoreManager.SetEnemyCorpses(blackboard.enemyCorpses);
                 blackboard.remainingCorpses--;
+                GameManager.Instance.m_ScoreManager.SetRemainingCorpses(blackboard.remainingCorpses);
+                
                 enemy.isStopped = false;
                 break;
         }

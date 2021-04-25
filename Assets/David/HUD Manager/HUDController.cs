@@ -7,6 +7,7 @@ public class HUDController : MonoBehaviour
 {
     public TextMeshProUGUI m_PlayerCorpses;
     public TextMeshProUGUI m_EnemyCorpses;
+    public TextMeshProUGUI m_RemainingCorpses;
 
     private void Start()
     {
@@ -20,7 +21,8 @@ public class HUDController : MonoBehaviour
     }
     public void updateScore(IScoreManager scoreManager)
     {
-        m_PlayerCorpses.text = "Player Corpses: " + scoreManager.getPlayerCorpses().ToString("0");
-        m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.getEnemyCorpses().ToString("0");
+        m_PlayerCorpses.text = "Player Corpses: " + scoreManager.GetPlayerCorpses().ToString("0");
+        m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.GetEnemyCorpses().ToString("0");
+        m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
     }
 }

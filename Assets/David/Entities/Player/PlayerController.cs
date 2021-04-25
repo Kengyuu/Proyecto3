@@ -222,11 +222,13 @@ public class PlayerController : MonoBehaviour
                     //hit.transform.tag = "CorpseDisabled";
                     hit.transform.gameObject.SetActive(false);
                     blackboard.m_PlayerCorpses++;
-                    blackboard.m_ScoreManager.addPlayerCorpse(1);
+                    GameManager.Instance.m_ScoreManager.SetPlayerCorpses(blackboard.m_PlayerCorpses);
+                    
 
                     //ESTO ES SOLO PARA TESTEO - ESTA DUPLICADO ACTUALMENTE!!!!!!!!!!!!!!!!!
                     GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().playerCorpses++;
                     GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses--;
+                    GameManager.Instance.m_ScoreManager.SetRemainingCorpses(GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses);
                     break;
 
                 case "WeakPoint":
