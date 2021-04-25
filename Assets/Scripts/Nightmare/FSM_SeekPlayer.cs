@@ -179,7 +179,7 @@ public class FSM_SeekPlayer : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("hit");
-            //other.gameObject.GetComponent<PlayerController>().GetDamage(0);
+            other.gameObject.GetComponent<PlayerController>().GetDamage(-1);
         }
     }
 }

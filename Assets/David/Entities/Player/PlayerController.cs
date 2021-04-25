@@ -30,6 +30,7 @@ public class PlayerController : EntityController
     private float m_TimeSinceLastGround = 0.0f;
     private float m_VerticalSpeed = 0.0f;
     private CharacterController m_CharacterController = null;
+    [SerializeField] bool m_PlayerStunned = false;
 
     [Header("Player Dash")]
     public Vector3 m_dashDirection;
@@ -41,11 +42,14 @@ public class PlayerController : EntityController
     float dashSpeed = 6;
     int m_DashDirection = 0;
     float m_DashCooldown = 0f;
-    float m_DashMaxCooldown = 3f;
+    public float m_DashMaxCooldown = 3f;
 
     [Header("Player Shoot")]
     public LayerMask m_ShootLayers;
     public float m_MaxShootDistance = 50f;
+    public float m_ShootCastingTime = 2f;
+    [SerializeField] bool m_IsPlayerShooting = false;
+
 
     [Header("Camera Controller")]
     public Camera m_Camera = null;
@@ -134,6 +138,16 @@ public class PlayerController : EntityController
             PlayerDash();
             PlayerShoot();
         }
+
+        //TEST CODE:
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Debug.Log("RECIBO DAÑO JEJE");
+            GetDamage(-1);
+        }
+
+        //END TEST CODE
+
     }//End Update
 
     private void PlayerDash()
@@ -196,36 +210,51 @@ public class PlayerController : EntityController
         m_CharacterController.Move(m_dashDirection * Time.deltaTime * dashSpeed);
     }//End PlayerDash()
 
+
+
     private void PlayerShoot()
     {
-        if (Input.GetKeyDown(m_ShootKeyCode))
+        if (Input.GetKeyDown(m_ShootKeyCode) && !m_IsPlayerShooting)
         {
-            RaycastHit hit;
-
-            if(Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
-            {
-                string tag = hit.collider.transform.tag;
-
-                switch (tag)
-                {
-                    case "Corpse":
-                        Debug.Log("Corpse hitted, changing tag + disabling GameObject");
-                        //hit.transform.tag = "CorpseDisabled";
-                        hit.transform.gameObject.SetActive(false);
-
-                        //ESTO ES SOLO PARA TESTEO
-                        GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().playerCorpses++;
-                        GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses--;
-                        break;
-
-                    case "WeakPoint":
-                        Debug.Log("Enemy WeakPoint hitted, calling Enemy TakeDamage()");
-                        hit.collider.transform.GetComponent<WeakPoint>().TakeDamage();
-                        break;
-                }
-            }
+            Debug.Log("INICIO CASTEO DEL DISPARO");
+            GameManager.Instance.SetPlayerCanMove(false);
+            //GameManager.Instance.SetIsCameraLocked(true);
+            m_IsPlayerShooting = true;
+            Invoke("Shoot", m_ShootCastingTime);
 
         }
+    }
+
+    private void Shoot()
+    {
+        Debug.Log("REALIZO EL RAYCAST DE DISPARO");
+        RaycastHit hit;
+
+        if (Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
+        {
+            string tag = hit.collider.transform.tag;
+
+            switch (tag)
+            {
+                case "Corpse":
+                    Debug.Log("Corpse hitted, changing tag + disabling GameObject");
+                    //hit.transform.tag = "CorpseDisabled";
+                    hit.transform.gameObject.SetActive(false);
+
+                    //ESTO ES SOLO PARA TESTEO
+                    GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().playerCorpses++;
+                    GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses--;
+                    break;
+
+                case "WeakPoint":
+                    Debug.Log("Enemy WeakPoint hitted, calling Enemy TakeDamage()");
+                    hit.collider.transform.GetComponent<WeakPoint>().TakeDamage();
+                    break;
+            }
+        }
+        GameManager.Instance.SetPlayerCanMove(true);
+        //GameManager.Instance.SetIsCameraLocked(false);
+        m_IsPlayerShooting = false;
     }
 
 
@@ -369,9 +398,45 @@ public class PlayerController : EntityController
         m_IsFading = false;
     }
 
+
+    //TEST ENEMY
+    public Enemy_BLACKBOARD m_EnemyBlackboard;
+
     public void GetDamage(int dmg)
     {
-        GameManager.Instance.SetPlayerHealth(dmg);
+        if(m_Life > 0) m_Life += dmg;
+
+        if (m_Life == 0)
+        {
+            //GAME OVER HERE
+            m_EnemyBlackboard = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>();
+            Debug.Log("GAME OVER CORPSES: " + m_EnemyBlackboard.enemyCorpses);
+            if(m_EnemyBlackboard.enemyCorpses >= 10f)
+            {
+                Debug.Log("GAME OVER ----------- CAGASTE");
+                m_PlayerStunned = true;
+                GameManager.Instance.SetPlayerCanMove(false);
+                GameManager.Instance.SetIsCameraLocked(true);
+            }
+            else
+            {
+                if (!m_PlayerStunned)
+                {
+                    m_PlayerStunned = true;
+                    GameManager.Instance.SetPlayerCanMove(false);
+                    GameManager.Instance.SetIsCameraLocked(true);
+                    Invoke("RestoreLife", 3f);
+                }
+            }
+        }
+    }
+
+    private void RestoreLife()
+    {
+        m_Life = m_MaxLife;
+        GameManager.Instance.SetPlayerCanMove(true);
+        GameManager.Instance.SetIsCameraLocked(false);
+        m_PlayerStunned = false;
     }
 
     private void OnTriggerEnter(Collider col)

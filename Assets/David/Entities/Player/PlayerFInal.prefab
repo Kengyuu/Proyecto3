@@ -966,14 +966,18 @@ MonoBehaviour:
   m_JumpThresholdSinceLastGround: 0.1
   m_RunSpeedMultiplier: 1.5
   m_OnGround: 0
+  m_PlayerStunned: 0
   m_dashDirection: {x: 0, y: 0, z: 0}
   m_dashDistance: 1
   m_dashStoppingSpeed: 0.025
   m_PlayerDashing: 0
+  m_DashMaxCooldown: 1.5
   m_ShootLayers:
     serializedVersion: 2
     m_Bits: 64
   m_MaxShootDistance: 50
+  m_ShootCastingTime: 2
+  m_IsPlayerShooting: 0
   m_Camera: {fileID: 2747960351878432510}
   m_PitchController: {fileID: 2747960351955581654}
   m_MinPitch: -45
@@ -986,7 +990,7 @@ MonoBehaviour:
   TopText: {fileID: 2747960351609311499}
   m_BlackScreen: {fileID: 2747960351530922598}
   m_FadeTime: 1.8
-  m_DashCooldown: 0
+  m_EnemyBlackboard: {fileID: 104076307354460154, guid: fbd2fd88815d2584eab174600c3d28d9, type: 3}
 --- !u!1 &2747960351878432499
 GameObject:
   m_ObjectHideFlags: 0
