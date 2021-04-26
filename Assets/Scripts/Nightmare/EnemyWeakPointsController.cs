@@ -52,12 +52,18 @@ public class EnemyWeakPointsController : MonoBehaviour
         if(currentWeakPoints == 0)
         {
             GetStunned();
+            if (GameManager.Instance.GetPlayer().GetComponent<PlayerBlackboard>().m_PlayerCorpses >= 10)
+            {
+                GameManager.Instance.Win();
+            }
+            
         }
     }
 
     public void GetStunned()
     {
         Debug.Log("No puto, me estuniaste");
+        
     }
 
     public void SpawnWeakPoints()

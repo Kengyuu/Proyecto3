@@ -62,8 +62,10 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
+
         //PlayerData
-        m_ScoreManager = GameObject.FindObjectOfType<ScoreManager>(); 
+        m_ScoreManager = GameObject.FindObjectOfType<ScoreManager>();
+        m_ScoreManager.gameObject.GetComponent<HUDController>().m_centerText.text = " ";
         m_Player = GameObject.FindObjectOfType<PlayerController>().gameObject;
        
         m_IsPlayerAlive = true;
@@ -85,6 +87,20 @@ public class GameManager : MonoBehaviour
         if (m_Enemy == null) m_Enemy = GameObject.FindObjectOfType<Enemy_BLACKBOARD>().gameObject;
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindObjectOfType<ScoreManager>();
         if (m_gameObjectSpawner == null) m_gameObjectSpawner = GameObject.FindObjectOfType<GameObjectSpawner>();
+    }
+
+    public void GameOver()
+    {
+        m_PlayerCanMove = false;
+        m_IsCameraLocked = true;
+        m_ScoreManager.gameObject.GetComponent<HUDController>().m_centerText.text = "GAME OVER";
+    }
+
+    public void Win()
+    {
+        m_PlayerCanMove = false;
+        m_IsCameraLocked = true;
+        m_ScoreManager.gameObject.GetComponent<HUDController>().m_centerText.text = "YOU WIN!!!";
     }
 
     public void SetGameState(GameState state)

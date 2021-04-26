@@ -345,13 +345,14 @@ public class PlayerController : MonoBehaviour
         if (blackboard.m_Life == 0)
         {
             //GAME OVER HERE
-            Debug.Log("GAME OVER CORPSES: " + GameManager.Instance.GetEnemy().GetComponent<Enemy_BLACKBOARD>().enemyCorpses);
+            //Debug.Log("GAME OVER CORPSES: " + GameManager.Instance.GetEnemy().GetComponent<Enemy_BLACKBOARD>().enemyCorpses);
             if(GameManager.Instance.GetEnemy().GetComponent<Enemy_BLACKBOARD>().enemyCorpses >= 10f)
             {
-                Debug.Log("GAME OVER ----------- CAGASTE");
-                m_PlayerStunned = true;
-                GameManager.Instance.SetPlayerCanMove(false);
-                GameManager.Instance.SetIsCameraLocked(true);
+                /* Debug.Log("GAME OVER ----------- CAGASTE");
+                 m_PlayerStunned = true;
+                 GameManager.Instance.SetPlayerCanMove(false);
+                 GameManager.Instance.SetIsCameraLocked(true);*/
+                GameManager.Instance.GameOver();
             }
             else 
             {

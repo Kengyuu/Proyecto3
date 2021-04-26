@@ -9,6 +9,7 @@ public class HUDController : MonoBehaviour
     public TextMeshProUGUI m_EnemyCorpses;
     public TextMeshProUGUI m_RemainingCorpses;
     public TextMeshProUGUI m_PlayerHP;
+    public TextMeshProUGUI m_centerText;
 
     private void Start()
     {
