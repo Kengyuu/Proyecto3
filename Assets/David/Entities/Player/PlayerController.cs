@@ -224,12 +224,12 @@ public class PlayerController : MonoBehaviour
                     GameManager.Instance.m_gameObjectSpawner.ClearBodys(hit.collider.GetComponent<CorpseControl>().spawnPosition);
                     blackboard.m_PlayerCorpses++;
                     GameManager.Instance.m_ScoreManager.SetPlayerCorpses(blackboard.m_PlayerCorpses);
-                    
 
                     //ESTO ES SOLO PARA TESTEO - ESTA DUPLICADO ACTUALMENTE!!!!!!!!!!!!!!!!!
-                    GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().playerCorpses++;
                     GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses--;
-                    GameManager.Instance.m_ScoreManager.SetRemainingCorpses(GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses);
+                    GameManager.Instance.m_ScoreManager.SetRemainingCorpses(GameManager.Instance.m_ScoreManager.GetRemainingCorpses() - 1);
+                    GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().playerCorpses++;
+
                     break;
 
                 case "WeakPoint":
@@ -348,19 +348,24 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.SetPlayerCanMove(false);
                 GameManager.Instance.SetIsCameraLocked(true);
             }
-            else
+            else 
             {
                 if (!m_PlayerStunned)
                 {
+
                     m_PlayerStunned = true;
                     GameManager.Instance.SetPlayerCanMove(false);
                     GameManager.Instance.SetIsCameraLocked(true);
-                    Invoke("RestoreLife", 3f);
-                    int lostPlayerCorpses = Mathf.Max(1, Mathf.RoundToInt(blackboard.m_PlayerCorpses/3));
-                    blackboard.m_PlayerCorpses -= lostPlayerCorpses;
-                    GameManager.Instance.m_ScoreManager.SetPlayerCorpses(blackboard.m_PlayerCorpses);
-                    GameManager.Instance.m_ScoreManager.SetRemainingCorpses(GameManager.Instance.m_ScoreManager.GetRemainingCorpses() + lostPlayerCorpses);
-                    GameManager.Instance.m_gameObjectSpawner.SpawnBodys(lostPlayerCorpses);
+                    Invoke("RestoreLife", 1.5f);
+                    if (blackboard.m_PlayerCorpses > 0)
+                    {
+                        int lostPlayerCorpses = Mathf.Max(1, Mathf.RoundToInt(blackboard.m_PlayerCorpses / 3));
+                        blackboard.m_PlayerCorpses -= lostPlayerCorpses;
+                        GameManager.Instance.m_ScoreManager.SetPlayerCorpses(blackboard.m_PlayerCorpses);
+                        GameManager.Instance.m_ScoreManager.SetRemainingCorpses(GameManager.Instance.m_ScoreManager.GetRemainingCorpses() + lostPlayerCorpses);
+                        GameManager.Instance.m_gameObjectSpawner.SpawnBodys(lostPlayerCorpses);
+                    }
+                    
                 }
             }
         }

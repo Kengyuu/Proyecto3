@@ -93,6 +93,9 @@ public class FSM_SeekPlayer : MonoBehaviour
                 if (enemy.remainingDistance < 0.5f)
                 {
                    gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = false;
+                    
+                    gameObject.GetComponent<FSM_EnemyPriority>().ReEnter();
+                    Exit();
                 }
                 break;
 
@@ -176,15 +179,19 @@ public class FSM_SeekPlayer : MonoBehaviour
         {
             Debug.Log("hit");
             other.gameObject.GetComponent<PlayerController>().GetDamage(-1);
+
             StartCoroutine(WaitToGetStunned());
+           
 
         }
     }
 
     IEnumerator WaitToGetStunned()
     {
-        yield return new WaitForSeconds(2);
-        GetComponent<FSM_EnemyPriority>().GetStunned();
+        enemy.isStopped = true;
+        yield return new WaitForSeconds(4);
+        enemy.isStopped = false;
+        
     }
         
 
