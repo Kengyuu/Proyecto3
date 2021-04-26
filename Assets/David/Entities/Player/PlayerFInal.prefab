@@ -620,20 +620,20 @@ MonoBehaviour:
   m_UpKeyCode: 119
   m_DownKeyCode: 115
   m_JumpKeyCode: 0
-  m_RunKeyCode: 0
+  m_RunKeyCode: 304
   m_DashKeyCode: 32
   m_ShootKeyCode: 324
   m_DebugLockAngleKeyCode: 105
   m_DebugLockKeyCode: 111
   m_Speed: 4
-  m_RunSpeedMultiplier: 1.5
+  m_RunSpeedMultiplier: 2.04
   m_OnGround: 0
   m_PlayerStunned: 0
   m_dashDirection: {x: 0, y: 0, z: 0}
-  m_dashDistance: 1
+  m_dashDistance: 20
   m_dashStoppingSpeed: 0.025
   m_PlayerDashing: 0
-  m_DashMaxCooldown: 1.5
+  m_DashMaxCooldown: 10
   m_ShootLayers:
     serializedVersion: 2
     m_Bits: 64

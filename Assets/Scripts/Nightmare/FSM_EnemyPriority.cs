@@ -206,7 +206,12 @@ public class FSM_EnemyPriority : MonoBehaviour
             case State.STUNNED:
                 int lostEnemyCorpses = Mathf.Max(1, Mathf.RoundToInt(blackboard.enemyCorpses/3));
                 blackboard.enemyCorpses -= lostEnemyCorpses;
+                if (blackboard.enemyCorpses < 0)
+                {
+                    blackboard.enemyCorpses = 0;
+                }
                 GameManager.Instance.m_ScoreManager.SetEnemyCorpses(blackboard.enemyCorpses);
+                
                 blackboard.remainingCorpses += lostEnemyCorpses;
                 GameManager.Instance.m_ScoreManager.SetRemainingCorpses(blackboard.remainingCorpses);
                 GameManager.Instance.m_gameObjectSpawner.SpawnBodys(lostEnemyCorpses);

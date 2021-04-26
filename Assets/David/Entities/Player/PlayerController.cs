@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (m_DashDirection == 0)
             {
-                m_dashDirection = Vector3.zero;
+                m_dashDirection = -transform.forward * m_dashDistance;
             }
 
             currentDashTime += m_dashStoppingSpeed;

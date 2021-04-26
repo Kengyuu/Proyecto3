@@ -84,7 +84,7 @@ public class GameObjectSpawner : MonoBehaviour
             if(deadBodys[spawnPosition].activeSelf)
             {
                 deadBodys[spawnPosition].SetActive(false);
-                Debug.Log("Clear body " + spawnPosition);
+               // Debug.Log("Clear body " + spawnPosition);
             }
             
             spawnersUsed.Remove(spawnPosition);
@@ -190,7 +190,7 @@ public class GameObjectSpawner : MonoBehaviour
             
             spawnersUsed.Add(spawnPosition);
             deadBodys[spawnPosition].SetActive(true);
-            Debug.Log( deadBodys[spawnPosition].GetComponent<CorpseControl>().spawnPosition + " Jeje " + spawnersUsed[i]);
+            //Debug.Log( deadBodys[spawnPosition].GetComponent<CorpseControl>().spawnPosition + " Jeje " + spawnersUsed[i]);
             //deadBodys[spawnPosition].transform.parent = null;
             currentBodysSpawned++;
         }
