@@ -29,5 +29,6 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         waypointsList = GameObject.FindGameObjectWithTag("SpawnersContainer");
+
     }
 }

@@ -166,7 +166,12 @@ public class FSM_EnemyPriority : MonoBehaviour
 
     }
 
-    void ChangeState(State newState)
+    public void GetStunned()
+    {
+        ChangeState(State.STUNNED);
+    }
+
+     void ChangeState(State newState)
     {
 
         //EXIT LOGIC

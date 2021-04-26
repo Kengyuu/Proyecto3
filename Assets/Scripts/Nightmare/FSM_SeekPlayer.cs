@@ -33,6 +33,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     public void Exit()
     {
+        Arm.SetActive(false);
         this.enabled = false;
     }
 
@@ -175,8 +176,17 @@ public class FSM_SeekPlayer : MonoBehaviour
         {
             Debug.Log("hit");
             other.gameObject.GetComponent<PlayerController>().GetDamage(-1);
+            StartCoroutine(WaitToGetStunned());
+
         }
     }
+
+    IEnumerator WaitToGetStunned()
+    {
+        yield return new WaitForSeconds(2);
+        GetComponent<FSM_EnemyPriority>().GetStunned();
+    }
+        
 
     /*void OnDrawGizmos()
     {
