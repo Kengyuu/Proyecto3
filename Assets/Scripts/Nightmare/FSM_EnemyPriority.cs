@@ -149,7 +149,7 @@ public class FSM_EnemyPriority : MonoBehaviour
 
                 break;
             case State.STUNNED:
-               
+
                 currentStunTime += Time.deltaTime;
                 if (currentStunTime >= stunTime)
                 {
@@ -182,6 +182,7 @@ public class FSM_EnemyPriority : MonoBehaviour
                 break;
             case State.STUNNED:
                 enemy.isStopped = false;
+                playerSeen = false;
                 currentStunTime = 0;
                 break;
         }
@@ -198,6 +199,13 @@ public class FSM_EnemyPriority : MonoBehaviour
                 seekPlayer.ReEnter();
                 break;
             case State.STUNNED:
+                int lostEnemyCorpses = Mathf.Max(1, Mathf.RoundToInt(blackboard.enemyCorpses/3));
+                blackboard.enemyCorpses -= lostEnemyCorpses;
+                GameManager.Instance.m_ScoreManager.SetEnemyCorpses(blackboard.enemyCorpses);
+                blackboard.remainingCorpses += lostEnemyCorpses;
+                GameManager.Instance.m_ScoreManager.SetRemainingCorpses(blackboard.remainingCorpses);
+                GameManager.Instance.m_gameObjectSpawner.SpawnBodys(lostEnemyCorpses);
+
                 enemy.isStopped = true;
                 currentStunTime = 0;
                 break;

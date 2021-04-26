@@ -11,7 +11,7 @@ public class GameObjectSpawner : MonoBehaviour
     public RoomsController roomsController;
     public int maxDeadBodysMap = 12; 
     public int maxDeadBodyRoom = 2;
-
+    public List<GameObject> deadBodys = new List<GameObject>();
     int playerSpawnRoom = 5;
     int enemySpawnRoom = 5;
     int currentBodysSpawned = 0;
@@ -37,6 +37,11 @@ public class GameObjectSpawner : MonoBehaviour
 
         //Esto comprueba en qué sala está el tag, para añadir 1 a la cantidad de spawners usados en la sala que haya tocado
 
+        for (int i = 0; i < deadBodys.Count; i++)
+        {
+            deadBodys[i].GetComponent<CorpseControl>().spawnPosition = i;
+        }
+
         for (int i = 0; i < roomTags.Count; i++)
         {
             if(deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnPosition].tag == roomTags[i])
@@ -46,7 +51,6 @@ public class GameObjectSpawner : MonoBehaviour
         }
 
         spawnersUsed.Add(spawnPosition);
-
         //Esto crea una cantidad de cadáveres pasada desde el editor en el objeto GameObjectSpawner
 
         SpawnBodys(maxDeadBodysMap);
@@ -64,19 +68,25 @@ public class GameObjectSpawner : MonoBehaviour
                 roomsController.currentSpawnersUsed[j] = 0;
             }
             SpawnBodys(maxDeadBodysMap - currentBodysSpawned);*/
-            if(spawnersUsed.Count > 0)
+            /*if(spawnersUsed.Count > 0)
             {
                 ClearBodys(spawnersUsed[0]);
-            }
+            }*/
             
         }
 
     }
 
-    void ClearBodys(int spawnPosition)
+    public void ClearBodys(int spawnPosition)
     {
         if(spawnPosition >= 0)
         {
+            if(deadBodys[spawnPosition].activeSelf)
+            {
+                deadBodys[spawnPosition].SetActive(false);
+                Debug.Log("Clear body " + spawnPosition);
+            }
+            
             spawnersUsed.Remove(spawnPosition);
             for (int i = 0; i < roomTags.Count; i++)
             {
@@ -179,7 +189,9 @@ public class GameObjectSpawner : MonoBehaviour
             }
             
             spawnersUsed.Add(spawnPosition);
-            Instantiate(deadBody, deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnersUsed[i]].transform.position, Quaternion.identity);
+            deadBodys[spawnPosition].SetActive(true);
+            Debug.Log( deadBodys[spawnPosition].GetComponent<CorpseControl>().spawnPosition + " Jeje " + spawnersUsed[i]);
+            //deadBodys[spawnPosition].transform.parent = null;
             currentBodysSpawned++;
         }
     }

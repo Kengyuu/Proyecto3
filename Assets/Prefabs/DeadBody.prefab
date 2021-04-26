@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 3544613349521026453}
   - component: {fileID: 6395262095216803088}
   - component: {fileID: 4653533729940947847}
+  - component: {fileID: 4759401012124748474}
   m_Layer: 6
   m_Name: DeadBody
   m_TagString: Corpse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4209126686619374239
 Transform:
   m_ObjectHideFlags: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2406975544627933003}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.774718, y: -17.057074, z: -4.352883}
+  m_LocalPosition: {x: 29.3418, y: 0, z: 88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6143146683198384182}
@@ -97,6 +98,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4759401012124748474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2406975544627933003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9952e8ffe7eb254d88687d5da5fce50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPosition: 0
 --- !u!1 &7693011786016564099
 GameObject:
   m_ObjectHideFlags: 0

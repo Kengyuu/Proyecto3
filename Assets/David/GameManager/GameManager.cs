@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     [Header("Score Manager")]
     public ScoreManager m_ScoreManager;
 
+    public GameObjectSpawner m_gameObjectSpawner;
+
     private void Awake()
     {
         if (instance == null)
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
         m_PlayerCanMove = true;
         m_IsCameraLocked = false;
         m_ScoreManager = null;
+        m_gameObjectSpawner = null;
 
         //EnemyData
         m_Enemy = null;
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour
         if (m_Player == null) m_Player = GameObject.FindObjectOfType<PlayerController>().gameObject;
         if (m_Enemy == null) m_Enemy = GameObject.FindObjectOfType<Enemy_BLACKBOARD>().gameObject;
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindObjectOfType<ScoreManager>();
+        if (m_gameObjectSpawner == null) m_gameObjectSpawner = GameObject.FindObjectOfType<GameObjectSpawner>();
     }
 
     public void SetGameState(GameState state)

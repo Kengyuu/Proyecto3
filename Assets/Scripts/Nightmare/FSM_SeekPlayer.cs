@@ -89,13 +89,9 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
             case State.GOTOLASTPLAYERPOSITION:
 
-                
-
                 if (enemy.remainingDistance < 0.5f)
                 {
-                    
-                   gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = false;                
-                   gameObject.GetComponent<FSM_EnemyPriority>().ReEnter();
+                   gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = false;
                 }
                 break;
 
@@ -182,11 +178,11 @@ public class FSM_SeekPlayer : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         if(!Application.isPlaying)
             return ;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, blackboard.senseRadius);
-    }
+    }*/
 }

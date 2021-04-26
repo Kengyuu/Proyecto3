@@ -20,8 +20,6 @@ public class WeakPoint : MonoBehaviour
 
     public void TakeDamage()
     {
-        
-       
         enemyWeakPointsController.TakeDamage(gameObject);
         gameObject.SetActive(false);
     }

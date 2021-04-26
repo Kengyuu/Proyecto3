@@ -94,7 +94,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                 if (blackboard.cooldownToGrabCorpse <= 0)
                 {
-                    target.SetActive(false);
+                    GameManager.Instance.m_gameObjectSpawner.ClearBodys(target.GetComponent<CorpseControl>().spawnPosition);
                     ChangeState(State.WANDERING);
                     blackboard.cooldownToGrabCorpse = 3f;
                     break;
@@ -154,11 +154,11 @@ public class FSM_CorpseWander : MonoBehaviour
         
     }
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         if(!Application.isPlaying)
             return ;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, blackboard.senseRadius);
-    }
+    }*/
 }

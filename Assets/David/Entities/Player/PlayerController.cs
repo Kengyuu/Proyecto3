@@ -220,7 +220,8 @@ public class PlayerController : MonoBehaviour
                 case "Corpse":
                     Debug.Log("Corpse hitted, changing tag + disabling GameObject");
                     //hit.transform.tag = "CorpseDisabled";
-                    hit.transform.gameObject.SetActive(false);
+                    //hit.transform.gameObject.SetActive(false);
+                    GameManager.Instance.m_gameObjectSpawner.ClearBodys(hit.collider.GetComponent<CorpseControl>().spawnPosition);
                     blackboard.m_PlayerCorpses++;
                     GameManager.Instance.m_ScoreManager.SetPlayerCorpses(blackboard.m_PlayerCorpses);
                     
@@ -355,6 +356,11 @@ public class PlayerController : MonoBehaviour
                     GameManager.Instance.SetPlayerCanMove(false);
                     GameManager.Instance.SetIsCameraLocked(true);
                     Invoke("RestoreLife", 3f);
+                    int lostPlayerCorpses = Mathf.Max(1, Mathf.RoundToInt(blackboard.m_PlayerCorpses/3));
+                    blackboard.m_PlayerCorpses -= lostPlayerCorpses;
+                    GameManager.Instance.m_ScoreManager.SetPlayerCorpses(blackboard.m_PlayerCorpses);
+                    GameManager.Instance.m_ScoreManager.SetRemainingCorpses(GameManager.Instance.m_ScoreManager.GetRemainingCorpses() + lostPlayerCorpses);
+                    GameManager.Instance.m_gameObjectSpawner.SpawnBodys(lostPlayerCorpses);
                 }
             }
         }
