@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
                 m_dashDirection = -transform.forward * m_dashDistance;
             }
 
-            currentDashTime += m_dashStoppingSpeed;
+            currentDashTime += m_dashStoppingSpeed * Time.deltaTime;
         }
         else
         {
