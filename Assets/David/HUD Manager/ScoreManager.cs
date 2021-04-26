@@ -7,6 +7,8 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     [SerializeField] float m_PlayerCorpses;
     [SerializeField] float m_EnemyCorpses;
     [SerializeField] float m_RemainingCorpses;
+    [SerializeField] float m_PlayerHP;
+
 
     public event ScoreChanged scoreChangedDelegate;
     void Awake()
@@ -31,6 +33,14 @@ public class ScoreManager : MonoBehaviour, IScoreManager
         scoreChangedDelegate?.Invoke(this);
     }
     public float GetPlayerCorpses() { return m_PlayerCorpses; }
+
+    public void SetPlayerHP(float value)
+    {
+        this.m_PlayerHP = value;
+        scoreChangedDelegate?.Invoke(this);
+    }
+
+    public float GetPlayerHP() { return m_PlayerHP; }
 
     //Enemy
     public void SetEnemyCorpses(float value)
@@ -77,12 +87,15 @@ public interface IScoreManager
     void AddPlayerCorpse();
     void RemovePlayerCorpse();
     float GetPlayerCorpses();
+    float GetPlayerHP();
+    void SetPlayerHP(float f);
 
     //Enemy
     void SetEnemyCorpses(float f);
     void AddEnemyCorpse();
     void RemoveEnemyCorpse();
     float GetEnemyCorpses();
+
 
     //Remaining corpses
     void SetRemainingCorpses(float f);

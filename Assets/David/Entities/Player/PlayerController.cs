@@ -95,7 +95,11 @@ public class PlayerController : MonoBehaviour
 
         //Lock the cursor @ start
         Cursor.lockState = CursorLockMode.Locked;
+
+       GameManager.Instance.m_ScoreManager.SetPlayerHP(blackboard.m_Life);
     }//End Start
+
+    
 
     private void Update()
     {
@@ -127,6 +131,7 @@ public class PlayerController : MonoBehaviour
             GetDamage(-1);
         }
 
+        //m_CharacterController.
         //END TEST CODE
 
     }//End Update
@@ -369,6 +374,8 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        GameManager.Instance.m_ScoreManager.SetPlayerHP(blackboard.m_Life);
     }
 
     private void RestoreLife()
