@@ -8,12 +8,22 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     [SerializeField] float m_EnemyCorpses;
     [SerializeField] float m_RemainingCorpses;
     [SerializeField] float m_PlayerHP;
+    
 
 
     public event ScoreChanged scoreChangedDelegate;
     void Awake()
     {
         DependencyInjector.AddDependency<IScoreManager>(this);
+    }
+    private void Start()
+    {
+        m_PlayerHP = GameManager.Instance.GetPlayer().GetComponent<PlayerBlackboard>().m_Life;
+        m_EnemyCorpses = GameManager.Instance.GetEnemy().GetComponent<Enemy_BLACKBOARD>().enemyCorpses;
+        m_RemainingCorpses = GameManager.Instance.GetEnemy().GetComponent<Enemy_BLACKBOARD>().remainingCorpses;
+        m_PlayerCorpses = GameManager.Instance.GetPlayer().GetComponent<PlayerBlackboard>().m_PlayerCorpses;
+        scoreChangedDelegate?.Invoke(this);
+
     }
 
     //Player

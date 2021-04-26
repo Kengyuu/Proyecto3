@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameObjectSpawner : MonoBehaviour
 {
     public GameObject deadBody;
-    public GameObject player;
-    public GameObject enemy;
+   // public GameObject player;
+    //public GameObject enemy;
     public GameObject deadBodyContainer;
     public RoomsController roomsController;
     public int maxDeadBodysMap = 12; 
@@ -116,7 +116,12 @@ public class GameObjectSpawner : MonoBehaviour
         {
             if(i == playerSpawnRoom - 1)
             {
-                Instantiate(player, roomsController.rooms[i].transform.position, Quaternion.identity);
+                // Instantiate(player, roomsController.rooms[i].transform.position, Quaternion.identity);
+                GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_CharacterController.enabled = false;
+                GameManager.Instance.GetPlayer().GetComponent<PlayerController>().transform.position = roomsController.rooms[i].transform.position;
+                GameManager.Instance.GetPlayer().GetComponent<PlayerController>().transform.rotation = roomsController.rooms[i].transform.rotation;
+                GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_CharacterController.enabled = true;
+                
             }
         }
 
@@ -137,7 +142,10 @@ public class GameObjectSpawner : MonoBehaviour
         {
             if(i == enemySpawnRoom - 1)
             {
-                Instantiate(enemy, roomsController.rooms[i].transform.position, Quaternion.identity);
+                // Instantiate(enemy, roomsController.rooms[i].transform.position, Quaternion.identity);
+                
+                GameManager.Instance.GetEnemy().GetComponent<FSM_EnemyPriority>().enemy.Warp(roomsController.rooms[i].transform.position);
+               
             }
         }
 

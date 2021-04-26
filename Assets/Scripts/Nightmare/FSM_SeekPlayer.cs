@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class FSM_SeekPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
-    NavMeshAgent enemy;
+    public NavMeshAgent enemy;
     private Enemy_BLACKBOARD blackboard;
     GameObject Player;
 

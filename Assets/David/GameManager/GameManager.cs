@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(instance);
         }
+       
     }
 
     public static GameManager Instance
@@ -58,18 +59,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
     private void Start()
     {
         //PlayerData
-        m_Player = null;
+        m_ScoreManager = GameObject.FindObjectOfType<ScoreManager>(); 
+        m_Player = GameObject.FindObjectOfType<PlayerController>().gameObject;
+       
         m_IsPlayerAlive = true;
         m_PlayerCanMove = true;
         m_IsCameraLocked = false;
-        m_ScoreManager = null;
+       
         m_gameObjectSpawner = null;
 
         //EnemyData
-        m_Enemy = null;
+        m_Enemy = GameObject.FindObjectOfType<Enemy_BLACKBOARD>().gameObject;
 
         //Game State
         m_IsGameActive = true;

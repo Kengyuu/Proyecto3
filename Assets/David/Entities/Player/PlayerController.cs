@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [Range(0, 20f)] public float m_Speed = 12f;
     [Range(0, 5f)] public float m_RunSpeedMultiplier = 1.5f;
     [SerializeField] private bool m_OnGround = false;
-    private CharacterController m_CharacterController = null;
+    public CharacterController m_CharacterController = null;
     [SerializeField] bool m_PlayerStunned = false;
     private PlayerBlackboard blackboard;
 
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
         //Lock the cursor @ start
         Cursor.lockState = CursorLockMode.Locked;
 
-       GameManager.Instance.m_ScoreManager.SetPlayerHP(blackboard.m_Life);
+      // GameManager.Instance.m_ScoreManager.SetPlayerHP(blackboard.m_Life);
     }//End Start
 
     
