@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetKey(m_DownKeyCode))
             {
-                m_DashDirection = 0;
+                m_DashDirection = 4;
             }
 
             m_PlayerDashing = true;
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
             {
                 m_dashDirection = -transform.right * m_dashDistance;
             }
-            else if (m_DashDirection == 0)
+            else if (m_DashDirection == 4)
             {
                 m_dashDirection = -transform.forward * m_dashDistance;
             }
