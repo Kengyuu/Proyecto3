@@ -42,17 +42,19 @@ public class EnemyBehaviours : MonoBehaviour
 
     public GameObject SearchObject(string objectType)
     {
-        switch(objectType)
+        /*switch(objectType)
         {
-            case "corpse":
-                blackboard.corpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
-                return blackboard.corpse;
+            case "Corpse":
+                GameObject corpse = DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.corpseDetectionRadius);
+                return corpse;
             case "PasiveTrap":
                 blackboard.trap = DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.trapDetectionRadius);
                 return blackboard.trap;
             default:
                 return null;
-        }
+        }*/
+
+        return DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.corpseDetectionRadius);
         
     }
     public void AddCorpseToScore()
@@ -76,6 +78,24 @@ public class EnemyBehaviours : MonoBehaviour
         int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
         GameObject target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
         navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+        return target;
+    }
+
+    public GameObject PickRandomWaypointOrb()
+    {
+        int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
+        GameObject target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
+        navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+
+        while(blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition].transform.position == 
+            GameManager.Instance.GetEnemy().GetComponent<FSM_EnemyPriority>().enemy.destination)
+        {
+            spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
+            target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
+            navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+            Debug.Log("Holi");
+        }
+        
         return target;
     }
 

@@ -37,8 +37,6 @@ public class FSM_EnemyPriority : MonoBehaviour
     public void Exit()
     {
 
-
-
     }
 
     public void ReEnter()

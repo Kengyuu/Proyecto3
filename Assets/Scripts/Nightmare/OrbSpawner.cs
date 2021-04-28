@@ -18,8 +18,9 @@ public class OrbSpawner : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(LateStart(1f));
         //onScoreChangedEvent += SpawnOrbs;
-        SpawnOrbs();
+        
     }
 
     // Update is called once per frame
@@ -27,7 +28,13 @@ public class OrbSpawner : MonoBehaviour
     {
         
     }
-
+    IEnumerator LateStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        //Your Function You Want to Call
+        spawnPosition = GameManager.Instance.GetEnemy().transform;
+        SpawnOrbs();
+    }
     public void SpawnOrbs()
     {
         switch(GameManager.Instance.m_ScoreManager.GetPlayerCorpses())
@@ -36,9 +43,9 @@ public class OrbSpawner : MonoBehaviour
             if(!CorpseOrb.activeSelf)
                 {
                     CorpseOrb.SetActive(true);
-                    CorpseOrb.transform.parent = null;
-                    TrapOrb.GetComponent<NavMeshAgent>().enabled = true;
-                    TrapOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+                    CorpseOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+                    CorpseOrb.GetComponent<NavMeshAgent>().enabled = true;
+                    
                 }
                 break;
             case 3:
@@ -46,9 +53,8 @@ public class OrbSpawner : MonoBehaviour
                 if(!TrapOrb.activeSelf)
                 {
                     TrapOrb.SetActive(true);
-                    TrapOrb.transform.parent = null;
-                    TrapOrb.GetComponent<NavMeshAgent>().enabled = true;
                     TrapOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+                    TrapOrb.GetComponent<NavMeshAgent>().enabled = true;
                 }
                 
                 break;
@@ -56,9 +62,9 @@ public class OrbSpawner : MonoBehaviour
                 if(!HideOrb.activeSelf)
                 {
                     HideOrb.SetActive(true);
-                    HideOrb.transform.parent = null;
-                    TrapOrb.GetComponent<NavMeshAgent>().enabled = true;
-                    TrapOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+                    HideOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+                    HideOrb.GetComponent<NavMeshAgent>().enabled = true;
+                    
                 }
                 break;
         }

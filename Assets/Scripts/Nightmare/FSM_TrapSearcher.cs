@@ -118,7 +118,7 @@ public class FSM_TrapSearcher : EnemyOrbController
 
             case State.WANDERING:
                 enemy.isStopped = false;
-                target = behaviours.PickRandomWaypoint();
+                target = behaviours.PickRandomWaypointOrb();
 
                 break;
             case State.GOINGTOTRAP:
@@ -143,6 +143,7 @@ public class FSM_TrapSearcher : EnemyOrbController
         if(GetOrbHealth() <= 0)
         {
             enemy.Warp(GameManager.Instance.GetEnemy().transform.position);
+            SetOrbHealth(maxOrbHealth);
             ChangeState(State.INITIAL);
         }
         

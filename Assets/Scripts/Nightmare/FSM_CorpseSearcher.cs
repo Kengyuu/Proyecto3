@@ -61,15 +61,12 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 break;
 
             case State.WANDERING:
-                
-                corpse = behaviours.SearchObject("corpse");
+                corpse = behaviours.SearchObject("Corpse");
                 //Debug.Log(corpse.name);
                 if(corpse != null)
                 {
-                    if(corpse != blackboard.orbCorpseStored)
-                    {
-                        ChangeState(State.GOINGTOCORPSE);
-                    }
+                    Debug.Log(corpse.GetComponent<CorpseControl>().spawnPosition);
+                    ChangeState(State.GOINGTOCORPSE);
                 }
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)
@@ -78,9 +75,16 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 }
                 break;
             case State.GOINGTOCORPSE:
-                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughCorpseRadius)
+                if(target.tag != "Corpse")
                 {
-                    ChangeState(State.GRABBINGCORPSE);    
+                    ChangeState(State.WANDERING);
+                }
+                else
+                {
+                    if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughCorpseRadius)
+                    {
+                        ChangeState(State.GRABBINGCORPSE);
+                    }
                 }
                 
                 break;
@@ -98,7 +102,6 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 target = behaviours.ReturnToEnemy();
                 if(DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance + 1)
                 {
-                    target.GetComponent<Enemy_BLACKBOARD>().lastCorpseSeen = blackboard.lastCorpseSeen;
                     ChangeState(State.WANDERING);
                 }
                 break;
@@ -115,12 +118,17 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 blackboard.lastCorpseSeen = null;
                 break;
             case State.GRABBINGCORPSE:
+                target.tag = "Corpse";
                 blackboard.orbCorpseStored = corpse;
                 enemy.isStopped = false;
                 break;
             case State.RETURNINGTOENEMY:
-                behaviours.AddCorpseToScore();
-                corpse = null;
+                if(corpse != null)
+                {
+                    behaviours.AddCorpseToScore();
+                    corpse = null;
+                }
+                
                 blackboard.orbCorpseStored = null;
                 break;
         }
@@ -131,25 +139,17 @@ public class FSM_CorpseSearcher : EnemyOrbController
 
             case State.WANDERING:
                 enemy.isStopped = false;
-                if (blackboard.lastCorpseSeen != null && blackboard.lastCorpseSeen.activeSelf)
-                {
-                    enemy.SetDestination(blackboard.lastCorpseSeen.transform.position);
-                }
-                else
-                {
-                    target = behaviours.PickRandomWaypoint();
-                }
-
+                target = behaviours.PickRandomWaypointOrb();
                 break;
             case State.GOINGTOCORPSE:
                 target = corpse;
                 enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
-
                 break;
 
             case State.GRABBINGCORPSE:
                 enemy.isStopped = true;
                 blackboard.cooldownToGrabCorpse = 3f;
+                target.tag = "PickedCorpse";
                 break;
 
             case State.RETURNINGTOENEMY:
@@ -172,15 +172,19 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 GameManager.Instance.m_gameObjectSpawner.SpawnBodys(1);
             }
             enemy.Warp(GameManager.Instance.GetEnemy().transform.position);
+            SetOrbHealth(maxOrbHealth);
+            corpse = null;
             ChangeState(State.INITIAL);
         }
         
     }
-    /*void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         if(!Application.isPlaying)
             return ;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, blackboard.senseRadius);
-    }*/
+        Gizmos.DrawWireSphere(transform.position, blackboard.corpseDetectionRadius);
+        if(corpse != null)
+            Gizmos.DrawLine(transform.position, corpse.transform.position);
+    }
 }

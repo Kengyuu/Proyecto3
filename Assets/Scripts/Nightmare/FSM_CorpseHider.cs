@@ -88,7 +88,7 @@ public class FSM_CorpseHider : EnemyOrbController
 
             case State.WANDERING:
                 enemy.isStopped = false;
-                target = behaviours.PickRandomWaypoint();
+                target = behaviours.PickRandomWaypointOrb();
                 break;
 
         }
@@ -118,6 +118,7 @@ public class FSM_CorpseHider : EnemyOrbController
         base.TakeDamage(damage);
         if(GetOrbHealth() <= 0)
         {
+            SetOrbHealth(maxOrbHealth);
             enemy.Warp(GameManager.Instance.GetEnemy().transform.position);
             ChangeState(State.INITIAL);
         }

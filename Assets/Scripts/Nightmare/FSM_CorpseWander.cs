@@ -8,7 +8,7 @@ public class FSM_CorpseWander : MonoBehaviour
     // Start is called before the first frame update
 
     [Header("AI")]
-    NavMeshAgent enemy;
+    public NavMeshAgent enemy;
     public GameObject target;
     private Enemy_BLACKBOARD blackboard;
 
@@ -62,7 +62,7 @@ public class FSM_CorpseWander : MonoBehaviour
             case State.WANDERING:
                 if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer();
                 
-                corpse = behaviours.SearchObject("corpse");
+                corpse = behaviours.SearchObject("Corpse");
                 //Debug.Log(corpse.name);
                 if(corpse != null)
                 {
@@ -76,9 +76,17 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
             case State.GOINGTOCORPSE:
                 if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer();
-                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.corpsePickUpRadius)
+                
+                if(target.tag != "Corpse")
                 {
-                    ChangeState(State.GRABBINGCORPSE);
+                    ChangeState(State.WANDERING);
+                }
+                else
+                {
+                    if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.corpsePickUpRadius)
+                    {
+                        ChangeState(State.GRABBINGCORPSE);
+                    }
                 }
                 
                 break;
@@ -106,7 +114,9 @@ public class FSM_CorpseWander : MonoBehaviour
                 blackboard.lastCorpseSeen = null;
                 break;
             case State.GRABBINGCORPSE:
+                target.tag = "Corpse";
                 behaviours.AddCorpseToScore();
+                corpse = null;
                 enemy.isStopped = false;
                 break;
         }
@@ -135,6 +145,7 @@ public class FSM_CorpseWander : MonoBehaviour
 
             case State.GRABBINGCORPSE:
                 enemy.isStopped = true;
+                target.tag = "PickedCorpse";
                 blackboard.cooldownToGrabCorpse = 3f;
                 break;
 
@@ -151,4 +162,14 @@ public class FSM_CorpseWander : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, blackboard.senseRadius);
     }*/
+
+    void OnDrawGizmos()
+    {
+        if(!Application.isPlaying)
+            return ;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, blackboard.corpseDetectionRadius);
+        if(corpse != null)
+            Gizmos.DrawLine(transform.position, target.transform.position);
+    }
 }

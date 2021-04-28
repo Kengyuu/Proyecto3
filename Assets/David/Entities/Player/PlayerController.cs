@@ -420,10 +420,11 @@ public class PlayerController : MonoBehaviour
 
     private void RestoreLife()
     {
-        blackboard.m_Life = blackboard.m_MaxLife;
+        blackboard.m_Life += blackboard.m_MaxLife;
         GameManager.Instance.SetPlayerCanMove(true);
         GameManager.Instance.SetIsCameraLocked(false);
         m_PlayerStunned = false;
+        GameManager.Instance.m_ScoreManager.SetPlayerHP(blackboard.m_Life);
     }
 
     private void OnTriggerEnter(Collider col)

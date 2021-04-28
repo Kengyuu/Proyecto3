@@ -16,12 +16,12 @@ public class DetectionFunctions : MonoBehaviour
 		GameObject closest = targets[0];
 
 		//float minDistance = (closest.transform.position - user.transform.position).magnitude;
-		float minDistance = new Vector3(closest.transform.position.x - user.transform.position.x , 0, closest.transform.position.z - closest.transform.position.z).magnitude;
+		float minDistance = new Vector3(closest.transform.position.x - user.transform.position.x , 0, closest.transform.position.z - user.transform.position.z).magnitude;
 
 		for (int i = 1; i < targets.Length; i++) 
         {
 			//dist = (targets[i].transform.position - user.transform.position).magnitude;
-			dist = new Vector3(targets[i].transform.position.x - user.transform.position.x , 0, targets[i].transform.position.z - closest.transform.position.z).magnitude;
+			dist = new Vector3(targets[i].transform.position.x - user.transform.position.x , 0, targets[i].transform.position.z - user.transform.position.z).magnitude;
 			if (dist < minDistance) 
             {
 				minDistance = dist;
@@ -31,10 +31,14 @@ public class DetectionFunctions : MonoBehaviour
         
 		if (minDistance < radius) 
         {
+			//Debug.Log(DistanceToTarget())
+			Debug.Log("Paso por aquí radius");
+			Debug.Log(minDistance + " " + radius);
             return closest;
         }
         else
         {
+			Debug.Log("Soy null");
             return null;
         }
 	}
