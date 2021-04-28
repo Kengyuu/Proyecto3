@@ -15,11 +15,13 @@ public class DetectionFunctions : MonoBehaviour
 
 		GameObject closest = targets[0];
 
-		float minDistance = (closest.transform.position - user.transform.position).magnitude;
+		//float minDistance = (closest.transform.position - user.transform.position).magnitude;
+		float minDistance = new Vector3(closest.transform.position.x - user.transform.position.x , 0, closest.transform.position.z - closest.transform.position.z).magnitude;
 
 		for (int i = 1; i < targets.Length; i++) 
         {
-			dist = (targets[i].transform.position - user.transform.position).magnitude;
+			//dist = (targets[i].transform.position - user.transform.position).magnitude;
+			dist = new Vector3(targets[i].transform.position.x - user.transform.position.x , 0, targets[i].transform.position.z - closest.transform.position.z).magnitude;
 			if (dist < minDistance) 
             {
 				minDistance = dist;
@@ -37,6 +39,20 @@ public class DetectionFunctions : MonoBehaviour
         }
 	}
 
+	public static List<GameObject> FindObjectsInArea(GameObject user, string tag, float radius)
+	{
+		GameObject [] targets = GameObject.FindGameObjectsWithTag(tag);
+		List<GameObject> targetsList = new List<GameObject>();
+		if (targetsList.Count==0) return null;
+		foreach(GameObject t in targets)
+		{
+			if(DistanceToTarget(user, t) <= radius)
+			{
+				targetsList.Add(t);
+			}
+		}
+		return targetsList;
+	}
     public static float DistanceToTarget (GameObject user, GameObject target) 
     {
         Vector3 distance = new Vector3(target.transform.position.x - user.transform.position.x, 0, 

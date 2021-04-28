@@ -250,6 +250,18 @@ public class PlayerController : MonoBehaviour
                         trap.SpawnTrap();
                     }
                     break;
+                case "TrapOrb":
+                    hit.collider.GetComponent<FSM_TrapSearcher>().TakeDamage(-1);
+                    Debug.Log("Soy una trampa");
+                    break;
+                case "HideOrb":
+                    hit.collider.GetComponent<FSM_CorpseHider>().TakeDamage(-1);
+                    Debug.Log("Soy una cosa transparente");
+                    break;
+                case "CorpseOrb":
+                    hit.collider.GetComponent<FSM_CorpseSearcher>().TakeDamage(-1);
+                    Debug.Log("Soy una buscadora de cadáveres");
+                    break;
             }
         }
         //GameManager.Instance.SetPlayerCanMove(true);

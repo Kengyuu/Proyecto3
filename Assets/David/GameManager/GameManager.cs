@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         m_gameObjectSpawner = null;
 
         //EnemyData
-        m_Enemy = GameObject.FindObjectOfType<Enemy_BLACKBOARD>().gameObject;
+        m_Enemy = GameObject.FindObjectOfType<FSM_EnemyPriority>().gameObject;
 
         //Game State
         m_IsGameActive = true;
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (m_Player == null) m_Player = GameObject.FindObjectOfType<PlayerController>().gameObject;
-        if (m_Enemy == null) m_Enemy = GameObject.FindObjectOfType<Enemy_BLACKBOARD>().gameObject;
+        if (m_Enemy == null) m_Enemy = GameObject.FindObjectOfType<FSM_EnemyPriority>().gameObject;
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindObjectOfType<ScoreManager>();
         if (m_gameObjectSpawner == null) m_gameObjectSpawner = GameObject.FindObjectOfType<GameObjectSpawner>();
     }

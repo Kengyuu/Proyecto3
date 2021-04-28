@@ -8,10 +8,15 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     [Header("WanderCorpse")]
     public float corpsePickUpRadius = 10f;
     public float corpseDetectionRadius = 10f;
+
+    public float closeEnoughCorpseRadius = 2f;
     public float playerDetectionRadius = 10f;
     public float cooldownToGrabCorpse = 3f;
     public GameObject waypointsList;
     public GameObject lastCorpseSeen;
+
+    public GameObject orbCorpseStored;
+    public GameObject corpse;
     
 
     [Header("SeekPlayer")]
@@ -19,6 +24,21 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     public float distanceToAttack = 5f;
 
     public float senseRadius = 10f;
+
+    [Header("TrapDeactivate")]
+
+    public float cooldownToDeactivateTrap = 3f;
+    public GameObject trap;
+
+    public float trapDetectionRadius = 10f;
+
+    public float closeEnoughTrapRadius = 2f;
+
+    [Header("CorpseHide")]
+
+    public float areaOfEffectInvisible = 10f;
+
+    [Header("GameState")]
     public int enemyCorpses;
     public int playerCorpses;
     public int remainingCorpses;

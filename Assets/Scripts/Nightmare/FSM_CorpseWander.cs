@@ -6,11 +6,14 @@ using UnityEngine.AI;
 public class FSM_CorpseWander : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    [Header("AI")]
     NavMeshAgent enemy;
     public GameObject target;
-
     private Enemy_BLACKBOARD blackboard;
-    
+
+    EnemyBehaviours behaviours;
+    string enemyType;
     GameObject corpse;
 
     
@@ -27,10 +30,9 @@ public class FSM_CorpseWander : MonoBehaviour
     {
         enemy = GetComponent<NavMeshAgent>();
         blackboard = GetComponent<Enemy_BLACKBOARD>();
-       
-        int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
-        target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
-        enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+        behaviours = GetComponent<EnemyBehaviours>();
+        enemyType = transform.tag;
+        //target = behaviours.PickRandomWaypoint();
         //enemy.SetDestination(target.transform.position);
     }
 
@@ -58,27 +60,22 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
-                {
-                    gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = true;
-                }
-                corpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
+                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer();
+                
+                corpse = behaviours.SearchObject("corpse");
                 //Debug.Log(corpse.name);
                 if(corpse != null)
                 {
                     ChangeState(State.GOINGTOCORPSE);
                 }
-                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= 0.5f)
+
+                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)
                 {
                     ChangeState(State.WANDERING); 
                 }
-                
                 break;
             case State.GOINGTOCORPSE:
-                if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
-                {
-                    GetComponent<FSM_EnemyPriority>().playerSeen = true;
-                }
+                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer();
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.corpsePickUpRadius)
                 {
                     ChangeState(State.GRABBINGCORPSE);
@@ -87,16 +84,12 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
 
             case State.GRABBINGCORPSE:
-                if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
-                {
-                    gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = true;
-                }
+                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer();
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                 if (blackboard.cooldownToGrabCorpse <= 0)
                 {
-                    GameManager.Instance.m_gameObjectSpawner.ClearBodys(target.GetComponent<CorpseControl>().spawnPosition);
+                    behaviours.GrabCorpse(target);
                     ChangeState(State.WANDERING);
-                    blackboard.cooldownToGrabCorpse = 3f;
                     break;
                 }
                 break;
@@ -109,12 +102,11 @@ public class FSM_CorpseWander : MonoBehaviour
         //EXIT LOGIC
         switch (currentState)
         {
+            case State.WANDERING:
+                blackboard.lastCorpseSeen = null;
+                break;
             case State.GRABBINGCORPSE:
-                blackboard.enemyCorpses++;
-                GameManager.Instance.m_ScoreManager.SetEnemyCorpses(blackboard.enemyCorpses);
-                blackboard.remainingCorpses--;
-                GameManager.Instance.m_ScoreManager.SetRemainingCorpses(blackboard.remainingCorpses);
-                Debug.Log(blackboard.remainingCorpses);
+                behaviours.AddCorpseToScore();
                 enemy.isStopped = false;
                 break;
         }
@@ -131,9 +123,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 }
                 else
                 {
-                    int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
-                    target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
-                    enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                    target = behaviours.PickRandomWaypoint();
                 }
 
                 break;

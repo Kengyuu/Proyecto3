@@ -5,6 +5,13 @@ using UnityEngine;
 public class CorpseControl : MonoBehaviour
 {
     public int spawnPosition;
+
+    public Material originalMaterial;
+    public Material transparentMaterial;
+
+    public bool changeVisibility = false;
+
+    public float timerInvisible = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +21,20 @@ public class CorpseControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(changeVisibility)
+        {
+            GetComponent<MeshRenderer>().material = transparentMaterial;
+            timerInvisible -= Time.deltaTime;
+            if(timerInvisible <= 0)
+            {
+                timerInvisible = 10f;
+                GetComponent<MeshRenderer>().material = originalMaterial;
+                changeVisibility = false;
+            }
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().material = originalMaterial;
+        }
     }
 }

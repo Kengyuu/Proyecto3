@@ -12,7 +12,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     public GameObject target;
     public GameObject savedCorpse;
-   
+    string enemyType;
 
     public Vector3 lastPlayerPosition;
     Transform child;
@@ -25,6 +25,7 @@ public class FSM_SeekPlayer : MonoBehaviour
     void Start()
     {
         enemy = GetComponent<NavMeshAgent>();
+        enemyType = transform.tag;
         Player = GameObject.FindGameObjectWithTag("Player");
         blackboard = GetComponent<Enemy_BLACKBOARD>();
         child = gameObject.transform.GetChild(2);
@@ -47,8 +48,6 @@ public class FSM_SeekPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         switch (currentState)
         {
             case State.INITIAL:
