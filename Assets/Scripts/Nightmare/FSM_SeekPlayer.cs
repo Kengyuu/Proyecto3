@@ -15,8 +15,8 @@ public class FSM_SeekPlayer : MonoBehaviour
     string enemyType;
 
     public Vector3 lastPlayerPosition;
-    Transform child;
-    GameObject Arm;
+    //Transform child;
+    public GameObject Arm;
     public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
     public State currentState;
 
@@ -28,13 +28,13 @@ public class FSM_SeekPlayer : MonoBehaviour
         enemyType = transform.tag;
         Player = GameObject.FindGameObjectWithTag("Player");
         blackboard = GetComponent<Enemy_BLACKBOARD>();
-        child = gameObject.transform.GetChild(2);
-        Arm = child.gameObject;
+        //child = gameObject.transform.GetChild(2);
+        //Arm = child.gameObject;
     }
 
     public void Exit()
     {
-        Arm.SetActive(false);
+        //Arm.SetActive(false);
         this.enabled = false;
     }
 
@@ -135,7 +135,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
             case State.ATTACKING:
                 enemy.isStopped = false;
-                Arm.SetActive(false);
+                //Arm.SetActive(false);
                 break;
         }
 
@@ -157,6 +157,7 @@ public class FSM_SeekPlayer : MonoBehaviour
             case State.ATTACKING:
                 enemy.isStopped = true;
                 Arm.SetActive(true);
+                Arm.GetComponent<Animation>().Play();
                 break;
 
             case State.WANDERING:
@@ -172,7 +173,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
@@ -180,8 +181,6 @@ public class FSM_SeekPlayer : MonoBehaviour
             other.gameObject.GetComponent<PlayerController>().GetDamage(-1);
 
             StartCoroutine(WaitToGetStunned());
-           
-
         }
     }
 
@@ -191,7 +190,7 @@ public class FSM_SeekPlayer : MonoBehaviour
         yield return new WaitForSeconds(4);
         enemy.isStopped = false;
         
-    }
+    }*/
         
 
     /*void OnDrawGizmos()

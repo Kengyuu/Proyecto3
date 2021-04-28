@@ -167,7 +167,7 @@ public class FSM_CorpseWander : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, blackboard.senseRadius);
     }*/
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         if(!Application.isPlaying)
             return ;
@@ -175,5 +175,5 @@ public class FSM_CorpseWander : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, blackboard.corpseDetectionRadius);
         if(corpse != null)
             Gizmos.DrawLine(transform.position, target.transform.position);
-    }
+    }*/
 }
