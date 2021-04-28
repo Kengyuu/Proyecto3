@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     public ScoreManager m_ScoreManager;
 
     public GameObjectSpawner m_gameObjectSpawner;
-
     private void Awake()
     {
         if (instance == null)

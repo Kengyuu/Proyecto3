@@ -228,4 +228,16 @@ public class FSM_EnemyPriority : MonoBehaviour
         currentState = newState;
 
     }
+
+    /*void SpawnOrbs()
+    {
+        switch(GameManager.Instance.m_ScoreManager.GetPlayerCorpses())
+        {
+            case 3:
+                
+                break;
+            case 6:
+                break;
+        }
+    }*/
 }
