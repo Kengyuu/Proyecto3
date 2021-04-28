@@ -65,7 +65,6 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 //Debug.Log(corpse.name);
                 if(corpse != null)
                 {
-                    Debug.Log(corpse.GetComponent<CorpseControl>().spawnPosition);
                     ChangeState(State.GOINGTOCORPSE);
                 }
 

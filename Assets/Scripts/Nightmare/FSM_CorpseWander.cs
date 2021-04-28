@@ -38,6 +38,10 @@ public class FSM_CorpseWander : MonoBehaviour
 
     public void Exit()
     {
+        target = null;
+        if(corpse != null)
+            corpse.tag = "Corpse";
+        corpse = null;
         enemy.isStopped = false;
         this.enabled = false;
     }

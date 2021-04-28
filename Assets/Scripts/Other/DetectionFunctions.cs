@@ -31,14 +31,10 @@ public class DetectionFunctions : MonoBehaviour
         
 		if (minDistance < radius) 
         {
-			//Debug.Log(DistanceToTarget())
-			Debug.Log("Paso por aquí radius");
-			Debug.Log(minDistance + " " + radius);
             return closest;
         }
         else
         {
-			Debug.Log("Soy null");
             return null;
         }
 	}

@@ -9,8 +9,6 @@ public class CorpseControl : MonoBehaviour
     public Material originalMaterial;
     public Material transparentMaterial;
 
-    public bool changeVisibility = false;
-
     public float timerInvisible = 10f;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +19,7 @@ public class CorpseControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(changeVisibility)
+        /*if(changeVisibility)
         {
             GetComponent<MeshRenderer>().material = transparentMaterial;
             timerInvisible -= Time.deltaTime;
@@ -33,6 +31,22 @@ public class CorpseControl : MonoBehaviour
             }
         }
         else
+        {
+            GetComponent<MeshRenderer>().material = originalMaterial;
+        }*/
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.CompareTag("HideOrb"))
+        {
+            GetComponent<MeshRenderer>().material = transparentMaterial;
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if(col.CompareTag("HideOrb"))
         {
             GetComponent<MeshRenderer>().material = originalMaterial;
         }

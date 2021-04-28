@@ -5,7 +5,8 @@ using UnityEngine;
 public class PassiveTrap : TrapController
 {
     
-
+    public Material originalMaterial;
+    public Material transparentMaterial;
     void Start()
     {
         m_TrapActive = true;
@@ -15,10 +16,13 @@ public class PassiveTrap : TrapController
     {
         if (m_TrapActive)
         {
-            m_TrapActive = false;
-            GetComponent<MeshRenderer>().enabled = false;
+            
+            //GetComponent<MeshRenderer>().enabled = false;
+            
             if (col.CompareTag("Enemy"))
             {
+                GetComponent<MeshRenderer>().material = transparentMaterial;
+                m_TrapActive = false;
                 FSM_EnemyPriority target = col.GetComponent<FSM_EnemyPriority>();
                 if (target != null)
                 {
@@ -41,9 +45,20 @@ public class PassiveTrap : TrapController
                 if (Input.GetKeyDown(player.m_TrapInteractKeyCode)){
                     Debug.Log("Trap re-enabled by player");
                     m_TrapActive = true;
-                    GetComponent<MeshRenderer>().enabled = true;
+                    GetComponent<MeshRenderer>().material = originalMaterial;
+                    //GetComponent<MeshRenderer>().enabled = true;
                 }
             }
         }
+    }
+
+    public void SetTrapActive(bool active)
+    {
+        m_TrapActive = active;
+    }
+
+    public bool GetTrapActive()
+    {
+        return m_TrapActive;
     }
 }

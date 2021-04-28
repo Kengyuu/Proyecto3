@@ -115,7 +115,9 @@ public class EnemyBehaviours : MonoBehaviour
     public void DeactivateTrap(GameObject trap)
     {
         //FALTA HACER
-        trap.SetActive(false);
+        //trap.SetActive(false);
+        trap.GetComponent<MeshRenderer>().material = trap.GetComponent<PassiveTrap>().transparentMaterial;
+        trap.GetComponent<PassiveTrap>().SetTrapActive(false);
     }
 
     public void ConvertTrap(GameObject trap)

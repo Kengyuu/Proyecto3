@@ -67,7 +67,8 @@ public class FSM_TrapSearcher : EnemyOrbController
                 //Debug.Log(corpse.name);
                 if(trap != null)
                 {
-                    ChangeState(State.GOINGTOTRAP);
+                    if(trap.GetComponent<PassiveTrap>() != null && trap.GetComponent<PassiveTrap>().GetTrapActive())
+                        ChangeState(State.GOINGTOTRAP);
                 }
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)

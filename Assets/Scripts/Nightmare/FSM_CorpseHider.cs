@@ -97,7 +97,7 @@ public class FSM_CorpseHider : EnemyOrbController
         
     }
 
-    void OnTriggerEnter(Collider col)
+    /*void OnTriggerEnter(Collider col)
     {
         if(col.tag == "Corpse")
         {
@@ -111,7 +111,7 @@ public class FSM_CorpseHider : EnemyOrbController
         {
             behaviours.ReturnCorpseToNormal(col.gameObject);
         }
-    }
+    }*/
 
     public override void TakeDamage(int damage)
     {
