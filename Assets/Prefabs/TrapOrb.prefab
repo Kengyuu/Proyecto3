@@ -118,6 +118,7 @@ MonoBehaviour:
   cooldownToGrabCorpse: 3
   waypointsList: {fileID: 0}
   lastCorpseSeen: {fileID: 0}
+  orbCorpseStored: {fileID: 0}
   corpse: {fileID: 0}
   Player: {fileID: 0}
   distanceToAttack: 5
@@ -162,7 +163,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.5
+  m_BaseOffset: 3
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &709523035019081810
@@ -177,5 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb418e7debdec6d47878dd7615bcfc09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxOrbHealth: 3
+  currentOrbHealth: 0
   target: {fileID: 0}
   currentState: 0

@@ -101,7 +101,6 @@ public class FSM_CorpseHider : EnemyOrbController
     {
         if(col.tag == "Corpse")
         {
-            Debug.Log("Cagaste puto");
             behaviours.CreateAreaInvisibility(col.gameObject);
         }
     }

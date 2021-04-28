@@ -246,6 +246,7 @@ public class PlayerController : MonoBehaviour
                     GameManager.Instance.m_gameObjectSpawner.ClearBodys(hit.collider.GetComponent<CorpseControl>().spawnPosition);
                     blackboard.m_PlayerCorpses++;
                     GameManager.Instance.m_ScoreManager.SetPlayerCorpses(blackboard.m_PlayerCorpses);
+                    GameManager.Instance.GetEnemy().GetComponent<OrbSpawner>().SpawnOrbs();
 
                     //ESTO ES SOLO PARA TESTEO - ESTA DUPLICADO ACTUALMENTE!!!!!!!!!!!!!!!!!
                     GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses--;
@@ -407,6 +408,7 @@ public class PlayerController : MonoBehaviour
                         GameManager.Instance.m_ScoreManager.SetPlayerCorpses(blackboard.m_PlayerCorpses);
                         GameManager.Instance.m_ScoreManager.SetRemainingCorpses(GameManager.Instance.m_ScoreManager.GetRemainingCorpses() + lostPlayerCorpses);
                         GameManager.Instance.m_gameObjectSpawner.SpawnBodys(lostPlayerCorpses);
+                        GameManager.Instance.GetEnemy().GetComponent<OrbSpawner>().SpawnOrbs();
                     }
                     
                 }
