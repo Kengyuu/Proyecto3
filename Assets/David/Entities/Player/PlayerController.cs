@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public CharacterController m_CharacterController = null;
     [SerializeField] bool m_PlayerStunned = false;
     private PlayerBlackboard blackboard;
+    public GameObject crosshair;
+    
 
     
 
@@ -209,8 +211,19 @@ public class PlayerController : MonoBehaviour
             //GameManager.Instance.SetIsCameraLocked(true);
             m_IsPlayerShooting = true;
             Invoke("Shoot", m_ShootCastingTime);
-
+            crosshair.GetComponent<Animator>().SetBool("Shot", true);
+            StartCoroutine(Wait());
         }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.5f);
+        StopAnim();
+    }
+    private void StopAnim()
+    {
+        crosshair.GetComponent<Animator>().SetBool("Shot", false);
     }
 
     private void Shoot()
@@ -218,6 +231,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log("REALIZO EL RAYCAST DE DISPARO");
         RaycastHit hit;
 
+        
+        
         if (Physics.Raycast(m_Camera.transform.position, m_Camera.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
         {
             string tag = hit.collider.transform.tag;
@@ -267,6 +282,7 @@ public class PlayerController : MonoBehaviour
         //GameManager.Instance.SetPlayerCanMove(true);
         //GameManager.Instance.SetIsCameraLocked(false);
         m_IsPlayerShooting = false;
+        //crosshair.GetComponent<Animator>().SetBool("Shot", false);
     }
 
 
