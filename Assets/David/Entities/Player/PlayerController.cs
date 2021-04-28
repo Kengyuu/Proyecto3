@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public KeyCode m_ShootKeyCode = KeyCode.Mouse0;
     public KeyCode m_DebugLockAngleKeyCode = KeyCode.I;
     public KeyCode m_DebugLockKeyCode = KeyCode.O;
+    public KeyCode m_TrapInteractKeyCode = KeyCode.G;
+
     
     [Header("Player Data")]
     [Range(0, 20f)] public float m_Speed = 12f;
@@ -240,6 +242,13 @@ public class PlayerController : MonoBehaviour
                 case "WeakPoint":
                     Debug.Log("Enemy WeakPoint hitted, calling Enemy TakeDamage()");
                     hit.collider.transform.GetComponent<WeakPoint>().TakeDamage();
+                    break;
+                case "ActiveTrap":
+                    ActiveTrap trap = hit.transform.GetComponent<ActiveTrap>();
+                    if(trap != null)
+                    {
+                        trap.SpawnTrap();
+                    }
                     break;
             }
         }
