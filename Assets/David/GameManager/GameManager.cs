@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
         m_PlayerCanMove = false;
         m_IsCameraLocked = true;
         m_ScoreManager.gameObject.GetComponent<HUDController>().m_centerText.text = "GAME OVER";
-        Invoke("RestartGame", 5);
+        //Invoke("RestartGame", 5);
     }
 
     public void Win()
@@ -102,12 +102,12 @@ public class GameManager : MonoBehaviour
         m_PlayerCanMove = false;
         m_IsCameraLocked = true;
         m_ScoreManager.gameObject.GetComponent<HUDController>().m_centerText.text = "YOU WIN!!!";
-        Invoke("RestartGame", 5);
+       // Invoke("RestartGame", 5);
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("DavidTest_Current");
+       // SceneManager.LoadScene("DavidTest_Current");
     }
 
     public void SetGameState(GameState state)
