@@ -74,7 +74,7 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 }
                 break;
             case State.GOINGTOCORPSE:
-                if(target.tag != "Corpse")
+                if(target.tag != "Corpse" || target == null)
                 {
                     ChangeState(State.WANDERING);
                 }

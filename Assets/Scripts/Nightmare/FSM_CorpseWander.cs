@@ -73,7 +73,7 @@ public class FSM_CorpseWander : MonoBehaviour
                     ChangeState(State.GOINGTOCORPSE);
                 }
 
-                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)
+                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughCorpseRadius)
                 {
                     ChangeState(State.WANDERING); 
                 }
@@ -134,7 +134,9 @@ public class FSM_CorpseWander : MonoBehaviour
                 enemy.isStopped = false;
                 if (blackboard.lastCorpseSeen != null && blackboard.lastCorpseSeen.activeSelf)
                 {
-                    enemy.SetDestination(blackboard.lastCorpseSeen.transform.position);
+                    target = blackboard.lastCorpseSeen;
+                    enemy.SetDestination(target.transform.position);
+                    
                 }
                 else
                 {
