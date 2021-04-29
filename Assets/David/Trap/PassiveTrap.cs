@@ -28,7 +28,7 @@ public class PassiveTrap : TrapController
                 {
                     Debug.Log("Enemigo estuneado por TRAMPA");
                     target.GetStunned();
-                    m_TrapActive = true;
+                    
                 }
             }
         }

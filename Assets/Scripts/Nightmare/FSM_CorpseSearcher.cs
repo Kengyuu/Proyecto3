@@ -74,7 +74,7 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 }
                 break;
             case State.GOINGTOCORPSE:
-                if(target.tag != "Corpse" || target == null)
+                if(target.tag != "Corpse" || !target.activeSelf)
                 {
                     ChangeState(State.WANDERING);
                 }
@@ -122,8 +122,9 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 enemy.isStopped = false;
                 break;
             case State.RETURNINGTOENEMY:
-                if(corpse != null)
+                if(!corpse.activeSelf || corpse == null)
                 {
+                    
                     behaviours.AddCorpseToScore();
                     corpse = null;
                 }
@@ -152,6 +153,7 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 break;
 
             case State.RETURNINGTOENEMY:
+
                 blackboard.lastCorpseSeen = corpse;
                 break;
 
