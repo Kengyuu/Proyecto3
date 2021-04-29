@@ -101,6 +101,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 if (blackboard.cooldownToGrabCorpse <= 0)
                 {
                     behaviours.GrabCorpse(target);
+                    behaviours.AddCorpseToScore();
                     ChangeState(State.WANDERING);
                     break;
                 }
@@ -119,7 +120,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
             case State.GRABBINGCORPSE:
                 target.tag = "Corpse";
-                behaviours.AddCorpseToScore();
+                
                 corpse = null;
                 enemy.isStopped = false;
                 break;

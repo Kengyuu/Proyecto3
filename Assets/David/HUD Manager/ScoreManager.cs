@@ -26,6 +26,8 @@ public class ScoreManager : MonoBehaviour, IScoreManager
 
     }
 
+    
+
     //Player
     public void SetPlayerCorpses(float value)
     {

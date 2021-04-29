@@ -114,7 +114,6 @@ MonoBehaviour:
   spawnPosition: 0
   originalMaterial: {fileID: 2100000, guid: f5207678ee3f3994386a95d5bbcb117a, type: 2}
   transparentMaterial: {fileID: 2100000, guid: 4145fb28b1134ab45b279e5ae6382795, type: 2}
-  changeVisibility: 0
   timerInvisible: 10
 --- !u!54 &6207310872031007432
 Rigidbody:
@@ -150,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6143146683198384182
 Transform:
   m_ObjectHideFlags: 0
