@@ -18,26 +18,68 @@ public class OrbSpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(LateStart(1f));
-        //onScoreChangedEvent += SpawnOrbs;
+        
+        OrbEvents.current.spawnOrb += SpawnOrbs;
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
-    }
-    IEnumerator LateStart(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        //Your Function You Want to Call
         spawnPosition = GameManager.Instance.GetEnemy().transform;
-        SpawnOrbs();
     }
-    public void SpawnOrbs()
+
+    private void OnDestroy()
     {
-        switch(GameManager.Instance.m_ScoreManager.GetPlayerCorpses())
+        OrbEvents.current.spawnOrb -= SpawnOrbs;
+    }
+
+   
+ 
+    public void SpawnOrbs(float corpses)
+    {
+
+        if (corpses >= 0 && corpses < 3)
+        {
+            if (!CorpseOrb.activeSelf)
+            {
+                CorpseOrb.SetActive(true);
+                CorpseOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+                CorpseOrb.GetComponent<NavMeshAgent>().enabled = true;
+
+
+            }
+            TrapOrb.SetActive(false);
+            HideOrb.SetActive(false);
+
+        }
+
+
+        else if (corpses >= 3 && corpses < 6)
+        {
+            if (!TrapOrb.activeSelf)
+            {
+                TrapOrb.SetActive(true);
+                TrapOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+                TrapOrb.GetComponent<NavMeshAgent>().enabled = true;
+
+            }
+
+            HideOrb.SetActive(false);
+        }
+
+
+        if (corpses >= 6)
+        {
+            if (!HideOrb.activeSelf)
+            {
+                HideOrb.SetActive(true);
+                HideOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+                HideOrb.GetComponent<NavMeshAgent>().enabled = true;
+
+            }
+
+        }
+        /*switch(corpses)
         {
             case 0:
             if(!CorpseOrb.activeSelf)
@@ -45,9 +87,11 @@ public class OrbSpawner : MonoBehaviour
                     CorpseOrb.SetActive(true);
                     CorpseOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                     CorpseOrb.GetComponent<NavMeshAgent>().enabled = true;
-                    
+
                 }
                 break;
+
+            
             case 3:
                 //TrapOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 if(!TrapOrb.activeSelf)
@@ -55,9 +99,12 @@ public class OrbSpawner : MonoBehaviour
                     TrapOrb.SetActive(true);
                     TrapOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                     TrapOrb.GetComponent<NavMeshAgent>().enabled = true;
+                   
+
                 }
                 
                 break;
+            
             case 6:
                 if(!HideOrb.activeSelf)
                 {
@@ -67,6 +114,6 @@ public class OrbSpawner : MonoBehaviour
                     
                 }
                 break;
-        }
+        }*/
     }
 }

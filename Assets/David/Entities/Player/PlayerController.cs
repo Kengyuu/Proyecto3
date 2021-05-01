@@ -100,7 +100,9 @@ public class PlayerController : MonoBehaviour
         //Lock the cursor @ start
         Cursor.lockState = CursorLockMode.Locked;
 
-      // GameManager.Instance.m_ScoreManager.SetPlayerHP(blackboard.m_Life);
+        OrbEvents.current.ManageOrbs();
+
+        // GameManager.Instance.m_ScoreManager.SetPlayerHP(blackboard.m_Life);
     }//End Start
 
     
@@ -246,12 +248,15 @@ public class PlayerController : MonoBehaviour
                     GameManager.Instance.m_gameObjectSpawner.ClearBodys(hit.collider.GetComponent<CorpseControl>().spawnPosition);
                     blackboard.m_PlayerCorpses++;
                     GameManager.Instance.m_ScoreManager.SetPlayerCorpses(blackboard.m_PlayerCorpses);
-                    GameManager.Instance.GetEnemy().GetComponent<OrbSpawner>().SpawnOrbs();
+                    //GameManager.Instance.GetEnemy().GetComponent<OrbSpawner>().SpawnOrbs();
 
                     //ESTO ES SOLO PARA TESTEO - ESTA DUPLICADO ACTUALMENTE!!!!!!!!!!!!!!!!!
                     GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses--;
                     GameManager.Instance.m_ScoreManager.SetRemainingCorpses(GameManager.Instance.m_ScoreManager.GetRemainingCorpses() - 1);
                     GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().playerCorpses++;
+
+
+                    OrbEvents.current.ManageOrbs();
 
                     break;
 
@@ -408,7 +413,7 @@ public class PlayerController : MonoBehaviour
                         GameManager.Instance.m_ScoreManager.SetPlayerCorpses(blackboard.m_PlayerCorpses);
                         GameManager.Instance.m_ScoreManager.SetRemainingCorpses(GameManager.Instance.m_ScoreManager.GetRemainingCorpses() + lostPlayerCorpses);
                         GameManager.Instance.m_gameObjectSpawner.SpawnBodys(lostPlayerCorpses);
-                        GameManager.Instance.GetEnemy().GetComponent<OrbSpawner>().SpawnOrbs();
+                        OrbEvents.current.ManageOrbs();
                     }
                     
                 }
