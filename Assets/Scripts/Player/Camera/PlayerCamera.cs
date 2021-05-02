@@ -44,6 +44,9 @@ public class PlayerCamera : MonoBehaviour
         { 
             m_InputLook = m_InputSystem.Gameplay.Look.ReadValue<Vector2>();
 
+
+
+
             float MouseX = m_InputLook.x * m_MouseSensitivity * Time.deltaTime;
             float MouseY = m_InputLook.y * m_MouseSensitivity * Time.deltaTime;
 

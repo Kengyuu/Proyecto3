@@ -16,6 +16,7 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     }
 
     //Player
+    //gfrbfghb
     public void SetPlayerCorpses(float value)
     {
         this.m_PlayerCorpses = value;

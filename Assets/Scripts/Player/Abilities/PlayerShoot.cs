@@ -84,6 +84,7 @@ public class PlayerShoot : MonoBehaviour
                         hit.transform.gameObject.SetActive(false);
                         m_PlayerController.AddCorpse();
                         //OrbEvents.current.ManageOrbs();
+                        
                     }
                     break;
                 case "Button":

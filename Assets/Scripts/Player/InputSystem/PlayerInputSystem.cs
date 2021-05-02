@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/TheRaytheone/Scripts/Player/InputSystem/PlayerInputSystem.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Player/InputSystem/PlayerInputSystem.inputactions'
 
 using System;
 using System.Collections;
