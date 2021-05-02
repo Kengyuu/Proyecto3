@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameObjectSpawner : MonoBehaviour
 {
@@ -18,14 +19,20 @@ public class GameObjectSpawner : MonoBehaviour
     List <string> roomTags = new List<string>();
 
     List<int> spawnersUsed = new List<int>();
+
+    private ScoreManager m_ScoreManager;
     
     // Start is called before the first frame update
     void Start()
     {
+        m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         foreach (GameObject room in roomsController.rooms)
         {
             roomTags.Add(room.tag);
         }
+
+        
+        
 
         playerSpawnRoom = SpawnPlayer();
 
@@ -54,6 +61,8 @@ public class GameObjectSpawner : MonoBehaviour
         //Esto crea una cantidad de cadáveres pasada desde el editor en el objeto GameObjectSpawner
 
         SpawnBodys(maxDeadBodysMap);
+
+        
     }
 
     void Update()
@@ -112,18 +121,18 @@ public class GameObjectSpawner : MonoBehaviour
 
         //Esto es para que spawnee el jugador
 
-        for (int i = 0; i < roomsController.rooms.Count; i++)
+        /*for (int i = 0; i < roomsController.rooms.Count; i++)
         {
             if(i == playerSpawnRoom - 1)
             {
                 // Instantiate(player, roomsController.rooms[i].transform.position, Quaternion.identity);
-                GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_CharacterController.enabled = false;
-                GameManager.Instance.GetPlayer().GetComponent<PlayerController>().transform.position = roomsController.rooms[i].transform.position;
-                GameManager.Instance.GetPlayer().GetComponent<PlayerController>().transform.rotation = roomsController.rooms[i].transform.rotation;
-                GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_CharacterController.enabled = true;
+                GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().m_CharacterController.enabled = false;
+                GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().transform.position = roomsController.rooms[i].transform.position;
+                GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().transform.rotation = roomsController.rooms[i].transform.rotation;
+                GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().m_CharacterController.enabled = true;
                 
             }
-        }
+        }*/
 
         return playerSpawnRoom;
     }
@@ -134,7 +143,7 @@ public class GameObjectSpawner : MonoBehaviour
         //La suma de salas diamentralmente opuestas siempre suma 10, así que le restamos a 10 la sala del jugador para obtener
         //la sala del enemigo
 
-        enemySpawnRoom = 10 - playerSpawnRoom;
+        /*enemySpawnRoom = 10 - playerSpawnRoom;
 
         //Esto es para que spawnee el enemigo
 
@@ -144,12 +153,12 @@ public class GameObjectSpawner : MonoBehaviour
             {
                 // Instantiate(enemy, roomsController.rooms[i].transform.position, Quaternion.identity);
                 
-                GameManager.Instance.GetEnemy().GetComponent<FSM_EnemyPriority>().enemy.Warp(roomsController.rooms[i].transform.position);
+                GameManager.Instance.GetEnemy().GetComponent<NavMeshAgent>().Warp(roomsController.rooms[i].transform.position);
                
             }
-        }
+        }*/
 
-        GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses = maxDeadBodysMap;
+        //GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses = maxDeadBodysMap;
     }
 
     //numberBodys = maxDeadBodysMap - currentBodysSpawned;
@@ -202,5 +211,7 @@ public class GameObjectSpawner : MonoBehaviour
             //deadBodys[spawnPosition].transform.parent = null;
             currentBodysSpawned++;
         }
+        Debug.Log(m_ScoreManager.name);
+        m_ScoreManager.SetRemainingCorpses(currentBodysSpawned);
     }
 }

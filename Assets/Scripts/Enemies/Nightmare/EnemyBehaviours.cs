@@ -1,0 +1,194 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemyBehaviours : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public enum EnemyType {MAIN, CORPSESEARCHER, TRAPDEACTIVATOR, CORPSEHIDER}
+
+    public EnemyType myType;
+    
+    Enemy_BLACKBOARD blackboard;
+    NavMeshAgent navMesh;
+    Orb_Blackboard blackboardOrb;
+    ScoreManager m_ScoreManager;
+
+    GameManager GM;
+    void Start()
+    {
+        GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        blackboard = GetComponent<Enemy_BLACKBOARD>();
+        blackboardOrb = GetComponent<Orb_Blackboard>();
+        navMesh = GetComponent<NavMeshAgent>();
+        switch(transform.tag)
+        {
+            case "Enemy":
+                myType = EnemyType.MAIN;
+                break;
+            case "CorpseOrb":
+                myType = EnemyType.CORPSESEARCHER;
+                break;
+            case "TrapOrb":
+                myType = EnemyType.TRAPDEACTIVATOR;
+                break;
+            case "HideOrb":
+                myType = EnemyType.CORPSEHIDER;
+                break;
+
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public GameObject SearchObject(string objectType)
+    {
+        /*switch(objectType)
+        {
+            case "Corpse":
+                GameObject corpse = DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.corpseDetectionRadius);
+                return corpse;
+            case "PasiveTrap":
+                blackboard.trap = DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.trapDetectionRadius);
+                return blackboard.trap;
+            default:
+                return null;
+        }*/
+
+        return DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.corpseDetectionRadius);
+        
+    }
+
+    public GameObject SearchObjectOrb(string objectType)
+    {
+        /*switch(objectType)
+        {
+            case "Corpse":
+                GameObject corpse = DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.corpseDetectionRadius);
+                return corpse;
+            case "PasiveTrap":
+                blackboard.trap = DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.trapDetectionRadius);
+                return blackboard.trap;
+            default:
+                return null;
+        }*/
+
+        return DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboardOrb.corpseDetectionRadius);
+
+    }
+    public void AddCorpseToScore()
+    {
+        m_ScoreManager.AddEnemyCorpse();
+        m_ScoreManager.RemoveRemainingCorpse();
+    }
+
+    public void SearchPlayer()
+    {
+        if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius))
+        {
+            gameObject.GetComponent<EnemyPriorities>().playerSeen = true;
+            gameObject.GetComponent<EnemyPriorities>().ChangePriority();
+        }
+    }
+
+    public void SearchPlayerOrb()
+    {
+        if (DetectionFunctions.FindObjectInArea(gameObject, "Player", blackboardOrb.playerDetectionRadius))
+        {
+            GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen = true;
+            GM.GetEnemy().GetComponent<EnemyPriorities>().ChangePriority();
+        }
+    }
+
+
+    public GameObject PickRandomWaypoint()
+    {
+        int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
+        //GameObject target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
+        GameObject target = GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners[spawnPosition];
+        navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+        return target;
+    }
+
+    public GameObject PickRandomWaypointOrb()
+    {
+        int spawnPosition = Random.Range(0, GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners.Count);
+        GameObject target = GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners[spawnPosition];
+        navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+
+        while(GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners[spawnPosition].transform.position == 
+            GameManager.Instance.GetEnemy().GetComponent<NavMeshAgent>().destination)
+        {
+            spawnPosition = Random.Range(0, GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners.Count);
+            target = GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners[spawnPosition];
+            navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+            Debug.Log("Holi");
+        }
+        
+        return target;
+    }
+
+    public void GrabCorpse(GameObject target)
+    {
+        GM.GetGameObjectSpawner().ClearBodys(target.GetComponent<CorpseControl>().spawnPosition);
+        blackboard.cooldownToGrabCorpse = 3f;
+    }
+
+    public void GrabCorpseOrb(GameObject target)
+    {
+        GM.GetGameObjectSpawner().ClearBodys(target.GetComponent<CorpseControl>().spawnPosition);
+        blackboardOrb.cooldownToGrabCorpse = 3f;
+    }
+
+    public GameObject ReturnToEnemy()
+    {
+        GameObject target = GameManager.Instance.GetEnemy();
+        navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+        return target;
+    }
+
+    public void DeactivateTrap(GameObject trap)
+    {
+        //FALTA HACER
+        //trap.SetActive(false);
+        //trap.GetComponent<MeshRenderer>().material = trap.GetComponent<PassiveTrap>().transparentMaterial;
+        //trap.GetComponent<PassiveTrap>().SetTrapActive(false);
+    }
+
+    public void ConvertTrap(GameObject trap)
+    {
+        //FALTA HACER
+    }
+
+    public void CreateAreaInvisibility(GameObject corpse)
+    {
+        //FALTA HACER
+        /*List<GameObject> targets = DetectionFunctions.FindObjectsInArea(gameObject, "Corpse", blackboard.areaOfEffectInvisible);
+        if(targets != null)
+        {
+            if(targets.Count > 0)
+            {
+                foreach(GameObject t in targets)
+                {
+                    t.GetComponent<CorpseControl>().changeVisibility = true;
+                }
+            }
+        }*/
+        //corpse.GetComponent<MeshRenderer>().material = corpse.GetComponent<CorpseControl>().transparentMaterial;
+        //Debug.Log(corpse.GetComponent<MeshRenderer>().material.name);
+        //Debug.Log(corpse.name);
+        corpse.GetComponent<MeshRenderer>().enabled = false;
+    }
+
+    public void ReturnCorpseToNormal(GameObject corpse)
+    {
+        corpse.GetComponent<MeshRenderer>().material = corpse.GetComponent<CorpseControl>().originalMaterial;
+        corpse.GetComponent<MeshRenderer>().enabled = true;
+    }
+}

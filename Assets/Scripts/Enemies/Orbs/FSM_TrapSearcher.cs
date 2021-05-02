@@ -3,38 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FSM_TrapSearcher : EnemyOrbController
+public class FSM_TrapSearcher : MonoBehaviour
 {
-    // Start is called before the first frame update
+   
 
     [Header("AI")]
     NavMeshAgent enemy;
     public GameObject target;
-    private Enemy_BLACKBOARD blackboard;
+    
 
-    EnemyBehaviours behaviours;
-    string enemyType;
+     EnemyBehaviours behaviours;
+
     GameObject trap;
 
-    
-    //float closeEnoughTarget;
 
-   
- 
-    public enum State {INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP};
+    float closeEnoughTarget;
+
+    public Orb_Blackboard blackboard;
+
+
+    public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP };
     public State currentState;
 
-    
 
-    void Start()
+
+    void OnEnable()
     {
         enemy = GetComponent<NavMeshAgent>();
-        blackboard = GetComponent<Enemy_BLACKBOARD>();
+        blackboard = GetComponent<Orb_Blackboard>();
         behaviours = GetComponent<EnemyBehaviours>();
-        enemyType = transform.tag;
-        SetOrbHealth(3);
-        //target = behaviours.PickRandomWaypoint();
-        //enemy.SetDestination(target.transform.position);
+
+        blackboard.SetOrbHealth(3);
+        ReEnter();
+        
     }
 
     public void Exit()
@@ -47,10 +48,10 @@ public class FSM_TrapSearcher : EnemyOrbController
     {
         this.enabled = true;
         currentState = State.INITIAL;
-        
+
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -61,39 +62,39 @@ public class FSM_TrapSearcher : EnemyOrbController
                 break;
 
             case State.WANDERING:
-                //behaviours.SearchPlayer();
-                
-                trap = behaviours.SearchObject("PasiveTrap");
+                //behaviours.SearchPlayerOrb();
+
+                trap = behaviours.SearchObjectOrb("PasiveTrap");
                 //Debug.Log(corpse.name);
-                if(trap != null)
+                if (trap != null)
                 {
-                    if(trap.GetComponent<PassiveTrap>() != null && trap.GetComponent<PassiveTrap>().GetTrapActive())
-                        ChangeState(State.GOINGTOTRAP);
+                    //if (trap.GetComponent<PassiveTrap>() != null && trap.GetComponent<PassiveTrap>().GetTrapActive())
+                    ChangeState(State.GOINGTOTRAP);
                 }
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)
                 {
-                    ChangeState(State.WANDERING); 
+                    ChangeState(State.WANDERING);
                 }
                 break;
             case State.GOINGTOTRAP:
-                //behaviours.SearchPlayer();
+               // behaviours.SearchPlayerOrb();
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughTrapRadius)
                 {
                     ChangeState(State.DEACTIVATINGTRAP);
                 }
-                
+
                 break;
 
             case State.DEACTIVATINGTRAP:
-                //behaviours.SearchPlayer();
+                behaviours.SearchPlayerOrb();
                 blackboard.cooldownToDeactivateTrap -= Time.deltaTime;
-                if (blackboard.cooldownToDeactivateTrap <= 0)
-                {
-                    behaviours.DeactivateTrap(target);
-                    ChangeState(State.WANDERING);
-                    break;
-                }
+                 if (blackboard.cooldownToDeactivateTrap <= 0)
+                 {
+                     behaviours.DeactivateTrap(target);
+                     ChangeState(State.WANDERING);
+                     break;
+                 }
                 break;
         }
     }
@@ -104,10 +105,6 @@ public class FSM_TrapSearcher : EnemyOrbController
         //EXIT LOGIC
         switch (currentState)
         {
-            case State.WANDERING:
-                break;
-            case State.GOINGTOTRAP:
-                break;
             case State.DEACTIVATINGTRAP:
                 enemy.isStopped = false;
                 break;
@@ -135,20 +132,10 @@ public class FSM_TrapSearcher : EnemyOrbController
         }
 
         currentState = newState;
-        
+
     }
 
-    public override void TakeDamage(int damage)
-    {
-        base.TakeDamage(damage);
-        if(GetOrbHealth() <= 0)
-        {
-            enemy.Warp(GameManager.Instance.GetEnemy().transform.position);
-            SetOrbHealth(maxOrbHealth);
-            ChangeState(State.INITIAL);
-        }
-        
-    }
+
     /*void OnDrawGizmos()
     {
         if(!Application.isPlaying)

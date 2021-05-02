@@ -6,10 +6,10 @@ public class WeakPoint : MonoBehaviour
 {
     // Start is called before the first frame update
     [HideInInspector]public int spawnPosition;
-    public EnemyWeakPointsController enemyWeakPointsController;
+    public Enemy enemy;
     void Start()
     {
-        
+        enemy = GameManager.Instance.GetEnemy().GetComponent<Enemy>();
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class WeakPoint : MonoBehaviour
 
     public void TakeDamage()
     {
-        enemyWeakPointsController.TakeDamage(gameObject);
+        enemy.TakeDamage(1);
         gameObject.SetActive(false);
     }
 }

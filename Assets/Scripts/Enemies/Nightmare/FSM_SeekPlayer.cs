@@ -91,10 +91,9 @@ public class FSM_SeekPlayer : MonoBehaviour
 
                 if (enemy.remainingDistance < 0.5f)
                 {
-                   gameObject.GetComponent<FSM_EnemyPriority>().playerSeen = false;
-                    
-                    gameObject.GetComponent<FSM_EnemyPriority>().ReEnter();
-                    Exit();
+                    gameObject.GetComponent<EnemyPriorities>().playerSeen = false;
+                    gameObject.GetComponent<EnemyPriorities>().ChangePriority();
+
                 }
                 break;
 
@@ -178,7 +177,7 @@ public class FSM_SeekPlayer : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("hit");
-            other.gameObject.GetComponent<PlayerController>().GetDamage(-1);
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(-1, gameObject);
 
             StartCoroutine(WaitToGetStunned());
         }

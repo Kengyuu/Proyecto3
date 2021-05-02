@@ -3,38 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FSM_CorpseHider : EnemyOrbController
+public class FSM_CorpseHider : MonoBehaviour
 {
     // Start is called before the first frame update
 
     [Header("AI")]
     NavMeshAgent enemy;
     public GameObject target;
-    private Enemy_BLACKBOARD blackboard;
+    // private Enemy_BLACKBOARD blackboard;
 
     EnemyBehaviours behaviours;
-    string enemyType;
+
     GameObject trap;
 
-    
-    //float closeEnoughTarget;
 
-   
- 
-    public enum State {INITIAL, WANDERING, RETURNINGTOENEMY};
+    float closeEnoughTarget;
+
+    public Orb_Blackboard blackboard;
+
+    public enum State { INITIAL, WANDERING, RETURNINGTOENEMY };
     public State currentState;
 
-    
 
-    void Start()
+
+    void OnEnable()
     {
         enemy = GetComponent<NavMeshAgent>();
-        blackboard = GetComponent<Enemy_BLACKBOARD>();
-        behaviours = GetComponent<EnemyBehaviours>();
-        enemyType = transform.tag;
-        SetOrbHealth(3);
-        //target = behaviours.PickRandomWaypoint();
-        //enemy.SetDestination(target.transform.position);
+
+         behaviours = GetComponent<EnemyBehaviours>();
+        blackboard = GetComponent<Orb_Blackboard>();
+        blackboard.SetOrbHealth(3);
+        ReEnter();
+      
     }
 
     public void Exit()
@@ -47,7 +47,7 @@ public class FSM_CorpseHider : EnemyOrbController
     {
         this.enabled = true;
         currentState = State.INITIAL;
-        
+
     }
 
     // Update is called once per frame
@@ -62,12 +62,12 @@ public class FSM_CorpseHider : EnemyOrbController
 
             case State.WANDERING:
 
-                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)
-                {
-                    ChangeState(State.WANDERING); 
-                }
+                  if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)
+                  {
+                      ChangeState(State.WANDERING);
+                  }
 
-                //behaviours.CreateAreaInvisibility();
+               // behaviours.CreateAreaInvisibility();
                 break;
         }
     }
@@ -89,15 +89,16 @@ public class FSM_CorpseHider : EnemyOrbController
             case State.WANDERING:
                 enemy.isStopped = false;
                 target = behaviours.PickRandomWaypointOrb();
+                
                 break;
 
         }
 
         currentState = newState;
-        
+
     }
 
-    /*void OnTriggerEnter(Collider col)
+   /* void OnTriggerEnter(Collider col)
     {
         if(col.tag == "Corpse")
         {
@@ -113,14 +114,5 @@ public class FSM_CorpseHider : EnemyOrbController
         }
     }*/
 
-    public override void TakeDamage(int damage)
-    {
-        base.TakeDamage(damage);
-        if(GetOrbHealth() <= 0)
-        {
-            SetOrbHealth(maxOrbHealth);
-            enemy.Warp(GameManager.Instance.GetEnemy().transform.position);
-            ChangeState(State.INITIAL);
-        }
-    }
+
 }

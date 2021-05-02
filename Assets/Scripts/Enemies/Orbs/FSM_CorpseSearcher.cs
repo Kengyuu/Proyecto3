@@ -3,38 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FSM_CorpseSearcher : EnemyOrbController
+public class FSM_CorpseSearcher : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
 
     [Header("AI")]
     NavMeshAgent enemy;
     public GameObject target;
-    private Enemy_BLACKBOARD blackboard;
+    
 
     EnemyBehaviours behaviours;
-    string enemyType;
     GameObject corpse;
 
-    
-    //float closeEnoughTarget;
+    public Orb_Blackboard blackboard;
 
-   
- 
-    public enum State {INITIAL, WANDERING, GOINGTOCORPSE, RETURNINGTOENEMY, GRABBINGCORPSE};
+    
+
+
+
+    public enum State { INITIAL, WANDERING, GOINGTOCORPSE, RETURNINGTOENEMY, GRABBINGCORPSE };
     public State currentState;
 
-    
 
-    void Start()
+
+    void OnEnable()
     {
         enemy = GetComponent<NavMeshAgent>();
-        blackboard = GetComponent<Enemy_BLACKBOARD>();
+       
         behaviours = GetComponent<EnemyBehaviours>();
-        enemyType = transform.tag;
-        SetOrbHealth(3);
-        //target = behaviours.PickRandomWaypoint();
-        //enemy.SetDestination(target.transform.position);
+        blackboard = GetComponent<Orb_Blackboard>();
+        blackboard.SetOrbHealth(blackboard.m_maxLife);
+        ReEnter();
+        
     }
 
     public void Exit()
@@ -47,10 +47,10 @@ public class FSM_CorpseSearcher : EnemyOrbController
     {
         this.enabled = true;
         currentState = State.INITIAL;
-        
+
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -61,20 +61,20 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 break;
 
             case State.WANDERING:
-                corpse = behaviours.SearchObject("Corpse");
+                corpse = behaviours.SearchObjectOrb("Corpse");
                 //Debug.Log(corpse.name);
-                if(corpse != null)
+                if (corpse != null)
                 {
                     ChangeState(State.GOINGTOCORPSE);
                 }
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)
-                {
-                    ChangeState(State.WANDERING); 
-                }
+                 {
+                     ChangeState(State.WANDERING);
+                 }
                 break;
             case State.GOINGTOCORPSE:
-                if(target.tag != "Corpse" || !target.activeSelf)
+                if (target.tag != "Corpse" || !target.activeSelf)
                 {
                     ChangeState(State.WANDERING);
                 }
@@ -85,24 +85,24 @@ public class FSM_CorpseSearcher : EnemyOrbController
                         ChangeState(State.GRABBINGCORPSE);
                     }
                 }
-                
+
                 break;
 
             case State.GRABBINGCORPSE:
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
-                if (blackboard.cooldownToGrabCorpse <= 0)
-                {
-                    behaviours.GrabCorpse(target);
-                    ChangeState(State.RETURNINGTOENEMY);
-                    break;
-                }
+                 if (blackboard.cooldownToGrabCorpse <= 0)
+                 {
+                     behaviours.GrabCorpseOrb(target);
+                     ChangeState(State.RETURNINGTOENEMY);
+                     break;
+                 }
                 break;
             case State.RETURNINGTOENEMY:
-                target = behaviours.ReturnToEnemy();
-                if(DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance + 1)
-                {
-                    ChangeState(State.WANDERING);
-                }
+                  target = behaviours.ReturnToEnemy();
+                  if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance + 1)
+                  {
+                      ChangeState(State.WANDERING);
+                  }
                 break;
         }
     }
@@ -122,14 +122,12 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 enemy.isStopped = false;
                 break;
             case State.RETURNINGTOENEMY:
-                if(!corpse.activeSelf || corpse == null)
+                if (!corpse.activeSelf || corpse == null)
                 {
-                    
                     behaviours.AddCorpseToScore();
                     corpse = null;
                 }
-                
-                blackboard.orbCorpseStored = null;
+                 blackboard.orbCorpseStored = null;
                 break;
         }
 
@@ -139,7 +137,7 @@ public class FSM_CorpseSearcher : EnemyOrbController
 
             case State.WANDERING:
                 enemy.isStopped = false;
-                target = behaviours.PickRandomWaypointOrb();
+                target = behaviours.PickRandomWaypointOrb(); // PILLA DE ENEMY BLACKBOARD
                 break;
             case State.GOINGTOCORPSE:
                 target = corpse;
@@ -153,39 +151,23 @@ public class FSM_CorpseSearcher : EnemyOrbController
                 break;
 
             case State.RETURNINGTOENEMY:
-
                 blackboard.lastCorpseSeen = corpse;
                 break;
 
         }
 
         currentState = newState;
-        
+
     }
 
-    public override void TakeDamage(int damage)
-    {
-        base.TakeDamage(damage);
-        if(GetOrbHealth() <= 0)
-        {
-            if(blackboard.orbCorpseStored != null)
-            {
-                GameManager.Instance.m_gameObjectSpawner.SpawnBodys(1);
-            }
-            enemy.Warp(GameManager.Instance.GetEnemy().transform.position);
-            SetOrbHealth(maxOrbHealth);
-            corpse = null;
-            ChangeState(State.INITIAL);
-        }
-        
-    }
+
     void OnDrawGizmos()
     {
-        if(!Application.isPlaying)
-            return ;
+        if (!Application.isPlaying)
+            return;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, blackboard.corpseDetectionRadius);
-        if(corpse != null)
+        // Gizmos.DrawWireSphere(transform.position, blackboard.corpseDetectionRadius);
+        if (corpse != null)
             Gizmos.DrawLine(transform.position, corpse.transform.position);
     }
 }

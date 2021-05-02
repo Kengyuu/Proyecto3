@@ -15,11 +15,16 @@ public class OrbEvents : MonoBehaviour
 
     public event SpawnOrb spawnOrb;
 
+    private ScoreManager m_ScoreManager;
 
+    private void Start()
+    {
+        m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+    }
 
     public void ManageOrbs()
     {
-        spawnOrb?.Invoke(GameManager.Instance.m_ScoreManager.GetPlayerCorpses());
+        spawnOrb?.Invoke(m_ScoreManager.GetPlayerCorpses());
     }
 
 

@@ -18,15 +18,19 @@ public class OrbSpawner : MonoBehaviour
 
     void Start()
     {
-        
+        spawnPosition = GameManager.Instance.GetEnemy().transform;
         OrbEvents.current.spawnOrb += SpawnOrbs;
+
+        OrbEvents.current.ManageOrbs();
+
         
+
     }
 
-    private void OnEnable()
+   /* private void OnEnable()
     {
         spawnPosition = GameManager.Instance.GetEnemy().transform;
-    }
+    }*/
 
     private void OnDestroy()
     {

@@ -38,7 +38,7 @@ public class FSM_CorpseWander : MonoBehaviour
 
     public void Exit()
     {
-        target = null;
+        //target = null;
         if(corpse != null)
             corpse.tag = "Corpse";
         corpse = null;

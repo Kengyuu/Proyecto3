@@ -43,6 +43,8 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     public int playerCorpses;
     public int remainingCorpses;
 
+    public float stunTime = 3f;
+
 
     // Start is called before the first frame update
     void Start()
