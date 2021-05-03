@@ -61,7 +61,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                corpse = behaviours.SearchObjectOrb("Corpse");
+                corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
                 if (corpse != null)
                 {
@@ -92,7 +92,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                  if (blackboard.cooldownToGrabCorpse <= 0)
                  {
-                     behaviours.GrabCorpseOrb(target);
+                     behaviours.GrabCorpse(target, blackboard.cooldownToGrabCorpse);
                      ChangeState(State.RETURNINGTOENEMY);
                      break;
                  }

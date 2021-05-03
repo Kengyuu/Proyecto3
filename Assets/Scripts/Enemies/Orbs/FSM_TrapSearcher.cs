@@ -62,9 +62,9 @@ public class FSM_TrapSearcher : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                //behaviours.SearchPlayerOrb();
+                
 
-                trap = behaviours.SearchObjectOrb("PasiveTrap");
+                trap = behaviours.SearchObject("PasiveTrap", blackboard.closeEnoughTrapRadius);
                 //Debug.Log(corpse.name);
                 if (trap != null)
                 {
@@ -87,7 +87,7 @@ public class FSM_TrapSearcher : MonoBehaviour
                 break;
 
             case State.DEACTIVATINGTRAP:
-                behaviours.SearchPlayerOrb();
+               
                 blackboard.cooldownToDeactivateTrap -= Time.deltaTime;
                  if (blackboard.cooldownToDeactivateTrap <= 0)
                  {

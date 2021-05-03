@@ -8,6 +8,7 @@ public class Orb_Blackboard : MonoBehaviour
     public int m_Life;
     public int m_maxLife;
     public float m_stunTime;
+    public float respawnTime;
     public NavMeshAgent navMesh;
 
     [Header("CorpseSearcher")]
@@ -16,17 +17,14 @@ public class Orb_Blackboard : MonoBehaviour
     public float corpseDetectionRadius = 20;
     public GameObject orbCorpseStored;
     public GameObject lastCorpseSeen;
-    public GameObject waypointsList;
+   
 
     [Header("TrapSearcher")]
     public float cooldownToDeactivateTrap = 3f;
     public float closeEnoughTrapRadius = 4f;
     public float playerDetectionRadius = 10;
 
-    private void Start()
-    {
-        waypointsList = GameObject.FindGameObjectWithTag("SpawnersContainer");
-    }
+   
     public void TakeDamage(int damage)
     {
         m_Life -= damage;

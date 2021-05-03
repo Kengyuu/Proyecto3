@@ -7,6 +7,7 @@ public class PlayerShoot : MonoBehaviour
     private PlayerMovement m_PlayerMovement;
     private PlayerController m_PlayerController;
     private GameManager GM;
+    private ScoreManager m_ScoreManager;
 
     [Header("Shoot")]
     public LayerMask m_ShootLayers;
@@ -32,7 +33,7 @@ public class PlayerShoot : MonoBehaviour
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
         m_PlayerController = GetComponent<PlayerController>();
-
+        if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         if (GM == null) GM = GameManager.Instance;
 
         GM.OnStateChange += StateChanged;
@@ -61,43 +62,44 @@ public class PlayerShoot : MonoBehaviour
 
     private void StartCasting()
     {
-        Debug.Log("Iniciando casteo de disparo");
+        //Debug.Log("Iniciando casteo de disparo");
         m_IsPlayerShooting = true;
         Invoke("Shoot", m_ShootCastingTime);
     }
 
     private void Shoot()
     {
-        Debug.Log("Disparando!");
+        //Debug.Log("Disparando!");
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
         {
             string tag = hit.collider.transform.tag;
             float l_CurrentDistance = Vector3.Distance(hit.transform.position, transform.position);
-            Debug.Log($"{hit.transform.name} ha sido impactado a una distancia de {l_CurrentDistance}");
+            //Debug.Log($"{hit.transform.name} ha sido impactado a una distancia de {l_CurrentDistance}");
             switch (tag)
             {
                 case "Corpse":
                     if(l_CurrentDistance < m_CorpseDetectionDistance)
                     {
-                        Debug.Log($"Cadáver a distancia adecuada: {l_CurrentDistance}");
+                        //Debug.Log($"Cadáver a distancia adecuada: {l_CurrentDistance}");
                         hit.transform.gameObject.SetActive(false);
                         m_PlayerController.AddCorpse();
-                        //OrbEvents.current.ManageOrbs();
+                        OrbEvents.current.ManageOrbs();
+                        m_ScoreManager.RemoveRemainingCorpse();
                         
                     }
                     break;
                 case "Button":
                     if (l_CurrentDistance < m_ButtonDetectionDistance)
                     {
-                        Debug.Log($"Botón a distancia adecuada: {l_CurrentDistance}");
+                        //Debug.Log($"Botón a distancia adecuada: {l_CurrentDistance}");
                         hit.transform.gameObject.SetActive(false);
                     }
                     break;
                 case "WeakPoint":
                     if (l_CurrentDistance < m_WeakPointDetectionDistance)
                     {
-                        Debug.Log($"Weak Point a distancia adecuada: {l_CurrentDistance}");
+                        //Debug.Log($"Weak Point a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<WeakPoint>().TakeDamage();
                     }
                     break;
@@ -105,7 +107,7 @@ public class PlayerShoot : MonoBehaviour
                 case "CorpseOrb":
                     if (l_CurrentDistance < m_OrbDetectionDistance)
                     {
-                        Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
+                        //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
 
                     }
@@ -115,7 +117,7 @@ public class PlayerShoot : MonoBehaviour
                     if (l_CurrentDistance < m_OrbDetectionDistance)
                     {
                         hit.collider.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-                        Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
+                        //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                     }
                     break;
@@ -123,7 +125,7 @@ public class PlayerShoot : MonoBehaviour
                 case "TrapOrb":
                     if (l_CurrentDistance < m_OrbDetectionDistance)
                     {
-                        Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
+                        //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                     }
                     break;

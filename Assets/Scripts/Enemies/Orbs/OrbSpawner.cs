@@ -16,25 +16,24 @@ public class OrbSpawner : MonoBehaviour
     public GameObject HideOrb;
     public GameObject CorpseOrb;
 
+    private Transform enemy;
+    
+
     void Start()
     {
         spawnPosition = GameManager.Instance.GetEnemy().transform;
         OrbEvents.current.spawnOrb += SpawnOrbs;
+        OrbEvents.current.respawnOrb += RespawnOrb;
 
         OrbEvents.current.ManageOrbs();
 
         
 
     }
-
-   /* private void OnEnable()
-    {
-        spawnPosition = GameManager.Instance.GetEnemy().transform;
-    }*/
-
     private void OnDestroy()
     {
         OrbEvents.current.spawnOrb -= SpawnOrbs;
+        OrbEvents.current.respawnOrb -= RespawnOrb;
     }
 
    
@@ -83,41 +82,16 @@ public class OrbSpawner : MonoBehaviour
             }
 
         }
-        /*switch(corpses)
-        {
-            case 0:
-            if(!CorpseOrb.activeSelf)
-                {
-                    CorpseOrb.SetActive(true);
-                    CorpseOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
-                    CorpseOrb.GetComponent<NavMeshAgent>().enabled = true;
-
-                }
-                break;
-
-            
-            case 3:
-                //TrapOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
-                if(!TrapOrb.activeSelf)
-                {
-                    TrapOrb.SetActive(true);
-                    TrapOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
-                    TrapOrb.GetComponent<NavMeshAgent>().enabled = true;
-                   
-
-                }
-                
-                break;
-            
-            case 6:
-                if(!HideOrb.activeSelf)
-                {
-                    HideOrb.SetActive(true);
-                    HideOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
-                    HideOrb.GetComponent<NavMeshAgent>().enabled = true;
-                    
-                }
-                break;
-        }*/
+       
     }
+
+    public void RespawnOrb(GameObject orb)
+    {
+        orb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+        orb.GetComponent<Orb_Blackboard>().SetOrbHealth(orb.GetComponent<Orb_Blackboard>().m_maxLife);
+        orb.SetActive(true);
+    }
+
+
+    
 }

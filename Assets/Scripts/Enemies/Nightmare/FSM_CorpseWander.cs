@@ -64,9 +64,9 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer();
+                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer(blackboard.playerDetectionRadius);
                 
-                corpse = behaviours.SearchObject("Corpse");
+                corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
                 if(corpse != null)
                 {
@@ -79,7 +79,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 }
                 break;
             case State.GOINGTOCORPSE:
-                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer();
+                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer(blackboard.playerDetectionRadius);
                 
                 if(target.tag != "Corpse")
                 {
@@ -96,11 +96,11 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
 
             case State.GRABBINGCORPSE:
-                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer();
+                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer(blackboard.playerDetectionRadius);
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                 if (blackboard.cooldownToGrabCorpse <= 0)
                 {
-                    behaviours.GrabCorpse(target);
+                    behaviours.GrabCorpse(target, blackboard.cooldownToGrabCorpse);
                     behaviours.AddCorpseToScore();
                     ChangeState(State.WANDERING);
                     break;

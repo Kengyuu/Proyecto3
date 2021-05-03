@@ -47,7 +47,7 @@ public class EnemyBehaviours : MonoBehaviour
         
     }
 
-    public GameObject SearchObject(string objectType)
+    public GameObject SearchObject(string objectType, float detectionRadius)
     {
         /*switch(objectType)
         {
@@ -61,51 +61,27 @@ public class EnemyBehaviours : MonoBehaviour
                 return null;
         }*/
 
-        return DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.corpseDetectionRadius);
+        return DetectionFunctions.FindObjectInArea(gameObject, objectType, detectionRadius);
         
     }
 
-    public GameObject SearchObjectOrb(string objectType)
-    {
-        /*switch(objectType)
-        {
-            case "Corpse":
-                GameObject corpse = DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.corpseDetectionRadius);
-                return corpse;
-            case "PasiveTrap":
-                blackboard.trap = DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboard.trapDetectionRadius);
-                return blackboard.trap;
-            default:
-                return null;
-        }*/
-
-        return DetectionFunctions.FindObjectInArea(gameObject, objectType, blackboardOrb.corpseDetectionRadius);
-
-    }
+   
     public void AddCorpseToScore()
     {
         m_ScoreManager.AddEnemyCorpse();
         m_ScoreManager.RemoveRemainingCorpse();
     }
 
-    public void SearchPlayer()
+    public void SearchPlayer(float detectionRadius)
     {
-        if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius))
+        if (DetectionFunctions.FindObjectInArea(gameObject,"Player", detectionRadius))
         {
             gameObject.GetComponent<EnemyPriorities>().playerSeen = true;
             gameObject.GetComponent<EnemyPriorities>().ChangePriority();
         }
     }
 
-    public void SearchPlayerOrb()
-    {
-        if (DetectionFunctions.FindObjectInArea(gameObject, "Player", blackboardOrb.playerDetectionRadius))
-        {
-            GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen = true;
-            GM.GetEnemy().GetComponent<EnemyPriorities>().ChangePriority();
-        }
-    }
-
+   
 
     public GameObject PickRandomWaypoint()
     {
@@ -134,17 +110,13 @@ public class EnemyBehaviours : MonoBehaviour
         return target;
     }
 
-    public void GrabCorpse(GameObject target)
+    public void GrabCorpse(GameObject target, float cooldown)
     {
         GM.GetGameObjectSpawner().ClearBodys(target.GetComponent<CorpseControl>().spawnPosition);
-        blackboard.cooldownToGrabCorpse = 3f;
+        cooldown = 3f;
     }
 
-    public void GrabCorpseOrb(GameObject target)
-    {
-        GM.GetGameObjectSpawner().ClearBodys(target.GetComponent<CorpseControl>().spawnPosition);
-        blackboardOrb.cooldownToGrabCorpse = 3f;
-    }
+   
 
     public GameObject ReturnToEnemy()
     {

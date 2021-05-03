@@ -72,7 +72,9 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
 
             case State.RETURNINGTOENEMY:
                 //CODE WARP TO ENEMY
-                ChangeState(State.NORMALBEHAVIOUR);
+
+                ReEnter();
+               
                 break;
 
 
@@ -99,13 +101,17 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
+                
+                Debug.Log("RESPAWN");
                 if (blackboard.orbCorpseStored != null)
                 {
                     GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1);
                 }
-                enemy.Warp(GameManager.Instance.GetEnemy().transform.position);
-                //corpse = null;
-                blackboard.SetOrbHealth(blackboard.m_maxLife);
+                //enemy.isStopped = true;
+                //enemy.Warp(GameManager.Instance.GetEnemy().transform.position);
+                Spawn();
+                gameObject.SetActive(false);
+
                 break;
 
         }
@@ -114,4 +120,12 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
 
     }
 
+    void Spawn()
+    {
+        OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
+    }
+
+    
+
+   
 }

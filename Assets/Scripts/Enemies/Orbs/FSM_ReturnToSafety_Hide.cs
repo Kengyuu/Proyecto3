@@ -69,8 +69,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
-                ChangeState(State.INITIAL);
-                
+                ReEnter();
                 break;
 
 
@@ -98,10 +97,8 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
-
-                enemy.Warp(GameManager.Instance.GetEnemy().transform.position);
-
-                blackboard.SetOrbHealth(blackboard.m_maxLife);
+                Spawn();
+                gameObject.SetActive(false);
                 break;
 
         }
@@ -110,5 +107,8 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
 
     }
 
-
+    void Spawn()
+    {
+        OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
+    }
 }
