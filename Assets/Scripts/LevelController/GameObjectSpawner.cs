@@ -114,10 +114,7 @@ public class GameObjectSpawner : MonoBehaviour
         // No queremos jugador que el jugador spawnee en la sala central. Por tanto mientras la sala random sea 5 (sala central)
         // seguirá generando números. 
 
-        while (playerSpawnRoom == 5)
-        {
-            playerSpawnRoom = Random.Range(1, 10);
-        }
+        playerSpawnRoom = Random.Range(1, 5);
 
         //Esto es para que spawnee el jugador
 
@@ -133,7 +130,7 @@ public class GameObjectSpawner : MonoBehaviour
                 
             }
         }
-
+        Debug.Log(playerSpawnRoom);
         return playerSpawnRoom;
     }
 
@@ -143,7 +140,7 @@ public class GameObjectSpawner : MonoBehaviour
         //La suma de salas diamentralmente opuestas siempre suma 10, así que le restamos a 10 la sala del jugador para obtener
         //la sala del enemigo
 
-        enemySpawnRoom = 10 - playerSpawnRoom;
+        enemySpawnRoom = 5 - playerSpawnRoom;
 
         //Esto es para que spawnee el enemigo
 
@@ -157,7 +154,7 @@ public class GameObjectSpawner : MonoBehaviour
                
             }
         }
-
+        Debug.Log(enemySpawnRoom + " enemy");
         //GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses = maxDeadBodysMap;
     }
 
