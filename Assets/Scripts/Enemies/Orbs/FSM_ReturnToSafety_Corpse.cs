@@ -14,8 +14,9 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
 
     void Start()
     {
-        blackboard.navMesh = GetComponent<NavMeshAgent>();
         blackboard = GetComponent<Orb_Blackboard>();
+        blackboard.navMesh = GetComponent<NavMeshAgent>();
+        
         blackboard.SetOrbHealth(blackboard.m_maxLife);
 
         corpseSearch = GetComponent<FSM_CorpseSearcher>();

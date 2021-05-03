@@ -14,7 +14,7 @@ public class GameObjectSpawner : MonoBehaviour
     public int maxDeadBodyRoom = 2;
     public List<GameObject> deadBodys = new List<GameObject>();
     int playerSpawnRoom = 5;
-   // int enemySpawnRoom = 5;
+    int enemySpawnRoom = 5;
     int currentBodysSpawned = 0;
     List <string> roomTags = new List<string>();
 
@@ -121,7 +121,7 @@ public class GameObjectSpawner : MonoBehaviour
 
         //Esto es para que spawnee el jugador
 
-        /*for (int i = 0; i < roomsController.rooms.Count; i++)
+        for (int i = 0; i < roomsController.rooms.Count; i++)
         {
             if(i == playerSpawnRoom - 1)
             {
@@ -132,7 +132,7 @@ public class GameObjectSpawner : MonoBehaviour
                 GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().m_CharacterController.enabled = true;
                 
             }
-        }*/
+        }
 
         return playerSpawnRoom;
     }
@@ -143,7 +143,7 @@ public class GameObjectSpawner : MonoBehaviour
         //La suma de salas diamentralmente opuestas siempre suma 10, así que le restamos a 10 la sala del jugador para obtener
         //la sala del enemigo
 
-        /*enemySpawnRoom = 10 - playerSpawnRoom;
+        enemySpawnRoom = 10 - playerSpawnRoom;
 
         //Esto es para que spawnee el enemigo
 
@@ -156,7 +156,7 @@ public class GameObjectSpawner : MonoBehaviour
                 GameManager.Instance.GetEnemy().GetComponent<NavMeshAgent>().Warp(roomsController.rooms[i].transform.position);
                
             }
-        }*/
+        }
 
         //GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses = maxDeadBodysMap;
     }

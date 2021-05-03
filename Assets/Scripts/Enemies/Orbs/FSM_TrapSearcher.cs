@@ -53,6 +53,7 @@ public class FSM_TrapSearcher : MonoBehaviour
                 
 
                 trap = behaviours.SearchObject("PasiveTrap", blackboard.closeEnoughTrapRadius);
+                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 
                 if (trap != null)
                 {
