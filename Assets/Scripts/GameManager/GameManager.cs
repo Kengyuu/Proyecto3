@@ -25,13 +25,12 @@ public class GameManager : MonoBehaviour
     public event OnStateChangeHandler OnStateChange;
     public GameState gameState { get; private set; }
 
-    [Header("Debug")]
-    [SerializeField] private GameObject m_Player;
-    [SerializeField] private GameObject m_Enemy;
-    [SerializeField] private GameObjectSpawner m_GameObjectSpawner;
+    //[Header("Debug")]
+    [SerializeField] public GameObject m_Player { get; set; }
+    [SerializeField] public GameObject m_Enemy { get; set; }
+    [SerializeField] public GameObjectSpawner m_GameObjectSpawner { get; set; }
+    [SerializeField] public RoomSpawner m_WaypointsList { get; set; }
 
-    [SerializeField] private RoomSpawner m_WaypointsList;
-    
 
     private void Awake()
     {
@@ -42,13 +41,17 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(instance);
         }
+        else if(instance != null)
+        {
+            Destroy(this.gameObject);
+        }
 
-        m_Player = GameObject.FindGameObjectWithTag("Player");
-        m_Enemy = GameObject.FindGameObjectWithTag("Enemy");
-        m_GameObjectSpawner = GameObject.FindObjectOfType<GameObjectSpawner>();
-        m_WaypointsList = GameObject.FindObjectOfType<RoomSpawner>();
+        //m_Player = GameObject.FindGameObjectWithTag("Player");
+        //m_Enemy = GameObject.FindGameObjectWithTag("Enemy");
+        //m_GameObjectSpawner = GameObject.FindObjectOfType<GameObjectSpawner>();
+        //m_WaypointsList = GameObject.FindObjectOfType<RoomSpawner>();
 
-        SetGameState(GameState.GAME);
+        //SetGameState(GameState.GAME);
     }
 
     private void Start()

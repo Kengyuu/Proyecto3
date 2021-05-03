@@ -35,6 +35,20 @@ public class HudController : MonoBehaviour
                 break;
             case GameState.GAME:
                 m_centerText.text = "";
+                m_PlayerCorpses.enabled = true;
+                m_EnemyCorpses.enabled = true;
+                m_RemainingCorpses.enabled = true;
+                m_PlayerHP.enabled = true;
+                m_centerText.enabled = true;
+
+                break;
+            case GameState.MAP:
+                m_centerText.text = "";
+                m_PlayerCorpses.enabled = false;
+                m_EnemyCorpses.enabled = false;
+                m_RemainingCorpses.enabled = false;
+                m_PlayerHP.enabled = false;
+                m_centerText.enabled = false;
                 break;
         }
     }

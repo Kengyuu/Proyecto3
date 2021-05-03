@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [Header("Helpers")]
     public ScoreManager m_ScoreManager;
 
+    [Header("Map")]
+    public GameObject m_Map;
+
 
     [Header("Debug")]
     public GameObject enemyTest;
@@ -64,10 +67,14 @@ public class PlayerController : MonoBehaviour
             case GameState.GAME:
                 Debug.Log("state GAME");
                 EnableInputs();
+                m_Map.SetActive(false);
+                m_PlayerMovement.m_InputSystem.Enable();
                 break;
 
             case GameState.MAP:
                 Debug.Log("state MAP activado / desactivado");
+                m_Map.SetActive(true);
+                m_PlayerMovement.m_InputSystem.Disable();
                 break;
         }
     }
@@ -141,14 +148,12 @@ public class PlayerController : MonoBehaviour
     {
         m_PlayerMovement.m_InputSystem.Disable();
         m_PlayerCamera.enabled = false;
-        m_Camera.GetComponent<CameraDaze>().enabled = true;
     }
 
     public void EnableInputs()
     {
         m_PlayerMovement.m_InputSystem.Enable();
         m_PlayerCamera.enabled = true;
-        m_Camera.GetComponent<CameraDaze>().enabled = false;
     }
 
     public void EnableDaze()

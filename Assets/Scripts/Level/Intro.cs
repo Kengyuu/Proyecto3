@@ -4,6 +4,7 @@ using System.Collections;
 public class Intro : MonoBehaviour
 {
 	GameManager GM;
+	public string m_NextScene;
 
 	void Awake()
 	{
@@ -29,6 +30,6 @@ public class Intro : MonoBehaviour
 	{
 		Debug.Log("Invoking LoadLevel");
 		//Application.LoadLevel("MAIN_MENU");
-		Initiate.Fade("MAIN_MENU", Color.black, 1f);
+		Initiate.Fade(m_NextScene, Color.black, 1f);
 	}
 }

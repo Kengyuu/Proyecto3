@@ -18,7 +18,7 @@ public class EnemyBehaviours : MonoBehaviour
     GameManager GM;
     void Start()
     {
-        GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        GM = GameManager.Instance;
         m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         blackboard = GetComponent<Enemy_BLACKBOARD>();
         blackboardOrb = GetComponent<Orb_Blackboard>();
@@ -94,6 +94,7 @@ public class EnemyBehaviours : MonoBehaviour
 
     public GameObject PickRandomWaypointOrb()
     {
+        Debug.Log($"MEEEEEEEEEEEEEEEEC: {GM}");
         int spawnPosition = Random.Range(0, GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners.Count);
         GameObject target = GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners[spawnPosition];
         navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));

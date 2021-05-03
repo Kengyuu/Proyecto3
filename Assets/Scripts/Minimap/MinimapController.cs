@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MinimapController : MonoBehaviour
 {
-    public Transform m_Player;
+    /*public Transform m_Player;
 
     void Start()
     {
@@ -20,5 +20,5 @@ public class MinimapController : MonoBehaviour
 
         //Si queremos que el minimapa rote con el player:
         transform.rotation = Quaternion.Euler(0f, m_Player.eulerAngles.y, 0f);
-    }
+    }*/
 }

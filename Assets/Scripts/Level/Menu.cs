@@ -5,6 +5,8 @@ public class Menu : MonoBehaviour
 {
 	GameManager GM;
 
+	public string m_GameScene;
+
 	void Awake()
 	{
 		GM = GameManager.Instance;
@@ -72,7 +74,8 @@ public class Menu : MonoBehaviour
 		//start game scene
 		GM.SetGameState(GameState.GAME);
 		Debug.Log(GM.gameState);
-		Initiate.Fade("GAME", Color.black, 2f);
+		Debug.Log("NOMBRE: " + m_GameScene);
+		Initiate.Fade(GM.gameState.ToString(), Color.black, 2f);
 	}
 
 	public void ShowHelp()
