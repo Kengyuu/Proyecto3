@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Debug")]
     public GameObject enemyTest;
-    bool map_status = false;
+    //bool map_status = false;
 
 
 
@@ -67,15 +67,15 @@ public class PlayerController : MonoBehaviour
             case GameState.GAME:
                 //Debug.Log("state GAME");
                 EnableInputs();
-                m_Map.SetActive(false);
-                m_PlayerMovement.m_InputSystem.Enable();
+                /*m_Map.SetActive(false);
+                m_PlayerMovement.m_InputSystem.Enable();*/
                 break;
 
-            case GameState.MAP:
+            /*case GameState.MAP:
                 //Debug.Log("state MAP activado / desactivado");
                 m_Map.SetActive(true);
                 m_PlayerMovement.m_InputSystem.Disable();
-                break;
+                break;*/
         }
     }
 
@@ -83,11 +83,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Debug:
-        if (Input.GetKeyDown(KeyCode.G))
+        /*if (Input.GetKeyDown(KeyCode.G))
         {
             TakeDamage(1, enemyTest);
-        }
-        if (Input.GetKeyDown(KeyCode.M))
+        }*/
+        /*if (Input.GetKeyDown(KeyCode.M))
         {
             map_status = !map_status;
             if (map_status)
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
             {
                 GM.SetGameState(GameState.GAME);
             }
-        }
+        }*/
         //--
     }
 
