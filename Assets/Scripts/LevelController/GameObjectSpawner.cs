@@ -14,7 +14,7 @@ public class GameObjectSpawner : MonoBehaviour
     public int maxDeadBodyRoom = 2;
     public List<GameObject> deadBodys = new List<GameObject>();
     int playerSpawnRoom = 5;
-    int enemySpawnRoom = 5;
+   // int enemySpawnRoom = 5;
     int currentBodysSpawned = 0;
     List <string> roomTags = new List<string>();
 
@@ -207,8 +207,7 @@ public class GameObjectSpawner : MonoBehaviour
             
             spawnersUsed.Add(spawnPosition);
             deadBodys[spawnPosition].SetActive(true);
-            //Debug.Log( deadBodys[spawnPosition].GetComponent<CorpseControl>().spawnPosition + " Jeje " + spawnersUsed[i]);
-            //deadBodys[spawnPosition].transform.parent = null;
+            
             currentBodysSpawned++;
         }
        m_ScoreManager.SetRemainingCorpses(m_ScoreManager.GetRemainingCorpses() + numberBodys);

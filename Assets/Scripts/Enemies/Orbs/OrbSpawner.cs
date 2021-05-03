@@ -7,8 +7,7 @@ using UnityEngine.Events;
 public class OrbSpawner : MonoBehaviour
 {
 
-    // Start is called before the first frame update
-    //public event ScoreChanged onScoreChangedEvent;
+    
     public Transform spawnPosition;
 
     public GameObject TrapOrb;
@@ -16,18 +15,12 @@ public class OrbSpawner : MonoBehaviour
     public GameObject HideOrb;
     public GameObject CorpseOrb;
 
-    private Transform enemy;
-    
-
     void Start()
     {
         spawnPosition = GameManager.Instance.GetEnemy().transform;
         OrbEvents.current.spawnOrb += SpawnOrbs;
         OrbEvents.current.respawnOrb += RespawnOrb;
-
         OrbEvents.current.ManageOrbs();
-
-        
 
     }
     private void OnDestroy()
@@ -36,8 +29,6 @@ public class OrbSpawner : MonoBehaviour
         OrbEvents.current.respawnOrb -= RespawnOrb;
     }
 
-   
- 
     public void SpawnOrbs(float corpses)
     {
 

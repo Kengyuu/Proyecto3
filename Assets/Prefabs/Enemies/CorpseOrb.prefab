@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 199935180374411201}
+  - component: {fileID: 1049503096784350128}
+  - component: {fileID: 7908320145602435330}
+  - component: {fileID: 7440911934337603809}
   - component: {fileID: 199935180374411202}
   - component: {fileID: 199935180374411203}
   - component: {fileID: 199935180374411196}
   - component: {fileID: 199935180374411192}
-  - component: {fileID: 1049503096784350128}
-  - component: {fileID: 7908320145602435330}
-  - component: {fileID: 7440911934337603809}
   - component: {fileID: 1974810202}
   m_Layer: 6
   m_Name: CorpseOrb
@@ -38,6 +38,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1049503096784350128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199935180374411193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338304c59c714d94b8672584adc0ac2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Life: 0
+  m_maxLife: 3
+  respawnTime: 3
+  navMesh: {fileID: 199935180374411192}
+  closeEnoughCorpseRadius: 3
+  cooldownToGrabCorpse: 2
+  corpseDetectionRadius: 20
+  orbCorpseStored: {fileID: 0}
+  lastCorpseSeen: {fileID: 0}
+  cooldownToDeactivateTrap: 3
+  closeEnoughTrapRadius: 4
+  playerDetectionRadius: 10
+--- !u!114 &7908320145602435330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199935180374411193}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514071eda4efcad44a644731426f1c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 1049503096784350128}
+  target: {fileID: 0}
+  currentState: 0
+--- !u!114 &7440911934337603809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199935180374411193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de0a890888e66b4194070390964afee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  currentState: 0
 --- !u!33 &199935180374411202
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -122,60 +175,6 @@ NavMeshAgent:
   m_BaseOffset: 2.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1049503096784350128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199935180374411193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 338304c59c714d94b8672584adc0ac2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Life: 0
-  m_maxLife: 3
-  m_stunTime: 0
-  respawnTime: 3
-  navMesh: {fileID: 199935180374411192}
-  closeEnoughCorpseRadius: 3
-  cooldownToGrabCorpse: 2
-  corpseDetectionRadius: 20
-  orbCorpseStored: {fileID: 0}
-  lastCorpseSeen: {fileID: 0}
-  cooldownToDeactivateTrap: 3
-  closeEnoughTrapRadius: 4
-  playerDetectionRadius: 10
---- !u!114 &7908320145602435330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199935180374411193}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 514071eda4efcad44a644731426f1c39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  blackboard: {fileID: 1049503096784350128}
-  currentState: 0
---- !u!114 &7440911934337603809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199935180374411193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de0a890888e66b4194070390964afee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  currentState: 0
 --- !u!114 &1974810202
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,41 +5,30 @@ using UnityEngine.AI;
 
 public class FSM_CorpseHider : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    [Header("AI")]
-    NavMeshAgent enemy;
-    public GameObject target;
-    // private Enemy_BLACKBOARD blackboard;
-
-    EnemyBehaviours behaviours;
-
-    GameObject trap;
-
-
-    float closeEnoughTarget;
-
+    [Header("Attributes")]
+    public GameObject target; 
     public Orb_Blackboard blackboard;
+    EnemyBehaviours behaviours;
 
     public enum State { INITIAL, WANDERING, RETURNINGTOENEMY };
     public State currentState;
 
-
-
     void OnEnable()
     {
-        enemy = GetComponent<NavMeshAgent>();
+        blackboard.navMesh = GetComponent<NavMeshAgent>();
 
-         behaviours = GetComponent<EnemyBehaviours>();
+        behaviours = GetComponent<EnemyBehaviours>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(3);
+
+
         ReEnter();
       
     }
 
     public void Exit()
     {
-        enemy.isStopped = false;
+        blackboard.navMesh.isStopped = false;
         this.enabled = false;
     }
 
@@ -50,7 +39,7 @@ public class FSM_CorpseHider : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
 
@@ -62,12 +51,11 @@ public class FSM_CorpseHider : MonoBehaviour
 
             case State.WANDERING:
 
-                  if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)
+                  if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                   {
                       ChangeState(State.WANDERING);
+                      break;
                   }
-
-               // behaviours.CreateAreaInvisibility();
                 break;
         }
     }
@@ -87,9 +75,8 @@ public class FSM_CorpseHider : MonoBehaviour
         {
 
             case State.WANDERING:
-                enemy.isStopped = false;
+                blackboard.navMesh.isStopped = false;
                 target = behaviours.PickRandomWaypointOrb();
-                
                 break;
 
         }
@@ -97,22 +84,4 @@ public class FSM_CorpseHider : MonoBehaviour
         currentState = newState;
 
     }
-
-   /* void OnTriggerEnter(Collider col)
-    {
-        if(col.tag == "Corpse")
-        {
-            behaviours.CreateAreaInvisibility(col.gameObject);
-        }
-    }
-
-    void OnTriggerExit(Collider col)
-    {
-        if(col.tag == "Corpse")
-        {
-            behaviours.ReturnCorpseToNormal(col.gameObject);
-        }
-    }*/
-
-
 }

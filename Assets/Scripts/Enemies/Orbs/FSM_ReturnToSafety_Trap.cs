@@ -5,31 +5,17 @@ using UnityEngine.AI;
 
 public class FSM_ReturnToSafety_Trap : MonoBehaviour
 {
-    
-
-    [Header("AI")]
-    NavMeshAgent enemy;
     public GameObject target;
-    Vector3 spawnPosition;
-    
-
-    EnemyBehaviours behaviours;
-
-    GameObject corpse;
-
     FSM_TrapSearcher trapSearch;
-    
     Orb_Blackboard blackboard;
-
 
     public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY };
     public State currentState;
 
 
-
     void Start()
     {
-        enemy = GetComponent<NavMeshAgent>();
+        blackboard.navMesh = GetComponent<NavMeshAgent>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
 
@@ -40,7 +26,7 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
 
     public void Exit()
     {
-        enemy.isStopped = false;
+        blackboard.navMesh.isStopped = false;
         this.enabled = false;
     }
 

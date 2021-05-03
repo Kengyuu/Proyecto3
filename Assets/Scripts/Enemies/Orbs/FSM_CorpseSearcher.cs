@@ -5,20 +5,14 @@ using UnityEngine.AI;
 
 public class FSM_CorpseSearcher : MonoBehaviour
 {
-    
 
-    [Header("AI")]
-    NavMeshAgent enemy;
+    [Header("Parameters")]
+    public Orb_Blackboard blackboard;
     public GameObject target;
     
 
     EnemyBehaviours behaviours;
     GameObject corpse;
-
-    public Orb_Blackboard blackboard;
-
-    
-
 
 
     public enum State { INITIAL, WANDERING, GOINGTOCORPSE, RETURNINGTOENEMY, GRABBINGCORPSE };
@@ -28,7 +22,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     void OnEnable()
     {
-        enemy = GetComponent<NavMeshAgent>();
+        
        
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard = GetComponent<Orb_Blackboard>();
@@ -39,7 +33,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     public void Exit()
     {
-        enemy.isStopped = false;
+        blackboard.navMesh.isStopped = false;
         this.enabled = false;
     }
 
@@ -68,7 +62,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                     ChangeState(State.GOINGTOCORPSE);
                 }
 
-                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)
+                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                  {
                      ChangeState(State.WANDERING);
                  }
@@ -99,7 +93,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 break;
             case State.RETURNINGTOENEMY:
                   target = behaviours.ReturnToEnemy();
-                  if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance + 1)
+                  if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance + 1)
                   {
                       ChangeState(State.WANDERING);
                   }
@@ -119,7 +113,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
             case State.GRABBINGCORPSE:
                 target.tag = "Corpse";
                 blackboard.orbCorpseStored = corpse;
-                enemy.isStopped = false;
+                blackboard.navMesh.isStopped = false;
                 break;
             case State.RETURNINGTOENEMY:
                 if (!corpse.activeSelf || corpse == null)
@@ -136,16 +130,16 @@ public class FSM_CorpseSearcher : MonoBehaviour
         {
 
             case State.WANDERING:
-                enemy.isStopped = false;
-                target = behaviours.PickRandomWaypointOrb(); // PILLA DE ENEMY BLACKBOARD
+                blackboard.navMesh.isStopped = false;
+                target = behaviours.PickRandomWaypointOrb(); 
                 break;
             case State.GOINGTOCORPSE:
                 target = corpse;
-                enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 break;
 
             case State.GRABBINGCORPSE:
-                enemy.isStopped = true;
+                blackboard.navMesh.isStopped = true;
                 blackboard.cooldownToGrabCorpse = 3f;
                 target.tag = "PickedCorpse";
                 break;

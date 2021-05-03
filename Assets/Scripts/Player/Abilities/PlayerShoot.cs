@@ -62,14 +62,14 @@ public class PlayerShoot : MonoBehaviour
 
     private void StartCasting()
     {
-        //Debug.Log("Iniciando casteo de disparo");
+        
         m_IsPlayerShooting = true;
         Invoke("Shoot", m_ShootCastingTime);
     }
 
     private void Shoot()
     {
-        //Debug.Log("Disparando!");
+        
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
         {

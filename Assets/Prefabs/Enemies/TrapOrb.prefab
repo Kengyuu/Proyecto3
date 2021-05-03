@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 709523035019081833}
+  - component: {fileID: 7022926907319852082}
+  - component: {fileID: 709523035019081810}
+  - component: {fileID: 1335659661}
   - component: {fileID: 709523035019081832}
   - component: {fileID: 709523035019081839}
   - component: {fileID: 709523035019081838}
   - component: {fileID: 709523035019081811}
-  - component: {fileID: 7022926907319852082}
-  - component: {fileID: 709523035019081810}
   - component: {fileID: 4830770226289226704}
-  - component: {fileID: 1335659661}
   m_Layer: 6
   m_Name: TrapOrb
   m_TagString: TrapOrb
@@ -38,6 +38,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7022926907319852082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709523035019081809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338304c59c714d94b8672584adc0ac2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Life: 0
+  m_maxLife: 3
+  respawnTime: 0
+  navMesh: {fileID: 709523035019081811}
+  closeEnoughCorpseRadius: 3
+  cooldownToGrabCorpse: 2
+  corpseDetectionRadius: 20
+  orbCorpseStored: {fileID: 0}
+  lastCorpseSeen: {fileID: 0}
+  cooldownToDeactivateTrap: 3
+  closeEnoughTrapRadius: 4
+  playerDetectionRadius: 10
+--- !u!114 &709523035019081810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709523035019081809}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb418e7debdec6d47878dd7615bcfc09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  blackboard: {fileID: 7022926907319852082}
+  currentState: 0
+--- !u!114 &1335659661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709523035019081809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96285eebd65f8a843b4e8251801ad5d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  currentState: 0
 --- !u!33 &709523035019081832
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -122,46 +175,6 @@ NavMeshAgent:
   m_BaseOffset: 2.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7022926907319852082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709523035019081809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 338304c59c714d94b8672584adc0ac2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Life: 0
-  m_maxLife: 3
-  m_stunTime: 0
-  navMesh: {fileID: 709523035019081811}
-  closeEnoughCorpseRadius: 3
-  cooldownToGrabCorpse: 2
-  corpseDetectionRadius: 20
-  orbCorpseStored: {fileID: 0}
-  lastCorpseSeen: {fileID: 0}
-  waypointsList: {fileID: 0}
-  cooldownToDeactivateTrap: 3
-  closeEnoughTrapRadius: 4
-  playerDetectionRadius: 10
---- !u!114 &709523035019081810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709523035019081809}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb418e7debdec6d47878dd7615bcfc09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  blackboard: {fileID: 7022926907319852082}
-  currentState: 0
 --- !u!114 &4830770226289226704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,17 +188,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myType: 0
---- !u!114 &1335659661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709523035019081809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96285eebd65f8a843b4e8251801ad5d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  currentState: 0

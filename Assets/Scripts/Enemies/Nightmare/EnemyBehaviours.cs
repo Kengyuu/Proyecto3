@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyBehaviours : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     public enum EnemyType {MAIN, CORPSESEARCHER, TRAPDEACTIVATOR, CORPSEHIDER}
 
     public EnemyType myType;

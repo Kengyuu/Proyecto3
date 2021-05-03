@@ -5,22 +5,9 @@ using UnityEngine.AI;
 
 public class FSM_ReturnToSafety_Hide : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    [Header("AI")]
-    NavMeshAgent enemy;
     public GameObject target;
-    Vector3 spawnPosition;
-    //private Enemy_BLACKBOARD blackboard;
-
-    //EnemyBehaviours behaviours;
-
-    GameObject corpse;
-
     FSM_CorpseHider corpseHide;
     Orb_Blackboard blackboard;
-
-
 
     public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY };
     public State currentState;
@@ -29,7 +16,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
 
     void Start()
     {
-        enemy = GetComponent<NavMeshAgent>();
+        blackboard.navMesh = GetComponent<NavMeshAgent>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
 
@@ -40,7 +27,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
 
     public void Exit()
     {
-        enemy.isStopped = false;
+        blackboard.navMesh.isStopped = false;
         this.enabled = false;
     }
 
@@ -51,7 +38,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
 

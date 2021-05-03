@@ -102,7 +102,6 @@ public class HFSM_StunEnemy : MonoBehaviour
                 {
                     GetComponent<Enemy>().SpawnWeakPoints();
                 }
-                
                 break;
         }
 

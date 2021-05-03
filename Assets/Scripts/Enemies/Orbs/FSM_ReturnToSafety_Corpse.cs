@@ -5,33 +5,16 @@ using UnityEngine.AI;
 
 public class FSM_ReturnToSafety_Corpse : MonoBehaviour
 {
-    
-
-    [Header("AI")]
-    NavMeshAgent enemy;
     public GameObject target;
-    Vector3 spawnPosition;
-    
-
-    EnemyBehaviours behaviours;
-
-    GameObject corpse;
-
     FSM_CorpseSearcher corpseSearch;
-
-
     Orb_Blackboard blackboard;
-
-
 
     public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY };
     public State currentState;
 
-
-
     void Start()
     {
-        enemy = GetComponent<NavMeshAgent>();
+        blackboard.navMesh = GetComponent<NavMeshAgent>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
 
@@ -42,7 +25,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
 
     public void Exit()
     {
-        enemy.isStopped = false;
+        blackboard.navMesh.isStopped = false;
         this.enabled = false;
     }
 
@@ -71,10 +54,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
-                //CODE WARP TO ENEMY
-
-                ReEnter();
-               
+                ReEnter();      
                 break;
 
 
@@ -106,9 +86,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 if (blackboard.orbCorpseStored != null)
                 {
                     GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1);
-                }
-                //enemy.isStopped = true;
-                //enemy.Warp(GameManager.Instance.GetEnemy().transform.position);
+                }     
                 Spawn();
                 gameObject.SetActive(false);
 

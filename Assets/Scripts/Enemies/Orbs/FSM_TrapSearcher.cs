@@ -6,30 +6,18 @@ using UnityEngine.AI;
 public class FSM_TrapSearcher : MonoBehaviour
 {
    
-
-    [Header("AI")]
-    NavMeshAgent enemy;
+    [Header("Attributes")]
     public GameObject target;
-    
-
-     EnemyBehaviours behaviours;
-
-    GameObject trap;
-
-
-    float closeEnoughTarget;
-
     public Orb_Blackboard blackboard;
-
+    EnemyBehaviours behaviours;
+    GameObject trap;
 
     public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP };
     public State currentState;
 
-
-
     void OnEnable()
     {
-        enemy = GetComponent<NavMeshAgent>();
+        blackboard.navMesh = GetComponent<NavMeshAgent>();
         blackboard = GetComponent<Orb_Blackboard>();
         behaviours = GetComponent<EnemyBehaviours>();
 
@@ -40,7 +28,7 @@ public class FSM_TrapSearcher : MonoBehaviour
 
     public void Exit()
     {
-        enemy.isStopped = false;
+        blackboard.navMesh.isStopped = false;
         this.enabled = false;
     }
 
@@ -65,20 +53,20 @@ public class FSM_TrapSearcher : MonoBehaviour
                 
 
                 trap = behaviours.SearchObject("PasiveTrap", blackboard.closeEnoughTrapRadius);
-                //Debug.Log(corpse.name);
+                
                 if (trap != null)
                 {
                     //if (trap.GetComponent<PassiveTrap>() != null && trap.GetComponent<PassiveTrap>().GetTrapActive())
                     ChangeState(State.GOINGTOTRAP);
                 }
 
-                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= enemy.stoppingDistance)
+                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                 {
                     ChangeState(State.WANDERING);
                 }
                 break;
             case State.GOINGTOTRAP:
-               // behaviours.SearchPlayerOrb();
+               
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughTrapRadius)
                 {
                     ChangeState(State.DEACTIVATINGTRAP);
@@ -106,7 +94,7 @@ public class FSM_TrapSearcher : MonoBehaviour
         switch (currentState)
         {
             case State.DEACTIVATINGTRAP:
-                enemy.isStopped = false;
+                blackboard.navMesh.isStopped = false;
                 break;
         }
 
@@ -115,17 +103,17 @@ public class FSM_TrapSearcher : MonoBehaviour
         {
 
             case State.WANDERING:
-                enemy.isStopped = false;
+                blackboard.navMesh.isStopped = false;
                 target = behaviours.PickRandomWaypointOrb();
 
                 break;
             case State.GOINGTOTRAP:
                 target = trap;
-                enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 break;
 
             case State.DEACTIVATINGTRAP:
-                enemy.isStopped = true;
+                blackboard.navMesh.isStopped = true;
                 blackboard.cooldownToDeactivateTrap = 3f;
                 break;
 

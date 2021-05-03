@@ -5,9 +5,9 @@ using UnityEngine.AI;
 
 public class Orb_Blackboard : MonoBehaviour
 {
+    [Header("General Attributes")]
     public int m_Life;
     public int m_maxLife;
-    public float m_stunTime;
     public float respawnTime;
     public NavMeshAgent navMesh;
 

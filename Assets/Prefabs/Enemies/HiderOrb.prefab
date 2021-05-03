@@ -9,15 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 488116703779227538}
+  - component: {fileID: 1402024944049245454}
+  - component: {fileID: 488116703779227545}
+  - component: {fileID: 7291816907090128164}
   - component: {fileID: 488116703779227539}
   - component: {fileID: 488116703779227540}
   - component: {fileID: 488116703779227541}
   - component: {fileID: 488116703779227544}
-  - component: {fileID: 1402024944049245454}
-  - component: {fileID: 488116703779227545}
-  - component: {fileID: 7291816907090128164}
   - component: {fileID: 6074330744397120056}
-  - component: {fileID: 1265281583}
   m_Layer: 6
   m_Name: HiderOrb
   m_TagString: HideOrb
@@ -40,6 +39,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1402024944049245454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488116703779227546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338304c59c714d94b8672584adc0ac2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Life: 0
+  m_maxLife: 3
+  respawnTime: 0
+  navMesh: {fileID: 488116703779227544}
+  closeEnoughCorpseRadius: 3
+  cooldownToGrabCorpse: 2
+  corpseDetectionRadius: 20
+  orbCorpseStored: {fileID: 0}
+  lastCorpseSeen: {fileID: 0}
+  cooldownToDeactivateTrap: 3
+  closeEnoughTrapRadius: 4
+  playerDetectionRadius: 10
+--- !u!114 &488116703779227545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488116703779227546}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ba44c9d84c10b40a98f3cc7d1d432e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  blackboard: {fileID: 1402024944049245454}
+  currentState: 0
+--- !u!114 &7291816907090128164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488116703779227546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8fd01c4518f1d34cb76065aa2d19063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  currentState: 0
 --- !u!33 &488116703779227539
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -124,60 +176,6 @@ NavMeshAgent:
   m_BaseOffset: 2.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1402024944049245454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 488116703779227546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 338304c59c714d94b8672584adc0ac2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Life: 0
-  m_maxLife: 3
-  m_stunTime: 0
-  navMesh: {fileID: 488116703779227544}
-  closeEnoughCorpseRadius: 3
-  cooldownToGrabCorpse: 2
-  corpseDetectionRadius: 20
-  orbCorpseStored: {fileID: 0}
-  lastCorpseSeen: {fileID: 0}
-  waypointsList: {fileID: 0}
-  cooldownToDeactivateTrap: 3
-  closeEnoughTrapRadius: 4
-  playerDetectionRadius: 10
---- !u!114 &488116703779227545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 488116703779227546}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1ba44c9d84c10b40a98f3cc7d1d432e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  blackboard: {fileID: 1402024944049245454}
-  currentState: 0
---- !u!114 &7291816907090128164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 488116703779227546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8fd01c4518f1d34cb76065aa2d19063, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  currentState: 0
 --- !u!114 &6074330744397120056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,20 +189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myType: 0
---- !u!114 &1265281583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 488116703779227546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8fd01c4518f1d34cb76065aa2d19063, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  currentState: 0
 --- !u!1 &4369681860039610100
 GameObject:
   m_ObjectHideFlags: 0
