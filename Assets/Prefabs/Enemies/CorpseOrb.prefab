@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1049503096784350128}
   - component: {fileID: 7908320145602435330}
   - component: {fileID: 7440911934337603809}
+  - component: {fileID: 1974810202}
   m_Layer: 6
   m_Name: CorpseOrb
   m_TagString: CorpseOrb
@@ -159,6 +160,7 @@ MonoBehaviour:
   waypointsList: {fileID: 0}
   cooldownToDeactivateTrap: 3
   closeEnoughTrapRadius: 4
+  playerDetectionRadius: 10
 --- !u!114 &7908320145602435330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +190,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   currentState: 0
+--- !u!114 &1974810202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199935180374411193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f2bb56e5dc5ea4680a15514d9147bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0

@@ -75,11 +75,11 @@ public class Enemy : Entities
     public void SpawnWeakPoints()
     {
         int spawnQuantity = maxLife - m_Life;
-        Debug.Log("Son: " +  spawnQuantity);
+        //Debug.Log("Son: " +  spawnQuantity);
         for (int i = 0; i < spawnQuantity; i++)
         {
             weakPoint[i].SetActive(true);
-            Debug.Log("Spawned");
+            //Debug.Log("Spawned");
         }
         RestoreLife();
     }

@@ -185,7 +185,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864447610606656395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f899965dd9fe1dc4abd8dcb983f77a4a, type: 3}
   m_Name: 
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864447610606656395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac044efbb8ad1c3478155c944a1af70e, type: 3}
   m_Name: 
@@ -209,7 +209,7 @@ MonoBehaviour:
   target: {fileID: 0}
   savedCorpse: {fileID: 0}
   lastPlayerPosition: {x: 0, y: 0, z: 0}
-  Arm: {fileID: 0}
+  Arm: {fileID: 3217922365130158915}
   currentState: 0
 --- !u!114 &7964776373725501868
 MonoBehaviour:
@@ -253,8 +253,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weakPointsMax: 3
-  currentWeakPoints: 0
-  weakPoint: []
+  currentWeakPoints: 3
+  weakPoint:
+  - {fileID: 3342129963471531812}
+  - {fileID: 3140686317924366622}
+  - {fileID: 5965296783532797296}
 --- !u!114 &2760049998462840024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,8 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b702cac6692412848a253426134d8dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corpsePickUpRadius: 10
-  corpseDetectionRadius: 10
+  corpsePickUpRadius: 2
+  corpseDetectionRadius: 15
   closeEnoughCorpseRadius: 2
   playerDetectionRadius: 10
   cooldownToGrabCorpse: 3
@@ -294,8 +297,8 @@ MonoBehaviour:
   orbCorpseStored: {fileID: 0}
   corpse: {fileID: 0}
   Player: {fileID: 0}
-  distanceToAttack: 1.5
-  senseRadius: 10
+  distanceToAttack: 5
+  senseRadius: 20
   cooldownToDeactivateTrap: 3
   trap: {fileID: 0}
   trapDetectionRadius: 10
@@ -689,7 +692,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4392814769720176552
 Transform:
   m_ObjectHideFlags: 0
@@ -859,7 +862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e570908f3e2df464fba41f5242e965bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyNavMesh: {fileID: 0}
+  enemyNavMesh: {fileID: 20940604}
 --- !u!1 &3276299193329980048
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7743856259060120235
 Transform:
   m_ObjectHideFlags: 0
@@ -1276,7 +1279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &408679679021610373
 Transform:
   m_ObjectHideFlags: 0

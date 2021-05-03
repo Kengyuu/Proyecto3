@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7022926907319852082}
   - component: {fileID: 709523035019081810}
   - component: {fileID: 4830770226289226704}
+  - component: {fileID: 1335659661}
   m_Layer: 6
   m_Name: TrapOrb
   m_TagString: TrapOrb
@@ -145,6 +146,7 @@ MonoBehaviour:
   waypointsList: {fileID: 0}
   cooldownToDeactivateTrap: 3
   closeEnoughTrapRadius: 4
+  playerDetectionRadius: 10
 --- !u!114 &709523035019081810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +154,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709523035019081809}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb418e7debdec6d47878dd7615bcfc09, type: 3}
   m_Name: 
@@ -173,3 +175,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myType: 0
+--- !u!114 &1335659661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709523035019081809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96285eebd65f8a843b4e8251801ad5d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  currentState: 0

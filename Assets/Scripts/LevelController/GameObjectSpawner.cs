@@ -211,7 +211,6 @@ public class GameObjectSpawner : MonoBehaviour
             //deadBodys[spawnPosition].transform.parent = null;
             currentBodysSpawned++;
         }
-        Debug.Log(m_ScoreManager.name);
         m_ScoreManager.SetRemainingCorpses(currentBodysSpawned);
     }
 }

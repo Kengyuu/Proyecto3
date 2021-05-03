@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private PlayerMovement m_PlayerMovement;
+    private PlayerCamera m_PlayerCamera;
     private Camera m_Camera;
     private GameManager GM;
 
@@ -31,7 +32,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
+        m_PlayerCamera = GetComponent<PlayerCamera>();
+
         m_Camera = Camera.main;
+
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         if (GM == null) GM = GameManager.Instance;
 
@@ -136,14 +140,14 @@ public class PlayerController : MonoBehaviour
     public void DisableInputs()
     {
         m_PlayerMovement.m_InputSystem.Disable();
-        m_Camera.GetComponent<PlayerCamera>().enabled = false;
+        m_PlayerCamera.enabled = false;
         m_Camera.GetComponent<CameraDaze>().enabled = true;
     }
 
     public void EnableInputs()
     {
         m_PlayerMovement.m_InputSystem.Enable();
-        m_Camera.GetComponent<PlayerCamera>().enabled = true;
+        m_PlayerCamera.enabled = true;
         m_Camera.GetComponent<CameraDaze>().enabled = false;
     }
 
