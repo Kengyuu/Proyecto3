@@ -53,26 +53,26 @@ public class PlayerController : MonoBehaviour
         switch (GM.gameState)
         {
             case GameState.WIN:
-                Debug.Log("state WIN");
+                //Debug.Log("state WIN");
                 DisableInputs();
                 break;
 
             case GameState.GAME_OVER:
-                Debug.Log("state GAME OVEEEEEEEEEEEEEEEER");
+                //Debug.Log("state GAME OVEEEEEEEEEEEEEEEER");
                 DisableInputs();
                 EnableDaze();
                 Invoke("DisableDaze", 2f);
                 break;
 
             case GameState.GAME:
-                Debug.Log("state GAME");
+                //Debug.Log("state GAME");
                 EnableInputs();
                 m_Map.SetActive(false);
                 m_PlayerMovement.m_InputSystem.Enable();
                 break;
 
             case GameState.MAP:
-                Debug.Log("state MAP activado / desactivado");
+                //Debug.Log("state MAP activado / desactivado");
                 m_Map.SetActive(true);
                 m_PlayerMovement.m_InputSystem.Disable();
                 break;
@@ -89,8 +89,6 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            
-            Debug.Log($"Estado booleando mapa: {map_status}");
             map_status = !map_status;
             if (map_status)
             {
@@ -117,7 +115,7 @@ public class PlayerController : MonoBehaviour
         
         if (m_Life <= 0)
         {
-            Debug.Log($"Player a {m_Life} de vida, GetStunned()");
+            //Debug.Log($"Player a {m_Life} de vida, GetStunned()");
             m_Life = 0;
             
 
@@ -137,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
     public void RestoreLife()
     {
-        Debug.Log("RestoreLife iniciado, activado inputs");
+        //Debug.Log("RestoreLife iniciado, activado inputs");
         m_Life = m_MaxLife;
         EnableInputs();
         DisableDaze();

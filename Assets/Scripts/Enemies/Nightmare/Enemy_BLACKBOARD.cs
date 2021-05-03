@@ -45,12 +45,15 @@ public class Enemy_BLACKBOARD : MonoBehaviour
 
     public float stunTime = 3f;
 
+    private GameManager GM;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        waypointsList = GameObject.FindGameObjectWithTag("SpawnersContainer");
+        GM = GameManager.Instance;
+        Player = GM.GetPlayer();
+        waypointsList = GM.GetWaypointsList().gameObject;
 
     }
 }

@@ -20,13 +20,15 @@ public class FSM_SeekPlayer : MonoBehaviour
     public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
     public State currentState;
 
-
+    private GameManager GM;
 
     void Start()
     {
+        GM = GameManager.Instance;
+
         enemy = GetComponent<NavMeshAgent>();
         enemyType = transform.tag;
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GM.GetPlayer();
         blackboard = GetComponent<Enemy_BLACKBOARD>();
         //child = gameObject.transform.GetChild(2);
         //Arm = child.gameObject;

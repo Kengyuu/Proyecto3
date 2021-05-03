@@ -17,7 +17,7 @@ public class Enemy : Entities
     void Start()
     {
         m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-        GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        GM = GameManager.Instance;
         maxLife = 3;
         
         SpawnWeakPoints();
@@ -52,8 +52,8 @@ public class Enemy : Entities
             m_ScoreManager.SetEnemyCorpses(m_ScoreManager.GetEnemyCorpses() - lostEnemyCorpses);
            
             
-            Debug.Log(m_ScoreManager.GetRemainingCorpses());
-            Debug.Log(lostEnemyCorpses);
+            //Debug.Log(m_ScoreManager.GetRemainingCorpses());
+            //Debug.Log(lostEnemyCorpses);
             GM.GetGameObjectSpawner().SpawnBodys(lostEnemyCorpses);
         }
         GetComponent<HFSM_StunEnemy>().isStunned = true;
@@ -82,7 +82,7 @@ public class Enemy : Entities
 
     public override int GetLife()
     {
-        Debug.Log(m_Life + " fui llamado");
+        //Debug.Log(m_Life + " fui llamado");
         return m_Life;
     }
 }

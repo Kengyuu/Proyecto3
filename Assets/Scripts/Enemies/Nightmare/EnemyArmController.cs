@@ -22,7 +22,7 @@ public class EnemyArmController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("hit");
+            //Debug.Log("hit");
             other.gameObject.GetComponent<PlayerController>().TakeDamage(1, gameObject);
 
             StartCoroutine(WaitToGetStunned());

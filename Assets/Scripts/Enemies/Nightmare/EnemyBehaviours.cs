@@ -94,7 +94,6 @@ public class EnemyBehaviours : MonoBehaviour
 
     public GameObject PickRandomWaypointOrb()
     {
-        Debug.Log($"MEEEEEEEEEEEEEEEEC: {GM}");
         int spawnPosition = Random.Range(0, GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners.Count);
         GameObject target = GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners[spawnPosition];
         navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));

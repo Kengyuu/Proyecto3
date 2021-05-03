@@ -15,7 +15,7 @@ public class Menu : MonoBehaviour
 
 	public void HandleOnStateChange()
 	{
-		Debug.Log("OnStateChange! Unfollowing event.");
+		//Debug.Log("OnStateChange! Unfollowing event.");
 		//Apply this when we have a real scene change:
 		GM.OnStateChange -= HandleOnStateChange;
 	}
@@ -66,15 +66,14 @@ public class Menu : MonoBehaviour
 	{
 		// show credits scene or GUI
 		GM.SetGameState(GameState.CREDITS);
-		Debug.Log(GM.gameState);
+		//Debug.Log(GM.gameState);
 	}
 
 	public void StartGame()
 	{
 		//start game scene
 		GM.SetGameState(GameState.GAME);
-		Debug.Log(GM.gameState);
-		Debug.Log("NOMBRE: " + m_GameScene);
+		//Debug.Log(GM.gameState);
 		Initiate.Fade(GM.gameState.ToString(), Color.black, 2f);
 	}
 
@@ -82,12 +81,12 @@ public class Menu : MonoBehaviour
 	{
 		// show Help scene or GUI
 		GM.SetGameState(GameState.HELP);
-		Debug.Log(GM.gameState);
+		//Debug.Log(GM.gameState);
 	}
 
 	public void Quit()
 	{
-		Debug.Log("Quit!");
+		//Debug.Log("Quit!");
 		Application.Quit();
 	}
 }

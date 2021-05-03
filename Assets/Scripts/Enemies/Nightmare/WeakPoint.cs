@@ -7,9 +7,15 @@ public class WeakPoint : MonoBehaviour
     // Start is called before the first frame update
     [HideInInspector]public int spawnPosition;
     public Enemy enemy;
+    private GameManager GM;
+
+
     void Start()
     {
-        enemy = GameManager.Instance.GetEnemy().GetComponent<Enemy>();
+        GM = GameManager.Instance;
+
+        //enemy = GameManager.Instance.GetEnemy().GetComponent<Enemy>();
+        enemy = GM.GetEnemy().GetComponent<Enemy>();
     }
 
     // Update is called once per frame
