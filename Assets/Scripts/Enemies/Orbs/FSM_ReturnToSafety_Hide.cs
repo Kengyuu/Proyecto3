@@ -16,7 +16,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
 
     void Start()
     {
-        blackboard.navMesh = GetComponent<NavMeshAgent>();
+        //blackboard.navMesh = GetComponent<NavMeshAgent>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
 
