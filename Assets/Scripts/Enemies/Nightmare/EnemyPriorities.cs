@@ -10,6 +10,8 @@ public class EnemyPriorities : MonoBehaviour
     public EnemyStates currState;
     FSM_CorpseWander searchCorpse;
     FSM_SeekPlayer seekPlayer;
+    
+    Enemy_BLACKBOARD blackboard;
 
     public bool playerSeen;
 
@@ -17,12 +19,16 @@ public class EnemyPriorities : MonoBehaviour
     public float enemyCorpses;
     public float remainingCorpses;
 
+    GameManager GM;
+
     ScoreManager m_ScoreManager;
 
     //public delegate void Priority(EnemyStates state);
     //public event Priority changePriority;
     void Start()
     {
+        GM = GameManager.Instance;
+        blackboard = GetComponent<Enemy_BLACKBOARD>();
         m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         searchCorpse = GetComponent<FSM_CorpseWander>();
         seekPlayer = GetComponent<FSM_SeekPlayer>();
@@ -31,6 +37,17 @@ public class EnemyPriorities : MonoBehaviour
         playerCorpses = m_ScoreManager.GetPlayerCorpses();
         enemyCorpses = m_ScoreManager.GetEnemyCorpses();
         remainingCorpses = m_ScoreManager.GetRemainingCorpses();
+    }
+
+    public void DetectPlayerActions()
+    {
+        if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < blackboard.detectionSensingRadius)
+        {
+            playerSeen = true;
+            currState = EnemyStates.LOOKFORPLAYER;
+            ActivateFSM();
+            seekPlayer.target = GM.GetPlayer();
+        }
     }
 
     public void ChangePriority()

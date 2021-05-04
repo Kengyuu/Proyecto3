@@ -69,7 +69,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                     ChangeState(State.WANDERING);
                 }
 
-                if (DetectionFunctions.FindObjectInArea(gameObject,"Player", blackboard.playerDetectionRadius ))
+                if (DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius))
                 {
                     ChangeState(State.SEEKINGPLAYER);
                 }

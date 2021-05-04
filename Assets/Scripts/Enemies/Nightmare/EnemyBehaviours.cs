@@ -74,7 +74,12 @@ public class EnemyBehaviours : MonoBehaviour
 
     public void SearchPlayer(float detectionRadius)
     {
-        if (DetectionFunctions.FindObjectInArea(gameObject,"Player", detectionRadius))
+        /*if (DetectionFunctions.FindObjectInArea(gameObject,"Player", detectionRadius))
+        {
+            gameObject.GetComponent<EnemyPriorities>().playerSeen = true;
+            gameObject.GetComponent<EnemyPriorities>().ChangePriority();
+        }*/
+        if(DetectionFunctions.PlayerInCone(gameObject, GM.GetPlayer(), blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius))
         {
             gameObject.GetComponent<EnemyPriorities>().playerSeen = true;
             gameObject.GetComponent<EnemyPriorities>().ChangePriority();
