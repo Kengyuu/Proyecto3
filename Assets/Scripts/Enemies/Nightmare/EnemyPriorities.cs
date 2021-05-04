@@ -50,10 +50,10 @@ public class EnemyPriorities : MonoBehaviour
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
         ChangePriority();
-    }
+    }*/
 
     public void ChangePriority()
     {
@@ -76,7 +76,7 @@ public class EnemyPriorities : MonoBehaviour
                 {
                     currState = EnemyStates.SEARCHCORPSES;
                 }
-                currState = EnemyStates.LOOKFORPLAYER;
+                //currState = EnemyStates.LOOKFORPLAYER;
             }
 
             if(enemyCorpses >= 4 && enemyCorpses <= 6)

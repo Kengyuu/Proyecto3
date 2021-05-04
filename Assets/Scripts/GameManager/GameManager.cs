@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log($"Current game state: {gameState}");
+        //Debug.Log($"Current game state: {gameState}");
     }
 
     public void SetGameState(GameState state)

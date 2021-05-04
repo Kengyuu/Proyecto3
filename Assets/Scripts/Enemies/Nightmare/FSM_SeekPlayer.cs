@@ -60,7 +60,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
 
             case State.WANDERING:
-
+                enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 savedCorpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
                 if (savedCorpse != null)
@@ -89,7 +89,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                     break;
                 }
 
-                if (DetectionFunctions.DistanceToTarget(gameObject, Player)>= blackboard.playerDetectionRadius)
+                if (DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius))
                 {
                     ChangeState(State.GOTOLASTPLAYERPOSITION);
                 }
@@ -190,8 +190,9 @@ public class FSM_SeekPlayer : MonoBehaviour
                     }
 
                     enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                    waypointSelected = true;
                 }
-               
+                Debug.Log(waypointSelected + " waypoint");
                 break;
 
         }
@@ -244,11 +245,11 @@ public class FSM_SeekPlayer : MonoBehaviour
         
     }
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         if(!Application.isPlaying)
             return ;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(Player.transform.position, blackboard.waypointsNearPlayerRadius);
-    }
+    }*/
 }
