@@ -12,9 +12,10 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     public GameObject target;
     public GameObject savedCorpse;
-    string enemyType;
+    
 
     public Vector3 lastPlayerPosition;
+    public List<GameObject> waypointsNearPlayer;
     //Transform child;
     public GameObject Arm;
     public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
@@ -27,7 +28,7 @@ public class FSM_SeekPlayer : MonoBehaviour
         GM = GameManager.Instance;
 
         enemy = GetComponent<NavMeshAgent>();
-        enemyType = transform.tag;
+       // enemyType = transform.tag;
         Player = GM.GetPlayer();
         blackboard = GetComponent<Enemy_BLACKBOARD>();
         //child = gameObject.transform.GetChild(2);
@@ -162,9 +163,24 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
-                target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];
+                
+                /*int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
+                target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];*/
                 //enemy.SetDestination(target.transform.position);
+                waypointsNearPlayer = DetectionFunctions.FindObjectsInArea(Player, "Waypoint", blackboard.waypointsNearPlayerRadius);
+                int alea = Random.Range(1, 3);
+
+                switch (alea)
+                {
+                    case 1:
+                        int randomWaypoint = Random.Range(1, waypointsNearPlayer.Count);
+                        target = waypointsNearPlayer[randomWaypoint];
+                        break;
+                    default:
+                        target = FindClosestWaypoint(waypointsNearPlayer, Player);
+                        break;
+                }
+                
                 enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 break;
 
@@ -193,12 +209,35 @@ public class FSM_SeekPlayer : MonoBehaviour
         
     }*/
         
+    GameObject FindClosestWaypoint(List<GameObject> list, GameObject player)
+        {
+            GameObject closest = list[1];
 
-    /*void OnDrawGizmos()
+            //float minDistance = (closest.transform.position - user.transform.position).magnitude;
+            float minDistance = new Vector3(closest.transform.position.x - player.transform.position.x, 0, 
+                                            closest.transform.position.z - player.transform.position.z).magnitude;
+
+            for (int i = 1; i < list.Count; i++)
+            {
+                //dist = (targets[i].transform.position - user.transform.position).magnitude;
+                float dist = new Vector3(list[i].transform.position.x - player.transform.position.x, 0, 
+                                         list[i].transform.position.z - player.transform.position.z).magnitude;
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    closest = list[i];
+                }
+            }
+
+            return closest;
+        
+    }
+
+    void OnDrawGizmos()
     {
         if(!Application.isPlaying)
             return ;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, blackboard.senseRadius);
-    }*/
+        Gizmos.DrawWireSphere(Player.transform.position, blackboard.waypointsNearPlayerRadius);
+    }
 }

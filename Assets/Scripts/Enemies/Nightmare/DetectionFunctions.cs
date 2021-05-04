@@ -43,7 +43,7 @@ public class DetectionFunctions : MonoBehaviour
 	{
 		GameObject [] targets = GameObject.FindGameObjectsWithTag(tag);
 		List<GameObject> targetsList = new List<GameObject>();
-		if (targetsList.Count==0) return null;
+		
 		foreach(GameObject t in targets)
 		{
 			if(DistanceToTarget(user, t) <= radius)
@@ -51,6 +51,8 @@ public class DetectionFunctions : MonoBehaviour
 				targetsList.Add(t);
 			}
 		}
+		if (targetsList.Count == 0) return null;
+		
 		return targetsList;
 	}
     public static float DistanceToTarget (GameObject user, GameObject target) 

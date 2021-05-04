@@ -26,7 +26,7 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     [Header("SeekPlayer")]
     public GameObject Player;
     public float distanceToAttack = 1.5f;
-
+    public float waypointsNearPlayerRadius = 20f;
     public float senseRadius = 10f;
 
     [Header("TrapDeactivate")]

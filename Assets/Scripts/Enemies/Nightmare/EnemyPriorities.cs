@@ -50,6 +50,11 @@ public class EnemyPriorities : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        ChangePriority();
+    }
+
     public void ChangePriority()
     {
         playerCorpses = m_ScoreManager.GetPlayerCorpses();
@@ -71,6 +76,7 @@ public class EnemyPriorities : MonoBehaviour
                 {
                     currState = EnemyStates.SEARCHCORPSES;
                 }
+                currState = EnemyStates.LOOKFORPLAYER;
             }
 
             if(enemyCorpses >= 4 && enemyCorpses <= 6)
