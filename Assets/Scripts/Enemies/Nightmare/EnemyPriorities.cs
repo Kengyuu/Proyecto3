@@ -39,9 +39,9 @@ public class EnemyPriorities : MonoBehaviour
         remainingCorpses = m_ScoreManager.GetRemainingCorpses();
     }
 
-    public void DetectPlayerActions()
+    public void DetectPlayerActions(float playerDistance)
     {
-        if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < blackboard.detectionSensingRadius)
+        if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < playerDistance)
         {
             playerSeen = true;
             currState = EnemyStates.LOOKFORPLAYER;
