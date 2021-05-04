@@ -16,6 +16,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     public Vector3 lastPlayerPosition;
     public List<GameObject> waypointsNearPlayer;
+    public bool waypointSelected = false;
     //Transform child;
     public GameObject Arm;
     public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
@@ -51,6 +52,7 @@ public class FSM_SeekPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         switch (currentState)
         {
             case State.INITIAL:
@@ -67,6 +69,8 @@ public class FSM_SeekPlayer : MonoBehaviour
                 }
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= 0.5f)
                 {
+                    Debug.Log("return to Wander");
+                    waypointSelected = false;
                     ChangeState(State.WANDERING);
                 }
 
@@ -123,7 +127,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     void ChangeState(State newState)
     {
-
+        
         //EXIT LOGIC
         switch (currentState)
         {
@@ -163,25 +167,31 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                
+              //  Debug.Log("finding");
                 /*int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
                 target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];*/
                 //enemy.SetDestination(target.transform.position);
-                waypointsNearPlayer = DetectionFunctions.FindObjectsInArea(Player, "Waypoint", blackboard.waypointsNearPlayerRadius);
-                int alea = Random.Range(1, 3);
-
-                switch (alea)
+                if (!waypointSelected)
                 {
-                    case 1:
-                        int randomWaypoint = Random.Range(1, waypointsNearPlayer.Count);
-                        target = waypointsNearPlayer[randomWaypoint];
-                        break;
-                    default:
-                        target = FindClosestWaypoint(waypointsNearPlayer, Player);
-                        break;
+                    waypointsNearPlayer = DetectionFunctions.FindObjectsInArea(Player, "Waypoint", blackboard.waypointsNearPlayerRadius);
+                    int alea = Random.Range(1, 3);
+
+                    switch (alea)
+                    {
+                        case 1:
+                            int randomWaypoint = Random.Range(1, waypointsNearPlayer.Count);
+                            target = waypointsNearPlayer[randomWaypoint];
+                            waypointSelected = true;
+                            break;
+                        default:
+                            target = FindClosestWaypoint(waypointsNearPlayer, Player);
+                            waypointSelected = true;
+                            break;
+                    }
+
+                    enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 }
-                
-                enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+               
                 break;
 
         }
@@ -211,6 +221,7 @@ public class FSM_SeekPlayer : MonoBehaviour
         
     GameObject FindClosestWaypoint(List<GameObject> list, GameObject player)
         {
+        
             GameObject closest = list[1];
 
             //float minDistance = (closest.transform.position - user.transform.position).magnitude;
