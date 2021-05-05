@@ -16,6 +16,8 @@ public class FSM_CorpseWander : MonoBehaviour
     string enemyType;
     GameObject corpse;
 
+    public LayerMask layer;
+
     
     //float closeEnoughTarget;
 
@@ -64,7 +66,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer(blackboard.playerDetectionRadius);
+                behaviours.SearchPlayer(blackboard.playerDetectionRadius, layer);
                 enemy.SetDestination(target.transform.position);
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
@@ -79,7 +81,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 }
                 break;
             case State.GOINGTOCORPSE:
-                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer(blackboard.playerDetectionRadius);
+                behaviours.SearchPlayer(blackboard.playerDetectionRadius, layer);
                 
                 if(target.tag != "Corpse")
                 {
@@ -96,7 +98,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
 
             case State.GRABBINGCORPSE:
-                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer(blackboard.playerDetectionRadius);
+                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer(blackboard.playerDetectionRadius, layer);
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                 if (blackboard.cooldownToGrabCorpse <= 0)
                 {

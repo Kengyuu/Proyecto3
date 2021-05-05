@@ -12,7 +12,8 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     public GameObject target;
     public GameObject savedCorpse;
-    
+
+    public LayerMask layer;
 
     public Vector3 lastPlayerPosition;
     public List<GameObject> waypointsNearPlayer;
@@ -74,7 +75,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                     ChangeState(State.WANDERING);
                 }
 
-                if (DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius))
+                if (DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                 {
                     ChangeState(State.SEEKINGPLAYER);
                 }
@@ -89,12 +90,19 @@ public class FSM_SeekPlayer : MonoBehaviour
                     break;
                 }
 
-                if (DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius))
+                if (!DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                 {
                     ChangeState(State.GOTOLASTPLAYERPOSITION);
+
                 }
                 break;
             case State.GOTOLASTPLAYERPOSITION:
+
+                if (DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
+                {
+                    ChangeState(State.SEEKINGPLAYER);
+
+                }
 
                 if (enemy.remainingDistance < 0.5f)
                 {
@@ -102,6 +110,8 @@ public class FSM_SeekPlayer : MonoBehaviour
                     gameObject.GetComponent<EnemyPriorities>().ChangePriority();
 
                 }
+
+
                 break;
 
           

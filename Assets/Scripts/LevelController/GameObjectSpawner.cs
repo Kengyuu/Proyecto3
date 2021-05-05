@@ -130,7 +130,7 @@ public class GameObjectSpawner : MonoBehaviour
                 
             }
         }
-        Debug.Log(playerSpawnRoom);
+        //Debug.Log(playerSpawnRoom);
         return playerSpawnRoom;
     }
 
@@ -154,7 +154,7 @@ public class GameObjectSpawner : MonoBehaviour
                
             }
         }
-        Debug.Log(enemySpawnRoom + " enemy");
+        //Debug.Log(enemySpawnRoom + " enemy");
         //GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses = maxDeadBodysMap;
     }
 

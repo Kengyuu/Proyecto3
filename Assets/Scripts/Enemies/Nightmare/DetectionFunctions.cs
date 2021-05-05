@@ -62,19 +62,40 @@ public class DetectionFunctions : MonoBehaviour
 		return (distance).magnitude;
 	}
 
-	public static bool PlayerInCone(GameObject user, GameObject target, float maxAngle, float maxRange)
+	public static bool PlayerInCone(GameObject user, GameObject target, float maxAngle, float maxRange, LayerMask layer)
 	{
 		Vector3 vectorEnemyPlayer = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
         target.transform.position.z - user.transform.position.z);
 
 		float angle =  Vector3.Angle(user.transform.forward, vectorEnemyPlayer);
-		if(angle <= maxAngle && vectorEnemyPlayer.magnitude <= maxRange)
+		
+			RaycastHit hit;
+			
+		
+		if (angle <= maxAngle && vectorEnemyPlayer.magnitude <= maxRange)
 		{
-			return true;
+			Ray Ray = new Ray(user.transform.position, vectorEnemyPlayer);
+			Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange, Color.red);
+			/*Debug.Log(hit.collider.name);
+			if (hit.collider.tag != "Map")
+			{*/
+			if (!Physics.Raycast(Ray, out hit, maxRange, layer))
+			{
+				user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+				Debug.Log(angle);
+				return true;
+
+			}
+
+			
+
+			//}
+
 		}
-		else
-		{
-			return false;
-		}
+		Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange, Color.green);
+		user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
+		return false;
 	}
+
+
 }

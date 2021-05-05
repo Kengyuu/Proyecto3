@@ -24,7 +24,12 @@ public class Orb_Blackboard : MonoBehaviour
     public float closeEnoughTrapRadius = 4f;
     public float playerDetectionRadius = 10;
 
-   
+    [Header("AttackerOrb")]
+    public float maxAttackDistance = 10;
+    public float XForceImpulseDamage = 5f;
+    public float YForceImpulseDamage = 5f;
+
+
     public void TakeDamage(int damage)
     {
         m_Life -= damage;

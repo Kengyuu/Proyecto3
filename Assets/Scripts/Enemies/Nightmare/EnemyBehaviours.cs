@@ -72,14 +72,14 @@ public class EnemyBehaviours : MonoBehaviour
         m_ScoreManager.RemoveRemainingCorpse();
     }
 
-    public void SearchPlayer(float detectionRadius)
+    public void SearchPlayer(float detectionRadius, LayerMask layer)
     {
         /*if (DetectionFunctions.FindObjectInArea(gameObject,"Player", detectionRadius))
         {
             gameObject.GetComponent<EnemyPriorities>().playerSeen = true;
             gameObject.GetComponent<EnemyPriorities>().ChangePriority();
         }*/
-        if(DetectionFunctions.PlayerInCone(gameObject, GM.GetPlayer(), blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius))
+        if(DetectionFunctions.PlayerInCone(gameObject, GM.GetPlayer(), blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
         {
             gameObject.GetComponent<EnemyPriorities>().playerSeen = true;
             gameObject.GetComponent<EnemyPriorities>().ChangePriority();
@@ -168,4 +168,6 @@ public class EnemyBehaviours : MonoBehaviour
         corpse.GetComponent<MeshRenderer>().material = corpse.GetComponent<CorpseControl>().originalMaterial;
         corpse.GetComponent<MeshRenderer>().enabled = true;
     }
+
+   
 }

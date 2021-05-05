@@ -37,7 +37,7 @@ public class EnemyPriorities : MonoBehaviour
         playerCorpses = m_ScoreManager.GetPlayerCorpses();
         enemyCorpses = m_ScoreManager.GetEnemyCorpses();
         remainingCorpses = m_ScoreManager.GetRemainingCorpses();
-
+        ActivateFSM();
 
         //TEST DAVID:
         GM.OnPlayerNoise += DetectPlayerActions;
@@ -141,10 +141,12 @@ public class EnemyPriorities : MonoBehaviour
             case EnemyStates.SEARCHCORPSES:
                 seekPlayer.Exit();
                 searchCorpse.ReEnter();
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
                 break;
             case EnemyStates.LOOKFORPLAYER:
                 searchCorpse.Exit();
                 seekPlayer.ReEnter();
+                
                 break;
         }
     }

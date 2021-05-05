@@ -30,7 +30,7 @@ public class MinimapController : MonoBehaviour
 
         Vector2 value = m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.ReadValue<Vector2>();
 
-        Debug.Log($"Scroll {value.y}");
+        //Debug.Log($"Scroll {value.y}");
         if(value.y != 0)
         {
             //float newValue = value.y / 12;
