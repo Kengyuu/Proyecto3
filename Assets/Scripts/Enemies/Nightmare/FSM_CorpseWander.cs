@@ -81,7 +81,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 }
                 break;
             case State.GOINGTOCORPSE:
-                behaviours.SearchPlayer(blackboard.playerDetectionRadius, layer);
+                behaviours.SearchPlayer(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer);
                 
                 if(target.tag != "Corpse")
                 {

@@ -16,6 +16,8 @@ public class EnemyBehaviours : MonoBehaviour
     ScoreManager m_ScoreManager;
 
     GameManager GM;
+
+    public LayerMask mask;
     void Start()
     {
         GM = GameManager.Instance;
@@ -72,21 +74,28 @@ public class EnemyBehaviours : MonoBehaviour
         m_ScoreManager.RemoveRemainingCorpse();
     }
 
-    public void SearchPlayer(float detectionRadius, LayerMask layer)
+    public void SearchPlayer(float detectionRadius, float angleDetectionPlayer)
     {
         /*if (DetectionFunctions.FindObjectInArea(gameObject,"Player", detectionRadius))
         {
             gameObject.GetComponent<EnemyPriorities>().playerSeen = true;
             gameObject.GetComponent<EnemyPriorities>().ChangePriority();
         }*/
-        if(DetectionFunctions.PlayerInCone(gameObject, GM.GetPlayer(), blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
+        if(DetectionFunctions.PlayerInCone(gameObject, GM.GetPlayer(), angleDetectionPlayer, detectionRadius, mask))
         {
             gameObject.GetComponent<EnemyPriorities>().playerSeen = true;
             gameObject.GetComponent<EnemyPriorities>().ChangePriority();
         }
     }
 
-   
+    public bool PlayerFound(float detectionRadius, float angleDetectionPlayer)
+    {
+        
+      return DetectionFunctions.PlayerInCone(gameObject, GM.GetPlayer(), angleDetectionPlayer, detectionRadius, mask);
+  
+    }
+
+
 
     public GameObject PickRandomWaypoint()
     {

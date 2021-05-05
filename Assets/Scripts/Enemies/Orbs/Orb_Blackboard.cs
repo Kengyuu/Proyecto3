@@ -28,6 +28,7 @@ public class Orb_Blackboard : MonoBehaviour
     public float maxAttackDistance = 10;
     public float XForceImpulseDamage = 5f;
     public float YForceImpulseDamage = 5f;
+    public float angleDetectionPlayer = 90;
 
 
     public void TakeDamage(int damage)

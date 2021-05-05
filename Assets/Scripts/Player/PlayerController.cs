@@ -106,7 +106,11 @@ public class PlayerController : MonoBehaviour
     {
         //Receive impact from the enemy
         Vector3 l_Direction = (transform.position - obj.transform.position).normalized;
-        m_PlayerMovement.AddForceX(l_Direction, XForce);
+        if (XForce != 0)
+        {
+            m_PlayerMovement.AddForceX(l_Direction, XForce);
+        }
+      
         m_PlayerMovement.AddForceY(YForce);
 
         //Reduce Life

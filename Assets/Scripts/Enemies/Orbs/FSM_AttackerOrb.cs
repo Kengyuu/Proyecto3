@@ -5,33 +5,125 @@ using UnityEngine;
 public class FSM_AttackerOrb : MonoBehaviour
 {
     public List<Transform> rayPoints;
+    public List<Transform> castPoints;
     public Transform castPosition;
     public LineRenderer m_Laser;
     public Animator anim;
 
     public Orb_Blackboard blackboard;
+    private EnemyBehaviours behaviours;
+    public GameObject target;
+
+    public enum State { INITIAL, WANDERING, ATTACKINGPLAYER};
+    public State currentState;
 
     bool attacking = false;
-    private void Start()
+    bool rotating = true;
+    void OnEnable()
     {
 
-        
+
+        behaviours = GetComponent<EnemyBehaviours>();
+        blackboard = GetComponent<Orb_Blackboard>();
+        blackboard.SetOrbHealth(blackboard.m_maxLife);
+        ReEnter();
+
+    }
+
+    public void Exit()
+    {
+        blackboard.navMesh.isStopped = false;
+        this.enabled = false;
+    }
+
+    public void ReEnter()
+    {
+        this.enabled = true;
+        currentState = State.INITIAL;
+
     }
 
     private void Update()
     {
-       if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) <= blackboard.maxAttackDistance)
+        switch (currentState)
         {
-            anim.SetBool("AttackOrb", true);
-            if (!attacking) Rotate();
-            
+            case State.INITIAL:
+                ChangeState(State.WANDERING);
+                break;
+            case State.WANDERING:
+                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
 
-            TriggerAttack();
-           
+                if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
+                {
+                    ChangeState(State.WANDERING);
+                }
+
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                {
+                    ChangeState(State.ATTACKINGPLAYER);
+                }
+
+               
+                break;
+            case State.ATTACKINGPLAYER:
+
+                if (rotating) Rotate();
+                TriggerAttack();
+                if (GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_Life <= 0)
+                {
+                    attacking = false;
+                }
+
+                if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance)
+                {
+                    ChangeState(State.WANDERING);
+                }
+
+                break;
+        }
+
+
+
+      
+
+        
+
+    }
+
+    void ChangeState(State newState)
+    {
+
+        //EXIT LOGIC
+        switch (currentState)
+        {
+            case State.WANDERING:
+               
+                break;
+            case State.ATTACKINGPLAYER:
+                blackboard.navMesh.isStopped = false;
+                anim.SetBool("AttackOrb", false);
+                break;
             
         }
 
-        
+        // Enter logic
+        switch (newState)
+        {
+
+            case State.WANDERING:
+                blackboard.navMesh.isStopped = false;
+                target = behaviours.PickRandomWaypointOrb();
+                break;
+            case State.ATTACKINGPLAYER:
+                blackboard.navMesh.isStopped = true;
+                anim.SetBool("AttackOrb", true);
+                break;
+
+           
+
+        }
+
+        currentState = newState;
 
     }
 
@@ -60,8 +152,10 @@ public class FSM_AttackerOrb : MonoBehaviour
 
                 }
             }
-            m_Laser.SetPosition(1, new Vector3(0.0f, 0.0f, blackboard.maxAttackDistance));
+
+          
         }
+        ChangeState(State.ATTACKINGPLAYER);
         
     }
 
@@ -82,7 +176,30 @@ public class FSM_AttackerOrb : MonoBehaviour
     void setAttackTrue()
     {
         attacking = true;
+        
+    }
+    void setRotateTrue()
+    {
+        rotating = true;
+
+    }
+
+    void setRotateFalse()
+    {
+        rotating = false;
+
+    }
+
+    void setLaserTrue()
+    {
+        
         m_Laser.enabled = true;
+    }
+
+    void setLaserFalse()
+    {
+
+        m_Laser.enabled = false;
     }
 
     void setAttackFalse()

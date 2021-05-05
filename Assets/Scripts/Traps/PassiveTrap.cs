@@ -27,13 +27,13 @@ public class PassiveTrap : TrapController
             {
                 GetComponent<MeshRenderer>().material = transparentMaterial;
                 m_TrapActive = false;
-                /*FSM_EnemyPriority target = col.GetComponent<FSM_EnemyPriority>();
+                HFSM_StunEnemy target = col.GetComponent<HFSM_StunEnemy>();
                 if (target != null)
                 {
                     Debug.Log("Enemigo estuneado por TRAMPA");
-                    target.GetStunned();
+                    target.isStunned = true;
 
-                }*/
+                }
             }
             if (col.CompareTag("Player"))
             {
@@ -43,7 +43,7 @@ public class PassiveTrap : TrapController
                 if(player != null)
                 {
                     Debug.Log("Player entra en la trampa");
-                    player.TakeDamage(1, gameObject, XForceImpulseDamage, YForceImpulseDamage);
+                    player.TakeDamage(3, gameObject, XForceImpulseDamage, YForceImpulseDamage);
                 }
             }
         }
