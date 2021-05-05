@@ -57,7 +57,7 @@ public class HFSM_StunEnemy : MonoBehaviour
                 }
                 break;
             case State.SEEKPLAYER:
-            if(isStunned)
+                if(isStunned)
                 {
                     ChangeState(State.STUNNED);
                 }
@@ -114,7 +114,7 @@ public class HFSM_StunEnemy : MonoBehaviour
                 break;
             case State.SEEKPLAYER:
                 navMesh.isStopped = false;
-                corpseWander.ReEnter();
+                seekPlayer.ReEnter();
                 break;
 
             case State.STUNNED:

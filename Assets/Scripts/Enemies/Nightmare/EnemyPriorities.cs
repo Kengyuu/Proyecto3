@@ -15,6 +15,8 @@ public class EnemyPriorities : MonoBehaviour
 
     public bool playerSeen;
 
+    public bool playerDetected;
+
     public float playerCorpses;
     public float enemyCorpses;
     public float remainingCorpses;
@@ -34,6 +36,7 @@ public class EnemyPriorities : MonoBehaviour
         seekPlayer = GetComponent<FSM_SeekPlayer>();
         currState = EnemyStates.SEARCHCORPSES;
         playerSeen = false;
+        playerDetected = false;
         playerCorpses = m_ScoreManager.GetPlayerCorpses();
         enemyCorpses = m_ScoreManager.GetEnemyCorpses();
         remainingCorpses = m_ScoreManager.GetRemainingCorpses();
@@ -50,7 +53,7 @@ public class EnemyPriorities : MonoBehaviour
 
         if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < playerDistance)
         {
-            playerSeen = true;
+            playerDetected = true;
             currState = EnemyStates.LOOKFORPLAYER;
             ActivateFSM();
             seekPlayer.target = GM.GetPlayer();
@@ -67,7 +70,7 @@ public class EnemyPriorities : MonoBehaviour
         playerCorpses = m_ScoreManager.GetPlayerCorpses();
         enemyCorpses = m_ScoreManager.GetEnemyCorpses();
         remainingCorpses = m_ScoreManager.GetRemainingCorpses();
-        if(playerSeen)
+        if(playerSeen || playerDetected)
         {
             currState = EnemyStates.LOOKFORPLAYER;
         }
@@ -141,12 +144,12 @@ public class EnemyPriorities : MonoBehaviour
             case EnemyStates.SEARCHCORPSES:
                 seekPlayer.Exit();
                 searchCorpse.ReEnter();
-                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
+                GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
                 break;
             case EnemyStates.LOOKFORPLAYER:
                 searchCorpse.Exit();
                 seekPlayer.ReEnter();
-                
+                GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                 break;
         }
     }

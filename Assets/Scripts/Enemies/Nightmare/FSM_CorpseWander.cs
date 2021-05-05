@@ -43,13 +43,14 @@ public class FSM_CorpseWander : MonoBehaviour
         //target = null;
         if(corpse != null)
             corpse.tag = "Corpse";
-        corpse = null;
+        //corpse = null;
         enemy.isStopped = false;
         this.enabled = false;
     }
 
     public void ReEnter()
     {
+        Debug.Log("Soy yo mismo");
         this.enabled = true;
         currentState = State.INITIAL;
         
@@ -66,7 +67,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                behaviours.SearchPlayer(blackboard.playerDetectionRadius, layer);
+                behaviours.SearchPlayer(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer);
                 enemy.SetDestination(target.transform.position);
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);

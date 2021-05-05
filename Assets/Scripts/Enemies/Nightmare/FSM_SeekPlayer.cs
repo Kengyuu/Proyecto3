@@ -82,7 +82,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
             case State.SEEKINGPLAYER:
                 enemy.SetDestination(Player.transform.position);
-
+                //transform.LookAt(Player.transform,transform.up);
                 if (DetectionFunctions.DistanceToTarget(gameObject,Player) <= blackboard.distanceToAttack)
                 {
                     ChangeState(State.ATTACKING);
@@ -105,8 +105,9 @@ public class FSM_SeekPlayer : MonoBehaviour
 
                 if (enemy.remainingDistance < 0.5f)
                 {
-                    gameObject.GetComponent<EnemyPriorities>().playerSeen = false;
-                    gameObject.GetComponent<EnemyPriorities>().ChangePriority();
+                    GetComponent<EnemyPriorities>().playerSeen = false;
+                    GetComponent<EnemyPriorities>().playerDetected = false;
+                    GetComponent<EnemyPriorities>().ChangePriority();
 
                 }
 
