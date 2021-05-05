@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "MouseScroll",
+                    "type": "PassThrough",
+                    "id": "77f109c9-7b71-40ef-85d1-42404af68fb7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Move",
                     "type": "PassThrough",
                     "id": "56852487-0044-4815-8d55-6e1fa75c1814",
@@ -57,6 +65,14 @@
                     "name": "Map",
                     "type": "Button",
                     "id": "fe9f36e8-f782-4b8b-9588-ee642fb6a1ef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TrapInteraction",
+                    "type": "Button",
+                    "id": "fbfaa731-d477-469b-91e0-b4a684302915",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -242,6 +258,17 @@
                 {
                     "name": "",
                     "id": "f6c3f03a-f665-4e46-a1b6-bb972c3ddf98",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "79d1ebd8-ec27-4d8b-a8fc-950886c9e123",
                     "path": "<Keyboard>/m",
                     "interactions": "",
                     "processors": "",
@@ -258,6 +285,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d67cd2d-2e8c-4024-a53d-c08c92c76133",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TrapInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb17e5ab-4052-459d-98cc-ccef8ea87fac",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TrapInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7fca1e3-6487-4084-b06c-4ce245c03b3f",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseScroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

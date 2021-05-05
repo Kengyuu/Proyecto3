@@ -37,10 +37,17 @@ public class EnemyPriorities : MonoBehaviour
         playerCorpses = m_ScoreManager.GetPlayerCorpses();
         enemyCorpses = m_ScoreManager.GetEnemyCorpses();
         remainingCorpses = m_ScoreManager.GetRemainingCorpses();
+
+
+        //TEST DAVID:
+        GM.OnPlayerNoise += DetectPlayerActions;
     }
 
     public void DetectPlayerActions(float playerDistance)
     {
+        Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");
+
+
         if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < playerDistance)
         {
             playerSeen = true;

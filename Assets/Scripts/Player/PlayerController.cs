@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     
     [Header("Player Damage")]
     public float m_MaxStunTime;
-    public float m_ImpactForceX;
-    public float m_ImpactForceY;
 
     [Header("Helpers")]
     public ScoreManager m_ScoreManager;
@@ -43,6 +41,7 @@ public class PlayerController : MonoBehaviour
         if (GM == null) GM = GameManager.Instance;
 
         GM.OnStateChange += StateChanged;
+        
 
         //HUD Updaters
         UpdatePlayerHealth();
@@ -103,12 +102,12 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void TakeDamage(int dmg, GameObject obj)
+    public void TakeDamage(int dmg, GameObject obj, float XForce, float YForce)
     {
         //Receive impact from the enemy
         Vector3 l_Direction = (transform.position - obj.transform.position).normalized;
-        m_PlayerMovement.AddForceX(l_Direction, m_ImpactForceX);
-        m_PlayerMovement.AddForceY(m_ImpactForceY);
+        m_PlayerMovement.AddForceX(l_Direction, XForce);
+        m_PlayerMovement.AddForceY(YForce);
 
         //Reduce Life
         m_Life -= dmg;
@@ -119,7 +118,7 @@ public class PlayerController : MonoBehaviour
             m_Life = 0;
             
 
-            //Añadir aqui si el enemigo tiene 10 cuerpos o más)
+            //Enemigo con 10+ cuerpos -> game over
             if(m_ScoreManager.GetEnemyCorpses() >= 10)
             {
                 GM.SetGameState(GameState.GAME_OVER);
@@ -127,6 +126,7 @@ public class PlayerController : MonoBehaviour
             }
             GetStunned();
             RemoveCorpse();
+            //Invoke("RestoreLife", m_MaxStunTime);
         }
 
         UpdatePlayerHealth();
@@ -164,10 +164,12 @@ public class PlayerController : MonoBehaviour
         m_Camera.GetComponent<CameraDaze>().enabled = false;
     }
 
+    
+
 
 
     // Score Manager Stuff
-    private void UpdatePlayerHealth()
+    public void UpdatePlayerHealth()
     {
         m_ScoreManager.SetPlayerHP(m_Life);
     }

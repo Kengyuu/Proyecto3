@@ -14,6 +14,9 @@ public class PlayerDash : MonoBehaviour
     public float m_DashMaxCooldown = 2f;
     public bool m_PlayerCanDash = true;
 
+    [Header("DashNoise")]
+    public float m_DashNoise = 30f;
+
     [Header("Debug")]
     [SerializeField] bool m_DashOnCooldown = false;
     
@@ -53,6 +56,8 @@ public class PlayerDash : MonoBehaviour
 
     private void Dash()
     {
+        GM.PlayerNoise(m_DashNoise);
+
         m_DashOnCooldown = true;
         Invoke("ResetDash", m_DashMaxCooldown);
         m_DashDirection = m_PlayerMovement.m_InputSystem.Gameplay.Move.ReadValue<Vector2>();

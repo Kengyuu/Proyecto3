@@ -149,7 +149,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 864447610606656395}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.8
+  m_Radius: 0.3
   m_Speed: 4.13
   m_Acceleration: 8
   avoidancePriority: 1
@@ -160,7 +160,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 0.99
   m_BaseOffset: 0.46
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!54 &481378911352588887
 Rigidbody:
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f899965dd9fe1dc4abd8dcb983f77a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  enemy: {fileID: 20940604}
   target: {fileID: 0}
   currentState: 0
 --- !u!114 &8853487398245499590
@@ -209,6 +209,8 @@ MonoBehaviour:
   target: {fileID: 0}
   savedCorpse: {fileID: 0}
   lastPlayerPosition: {x: 0, y: 0, z: 0}
+  waypointsNearPlayer: []
+  waypointSelected: 0
   Arm: {fileID: 3217922365130158915}
   currentState: 0
 --- !u!114 &7964776373725501868
@@ -290,14 +292,17 @@ MonoBehaviour:
   corpsePickUpRadius: 2
   corpseDetectionRadius: 15
   closeEnoughCorpseRadius: 2
-  playerDetectionRadius: 10
+  playerDetectionRadius: 30
   cooldownToGrabCorpse: 3
+  angleDetectionPlayer: 90
+  detectionSensingRadius: 10
   waypointsList: {fileID: 0}
   lastCorpseSeen: {fileID: 0}
   orbCorpseStored: {fileID: 0}
   corpse: {fileID: 0}
   Player: {fileID: 0}
   distanceToAttack: 5
+  waypointsNearPlayerRadius: 20
   senseRadius: 20
   cooldownToDeactivateTrap: 3
   trap: {fileID: 0}
@@ -863,6 +868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyNavMesh: {fileID: 20940604}
+  XForceImpulseDamage: 2
+  YForceImpulseDamage: 8
 --- !u!1 &3276299193329980048
 GameObject:
   m_ObjectHideFlags: 0

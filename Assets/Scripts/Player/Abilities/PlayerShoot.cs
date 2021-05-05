@@ -22,8 +22,9 @@ public class PlayerShoot : MonoBehaviour
     public float m_WeakPointDetectionDistance = 20f;
 
     public float m_OrbDetectionDistance = 20f;
-    
 
+    [Header("Shoot Noise")]
+    public float m_ShootNoise = 50f;
 
     [Header("Debug")]
     [SerializeField] bool m_IsPlayerShooting = false;
@@ -38,7 +39,7 @@ public class PlayerShoot : MonoBehaviour
 
         GM.OnStateChange += StateChanged;
 
-        
+
     }
 
     private void StateChanged()
@@ -69,7 +70,9 @@ public class PlayerShoot : MonoBehaviour
 
     private void Shoot()
     {
-        
+        GM.PlayerNoise(m_ShootNoise);
+
+
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
         {
@@ -200,4 +203,5 @@ public class PlayerShoot : MonoBehaviour
             }
         }
     }
+
 }

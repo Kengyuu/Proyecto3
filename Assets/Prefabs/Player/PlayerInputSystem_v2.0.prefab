@@ -613,6 +613,7 @@ GameObject:
   - component: {fileID: 3456542924278478864}
   - component: {fileID: 4963236583099694658}
   - component: {fileID: 6654022584197075666}
+  - component: {fileID: 84312683}
   m_Layer: 0
   m_Name: PlayerInputSystem_v2.0
   m_TagString: Player
@@ -701,8 +702,6 @@ MonoBehaviour:
   m_Life: 3
   m_MaxLife: 3
   m_MaxStunTime: 3
-  m_ImpactForceX: 1
-  m_ImpactForceY: 8
   m_ScoreManager: {fileID: 0}
   m_Map: {fileID: 0}
   enemyTest: {fileID: 0}
@@ -763,6 +762,7 @@ MonoBehaviour:
   m_DashForce: 20
   m_DashMaxCooldown: 2
   m_PlayerCanDash: 1
+  m_DashNoise: 30
   m_DashOnCooldown: 0
 --- !u!114 &6654022584197075666
 MonoBehaviour:
@@ -785,7 +785,22 @@ MonoBehaviour:
   m_ButtonDetectionDistance: 10
   m_WeakPointDetectionDistance: 20
   m_OrbDetectionDistance: 20
+  m_ShootNoise: 50
   m_IsPlayerShooting: 0
+--- !u!114 &84312683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456542924278478860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12280e27fbc2157419d881b9c693ad4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Map: {fileID: 0}
+  map_status: 0
 --- !u!1 &3456542924520641539
 GameObject:
   m_ObjectHideFlags: 0

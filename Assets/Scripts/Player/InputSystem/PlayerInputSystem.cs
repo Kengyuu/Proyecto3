@@ -27,6 +27,14 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""MouseScroll"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""77f109c9-7b71-40ef-85d1-42404af68fb7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""56852487-0044-4815-8d55-6e1fa75c1814"",
@@ -70,6 +78,14 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""name"": ""Map"",
                     ""type"": ""Button"",
                     ""id"": ""fe9f36e8-f782-4b8b-9588-ee642fb6a1ef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TrapInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""fbfaa731-d477-469b-91e0-b4a684302915"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -255,6 +271,17 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f6c3f03a-f665-4e46-a1b6-bb972c3ddf98"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79d1ebd8-ec27-4d8b-a8fc-950886c9e123"",
                     ""path"": ""<Keyboard>/m"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -273,6 +300,39 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d67cd2d-2e8c-4024-a53d-c08c92c76133"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TrapInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb17e5ab-4052-459d-98cc-ccef8ea87fac"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TrapInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7fca1e3-6487-4084-b06c-4ce245c03b3f"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -282,12 +342,14 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
+        m_Gameplay_MouseScroll = m_Gameplay.FindAction("MouseScroll", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Run = m_Gameplay.FindAction("Run", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
         m_Gameplay_Shoot = m_Gameplay.FindAction("Shoot", throwIfNotFound: true);
         m_Gameplay_Map = m_Gameplay.FindAction("Map", throwIfNotFound: true);
+        m_Gameplay_TrapInteraction = m_Gameplay.FindAction("TrapInteraction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -338,23 +400,27 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Look;
+    private readonly InputAction m_Gameplay_MouseScroll;
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Run;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Dash;
     private readonly InputAction m_Gameplay_Shoot;
     private readonly InputAction m_Gameplay_Map;
+    private readonly InputAction m_Gameplay_TrapInteraction;
     public struct GameplayActions
     {
         private @PlayerInputSystem m_Wrapper;
         public GameplayActions(@PlayerInputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Look => m_Wrapper.m_Gameplay_Look;
+        public InputAction @MouseScroll => m_Wrapper.m_Gameplay_MouseScroll;
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Run => m_Wrapper.m_Gameplay_Run;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
         public InputAction @Shoot => m_Wrapper.m_Gameplay_Shoot;
         public InputAction @Map => m_Wrapper.m_Gameplay_Map;
+        public InputAction @TrapInteraction => m_Wrapper.m_Gameplay_TrapInteraction;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -367,6 +433,9 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
+                @MouseScroll.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseScroll;
+                @MouseScroll.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseScroll;
+                @MouseScroll.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseScroll;
                 @Move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
@@ -385,6 +454,9 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @Map.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMap;
                 @Map.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMap;
                 @Map.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMap;
+                @TrapInteraction.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTrapInteraction;
+                @TrapInteraction.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTrapInteraction;
+                @TrapInteraction.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTrapInteraction;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -392,6 +464,9 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @MouseScroll.started += instance.OnMouseScroll;
+                @MouseScroll.performed += instance.OnMouseScroll;
+                @MouseScroll.canceled += instance.OnMouseScroll;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -410,6 +485,9 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @Map.started += instance.OnMap;
                 @Map.performed += instance.OnMap;
                 @Map.canceled += instance.OnMap;
+                @TrapInteraction.started += instance.OnTrapInteraction;
+                @TrapInteraction.performed += instance.OnTrapInteraction;
+                @TrapInteraction.canceled += instance.OnTrapInteraction;
             }
         }
     }
@@ -417,11 +495,13 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
     public interface IGameplayActions
     {
         void OnLook(InputAction.CallbackContext context);
+        void OnMouseScroll(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
+        void OnTrapInteraction(InputAction.CallbackContext context);
     }
 }

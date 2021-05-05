@@ -16,6 +16,7 @@ public enum GameState
 }
 
 public delegate void OnStateChangeHandler();
+public delegate void OnPlayerMakesNoise(float intensity);
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     protected GameManager() { }
     private static GameManager instance = null;
     public event OnStateChangeHandler OnStateChange;
+    public event OnPlayerMakesNoise OnPlayerNoise;
     public GameState gameState { get; private set; }
 
     //[Header("Debug")]
@@ -80,6 +82,11 @@ public class GameManager : MonoBehaviour
     {
         this.gameState = state;
         OnStateChange?.Invoke();
+    }
+
+    public void PlayerNoise(float intensity)
+    {
+        OnPlayerNoise?.Invoke(intensity);
     }
 
     public void OnApplicationQuit()
