@@ -70,7 +70,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                 }
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= 0.5f)
                 {
-                    Debug.Log("return to Wander");
                     waypointSelected = false;
                     ChangeState(State.WANDERING);
                 }
@@ -202,7 +201,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                     enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                     waypointSelected = true;
                 }
-                Debug.Log(waypointSelected + " waypoint");
                 break;
 
         }

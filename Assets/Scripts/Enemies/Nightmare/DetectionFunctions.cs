@@ -64,36 +64,39 @@ public class DetectionFunctions : MonoBehaviour
 
 	public static bool PlayerInCone(GameObject user, GameObject target, float maxAngle, float maxRange, LayerMask layer)
 	{
-		Vector3 vectorEnemyPlayer = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
-        target.transform.position.z - user.transform.position.z);
-
+		/*Vector3 vectorEnemyPlayer = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
+        target.transform.position.z - user.transform.position.z);*/
+		Vector3 vectorEnemyPlayer = target.transform.position - user.transform.position;
 		float angle =  Vector3.Angle(user.transform.forward, vectorEnemyPlayer);
 		
-			RaycastHit hit;
+		RaycastHit hit;
 			
 		
 		if (angle <= maxAngle && vectorEnemyPlayer.magnitude <= maxRange)
 		{
-			Ray Ray = new Ray(user.transform.position, vectorEnemyPlayer);
+			Ray Ray = new Ray(user.transform.position, vectorEnemyPlayer.normalized * maxRange);
 			Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange, Color.red);
-			/*Debug.Log(hit.collider.name);
-			if (hit.collider.tag != "Map")
-			{*/
-			if (!Physics.Raycast(Ray, out hit, maxRange, layer))
-			{
-				user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-				Debug.Log(angle);
-				return true;
-
-			}
-
 			
-
-			//}
-
+			/*if (hit.collider.tag != "Map")
+			{*/
+			if (Physics.Raycast(Ray, out hit, maxRange))
+			{
+				Debug.Log(hit.transform.name);
+				if(hit.transform.tag == "Player")
+				{
+					user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+					Debug.Log(angle + " Estoy IN");
+					return true;
+				}
+			}
 		}
-		Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange, Color.green);
-		user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
+		else
+		{
+			Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange, Color.green);
+			user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
+		}
+		
+		
 		return false;
 	}
 
