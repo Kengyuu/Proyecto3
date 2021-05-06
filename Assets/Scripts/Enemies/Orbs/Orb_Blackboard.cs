@@ -22,6 +22,7 @@ public class Orb_Blackboard : MonoBehaviour
     [Header("TrapSearcher")]
     public float cooldownToDeactivateTrap = 3f;
     public float closeEnoughTrapRadius = 4f;
+    public float trapDetectionRadius = 10f;
     public float playerDetectionRadius = 10;
 
     [Header("AttackerOrb")]

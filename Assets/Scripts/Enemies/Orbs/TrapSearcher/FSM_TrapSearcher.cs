@@ -12,12 +12,20 @@ public class FSM_TrapSearcher : MonoBehaviour
     EnemyBehaviours behaviours;
     GameObject trap;
 
-    public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP };
+    [Header("Attack")]
+    public List<Transform> rayPoints;
+    public Transform castPosition;
+    public LineRenderer m_Laser;
+    public Animator anim;
+    bool attacking = false;
+    bool rotating = true;
+
+    public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP, ATTACKINGPLAYER};
     public State currentState;
 
     void OnEnable()
     {
-        blackboard.navMesh = GetComponent<NavMeshAgent>();
+        
         blackboard = GetComponent<Orb_Blackboard>();
         behaviours = GetComponent<EnemyBehaviours>();
 
@@ -52,7 +60,7 @@ public class FSM_TrapSearcher : MonoBehaviour
             case State.WANDERING:
                 
 
-                trap = behaviours.SearchObject("PasiveTrap", blackboard.closeEnoughTrapRadius);
+                trap = behaviours.SearchObject("PasiveTrap", blackboard.trapDetectionRadius);
                 blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 
                 if (trap != null)
@@ -65,6 +73,13 @@ public class FSM_TrapSearcher : MonoBehaviour
                 {
                     ChangeState(State.WANDERING);
                 }
+
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                {
+                    //Debug.Log("aTTACKING");
+                    ChangeState(State.ATTACKINGPLAYER);
+                }
+
                 break;
             case State.GOINGTOTRAP:
                
@@ -73,10 +88,16 @@ public class FSM_TrapSearcher : MonoBehaviour
                     ChangeState(State.DEACTIVATINGTRAP);
                 }
 
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                {
+                   // Debug.Log("aTTACKING");
+                    ChangeState(State.ATTACKINGPLAYER);
+                }
+
                 break;
 
             case State.DEACTIVATINGTRAP:
-               
+               // transform.LookAt(target.transform, transform.up);
                 blackboard.cooldownToDeactivateTrap -= Time.deltaTime;
                  if (blackboard.cooldownToDeactivateTrap <= 0)
                  {
@@ -84,6 +105,22 @@ public class FSM_TrapSearcher : MonoBehaviour
                      ChangeState(State.WANDERING);
                      break;
                  }
+                break;
+
+            case State.ATTACKINGPLAYER:
+
+                if (rotating) Rotate();
+                TriggerAttack();
+                if (GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_Life <= 0)
+                {
+                    attacking = false;
+                }
+
+                if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance)
+                {
+                    ChangeState(State.WANDERING);
+                }
+
                 break;
         }
     }
@@ -96,6 +133,12 @@ public class FSM_TrapSearcher : MonoBehaviour
         {
             case State.DEACTIVATINGTRAP:
                 blackboard.navMesh.isStopped = false;
+                ReEnter();
+                break;
+
+            case State.ATTACKINGPLAYER:
+                blackboard.navMesh.isStopped = false;
+                anim.SetBool("AttackOrb", false);
                 break;
         }
 
@@ -118,11 +161,105 @@ public class FSM_TrapSearcher : MonoBehaviour
                 blackboard.cooldownToDeactivateTrap = 3f;
                 break;
 
+            case State.ATTACKINGPLAYER:
+                blackboard.navMesh.isStopped = true;
+                anim.SetBool("AttackOrb", true);
+                break;
+
+           
+
         }
 
         currentState = newState;
 
     }
+
+    void TriggerAttack()
+    {
+        if (attacking)
+        {
+            foreach (Transform raycastPoint in rayPoints)
+            {
+                Vector3 Direction = raycastPoint.position - castPosition.position;
+                Direction.Normalize();
+                Ray Ray = new Ray(castPosition.position, Direction);
+                Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
+                RaycastHit l_RaycastHit;
+
+                if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance))
+                {
+                    Debug.Log(l_RaycastHit.collider.tag);
+                    if (l_RaycastHit.collider.tag == "Player")
+                    {
+                        Debug.Log("Hit by orb");
+                        GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(1, gameObject, blackboard.XForceImpulseDamage, blackboard.YForceImpulseDamage);
+                        attacking = false;
+
+                    }
+
+                }
+            }
+
+            m_Laser.SetPosition(1, new Vector3(0.0f, 0.0f, blackboard.maxAttackDistance));
+
+
+        }
+        ChangeState(State.ATTACKINGPLAYER);
+
+    }
+
+    void Rotate()
+    {
+        Vector3 direction = GameManager.Instance.GetPlayer().transform.position - transform.position;
+
+        if (direction == Vector3.zero)
+            return;
+
+        Quaternion rotation = Quaternion.LookRotation(direction);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 10 * Time.deltaTime);
+    }
+
+
+
+    void setAttackTrue()
+    {
+        attacking = true;
+
+    }
+    void setRotateTrue()
+    {
+        rotating = true;
+
+    }
+
+    void setRotateFalse()
+    {
+        rotating = false;
+
+    }
+
+    void setLaserTrue()
+    {
+
+        m_Laser.enabled = true;
+    }
+
+    void setLaserFalse()
+    {
+
+        m_Laser.enabled = false;
+    }
+
+    void setAttackFalse()
+    {
+        attacking = false;
+        anim.SetBool("AttackOrb", false);
+        m_Laser.enabled = false;
+    }
+
+
+
 
 
     /*void OnDrawGizmos()

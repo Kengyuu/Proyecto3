@@ -63,6 +63,7 @@ public class PassiveTrap : TrapController
                     m_TrapActive = true;
                     GetComponent<MeshRenderer>().material = originalMaterial;
                     //GetComponent<MeshRenderer>().enabled = true;
+                    gameObject.tag = "PasiveTrap";
                 }*/
             }
         }
