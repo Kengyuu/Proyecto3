@@ -5,7 +5,7 @@ using UnityEngine;
 public class FSM_AttackerOrb : MonoBehaviour
 {
     public List<Transform> rayPoints;
-    public List<Transform> castPoints;
+    
     public Transform castPosition;
     public LineRenderer m_Laser;
     public Animator anim;
@@ -69,6 +69,7 @@ public class FSM_AttackerOrb : MonoBehaviour
             case State.ATTACKINGPLAYER:
 
                 if (rotating) Rotate();
+
                 TriggerAttack();
                 if (GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_Life <= 0)
                 {
@@ -154,7 +155,9 @@ public class FSM_AttackerOrb : MonoBehaviour
                 }
             }
 
-          
+            m_Laser.SetPosition(1, new Vector3(0.0f, 0.0f, blackboard.maxAttackDistance));
+
+
         }
         ChangeState(State.ATTACKINGPLAYER);
         
