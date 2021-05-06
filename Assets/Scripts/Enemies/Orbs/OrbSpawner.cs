@@ -43,7 +43,7 @@ public class OrbSpawner : MonoBehaviour
 
             }
             //TrapOrb.SetActive(false);
-            HideOrb.SetActive(false);
+            //HideOrb.SetActive(false);
 
         }
 

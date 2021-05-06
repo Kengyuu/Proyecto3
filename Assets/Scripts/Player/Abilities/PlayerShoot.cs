@@ -112,6 +112,7 @@ public class PlayerShoot : MonoBehaviour
                     {
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
+                        hit.collider.GetComponent<FSM_CorpseSearcher>().alert = true;
 
                     }
                     break;
@@ -119,7 +120,7 @@ public class PlayerShoot : MonoBehaviour
                 case "HideOrb":
                     if (l_CurrentDistance < m_OrbDetectionDistance)
                     {
-                        hit.collider.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+                       // hit.collider.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                     }
@@ -130,7 +131,9 @@ public class PlayerShoot : MonoBehaviour
                     {
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
+                        hit.collider.GetComponent<FSM_TrapSearcher>().alert = true;
                     }
+            
                     break;
                 case "AttackOrb":
                     if (l_CurrentDistance < m_OrbDetectionDistance)

@@ -19,8 +19,8 @@ public class FSM_TrapSearcher : MonoBehaviour
     public Animator anim;
     bool attacking = false;
     bool rotating = true;
-
-    public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP, ATTACKINGPLAYER};
+    public bool alert = false;
+    public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP, ALERT, ATTACKINGPLAYER };
     public State currentState;
 
     void OnEnable()
@@ -80,6 +80,12 @@ public class FSM_TrapSearcher : MonoBehaviour
                     ChangeState(State.ATTACKINGPLAYER);
                 }
 
+                if (alert)
+                {
+                    ChangeState(State.ALERT);
+                }
+
+
                 break;
             case State.GOINGTOTRAP:
                
@@ -93,6 +99,12 @@ public class FSM_TrapSearcher : MonoBehaviour
                    // Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
                 }
+
+                if (alert)
+                {
+                    ChangeState(State.ALERT);
+                }
+
 
                 break;
 
@@ -122,6 +134,18 @@ public class FSM_TrapSearcher : MonoBehaviour
                 }
 
                 break;
+
+            case State.ALERT:
+
+                Rotate();
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                {
+                    //Debug.Log("aTTACKING");
+                    ChangeState(State.ATTACKINGPLAYER);
+                }
+                else StartCoroutine(StayAlert());
+
+                break;
         }
     }
 
@@ -139,6 +163,10 @@ public class FSM_TrapSearcher : MonoBehaviour
             case State.ATTACKINGPLAYER:
                 blackboard.navMesh.isStopped = false;
                 anim.SetBool("AttackOrb", false);
+                break;
+
+            case State.ALERT:
+                alert = false;
                 break;
         }
 
@@ -165,8 +193,11 @@ public class FSM_TrapSearcher : MonoBehaviour
                 blackboard.navMesh.isStopped = true;
                 anim.SetBool("AttackOrb", true);
                 break;
+            case State.ALERT:
+                blackboard.navMesh.isStopped = true;
+                break;
 
-           
+
 
         }
 
@@ -206,6 +237,12 @@ public class FSM_TrapSearcher : MonoBehaviour
         }
         ChangeState(State.ATTACKINGPLAYER);
 
+    }
+
+    IEnumerator StayAlert()
+    {
+        yield return new WaitForSeconds(2);
+        ChangeState(State.WANDERING);
     }
 
     void Rotate()

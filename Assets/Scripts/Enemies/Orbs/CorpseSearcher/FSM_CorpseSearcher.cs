@@ -17,12 +17,13 @@ public class FSM_CorpseSearcher : MonoBehaviour
     public Animator anim;
     bool attacking = false;
     bool rotating = true;
-
+    public bool alert = false;
     EnemyBehaviours behaviours;
     public GameObject corpse;
 
 
-    public enum State { INITIAL, WANDERING, GOINGTOCORPSE, RETURNINGTOENEMY, GRABBINGCORPSE, ATTACKINGPLAYER };
+
+    public enum State { INITIAL, WANDERING, GOINGTOCORPSE, RETURNINGTOENEMY, GRABBINGCORPSE,ALERT, ATTACKINGPLAYER };
     public State currentState;
 
 
@@ -86,12 +87,23 @@ public class FSM_CorpseSearcher : MonoBehaviour
                     ChangeState(State.RETURNINGTOENEMY);
                 }
 
+                if (alert)
+                {
+                    ChangeState(State.ALERT);
+                }
+
                 break;
             case State.GOINGTOCORPSE:
                 if (target.tag != "Corpse" || !target.activeSelf)
                 {
                     ChangeState(State.WANDERING);
                 }
+
+                if (alert)
+                {
+                    ChangeState(State.ALERT);
+                }
+
                 else
                 {
                     if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughCorpseRadius)
@@ -124,6 +136,11 @@ public class FSM_CorpseSearcher : MonoBehaviour
                     ChangeState(State.ATTACKINGPLAYER);
                  }
 
+                if (alert)
+                {
+                    ChangeState(State.ALERT);
+                }
+
                 break;
 
             case State.ATTACKINGPLAYER:
@@ -139,6 +156,18 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 {
                     ChangeState(State.WANDERING);
                 }
+
+                break;
+
+            case State.ALERT:
+
+                Rotate();
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                {
+                    //Debug.Log("aTTACKING");
+                    ChangeState(State.ATTACKINGPLAYER);
+                }
+                else StartCoroutine(StayAlert());
 
                 break;
         }
@@ -172,6 +201,10 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 blackboard.navMesh.isStopped = false;
                 anim.SetBool("AttackOrb", false);
                 break;
+
+            case State.ALERT:
+                alert = false;
+                break;
         }
 
         // Enter logic
@@ -199,6 +232,9 @@ public class FSM_CorpseSearcher : MonoBehaviour
             case State.ATTACKINGPLAYER:
                 blackboard.navMesh.isStopped = true;
                 anim.SetBool("AttackOrb", true);
+                break;
+            case State.ALERT:
+                blackboard.navMesh.isStopped = true;
                 break;
 
         }
@@ -239,6 +275,12 @@ public class FSM_CorpseSearcher : MonoBehaviour
         }
         ChangeState(State.ATTACKINGPLAYER);
 
+    }
+
+    IEnumerator StayAlert()
+    {
+        yield return new WaitForSeconds(2);
+        ChangeState(State.WANDERING);
     }
 
     void Rotate()
