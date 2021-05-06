@@ -7,14 +7,18 @@ using UnityEngine.Events;
 public class OrbSpawner : MonoBehaviour
 {
 
+    public List<GameObject> orbs;
     
     public Transform spawnPosition;
-
-    public GameObject TrapOrb;
-
-    public GameObject HideOrb;
     public GameObject CorpseOrb;
+    public GameObject secondOrb;
 
+    public GameObject thirdOrb;
+
+    private void Awake()
+    {
+        SelectOrbs();
+    }
     void Start()
     {
         spawnPosition = GameManager.Instance.GetEnemy().transform;
@@ -42,33 +46,33 @@ public class OrbSpawner : MonoBehaviour
 
 
             }
-            //TrapOrb.SetActive(false);
-            //HideOrb.SetActive(false);
+            secondOrb.SetActive(false);
+            thirdOrb.SetActive(false);
 
         }
 
 
         else if (corpses >= 3 && corpses < 6)
         {
-            if (!TrapOrb.activeSelf)
+            if (!secondOrb.activeSelf)
             {
-                TrapOrb.SetActive(true);
-                TrapOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
-                TrapOrb.GetComponent<NavMeshAgent>().enabled = true;
+                secondOrb.SetActive(true);
+                secondOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+                secondOrb.GetComponent<NavMeshAgent>().enabled = true;
 
             }
 
-            HideOrb.SetActive(false);
+            thirdOrb.SetActive(false);
         }
 
 
         if (corpses >= 6)
         {
-            if (!HideOrb.activeSelf)
+            if (!thirdOrb.activeSelf)
             {
-                HideOrb.SetActive(true);
-                HideOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
-                HideOrb.GetComponent<NavMeshAgent>().enabled = true;
+                thirdOrb.SetActive(true);
+                thirdOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
+                thirdOrb.GetComponent<NavMeshAgent>().enabled = true;
 
             }
 
@@ -83,6 +87,16 @@ public class OrbSpawner : MonoBehaviour
         orb.SetActive(true);
     }
 
+    public void SelectOrbs()
+    {
+        GameObject randomSecondOrb = orbs[Random.Range(0, orbs.Count)];
+        orbs.Remove(randomSecondOrb);
+        secondOrb = randomSecondOrb;
+
+        GameObject randomThirdOrb = orbs[Random.Range(0, orbs.Count)];
+        orbs.Remove(randomThirdOrb);
+        thirdOrb = randomThirdOrb;
+    } 
 
     
 }
