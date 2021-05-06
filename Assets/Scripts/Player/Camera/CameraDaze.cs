@@ -20,11 +20,11 @@ public class CameraDaze : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Daze activado");
+       // Debug.Log("Daze activado");
     }
 
     private void OnDisable()
     {
-        Debug.Log("Daze desactivado");
+      //  Debug.Log("Daze desactivado");
     }
 }

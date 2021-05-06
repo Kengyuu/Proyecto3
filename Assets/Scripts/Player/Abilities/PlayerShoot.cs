@@ -132,6 +132,14 @@ public class PlayerShoot : MonoBehaviour
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                     }
                     break;
+                case "AttackOrb":
+                    if (l_CurrentDistance < m_OrbDetectionDistance)
+                    {
+                        Debug.Log($"Attack Orb Hit");
+                        hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
+                        hit.collider.GetComponent<FSM_AttackerOrb>().alert = true;
+                    }
+                    break;
             }
             ResetShoot();
         }
@@ -192,6 +200,13 @@ public class PlayerShoot : MonoBehaviour
                     if (l_CurrentDistance < m_OrbDetectionDistance)
                     {
                         
+                        l_InRange = true;
+                    }
+                    break;
+                case "AttackOrb":
+                    if (l_CurrentDistance < m_OrbDetectionDistance)
+                    {
+
                         l_InRange = true;
                     }
                     break;

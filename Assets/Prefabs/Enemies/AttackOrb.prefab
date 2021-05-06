@@ -9943,7 +9943,7 @@ GameObject:
   - component: {fileID: 6996427770133219170}
   m_Layer: 6
   m_Name: AttackOrb
-  m_TagString: CorpseOrb
+  m_TagString: AttackOrb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9955,7 +9955,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6996427770133219169}
-  m_LocalRotation: {x: 0.034300566, y: -0.99706763, z: 0.04150562, w: 0.054377593}
+  m_LocalRotation: {x: 0.03430324, y: -0.99706763, z: 0.04150389, w: 0.054377872}
   m_LocalPosition: {x: 32.47, y: 1.25, z: 60.82}
   m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_Children:
@@ -10069,6 +10069,7 @@ MonoBehaviour:
   blackboard: {fileID: 7876399382007573352}
   target: {fileID: 0}
   currentState: 0
+  alert: 0
 --- !u!114 &6996427770133219171
 MonoBehaviour:
   m_ObjectHideFlags: 0

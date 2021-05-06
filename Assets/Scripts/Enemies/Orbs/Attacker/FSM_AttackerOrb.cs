@@ -10,15 +10,17 @@ public class FSM_AttackerOrb : MonoBehaviour
     public LineRenderer m_Laser;
     public Animator anim;
 
+
     public Orb_Blackboard blackboard;
     private EnemyBehaviours behaviours;
     public GameObject target;
 
-    public enum State { INITIAL, WANDERING, ATTACKINGPLAYER};
+    public enum State { INITIAL, WANDERING, ALERT ,  ATTACKINGPLAYER};
     public State currentState;
 
     bool attacking = false;
     bool rotating = true;
+    public bool alert = false;
     void OnEnable()
     {
 
@@ -60,11 +62,30 @@ public class FSM_AttackerOrb : MonoBehaviour
 
                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                 {
-                    Debug.Log("aTTACKING");
+                    //Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
                 }
 
+                if (alert)
+                {
+                    ChangeState(State.ALERT);
+                }
+
+                
+
                
+                break;
+
+            case State.ALERT:
+
+                Rotate();
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                {
+                    //Debug.Log("aTTACKING");
+                    ChangeState(State.ATTACKINGPLAYER);
+                }
+                else StartCoroutine(StayAlert());
+
                 break;
             case State.ATTACKINGPLAYER:
 
@@ -81,6 +102,8 @@ public class FSM_AttackerOrb : MonoBehaviour
                     ChangeState(State.WANDERING);
                 }
 
+
+
                 break;
         }
 
@@ -92,7 +115,7 @@ public class FSM_AttackerOrb : MonoBehaviour
 
     }
 
-    void ChangeState(State newState)
+    public void ChangeState(State newState)
     {
 
         //EXIT LOGIC
@@ -105,7 +128,11 @@ public class FSM_AttackerOrb : MonoBehaviour
                 blackboard.navMesh.isStopped = false;
                 anim.SetBool("AttackOrb", false);
                 break;
-            
+
+            case State.ALERT:
+                alert = false;
+                break;
+
         }
 
         // Enter logic
@@ -121,7 +148,11 @@ public class FSM_AttackerOrb : MonoBehaviour
                 anim.SetBool("AttackOrb", true);
                 break;
 
-           
+            case State.ALERT:
+                blackboard.navMesh.isStopped = true;
+                break;
+
+
 
         }
 
@@ -143,10 +174,10 @@ public class FSM_AttackerOrb : MonoBehaviour
 
                 if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance))
                 {
-                    Debug.Log(l_RaycastHit.collider.tag);
+                    //Debug.Log(l_RaycastHit.collider.tag);
                     if (l_RaycastHit.collider.tag == "Player")
                     {
-                        Debug.Log("Hit by orb");
+                        //Debug.Log("Hit by orb");
                         GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(1, gameObject, blackboard.XForceImpulseDamage, blackboard.YForceImpulseDamage);
                         attacking = false;
                         
@@ -161,6 +192,12 @@ public class FSM_AttackerOrb : MonoBehaviour
         }
         ChangeState(State.ATTACKINGPLAYER);
         
+    }
+
+    IEnumerator StayAlert()
+    {
+        yield return new WaitForSeconds(2);
+        ChangeState(State.WANDERING);
     }
 
     void Rotate()

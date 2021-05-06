@@ -209,7 +209,7 @@ public class GameObjectSpawner : MonoBehaviour
         }
         if (type.gameObject.tag != "CorpseOrb")
         {
-            Debug.Log("Not a Corpse Orb");
+            //Debug.Log("Not a Corpse Orb");
             m_ScoreManager.SetRemainingCorpses(m_ScoreManager.GetRemainingCorpses() + numberBodies);
         }
 
