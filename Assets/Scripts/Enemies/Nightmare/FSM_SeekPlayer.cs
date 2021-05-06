@@ -124,7 +124,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                 if (DetectionFunctions.DistanceToTarget(gameObject, Player) > blackboard.distanceToAttack)
                 {
                     ChangeState(State.SEEKINGPLAYER);
-                    break;
                 }
 
                 break;
@@ -172,8 +171,12 @@ public class FSM_SeekPlayer : MonoBehaviour
             
             case State.ATTACKING:
                 enemy.isStopped = true;
-                Arm.SetActive(true);
-                Arm.GetComponent<Animation>().Play();
+                //Arm.SetActive(true);
+                if(Player.GetComponent<PlayerController>().m_Life > 0)
+                {
+                    Arm.GetComponent<Animation>().Play();
+                }
+                
                 break;
 
             case State.WANDERING:
