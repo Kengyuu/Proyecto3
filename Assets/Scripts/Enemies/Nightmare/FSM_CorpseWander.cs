@@ -50,7 +50,7 @@ public class FSM_CorpseWander : MonoBehaviour
 
     public void ReEnter()
     {
-        Debug.Log("Soy yo mismo");
+        //Debug.Log("Soy yo mismo");
         this.enabled = true;
         currentState = State.INITIAL;
         

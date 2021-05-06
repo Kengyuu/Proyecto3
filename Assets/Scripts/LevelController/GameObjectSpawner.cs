@@ -60,7 +60,7 @@ public class GameObjectSpawner : MonoBehaviour
         spawnersUsed.Add(spawnPosition);
         //Esto crea una cantidad de cadáveres pasada desde el editor en el objeto GameObjectSpawner
 
-        SpawnBodys(maxDeadBodysMap);
+        SpawnBodys(maxDeadBodysMap, gameObject);
 
         
     }
@@ -160,10 +160,10 @@ public class GameObjectSpawner : MonoBehaviour
 
     //numberBodys = maxDeadBodysMap - currentBodysSpawned;
     // First time --> currentBodysSpawned = 0, so --> numberBodys = maxDeadBodysMap
-    public void SpawnBodys(int numberBodys)
+    public void SpawnBodys(int numberBodies, GameObject type)
     {
         int spawnPosition = -1;
-        for (int i = 0; i < numberBodys; i++)
+        for (int i = 0; i < numberBodies; i++)
         {
             bool spawnable = false;
             while (spawnable == false)
@@ -207,6 +207,11 @@ public class GameObjectSpawner : MonoBehaviour
             
             currentBodysSpawned++;
         }
-       m_ScoreManager.SetRemainingCorpses(m_ScoreManager.GetRemainingCorpses() + numberBodys);
+        if (type.gameObject.tag != "CorpseOrb")
+        {
+            Debug.Log("Not a Corpse Orb");
+            m_ScoreManager.SetRemainingCorpses(m_ScoreManager.GetRemainingCorpses() + numberBodies);
+        }
+
     }
 }

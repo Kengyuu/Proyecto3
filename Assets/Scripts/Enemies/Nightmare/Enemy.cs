@@ -54,7 +54,7 @@ public class Enemy : Entities
             
             //Debug.Log(m_ScoreManager.GetRemainingCorpses());
             //Debug.Log(lostEnemyCorpses);
-            GM.GetGameObjectSpawner().SpawnBodys(lostEnemyCorpses);
+            GM.GetGameObjectSpawner().SpawnBodys(lostEnemyCorpses,gameObject);
         }
         GetComponent<HFSM_StunEnemy>().isStunned = true;
         

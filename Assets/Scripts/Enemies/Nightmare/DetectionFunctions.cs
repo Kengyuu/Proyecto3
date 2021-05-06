@@ -96,7 +96,7 @@ public class DetectionFunctions : MonoBehaviour
 				{
 					//user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
 					//Debug.Log(angle + " Estoy IN");
-					Debug.Log(angle + " MaxAngle: " + maxAngle);
+					//Debug.Log(angle + " MaxAngle: " + maxAngle);
 					return true;
 				}
 				else
@@ -112,35 +112,7 @@ public class DetectionFunctions : MonoBehaviour
 		}
 		return false;
 		//Debug.Log("SEES PLAYER");
-		/*Vector3 l_Direction = (target.transform.position + Vector3.up * -0.1f) - user.transform.position;
-		float l_DistanceToPlayer = l_Direction.magnitude;
-
-		l_Direction /= l_DistanceToPlayer;
-
-		if (l_DistanceToPlayer >= maxRange)
-        {
-			user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
-			return false;
-		}
-			
-
-		bool l_IsOnCone = Vector3.Dot(user.transform.forward, l_Direction) >= Mathf.Cos(maxAngle * Mathf.Deg2Rad * 0.5f);
-		Ray l_Ray = new Ray(user.transform.position, l_Direction);
-
 		
-		//Debug.Log(!Physics.Raycast(l_Ray, l_DistanceToPlayer, m_SightLayerMask));
-		Debug.DrawRay(user.transform.position, l_Direction * l_DistanceToPlayer, Color.blue);
-
-		if (l_IsOnCone && Physics.Raycast(l_Ray, l_DistanceToPlayer, mask))
-		{
-			Debug.Log(Vector3.Dot(user.transform.forward, l_Direction));
-			user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-			//Debug.Log("SEES PLAYER - ESTA EN EL CONO, PERO EL RAYCAST NO LE VE.");
-			return true;
-		}
-		user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
-		//Debug.Log("SEES PLAYER - ESTA EN EL CONO");
-		return false;*/
 	}
 
 
