@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement m_PlayerMovement;
     private PlayerCamera m_PlayerCamera;
     private Camera m_Camera;
+    private GameObjectSpawner spawner;
     private GameManager GM;
 
     [Header("Player Stats")]
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
         m_PlayerCamera = GetComponent<PlayerCamera>();
-
+        
         m_Camera = Camera.main;
 
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
@@ -130,6 +131,8 @@ public class PlayerController : MonoBehaviour
             }
             GetStunned();
             RemoveCorpse();
+            
+            GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1, gameObject);
             //Invoke("RestoreLife", m_MaxStunTime);
         }
 
