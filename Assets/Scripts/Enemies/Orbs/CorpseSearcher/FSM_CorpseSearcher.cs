@@ -7,36 +7,35 @@ public class FSM_CorpseSearcher : MonoBehaviour
 {
 
     [Header("Parameters")]
-    public Orb_Blackboard blackboard;
     public GameObject target;
+    public GameObject corpse;
 
     [Header("Attack")]
     public List<Transform> rayPoints;
     public Transform castPosition;
     public LineRenderer m_Laser;
     public Animator anim;
+    public bool alert = false;
     bool attacking = false;
     bool rotating = true;
-    public bool alert = false;
     EnemyBehaviours behaviours;
-    public GameObject corpse;
+    
 
+    private Orb_Blackboard blackboard;
 
-
-    public enum State { INITIAL, WANDERING, GOINGTOCORPSE, RETURNINGTOENEMY, GRABBINGCORPSE,ALERT, ATTACKINGPLAYER };
+    [Header("State")]
     public State currentState;
+    public enum State { INITIAL, WANDERING, GOINGTOCORPSE, RETURNINGTOENEMY, GRABBINGCORPSE,ALERT, ATTACKINGPLAYER };
+    
 
 
 
     void OnEnable()
     {
-        
-       
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
-        ReEnter();
-        
+        ReEnter(); 
     }
 
     public void Exit()
@@ -62,46 +61,58 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 ChangeState(State.WANDERING);
                 break;
 
+
+
+
             case State.WANDERING:
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
                 blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
-                //Debug.Log(corpse.name);
+                
                 if (corpse != null)
                 {
                     ChangeState(State.GOINGTOCORPSE);
+                    break;
                 }
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                  {
                      ChangeState(State.WANDERING);
+                     break;
                  }
 
                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                 {
-                    Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
+                    break;
                 }
 
                 if (blackboard.orbCorpseStored != null)
                 {
                     ChangeState(State.RETURNINGTOENEMY);
+                    break;
                 }
 
                 if (alert)
                 {
                     ChangeState(State.ALERT);
+                    break;
                 }
-
                 break;
+
+
+
+
             case State.GOINGTOCORPSE:
                 if (target.tag != "Corpse" || !target.activeSelf)
                 {
                     ChangeState(State.WANDERING);
+                    break;
                 }
 
                 if (alert)
                 {
                     ChangeState(State.ALERT);
+                    break;
                 }
 
                 else
@@ -109,12 +120,17 @@ public class FSM_CorpseSearcher : MonoBehaviour
                     if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughCorpseRadius)
                     {
                         ChangeState(State.GRABBINGCORPSE);
+                        break;
                     }
                 }
-
                 break;
 
+
+
+
+
             case State.GRABBINGCORPSE:
+
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                  if (blackboard.cooldownToGrabCorpse <= 0)
                  {
@@ -123,6 +139,9 @@ public class FSM_CorpseSearcher : MonoBehaviour
                      break;
                  }
                 break;
+
+
+
             case State.RETURNINGTOENEMY:
                   target = behaviours.ReturnToEnemy();
                   if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance + 1)
@@ -143,6 +162,22 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
                 break;
 
+
+
+            case State.ALERT:
+
+                Rotate();
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                {
+                    //Debug.Log("aTTACKING");
+                    ChangeState(State.ATTACKINGPLAYER);
+                }
+                else StartCoroutine(StayAlert());
+
+                break;
+
+
+
             case State.ATTACKINGPLAYER:
 
                 if (rotating) Rotate();
@@ -159,17 +194,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
                 break;
 
-            case State.ALERT:
-
-                Rotate();
-                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
-                {
-                    //Debug.Log("aTTACKING");
-                    ChangeState(State.ATTACKINGPLAYER);
-                }
-                else StartCoroutine(StayAlert());
-
-                break;
+           
         }
     }
 
@@ -195,7 +220,6 @@ public class FSM_CorpseSearcher : MonoBehaviour
                     
                     corpse = null;
                 }
-                 
                 break;
 
             case State.ATTACKINGPLAYER:
@@ -244,6 +268,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     }
 
+    //ATTACK FUNCTIONS
+
     void TriggerAttack()
     {
         if (attacking)
@@ -262,7 +288,9 @@ public class FSM_CorpseSearcher : MonoBehaviour
                     if (l_RaycastHit.collider.tag == "Player")
                     {
                         Debug.Log("Hit by orb");
-                        GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(1, gameObject, blackboard.XForceImpulseDamage, blackboard.YForceImpulseDamage);
+                        GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(1, gameObject, blackboard.XForceImpulseDamage,
+                                                                                                     blackboard.YForceImpulseDamage);
+                        
                         attacking = false;
 
                     }
@@ -298,7 +326,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     }
 
 
-
+    //ANIMATION EVENTS
     void setAttackTrue()
     {
         attacking = true;

@@ -8,7 +8,7 @@ public class FSM_TrapSearcher : MonoBehaviour
    
     [Header("Attributes")]
     public GameObject target;
-    public Orb_Blackboard blackboard;
+    private Orb_Blackboard blackboard;
     EnemyBehaviours behaviours;
     GameObject trap;
 
@@ -20,15 +20,17 @@ public class FSM_TrapSearcher : MonoBehaviour
     bool attacking = false;
     bool rotating = true;
     public bool alert = false;
-    public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP, ALERT, ATTACKINGPLAYER };
+
+    [Header("State")]
     public State currentState;
+    public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP, ALERT, ATTACKINGPLAYER };
+    
 
     void OnEnable()
     {
         
         blackboard = GetComponent<Orb_Blackboard>();
         behaviours = GetComponent<EnemyBehaviours>();
-
         blackboard.SetOrbHealth(3);
         ReEnter();
         
@@ -53,12 +55,14 @@ public class FSM_TrapSearcher : MonoBehaviour
 
         switch (currentState)
         {
+
             case State.INITIAL:
                 ChangeState(State.WANDERING);
                 break;
 
+
+
             case State.WANDERING:
-                
 
                 trap = behaviours.SearchObject("PasiveTrap", blackboard.trapDetectionRadius);
                 blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
@@ -67,49 +71,59 @@ public class FSM_TrapSearcher : MonoBehaviour
                 {
                     //if (trap.GetComponent<PassiveTrap>() != null && trap.GetComponent<PassiveTrap>().GetTrapActive())
                     ChangeState(State.GOINGTOTRAP);
+                    break;
                 }
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                 {
                     ChangeState(State.WANDERING);
+                    break;
                 }
 
                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                 {
                     //Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
+                    break;
                 }
 
                 if (alert)
                 {
                     ChangeState(State.ALERT);
+                    break;
                 }
-
-
                 break;
+
+
+
+
             case State.GOINGTOTRAP:
                
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughTrapRadius)
                 {
                     ChangeState(State.DEACTIVATINGTRAP);
+                    break;
                 }
 
                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                 {
                    // Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
+                    break;
                 }
 
                 if (alert)
                 {
                     ChangeState(State.ALERT);
+                    break;
                 }
-
-
                 break;
 
+
+
+
             case State.DEACTIVATINGTRAP:
-               // transform.LookAt(target.transform, transform.up);
+       
                 blackboard.cooldownToDeactivateTrap -= Time.deltaTime;
                  if (blackboard.cooldownToDeactivateTrap <= 0)
                  {
@@ -117,23 +131,10 @@ public class FSM_TrapSearcher : MonoBehaviour
                      ChangeState(State.WANDERING);
                      break;
                  }
-                break;
-
-            case State.ATTACKINGPLAYER:
-
-                if (rotating) Rotate();
-                TriggerAttack();
-                if (GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_Life <= 0)
-                {
-                    attacking = false;
-                }
-
-                if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance)
-                {
-                    ChangeState(State.WANDERING);
-                }
 
                 break;
+
+
 
             case State.ALERT:
 
@@ -142,10 +143,33 @@ public class FSM_TrapSearcher : MonoBehaviour
                 {
                     //Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
+                    break;
                 }
                 else StartCoroutine(StayAlert());
 
                 break;
+
+
+            case State.ATTACKINGPLAYER:
+
+                if (rotating) Rotate();
+
+                TriggerAttack();
+
+                if (GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_Life <= 0)
+                {
+                    attacking = false;
+                }
+
+                if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance)
+                {
+                    ChangeState(State.WANDERING);
+                    break;
+                }
+                break;
+
+
+           
         }
     }
 
@@ -205,6 +229,8 @@ public class FSM_TrapSearcher : MonoBehaviour
 
     }
 
+
+    //ATTACK FUNCTIONS
     void TriggerAttack()
     {
         if (attacking)
@@ -258,7 +284,7 @@ public class FSM_TrapSearcher : MonoBehaviour
     }
 
 
-
+    //ANIMATION EVENTS
     void setAttackTrue()
     {
         attacking = true;

@@ -7,21 +7,20 @@ public class FSM_CorpseHider : MonoBehaviour
 {
     [Header("Attributes")]
     public GameObject target; 
-    public Orb_Blackboard blackboard;
+    private Orb_Blackboard blackboard;
     EnemyBehaviours behaviours;
 
-    public enum State { INITIAL, WANDERING, RETURNINGTOENEMY };
+    [Header("State")]
     public State currentState;
+    public enum State { INITIAL, WANDERING, RETURNINGTOENEMY };
+    
 
     void OnEnable()
     {
         blackboard.navMesh = GetComponent<NavMeshAgent>();
-
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(3);
-
-
         ReEnter();
       
     }

@@ -4,32 +4,34 @@ using UnityEngine;
 
 public class FSM_AttackerOrb : MonoBehaviour
 {
+
+    [Header("Attack")]
     public List<Transform> rayPoints;
-    
     public Transform castPosition;
     public LineRenderer m_Laser;
     public Animator anim;
-
-
-    public Orb_Blackboard blackboard;
-    private EnemyBehaviours behaviours;
-    public GameObject target;
-
-    public enum State { INITIAL, WANDERING, ALERT ,  ATTACKINGPLAYER};
-    public State currentState;
-
+    public bool alert = false;
     bool attacking = false;
     bool rotating = true;
-    public bool alert = false;
+
+    [Header("Target")]
+    public GameObject target;
+
+    private EnemyBehaviours behaviours;
+    private Orb_Blackboard blackboard;
+
+    [Header("State")]
+    public State currentState;
+    public enum State { INITIAL, WANDERING, ALERT ,  ATTACKINGPLAYER};
+    
+
+   
     void OnEnable()
     {
-
-
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
         ReEnter();
-
     }
 
     public void Exit()
@@ -52,29 +54,31 @@ public class FSM_AttackerOrb : MonoBehaviour
             case State.INITIAL:
                 ChangeState(State.WANDERING);
                 break;
+
+
             case State.WANDERING:
                 blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                 {
                     ChangeState(State.WANDERING);
+                    break;
                 }
 
                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                 {
                     //Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
+                    break;
                 }
 
                 if (alert)
                 {
                     ChangeState(State.ALERT);
+                    break;
                 }
-
-                
-
-               
                 break;
+
 
             case State.ALERT:
 
@@ -83,10 +87,13 @@ public class FSM_AttackerOrb : MonoBehaviour
                 {
                     //Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
+                    break;
                 }
                 else StartCoroutine(StayAlert());
-
                 break;
+
+
+
             case State.ATTACKINGPLAYER:
 
                 if (rotating) Rotate();
@@ -102,16 +109,9 @@ public class FSM_AttackerOrb : MonoBehaviour
                     ChangeState(State.WANDERING);
                 }
 
-
-
+                
                 break;
         }
-
-
-
-      
-
-        
 
     }
 
@@ -151,14 +151,13 @@ public class FSM_AttackerOrb : MonoBehaviour
             case State.ALERT:
                 blackboard.navMesh.isStopped = true;
                 break;
-
-
-
         }
-
         currentState = newState;
 
     }
+
+
+    //ATTACK FUNCTIONS
 
     void TriggerAttack()
     {
@@ -213,7 +212,7 @@ public class FSM_AttackerOrb : MonoBehaviour
     }
 
 
-
+    //ANIMATION EVENTS
     void setAttackTrue()
     {
         attacking = true;
@@ -222,24 +221,20 @@ public class FSM_AttackerOrb : MonoBehaviour
     void setRotateTrue()
     {
         rotating = true;
-
     }
 
     void setRotateFalse()
     {
         rotating = false;
-
     }
 
     void setLaserTrue()
-    {
-        
+    {   
         m_Laser.enabled = true;
     }
 
     void setLaserFalse()
     {
-
         m_Laser.enabled = false;
     }
 

@@ -8,12 +8,11 @@ public class OrbSpawner : MonoBehaviour
 {
 
     public List<GameObject> orbs;
-    
-    public Transform spawnPosition;
     public GameObject CorpseOrb;
     public GameObject secondOrb;
-
     public GameObject thirdOrb;
+
+    private Transform spawnPosition;
 
     private void Awake()
     {
@@ -89,13 +88,13 @@ public class OrbSpawner : MonoBehaviour
 
     public void SelectOrbs()
     {
-       GameObject randomSecondOrb = orbs[Random.Range(1, orbs.Count)];
+       /*GameObject randomSecondOrb = orbs[Random.Range(1, orbs.Count)];
         orbs.Remove(randomSecondOrb);
         secondOrb = randomSecondOrb;
 
         GameObject randomThirdOrb = orbs[Random.Range(1, orbs.Count)];
         orbs.Remove(randomThirdOrb);
-        thirdOrb = randomThirdOrb;
+        thirdOrb = randomThirdOrb;*/
     } 
 
     
