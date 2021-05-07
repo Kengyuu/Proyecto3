@@ -192,6 +192,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 {
                     blackboard.orbCorpseStored = null;
                     behaviours.AddCorpseToScore();
+                    
                     corpse = null;
                 }
                  
@@ -279,6 +280,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     IEnumerator StayAlert()
     {
+        Rotate();
         yield return new WaitForSeconds(2);
         ChangeState(State.WANDERING);
     }
