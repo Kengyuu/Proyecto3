@@ -9,6 +9,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     [Header("Parameters")]
     public GameObject target;
     public GameObject corpse;
+    public Transform child;
 
     [Header("Attack")]
     public List<Transform> rayPoints;
@@ -35,6 +36,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
+        child.rotation = Quaternion.LookRotation(gameObject.transform.forward);
         ReEnter(); 
     }
 

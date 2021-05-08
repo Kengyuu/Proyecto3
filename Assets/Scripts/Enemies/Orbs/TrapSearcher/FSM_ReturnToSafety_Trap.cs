@@ -106,8 +106,6 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
         OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
         blackboard.navMesh.isStopped = false;
         trapSearch.m_Laser.enabled = false;
-        
-        trapSearch.anim.SetBool("AttackOrb", false);
         trapSearch.enabled = true;
     }
 

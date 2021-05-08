@@ -99,8 +99,6 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
         OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
         blackboard.navMesh.isStopped = false;
         Attacker.m_Laser.enabled = false;
-        
-        
         Attacker.enabled = true;
     }
 

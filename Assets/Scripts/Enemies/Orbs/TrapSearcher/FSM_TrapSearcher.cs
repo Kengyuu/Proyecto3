@@ -8,6 +8,7 @@ public class FSM_TrapSearcher : MonoBehaviour
    
     [Header("Attributes")]
     public GameObject target;
+    public Transform child;
     private Orb_Blackboard blackboard;
     EnemyBehaviours behaviours;
     GameObject trap;
@@ -32,6 +33,7 @@ public class FSM_TrapSearcher : MonoBehaviour
         blackboard = GetComponent<Orb_Blackboard>();
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard.SetOrbHealth(3);
+        child.rotation = Quaternion.LookRotation(gameObject.transform.forward);
         ReEnter();
        
 

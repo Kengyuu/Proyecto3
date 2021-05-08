@@ -16,7 +16,7 @@ public class FSM_AttackerOrb : MonoBehaviour
 
     [Header("Target")]
     public GameObject target;
-
+    public Transform child;
     private EnemyBehaviours behaviours;
     private Orb_Blackboard blackboard;
 
@@ -31,6 +31,7 @@ public class FSM_AttackerOrb : MonoBehaviour
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
+        child.rotation = Quaternion.LookRotation(gameObject.transform.forward);
         ReEnter();
     }
 

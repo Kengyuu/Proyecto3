@@ -88,13 +88,13 @@ public class OrbSpawner : MonoBehaviour
 
     public void SelectOrbs()
     {
-       /*GameObject randomSecondOrb = orbs[Random.Range(1, orbs.Count)];
+       GameObject randomSecondOrb = orbs[Random.Range(0, orbs.Count)];
         orbs.Remove(randomSecondOrb);
         secondOrb = randomSecondOrb;
 
-        GameObject randomThirdOrb = orbs[Random.Range(1, orbs.Count)];
+        GameObject randomThirdOrb = orbs[Random.Range(0, orbs.Count)];
         orbs.Remove(randomThirdOrb);
-        thirdOrb = randomThirdOrb;*/
+        thirdOrb = randomThirdOrb;
     } 
 
     
