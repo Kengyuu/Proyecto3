@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerDash : MonoBehaviour
 {
     private PlayerMovement m_PlayerMovement;
-    private PlayerController m_PlayerController;
+    //private PlayerController m_PlayerController;
     private PlayerHiddenPrayer m_PlayerHiddenPrayer;
     private GameManager GM;
 
@@ -31,7 +31,8 @@ public class PlayerDash : MonoBehaviour
     private void Start()
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
-        m_PlayerController = GetComponent<PlayerController>();
+        //m_PlayerController = GetComponent<PlayerController>();
+        m_PlayerHiddenPrayer = GetComponent<PlayerHiddenPrayer>();
 
         if (GM == null) GM = GameManager.Instance;
 
