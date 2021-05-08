@@ -17,7 +17,6 @@ public class FSM_CorpseHider : MonoBehaviour
 
     void OnEnable()
     {
-        blackboard.navMesh = GetComponent<NavMeshAgent>();
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(3);
