@@ -9,6 +9,8 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
     FSM_TrapSearcher trapSearch;
     Orb_Blackboard blackboard;
 
+    private Quaternion rotation;
+
     public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY };
     public State currentState;
 
@@ -20,7 +22,7 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
         blackboard.SetOrbHealth(blackboard.m_maxLife);
 
         trapSearch = GetComponent<FSM_TrapSearcher>();
-
+        rotation = transform.rotation;
 
     }
 
@@ -55,7 +57,7 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
-                ReEnter();
+                
                
                 break;
 
@@ -73,6 +75,10 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
                 trapSearch.enabled = false;
                 break;
 
+            case State.RETURNINGTOENEMY:
+                ReEnter();
+                break;
+
         }
 
         // Enter logic
@@ -80,6 +86,7 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
         {
 
             case State.NORMALBEHAVIOUR:
+                Debug.Log("Reenable");
                 trapSearch.enabled = true;
                 break;
 
@@ -97,6 +104,11 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
     void Spawn()
     {
         OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
+        blackboard.navMesh.isStopped = false;
+        trapSearch.m_Laser.enabled = false;
+        
+        trapSearch.anim.SetBool("AttackOrb", false);
+        trapSearch.enabled = true;
     }
 
 

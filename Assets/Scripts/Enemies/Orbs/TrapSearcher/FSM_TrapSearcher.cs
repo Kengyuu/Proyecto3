@@ -33,12 +33,13 @@ public class FSM_TrapSearcher : MonoBehaviour
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard.SetOrbHealth(3);
         ReEnter();
-        
+       
+
     }
 
     public void Exit()
     {
-        blackboard.navMesh.isStopped = false;
+       
         this.enabled = false;
     }
 
@@ -141,7 +142,7 @@ public class FSM_TrapSearcher : MonoBehaviour
                 Rotate();
                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                 {
-                    //Debug.Log("aTTACKING");
+                    
                     ChangeState(State.ATTACKINGPLAYER);
                     break;
                 }
@@ -190,7 +191,7 @@ public class FSM_TrapSearcher : MonoBehaviour
                 break;
 
             case State.ALERT:
-                alert = false;
+                alert = false;          
                 break;
         }
 

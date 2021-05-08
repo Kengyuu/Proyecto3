@@ -82,7 +82,7 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
-
+                Attacker.anim.SetBool("AttackOrb", false);
                 Spawn();
                 gameObject.SetActive(false);
 
@@ -97,6 +97,11 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
     void Spawn()
     {
         OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
+        blackboard.navMesh.isStopped = false;
+        Attacker.m_Laser.enabled = false;
+        
+        
+        Attacker.enabled = true;
     }
 
 
