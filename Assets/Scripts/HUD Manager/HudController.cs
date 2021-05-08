@@ -33,6 +33,17 @@ public class HudController : MonoBehaviour
 
         m_CanvasEnd.SetActive(false);
         m_CanvasGame.SetActive(true);
+
+        ScoreManager scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+
+
+        //START DE HUD
+        m_PlayerCorpses.text = "Player Corpses: " + scoreManager.GetPlayerCorpses().ToString("0");
+        m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.GetEnemyCorpses().ToString("0");
+        m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
+        m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
+
+
     }
 
 
@@ -81,6 +92,7 @@ public class HudController : MonoBehaviour
     }
     public void updateScore(IScoreManager scoreManager)
     {
+        Debug.Log(scoreManager.GetRemainingCorpses()) ;
         m_PlayerCorpses.text = "Player Corpses: " + scoreManager.GetPlayerCorpses().ToString("0");
         m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.GetEnemyCorpses().ToString("0");
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");

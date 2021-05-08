@@ -15,6 +15,8 @@ public class DetectionFunctions : MonoBehaviour
 
 		GameObject closest = targets[0];
 
+		
+
 		//float minDistance = (closest.transform.position - user.transform.position).magnitude;
 		float minDistance = new Vector3(closest.transform.position.x - user.transform.position.x , 0, closest.transform.position.z - user.transform.position.z).magnitude;
 
@@ -82,7 +84,7 @@ public class DetectionFunctions : MonoBehaviour
 			
 			
 			//Debug.Log(vectorEnemyPlayer.normalized * maxRange);
-			if (Physics.Raycast(Ray, out hit, maxRange, mask))
+			if (Physics.Raycast(Ray, out hit, maxRange, mask) && GameManager.Instance.GetPlayer().GetComponent<PlayerHiddenPrayer>().m_IsPlayerVisibleToEnemy)
 			{
 				Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange,  Color.red);
 				Debug.DrawRay(user.transform.position, user.transform.forward * maxRange, Color.blue);

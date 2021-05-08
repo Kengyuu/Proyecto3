@@ -93,7 +93,7 @@ public class PlayerShoot : MonoBehaviour
                         hit.transform.gameObject.SetActive(false);
                         m_PlayerController.AddCorpse();
                         OrbEvents.current.ManageOrbs();
-                        m_ScoreManager.RemoveRemainingCorpse();
+                        //m_ScoreManager.RemoveRemainingCorpse();
                         
                     }
                     break;

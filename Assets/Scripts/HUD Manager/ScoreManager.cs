@@ -13,6 +13,13 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     void Awake()
     {
         DependencyInjector.AddDependency<IScoreManager>(this);
+
+       
+    }
+
+    private void Update()
+    {
+        Debug.Log(m_RemainingCorpses);
     }
 
     //Player
@@ -25,11 +32,16 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     public void AddPlayerCorpse()
     {
         this.m_PlayerCorpses++;
+        Debug.Log(this.m_RemainingCorpses);
+        this.m_RemainingCorpses--;
         scoreChangedDelegate?.Invoke(this);
+
     }
     public void RemovePlayerCorpse()
     {
         this.m_PlayerCorpses--;
+       // Debug.Log(this.m_RemainingCorpses);
+       this.m_RemainingCorpses++;
         scoreChangedDelegate?.Invoke(this);
     }
     public float GetPlayerCorpses() { return m_PlayerCorpses; }
@@ -51,11 +63,13 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     public void AddEnemyCorpse()
     {
         this.m_EnemyCorpses++;
+        this.m_RemainingCorpses--;
         scoreChangedDelegate?.Invoke(this);
     }
     public void RemoveEnemyCorpse()
     {
         this.m_EnemyCorpses--;
+        this.m_RemainingCorpses++;
         scoreChangedDelegate?.Invoke(this);
     }
     public float GetEnemyCorpses() { return m_EnemyCorpses; }
@@ -64,10 +78,11 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     //Remaining Corpses
     public void SetRemainingCorpses(float value)
     {
+        Debug.Log("ENTRO remaining");
         this.m_RemainingCorpses = value;
         scoreChangedDelegate?.Invoke(this);
     }
-    public void AddRemainingCorpse()
+   /*public void AddRemainingCorpse()
     {
         this.m_RemainingCorpses++;
         scoreChangedDelegate?.Invoke(this);
@@ -75,8 +90,8 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     public void RemoveRemainingCorpse()
     {
         this.m_RemainingCorpses--;
-        //scoreChangedDelegate?.Invoke(this);
-    }
+        scoreChangedDelegate?.Invoke(this);
+    }*/
     public float GetRemainingCorpses() { return m_RemainingCorpses; }
 }
 
@@ -99,8 +114,8 @@ public interface IScoreManager
 
     //Remaining corpses
     void SetRemainingCorpses(float f);
-    void AddRemainingCorpse();
-    void RemoveRemainingCorpse();
+    /*void AddRemainingCorpse();
+    void RemoveRemainingCorpse();*/
     float GetRemainingCorpses();
     event ScoreChanged scoreChangedDelegate;
 }

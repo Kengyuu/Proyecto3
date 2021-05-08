@@ -25,13 +25,14 @@ public class GameObjectSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         foreach (GameObject room in roomsController.rooms)
         {
             roomTags.Add(room.tag);
         }
 
-        
+        maxDeadBodysMap = (int)m_ScoreManager.GetRemainingCorpses();
         
 
         playerSpawnRoom = SpawnPlayer();
@@ -61,8 +62,9 @@ public class GameObjectSpawner : MonoBehaviour
         //Esto crea una cantidad de cadáveres pasada desde el editor en el objeto GameObjectSpawner
 
         SpawnBodys(maxDeadBodysMap, gameObject);
+        m_ScoreManager.SetRemainingCorpses(maxDeadBodysMap);
 
-        
+
     }
 
     void Update()
@@ -206,11 +208,6 @@ public class GameObjectSpawner : MonoBehaviour
             deadBodys[spawnPosition].SetActive(true);
             
             currentBodysSpawned++;
-        }
-        if (type.gameObject.tag != "CorpseOrb")
-        {
-            //Debug.Log("Not a Corpse Orb");
-            m_ScoreManager.SetRemainingCorpses(m_ScoreManager.GetRemainingCorpses() + numberBodies);
         }
 
     }

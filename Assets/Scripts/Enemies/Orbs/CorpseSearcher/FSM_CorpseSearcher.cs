@@ -154,7 +154,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
                  if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                  {
-                    Debug.Log("aTTACKING");
+                    
                     ChangeState(State.ATTACKINGPLAYER);
                  }
 

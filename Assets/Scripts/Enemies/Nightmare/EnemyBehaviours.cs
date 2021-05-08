@@ -71,7 +71,7 @@ public class EnemyBehaviours : MonoBehaviour
     public void AddCorpseToScore()
     {
         m_ScoreManager.AddEnemyCorpse();
-        m_ScoreManager.RemoveRemainingCorpse();
+       // m_ScoreManager.RemoveRemainingCorpse();
     }
 
     public void SearchPlayer(float detectionRadius, float angleDetectionPlayer)
