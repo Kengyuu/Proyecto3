@@ -63,11 +63,13 @@ public class PlayerHiddenPrayer : MonoBehaviour
     {
         m_IsPlayerVisibleToEnemy = true;
         Invoke("EnableAbility", m_HiddenPrayerCooldown);
+        Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer, false);
     }
 
     private void EnableAbility()
     {
         m_AbilityOnCooldown = false;
+        Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer);
     }
 
 
@@ -81,7 +83,7 @@ public class PlayerHiddenPrayer : MonoBehaviour
         {
             if (Skill_1)
             {
-                Debug.Log($"Habilidad 1 - Oración Oculta DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
+                Debug.Log($"Habilidad 1 - Oraciï¿½n Oculta DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
                 Skill_1 = false;
             }
@@ -96,7 +98,7 @@ public class PlayerHiddenPrayer : MonoBehaviour
         {
             if (!Skill_1)
             {
-                Debug.Log($"Habilidad 1 - Oración Oculta ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
+                Debug.Log($"Habilidad 1 - Oraciï¿½n Oculta ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Enable();
                 Skill_1 = true;
             }

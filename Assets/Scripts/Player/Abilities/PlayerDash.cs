@@ -70,6 +70,7 @@ public class PlayerDash : MonoBehaviour
         if(m_DashCooldown <= (m_DashMaxCooldown - m_MaxDashEvasionTime))
         {
             m_DashEvadeAttacks = false;
+            Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer, false);
         }
         if(m_DashCooldown <= 0f)
         {
@@ -101,6 +102,7 @@ public class PlayerDash : MonoBehaviour
         Vector3 l_DirectionCorrected = new Vector3(m_DashDirection.x, 0f, m_DashDirection.y);
         l_DirectionCorrected = transform.TransformVector(l_DirectionCorrected);
         m_PlayerMovement.AddForceX(l_DirectionCorrected, m_DashForce);
+        Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer);
     }
 
     private void ResetDash()
