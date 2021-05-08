@@ -19,6 +19,7 @@ public class FSM_AttackerOrb : MonoBehaviour
     public Transform child;
     private EnemyBehaviours behaviours;
     private Orb_Blackboard blackboard;
+    public LayerMask mask;
 
     [Header("State")]
     public State currentState;
@@ -172,7 +173,7 @@ public class FSM_AttackerOrb : MonoBehaviour
                 Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
                 RaycastHit l_RaycastHit;
 
-                if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance))
+                if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance, mask))
                 {
                     //Debug.Log(l_RaycastHit.collider.tag);
                     if (l_RaycastHit.collider.tag == "Player")

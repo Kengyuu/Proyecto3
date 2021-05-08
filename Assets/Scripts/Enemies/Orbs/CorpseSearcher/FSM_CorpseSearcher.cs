@@ -10,6 +10,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     public GameObject target;
     public GameObject corpse;
     public Transform child;
+    public LayerMask mask;
 
     [Header("Attack")]
     public List<Transform> rayPoints;
@@ -284,7 +285,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
                 RaycastHit l_RaycastHit;
 
-                if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance))
+                if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance,mask))
                 {
                     Debug.Log(l_RaycastHit.collider.tag);
                     if (l_RaycastHit.collider.tag == "Player")

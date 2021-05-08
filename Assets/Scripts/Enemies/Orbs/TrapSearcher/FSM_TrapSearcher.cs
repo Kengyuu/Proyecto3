@@ -9,6 +9,7 @@ public class FSM_TrapSearcher : MonoBehaviour
     [Header("Attributes")]
     public GameObject target;
     public Transform child;
+    public LayerMask mask;
     private Orb_Blackboard blackboard;
     EnemyBehaviours behaviours;
     GameObject trap;
@@ -246,7 +247,7 @@ public class FSM_TrapSearcher : MonoBehaviour
                 Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
                 RaycastHit l_RaycastHit;
 
-                if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance))
+                if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance,mask))
                 {
                     Debug.Log(l_RaycastHit.collider.tag);
                     if (l_RaycastHit.collider.tag == "Player")
