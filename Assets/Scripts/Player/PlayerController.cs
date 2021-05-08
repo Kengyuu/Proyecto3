@@ -57,28 +57,50 @@ public class PlayerController : MonoBehaviour
         {
             case GameState.WIN:
                 //Debug.Log("state WIN");
-                DisableInputs();
+                //DisableInputs();
+                m_PlayerCamera.enabled = false;
+                m_PlayerMovement.m_InputSystem.Gameplay.Disable();
                 break;
 
             case GameState.GAME_OVER:
                 //Debug.Log("state GAME OVEEEEEEEEEEEEEEEER");
-                DisableInputs();
+                //DisableInputs();
+
+                m_PlayerCamera.enabled = false;
+                m_PlayerMovement.m_InputSystem.Gameplay.Disable();
                 EnableDaze();
                 Invoke("DisableDaze", 2f);
                 break;
 
             case GameState.GAME:
                 //Debug.Log("state GAME");
-                EnableInputs();
+
                 /*m_Map.SetActive(false);
                 m_PlayerMovement.m_InputSystem.Enable();*/
+
+                //EnableInputs();
+
+                m_PlayerCamera.enabled = true;
+                m_PlayerMovement.m_InputSystem.Gameplay.Dash.Enable();
+                m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Enable();
+                m_PlayerMovement.m_InputSystem.Gameplay.Move.Enable();
+                m_PlayerMovement.m_InputSystem.Gameplay.Jump.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.TrapInteraction.Enable();
+                m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Disable();
                 break;
 
-            /*case GameState.MAP:
+            case GameState.MAP:
                 //Debug.Log("state MAP activado / desactivado");
-                m_Map.SetActive(true);
-                m_PlayerMovement.m_InputSystem.Disable();
-                break;*/
+                /*m_Map.SetActive(true);
+                m_PlayerMovement.m_InputSystem.Disable();*/
+                m_PlayerMovement.m_InputSystem.Gameplay.Dash.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.Move.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.Jump.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.TrapInteraction.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Enable();
+
+                break;
         }
     }
 

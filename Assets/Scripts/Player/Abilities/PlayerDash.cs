@@ -32,12 +32,13 @@ public class PlayerDash : MonoBehaviour
 
         if (GM == null) GM = GameManager.Instance;
 
-        GM.OnStateChange += StateChanged;
+        //GM.OnStateChange += StateChanged;
 
         if (m_MaxDashEvasionTime > m_DashMaxCooldown) m_MaxDashEvasionTime = m_DashMaxCooldown;
     }
 
-    private void StateChanged()
+
+    /*private void StateChanged()
     {
         switch (GM.gameState)
         {
@@ -48,7 +49,7 @@ public class PlayerDash : MonoBehaviour
                 m_PlayerCanDash = true;
                 break;
         }
-    }
+    }*/
 
     private void Update()
     {

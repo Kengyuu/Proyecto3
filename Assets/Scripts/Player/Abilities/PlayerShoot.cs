@@ -37,12 +37,12 @@ public class PlayerShoot : MonoBehaviour
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         if (GM == null) GM = GameManager.Instance;
 
-        GM.OnStateChange += StateChanged;
+        //GM.OnStateChange += StateChanged;
 
 
     }
 
-    private void StateChanged()
+/*    private void StateChanged()
     {
         switch (GM.gameState)
         {
@@ -53,7 +53,7 @@ public class PlayerShoot : MonoBehaviour
                 m_PlayerCanShoot = true;
                 break;
         }
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
