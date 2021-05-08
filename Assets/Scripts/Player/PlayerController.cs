@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerMovement m_PlayerMovement;
     private PlayerCamera m_PlayerCamera;
+    private PlayerDash m_PlayerDash;
     private Camera m_Camera;
     private GameObjectSpawner spawner;
     private GameManager GM;
@@ -15,8 +16,9 @@ public class PlayerController : MonoBehaviour
     public float m_MaxLife;
     //public float m_PlayerInitialCorpses;
     
-    [Header("Player Damage")]
+    [Header("Player Damage / Stun")]
     public float m_MaxStunTime;
+    public bool m_PlayerStunned = false;
 
     [Header("Helpers")]
     public ScoreManager m_ScoreManager;
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
         m_PlayerCamera = GetComponent<PlayerCamera>();
+        m_PlayerDash = GetComponent<PlayerDash>();
         
         m_Camera = Camera.main;
 
@@ -105,43 +108,44 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int dmg, GameObject obj, float XForce, float YForce)
     {
-        //Receive impact from the enemy
-        Vector3 l_Direction = (transform.position - obj.transform.position).normalized;
-        if (XForce != 0)
+        if (!m_PlayerDash.m_DashEvadeAttacks && !m_PlayerStunned)
         {
-            m_PlayerMovement.AddForceX(l_Direction, XForce);
-        }
-      
-        m_PlayerMovement.AddForceY(YForce);
-
-        //Reduce Life
-        m_Life -= dmg;
-        
-        if (m_Life <= 0)
-        {
-            //Debug.Log($"Player a {m_Life} de vida, GetStunned()");
-            m_Life = 0;
-            
-
-            //Enemigo con 10+ cuerpos -> game over
-            if(m_ScoreManager.GetEnemyCorpses() >= 10)
+            //Receive impact from the enemy
+            Vector3 l_Direction = (transform.position - obj.transform.position).normalized;
+            if (XForce != 0)
             {
-                GM.SetGameState(GameState.GAME_OVER);
-                return;
+                m_PlayerMovement.AddForceX(l_Direction, XForce);
             }
-            GetStunned();
-            if (m_ScoreManager.GetPlayerCorpses() > 0)
+
+            m_PlayerMovement.AddForceY(YForce);
+
+            //Reduce Life
+            m_Life -= dmg;
+
+            if (m_Life <= 0)
             {
-                RemoveCorpse();
+                //Debug.Log($"Player a {m_Life} de vida, GetStunned()");
+                m_Life = 0;
 
-               
+
+                //Enemigo con 10+ cuerpos -> game over
+                if (m_ScoreManager.GetEnemyCorpses() >= 10)
+                {
+                    GM.SetGameState(GameState.GAME_OVER);
+                    return;
+                }
+                GetStunned();
+                if (m_ScoreManager.GetPlayerCorpses() > 0)
+                {
+                    RemoveCorpse();
+                }
+
+                //Invoke("RestoreLife", m_MaxStunTime);
             }
-           
-            //Invoke("RestoreLife", m_MaxStunTime);
-        }
 
-        UpdatePlayerHealth();
-        OrbEvents.current.ManageOrbs();
+            UpdatePlayerHealth();
+            OrbEvents.current.ManageOrbs();
+        }
     }
 
     public void RestoreLife()
@@ -151,6 +155,7 @@ public class PlayerController : MonoBehaviour
         EnableInputs();
         DisableDaze();
         UpdatePlayerHealth();
+        m_PlayerStunned = false;
     }
 
     public void DisableInputs()
@@ -202,6 +207,7 @@ public class PlayerController : MonoBehaviour
 
     public void GetStunned()
     {
+        m_PlayerStunned = true;
         DisableInputs();
         EnableDaze();
         Invoke("RestoreLife", m_MaxStunTime);

@@ -88,6 +88,10 @@ public class PlayerMovement : MonoBehaviour
 
         //Reduce force speed gradually
         m_currentImpact = Vector3.Lerp(m_currentImpact, Vector3.zero, 5f * Time.deltaTime);
+        if(m_currentImpact.magnitude < 0.2f)
+        {
+            Debug.Log("CurrentImpact = zero"); 
+        }
 
         m_LastMovement = m_Movement;
 

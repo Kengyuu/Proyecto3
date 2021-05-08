@@ -12,7 +12,12 @@ public class PlayerDash : MonoBehaviour
     public Vector3 m_DashDirection;
     public float m_DashForce = 15f;
     public float m_DashMaxCooldown = 2f;
+    public float m_DashCooldown = 0f;
     public bool m_PlayerCanDash = true;
+
+    [Header("Dash Evasion")]
+    public float m_MaxDashEvasionTime = 0.5f;
+    public bool m_DashEvadeAttacks = false;
 
     [Header("DashNoise")]
     public float m_DashNoise = 30f;
@@ -28,6 +33,8 @@ public class PlayerDash : MonoBehaviour
         if (GM == null) GM = GameManager.Instance;
 
         GM.OnStateChange += StateChanged;
+
+        if (m_MaxDashEvasionTime > m_DashMaxCooldown) m_MaxDashEvasionTime = m_DashMaxCooldown;
     }
 
     private void StateChanged()
@@ -52,6 +59,19 @@ public class PlayerDash : MonoBehaviour
                 Dash();
             }
         }
+
+        m_DashCooldown -= Time.deltaTime;
+
+        if(m_DashCooldown <= (m_DashMaxCooldown - m_MaxDashEvasionTime))
+        {
+            m_DashEvadeAttacks = false;
+        }
+        if(m_DashCooldown <= 0f)
+        {
+            m_DashCooldown = 0f;
+            ResetDash();
+        }
+
     }
 
     private void Dash()
@@ -59,7 +79,9 @@ public class PlayerDash : MonoBehaviour
         GM.PlayerNoise(m_DashNoise);
 
         m_DashOnCooldown = true;
-        Invoke("ResetDash", m_DashMaxCooldown);
+        m_DashCooldown = m_DashMaxCooldown;
+        m_DashEvadeAttacks = true;
+        //Invoke("ResetDash", m_DashMaxCooldown);
         m_DashDirection = m_PlayerMovement.m_InputSystem.Gameplay.Move.ReadValue<Vector2>();
         Vector3 l_DirectionCorrected = new Vector3(m_DashDirection.x, 0f, m_DashDirection.y);
         l_DirectionCorrected = transform.TransformVector(l_DirectionCorrected);
