@@ -13,11 +13,18 @@ public class Intro : MonoBehaviour
 		//Debug.Log("Current game state when Awakes: " + GM.gameState);
 	}
 
+	private void OnDestroy()
+	{
+		GM.OnStateChange -= HandleOnStateChange;
+	}
+
 	void Start()
 	{
 		//Debug.Log("Current game state when Starts: " + GM.gameState);
 		GM.SetGameState(GameState.MAIN_MENU);
 	}
+
+
 
 	public void HandleOnStateChange()
 	{

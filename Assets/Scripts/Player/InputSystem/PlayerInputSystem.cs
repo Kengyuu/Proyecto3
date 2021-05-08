@@ -89,6 +89,14 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SpecialAbility_1"",
+                    ""type"": ""Button"",
+                    ""id"": ""68a95db9-0091-4fe7-96ce-6a2865cf4e08"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -333,6 +341,28 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""action"": ""MouseScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""391b435b-f0e1-4b65-8164-15e2b7551d3c"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialAbility_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60304c04-71a8-4ea2-a40d-cfeb71c9c981"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialAbility_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -350,6 +380,7 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         m_Gameplay_Shoot = m_Gameplay.FindAction("Shoot", throwIfNotFound: true);
         m_Gameplay_Map = m_Gameplay.FindAction("Map", throwIfNotFound: true);
         m_Gameplay_TrapInteraction = m_Gameplay.FindAction("TrapInteraction", throwIfNotFound: true);
+        m_Gameplay_SpecialAbility_1 = m_Gameplay.FindAction("SpecialAbility_1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -408,6 +439,7 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Shoot;
     private readonly InputAction m_Gameplay_Map;
     private readonly InputAction m_Gameplay_TrapInteraction;
+    private readonly InputAction m_Gameplay_SpecialAbility_1;
     public struct GameplayActions
     {
         private @PlayerInputSystem m_Wrapper;
@@ -421,6 +453,7 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Gameplay_Shoot;
         public InputAction @Map => m_Wrapper.m_Gameplay_Map;
         public InputAction @TrapInteraction => m_Wrapper.m_Gameplay_TrapInteraction;
+        public InputAction @SpecialAbility_1 => m_Wrapper.m_Gameplay_SpecialAbility_1;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -457,6 +490,9 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @TrapInteraction.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTrapInteraction;
                 @TrapInteraction.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTrapInteraction;
                 @TrapInteraction.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTrapInteraction;
+                @SpecialAbility_1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialAbility_1;
+                @SpecialAbility_1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialAbility_1;
+                @SpecialAbility_1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialAbility_1;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -488,6 +524,9 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @TrapInteraction.started += instance.OnTrapInteraction;
                 @TrapInteraction.performed += instance.OnTrapInteraction;
                 @TrapInteraction.canceled += instance.OnTrapInteraction;
+                @SpecialAbility_1.started += instance.OnSpecialAbility_1;
+                @SpecialAbility_1.performed += instance.OnSpecialAbility_1;
+                @SpecialAbility_1.canceled += instance.OnSpecialAbility_1;
             }
         }
     }
@@ -503,5 +542,6 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
         void OnTrapInteraction(InputAction.CallbackContext context);
+        void OnSpecialAbility_1(InputAction.CallbackContext context);
     }
 }

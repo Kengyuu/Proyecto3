@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerDash : MonoBehaviour
 {
     private PlayerMovement m_PlayerMovement;
+    private PlayerController m_PlayerController;
+    private PlayerHiddenPrayer m_PlayerHiddenPrayer;
     private GameManager GM;
 
     [Header("Dash")]
@@ -29,6 +31,7 @@ public class PlayerDash : MonoBehaviour
     private void Start()
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
+        m_PlayerController = GetComponent<PlayerController>();
 
         if (GM == null) GM = GameManager.Instance;
 
@@ -77,7 +80,17 @@ public class PlayerDash : MonoBehaviour
 
     private void Dash()
     {
-        GM.PlayerNoise(m_DashNoise);
+        if (m_PlayerHiddenPrayer.m_IsPlayerVisibleToEnemy)
+        {
+            GM.PlayerNoise(m_DashNoise);
+            Debug.Log("Hago ruido al Dashear");
+        }
+        else
+        {
+            Debug.Log("NO HAGO RUIDO al Dashear =D");
+        }
+            
+            
 
         m_DashOnCooldown = true;
         m_DashCooldown = m_DashMaxCooldown;

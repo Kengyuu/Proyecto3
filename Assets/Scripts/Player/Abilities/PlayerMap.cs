@@ -23,6 +23,11 @@ public class PlayerMap : MonoBehaviour
         GM.OnStateChange += StateChanged;
     }
 
+    private void OnDestroy()
+    {
+        GM.OnStateChange -= StateChanged;
+    }
+
     private void StateChanged()
     {
         switch (GM.gameState)

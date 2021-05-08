@@ -374,7 +374,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 471
+    m_Bits: 449
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 3456542924278478862}
   - component: {fileID: 3456542924278478861}
   - component: {fileID: 1181184054864032661}
+  - component: {fileID: 3984087109883831571}
   - component: {fileID: 3456542924278478857}
   - component: {fileID: 3456542924278478864}
   - component: {fileID: 4963236583099694658}
@@ -512,9 +513,34 @@ MonoBehaviour:
   m_Life: 3
   m_MaxLife: 3
   m_MaxStunTime: 3
+  m_PlayerStunned: 0
   m_ScoreManager: {fileID: 0}
   m_Map: {fileID: 0}
   enemyTest: {fileID: 0}
+--- !u!114 &3984087109883831571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456542924278478860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8da4aaa544891440b9c3a26f2ddd211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HiddenPrayerCooldown: 3
+  m_InvisibilityMaxTime: 5
+  m_OriginalLayerMask:
+    serializedVersion: 2
+    m_Bits: 449
+  m_EnemyTracesLayerMask:
+    serializedVersion: 2
+    m_Bits: 961
+  m_IsPlayerVisibleToEnemy: 1
+  m_AbilityOnCooldown: 0
+  Skill_1: 0
+  Skill_2: 0
 --- !u!114 &3456542924278478857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,7 +597,10 @@ MonoBehaviour:
   m_DashDirection: {x: 0, y: 0, z: 0}
   m_DashForce: 20
   m_DashMaxCooldown: 2
+  m_DashCooldown: 0
   m_PlayerCanDash: 1
+  m_MaxDashEvasionTime: 0.5
+  m_DashEvadeAttacks: 0
   m_DashNoise: 30
   m_DashOnCooldown: 0
 --- !u!114 &6654022584197075666
@@ -589,7 +618,7 @@ MonoBehaviour:
   m_ShootLayers:
     serializedVersion: 2
     m_Bits: 64
-  m_ShootCastingTime: 0
+  m_ShootCastingTime: 0.3
   m_MaxShootDistance: 50
   m_CorpseDetectionDistance: 5
   m_ButtonDetectionDistance: 10

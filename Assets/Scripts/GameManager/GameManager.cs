@@ -10,6 +10,7 @@ public enum GameState
     GAME,
     CREDITS,
     HELP,
+    MODIFIERS,
     GAME_OVER,
     WIN,
     MAP
@@ -17,6 +18,7 @@ public enum GameState
 
 public delegate void OnStateChangeHandler();
 public delegate void OnPlayerMakesNoise(float intensity);
+public delegate void MofidiersHandler();
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
     public event OnStateChangeHandler OnStateChange;
     public event OnPlayerMakesNoise OnPlayerNoise;
+    public event MofidiersHandler OnMofidiersHandler;
     public GameState gameState { get; private set; }
 
     //[Header("Debug")]
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject m_Enemy { get; set; }
     [SerializeField] public GameObjectSpawner m_GameObjectSpawner { get; set; }
     [SerializeField] public RoomSpawner m_WaypointsList { get; set; }
+    public int m_GamesPlayed = 0;
 
 
     private void Awake()
@@ -58,10 +62,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        m_Player = GameObject.FindGameObjectWithTag("Player");
+        /*m_Player = GameObject.FindGameObjectWithTag("Player");
         m_Enemy = GameObject.FindGameObjectWithTag("Enemy");
         m_GameObjectSpawner = GameObject.FindObjectOfType<GameObjectSpawner>();
-        m_WaypointsList = GameObject.FindObjectOfType<RoomSpawner>();
+        m_WaypointsList = GameObject.FindObjectOfType<RoomSpawner>();*/
     }
 
     public static GameManager Instance
@@ -87,6 +91,11 @@ public class GameManager : MonoBehaviour
     public void PlayerNoise(float intensity)
     {
         OnPlayerNoise?.Invoke(intensity);
+    }
+
+    public void UpdateModifiers()
+    {
+        OnMofidiersHandler?.Invoke();
     }
 
     public void OnApplicationQuit()

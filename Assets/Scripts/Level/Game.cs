@@ -13,5 +13,6 @@ public class Game : MonoBehaviour
         GM.m_Enemy = GameObject.FindGameObjectWithTag("Enemy");
         GM.m_GameObjectSpawner = GameObject.FindObjectOfType<GameObjectSpawner>();
         GM.m_WaypointsList = GameObject.FindObjectOfType<RoomSpawner>();
+        GM.m_GamesPlayed++;
     }
 }

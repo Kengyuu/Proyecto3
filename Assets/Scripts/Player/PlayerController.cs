@@ -26,9 +26,10 @@ public class PlayerController : MonoBehaviour
     [Header("Map")]
     public GameObject m_Map;
 
-
     [Header("Debug")]
     public GameObject enemyTest;
+
+
     //bool map_status = false;
 
 
@@ -45,11 +46,18 @@ public class PlayerController : MonoBehaviour
         if (GM == null) GM = GameManager.Instance;
 
         GM.OnStateChange += StateChanged;
+
         
 
         //HUD Updaters
         UpdatePlayerHealth();
     }
+
+    private void OnDestroy()
+    {
+        GM.OnStateChange -= StateChanged;
+    }
+
 
     private void StateChanged()
     {
@@ -81,6 +89,7 @@ public class PlayerController : MonoBehaviour
                 //EnableInputs();
 
                 m_PlayerCamera.enabled = true;
+                GM.UpdateModifiers(); //Check again to update correctly skills available
                 m_PlayerMovement.m_InputSystem.Gameplay.Dash.Enable();
                 m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Enable();
                 m_PlayerMovement.m_InputSystem.Gameplay.Move.Enable();
@@ -100,9 +109,12 @@ public class PlayerController : MonoBehaviour
                 m_PlayerMovement.m_InputSystem.Gameplay.TrapInteraction.Disable();
                 m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Enable();
 
+                //Disable just in case:
+                m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
                 break;
         }
     }
+
 
 
     void Update()
@@ -123,9 +135,19 @@ public class PlayerController : MonoBehaviour
             {
                 GM.SetGameState(GameState.GAME);
             }
-        }*/
+        }
+        
+
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            RemoveCorpse();
+        }
+        */
         //--
     }
+
+
 
 
     public void TakeDamage(int dmg, GameObject obj, float XForce, float YForce)

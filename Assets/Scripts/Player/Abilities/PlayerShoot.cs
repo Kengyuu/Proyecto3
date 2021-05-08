@@ -58,7 +58,12 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(m_PlayerCanShoot) CheckShootingCollisions();
+        //if(m_PlayerCanShoot) CheckShootingCollisions();
+
+        if (m_PlayerMovement.m_InputSystem.Gameplay.Shoot.triggered && !m_IsPlayerShooting)
+        {
+            StartCasting();
+        }
     }
 
     private void StartCasting()
@@ -70,7 +75,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Shoot()
     {
-        GM.PlayerNoise(m_ShootNoise);
+        
 
 
         RaycastHit hit;
@@ -144,8 +149,11 @@ public class PlayerShoot : MonoBehaviour
                     }
                     break;
             }
-            ResetShoot();
+            
         }
+
+        GM.PlayerNoise(m_ShootNoise);
+        ResetShoot();
     }
 
     private void ResetShoot()
@@ -153,7 +161,7 @@ public class PlayerShoot : MonoBehaviour
         m_IsPlayerShooting = false;
     }
 
-    private void CheckShootingCollisions()
+    /*private void CheckShootingCollisions()
     {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
@@ -220,6 +228,6 @@ public class PlayerShoot : MonoBehaviour
                 StartCasting();
             }
         }
-    }
+    }*/
 
 }

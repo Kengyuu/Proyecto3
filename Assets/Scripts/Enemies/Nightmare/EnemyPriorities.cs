@@ -48,9 +48,7 @@ public class EnemyPriorities : MonoBehaviour
 
     public void DetectPlayerActions(float playerDistance)
     {
-        Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");
-
-
+        //Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");
         if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < playerDistance)
         {
             playerDetected = true;

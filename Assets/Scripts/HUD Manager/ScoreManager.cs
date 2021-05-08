@@ -75,7 +75,7 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     public void RemoveRemainingCorpse()
     {
         this.m_RemainingCorpses--;
-        scoreChangedDelegate?.Invoke(this);
+        //scoreChangedDelegate?.Invoke(this);
     }
     public float GetRemainingCorpses() { return m_RemainingCorpses; }
 }

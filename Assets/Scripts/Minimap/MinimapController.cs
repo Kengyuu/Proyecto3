@@ -35,8 +35,8 @@ public class MinimapController : MonoBehaviour
         {
             //float newValue = value.y / 12;
             float newZoom = 0;
-            if (value.y > 0) newZoom = m_MinMapCamera.orthographicSize + m_ZoomIncrease;
-            else newZoom = m_MinMapCamera.orthographicSize - m_ZoomIncrease;
+            if (value.y > 0) newZoom = m_MinMapCamera.orthographicSize - m_ZoomIncrease;
+            else newZoom = m_MinMapCamera.orthographicSize + m_ZoomIncrease;
 
             m_MinMapCamera.orthographicSize = Mathf.Clamp(newZoom, m_MinZoom, m_MaxZoom);
         }
