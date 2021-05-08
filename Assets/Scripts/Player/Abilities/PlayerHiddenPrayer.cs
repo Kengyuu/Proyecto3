@@ -75,7 +75,7 @@ public class PlayerHiddenPrayer : MonoBehaviour
     {
         Debug.Log("CheckModifiers del player llamado");
 
-        int l_Corpses = (int)m_ScoreManager.GetPlayerCorpses();
+        int l_Corpses = (int)m_ScoreManager.GetEnemyCorpses();
 
         if (l_Corpses < 3)
         {
