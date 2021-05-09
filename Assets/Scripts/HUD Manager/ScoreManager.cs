@@ -17,11 +17,6 @@ public class ScoreManager : MonoBehaviour, IScoreManager
        
     }
 
-    private void Update()
-    {
-        Debug.Log(m_RemainingCorpses);
-    }
-
     //Player
     //gfrbfghb
     public void SetPlayerCorpses(float value)
@@ -78,7 +73,6 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     //Remaining Corpses
     public void SetRemainingCorpses(float value)
     {
-        Debug.Log("ENTRO remaining");
         this.m_RemainingCorpses = value;
         scoreChangedDelegate?.Invoke(this);
     }

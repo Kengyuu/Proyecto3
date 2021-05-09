@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassiveTrap : TrapController
+public class PassiveTrap : MonoBehaviour
 {
-
+    [Header("Trap Settings")]
     public Material originalMaterial;
     public Material transparentMaterial;
+    public float m_TrapEnableCooldown = 10f;
+    
 
-    [Header("Force to apply on collide")]
+    [Header("Force to apply on PlayerCollision")]
     public float XForceImpulseDamage = 2f;
     public float YForceImpulseDamage = 8f;
-    void Start()
+
+    [Header("Debug")]
+    [SerializeField] private bool m_TrapActive = true;
+    [SerializeField] private bool m_TrapCanBeEnabled;
+
+    private void Start()
     {
         m_TrapActive = true;
     }
@@ -20,62 +27,49 @@ public class PassiveTrap : TrapController
     {
         if (m_TrapActive)
         {
-
-            //GetComponent<MeshRenderer>().enabled = false;
-
             if (col.CompareTag("Enemy"))
             {
-                GetComponent<MeshRenderer>().material = transparentMaterial;
-                m_TrapActive = false;
+                DisableTrap();
                 HFSM_StunEnemy target = col.GetComponent<HFSM_StunEnemy>();
                 if (target != null)
                 {
                     Debug.Log("Enemigo estuneado por TRAMPA");
                     target.isStunned = true;
-
                 }
+                Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
             }
             if (col.CompareTag("Player"))
             {
-                m_TrapActive = false;
-                GetComponent<MeshRenderer>().material = transparentMaterial;
+                DisableTrap();
                 PlayerController player = col.GetComponent<PlayerController>();
                 if(player != null)
                 {
-                    Debug.Log("Player entra en la trampa");
+                    Debug.Log("Player recibe daño de trampa");
                     player.TakeDamage(3, gameObject, XForceImpulseDamage, YForceImpulseDamage);
                 }
+                Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
             }
         }
     }
 
-    private void OnTriggerStay(Collider col)
+    public void DisableTrap()
     {
-        if (!m_TrapActive)
+        m_TrapActive = false;
+        GetComponent<MeshRenderer>().material = transparentMaterial;
+        m_TrapCanBeEnabled = false;
+    }
+
+    public void EnableTrap()
+    {
+        if (m_TrapCanBeEnabled)
         {
-            if (col.CompareTag("Player"))
-            {
-                Debug.Log("Player dentro de la trampa");
-                PlayerController player = col.GetComponent<PlayerController>();
-                /*if (Input.GetKeyDown(player.m_TrapInteractKeyCode))
-                {
-                    Debug.Log("Trap re-enabled by player");
-                    m_TrapActive = true;
-                    GetComponent<MeshRenderer>().material = originalMaterial;
-                    //GetComponent<MeshRenderer>().enabled = true;
-                    gameObject.tag = "PasiveTrap";
-                }*/
-            }
+            m_TrapActive = true;
+            GetComponent<MeshRenderer>().material = originalMaterial;
         }
     }
 
-    public void SetTrapActive(bool active)
+    private void RestoreTrapCooldown()
     {
-        m_TrapActive = active;
-    }
-
-    public bool GetTrapActive()
-    {
-        return m_TrapActive;
+        m_TrapCanBeEnabled = true;
     }
 }

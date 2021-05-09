@@ -18,6 +18,7 @@ public class PlayerShoot : MonoBehaviour
     [Header("Object detection distances")]
     public float m_CorpseDetectionDistance = 5f;
     public float m_ButtonDetectionDistance = 10f;
+    public float m_TrapDetectionDistance = 5f;
 
     public float m_WeakPointDetectionDistance = 20f;
 
@@ -75,7 +76,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Shoot()
     {
-        
+        Debug.Log("PLAYER DISPARA");
 
 
         RaycastHit hit;
@@ -97,11 +98,18 @@ public class PlayerShoot : MonoBehaviour
                         
                     }
                     break;
-                case "Button":
+                case "ActiveTrap":
                     if (l_CurrentDistance < m_ButtonDetectionDistance)
                     {
-                        //Debug.Log($"Botón a distancia adecuada: {l_CurrentDistance}");
-                        hit.transform.gameObject.SetActive(false);
+                        Debug.Log($"Botón a distancia adecuada: {l_CurrentDistance}");
+                        hit.transform.GetComponent<ActiveTrap>().EnableTrap();
+                    }
+                    break;
+                case "PasiveTrap":
+                    if (l_CurrentDistance < m_TrapDetectionDistance)
+                    {
+                        //Debug.Log($"Trampa a distancia adecuada: {l_CurrentDistance}");
+                        hit.transform.GetComponent<PassiveTrap>().EnableTrap();
                     }
                     break;
                 case "WeakPoint":

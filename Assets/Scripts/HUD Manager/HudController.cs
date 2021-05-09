@@ -92,7 +92,6 @@ public class HudController : MonoBehaviour
     }
     public void updateScore(IScoreManager scoreManager)
     {
-        Debug.Log(scoreManager.GetRemainingCorpses()) ;
         m_PlayerCorpses.text = "Player Corpses: " + scoreManager.GetPlayerCorpses().ToString("0");
         m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.GetEnemyCorpses().ToString("0");
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
