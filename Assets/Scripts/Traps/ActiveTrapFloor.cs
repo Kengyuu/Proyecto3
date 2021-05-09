@@ -44,11 +44,57 @@ public class ActiveTrapFloor : MonoBehaviour
                 if (player != null)
                 {
                     Debug.Log("Player recibe daño de trampa de LUZ");
-                    player.TakeDamage(1, gameObject, XForceImpulseDamage, YForceImpulseDamage);
+                    player.TakeDamage(3, gameObject, XForceImpulseDamage, YForceImpulseDamage);
                 }
                 m_DamageCooldown = m_DamageMaxCooldown;
                 m_AllowDamage = false;
             }
+            if (col.CompareTag("CorpseOrb"))
+            {
+                Debug.Log("Orbe estuneado por TRAMPA de LUZ");
+                Orb_Blackboard target = col.GetComponent<Orb_Blackboard>();
+                if (target != null)
+                {
+                    
+                    target.TakeDamage(3);
+                }
+                m_DamageCooldown = m_DamageMaxCooldown;
+                m_AllowDamage = false;
+            }
+            if (col.CompareTag("HideOrb"))
+            {
+                Orb_Blackboard target = col.GetComponent<Orb_Blackboard>();
+                if (target != null)
+                {
+                    Debug.Log("Orbe estuneado por TRAMPA de LUZ");
+                    target.TakeDamage(3);
+                }
+                m_DamageCooldown = m_DamageMaxCooldown;
+                m_AllowDamage = false;
+            }
+            if (col.CompareTag("TrapOrb"))
+            {
+                Orb_Blackboard target = col.GetComponent<Orb_Blackboard>();
+                if (target != null)
+                {
+                    Debug.Log("Orbe estuneado por TRAMPA de LUZ");
+                    target.TakeDamage(3);
+                }
+                m_DamageCooldown = m_DamageMaxCooldown;
+                m_AllowDamage = false;
+            }
+            if (col.CompareTag("AttackOrb"))
+            {
+                Orb_Blackboard target = col.GetComponent<Orb_Blackboard>();
+                if (target != null)
+                {
+                    Debug.Log("Orbe estuneado por TRAMPA de LUZ");
+                    target.TakeDamage(3);
+                }
+                m_DamageCooldown = m_DamageMaxCooldown;
+                m_AllowDamage = false;
+            }
+
         }
         
     }
