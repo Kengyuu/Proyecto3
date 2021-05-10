@@ -48,7 +48,7 @@ public class FSM_CorpseHider : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(target.transform.position);
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                 {
                     ChangeState(State.WANDERING);

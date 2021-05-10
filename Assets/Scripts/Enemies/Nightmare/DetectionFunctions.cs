@@ -59,22 +59,25 @@ public class DetectionFunctions : MonoBehaviour
 	}
     public static float DistanceToTarget (GameObject user, GameObject target) 
     {
-        Vector3 distance = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
-        target.transform.position.z - user.transform.position.z);
-		return (distance).magnitude;
+        /*Vector3 distance = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
+        target.transform.position.z - user.transform.position.z);*/
+
+		 //distance = target.transform.position - user.transform.position;
+		return Vector3.Distance(target.transform.position, user.transform.position);
 	}
 
 	public static bool PlayerInCone(GameObject user, GameObject target, float maxAngle, float maxRange, LayerMask mask)
 	{
-		Vector3 vectorEnemyPlayer = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
-        target.transform.position.z - user.transform.position.z);
-		//Vector3 vectorEnemyPlayer = target.transform.position - user.transform.position;
+		/*Vector3 vectorEnemyPlayer = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
+        target.transform.position.z - user.transform.position.z);*/
+		Vector3 vectorEnemyPlayer = new Vector3(target.transform.position.x, target.transform.position.y + 0.5f, target.transform.position.z) - user.transform.position;
 
 
 		float angle =  Vector3.Angle(user.transform.forward, vectorEnemyPlayer);
 		
 		
-		
+		//Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange,  Color.red);
+			Debug.DrawRay(user.transform.position, user.transform.forward * maxRange, Color.blue);
 
 		if ((angle <= maxAngle || angle >= (360 - maxAngle)) && vectorEnemyPlayer.magnitude <= maxRange)
 		{
@@ -83,13 +86,14 @@ public class DetectionFunctions : MonoBehaviour
 			Ray Ray = new Ray(user.transform.position, vectorEnemyPlayer.normalized * maxRange);
 			
 			
+			
 			//Debug.Log(vectorEnemyPlayer.normalized * maxRange);
 			if (Physics.Raycast(Ray, out hit, maxRange, mask) && GameManager.Instance.GetPlayer().GetComponent<PlayerHiddenPrayer>().m_IsPlayerVisibleToEnemy)
 			{
 				Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange,  Color.red);
-				Debug.DrawRay(user.transform.position, user.transform.forward * maxRange, Color.blue);
+				/*Debug.DrawRay(user.transform.position, user.transform.forward * maxRange, Color.blue);*/
 				//Debug.Log("Distancia hit: " + hit.distance + " Distancia Player: " + vectorEnemyPlayer.magnitude);
-				//Debug.Log(hit.collider.transform.name);
+				Debug.Log(hit.collider.transform.name);
 				/*if(Mathf.Abs(hit.distance - vectorEnemyPlayer.magnitude) < 2)
 				{
 					Debug.Log("Estoy dentro");

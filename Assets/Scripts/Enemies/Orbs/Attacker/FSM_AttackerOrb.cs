@@ -59,7 +59,7 @@ public class FSM_AttackerOrb : MonoBehaviour
 
 
             case State.WANDERING:
-                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(transform.transform.position);
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                 {

@@ -69,7 +69,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
             case State.WANDERING:
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
-                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(target.transform.position);
                 
                 if (corpse != null)
                 {
@@ -245,7 +245,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 break;
             case State.GOINGTOCORPSE:
                 target = corpse;
-                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(target.transform.position);
                 break;
 
             case State.GRABBINGCORPSE:

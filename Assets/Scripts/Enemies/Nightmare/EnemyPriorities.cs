@@ -53,7 +53,8 @@ public class EnemyPriorities : MonoBehaviour
         {
             playerDetected = true;
             currState = EnemyStates.LOOKFORPLAYER;
-            ActivateFSM();
+            ChangePriority();
+            //ActivateFSM();
             seekPlayer.target = GM.GetPlayer();
         }
     }
@@ -71,6 +72,7 @@ public class EnemyPriorities : MonoBehaviour
         if(playerSeen || playerDetected)
         {
             currState = EnemyStates.LOOKFORPLAYER;
+            Debug.Log("Holi");
         }
         else
         {
