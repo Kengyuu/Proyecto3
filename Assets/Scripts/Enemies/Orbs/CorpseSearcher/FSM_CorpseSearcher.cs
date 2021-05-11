@@ -44,6 +44,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     public void Exit()
     {
         blackboard.navMesh.isStopped = false;
+        target.tag = "Corpse";
         this.enabled = false;
     }
 
@@ -69,7 +70,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
             case State.WANDERING:
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
-                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(target.transform.position);
                 
                 if (corpse != null)
                 {
@@ -216,7 +217,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 blackboard.navMesh.isStopped = false;
                 break;
             case State.RETURNINGTOENEMY:
-                if ((corpse == null) && newState != State.ATTACKINGPLAYER)
+                if ((blackboard.orbCorpseStored != null) && newState != State.ATTACKINGPLAYER)
                 {
                     blackboard.orbCorpseStored = null;
                     behaviours.AddCorpseToScore();
@@ -245,7 +246,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 break;
             case State.GOINGTOCORPSE:
                 target = corpse;
-                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(target.transform.position);
                 break;
 
             case State.GRABBINGCORPSE:
@@ -282,12 +283,11 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 Vector3 Direction = raycastPoint.position - castPosition.position;
                 Direction.Normalize();
                 Ray Ray = new Ray(castPosition.position, Direction);
-                Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
+                //Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
                 RaycastHit l_RaycastHit;
 
                 if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance,mask))
                 {
-                    Debug.Log(l_RaycastHit.collider.tag);
                     if (l_RaycastHit.collider.tag == "Player")
                     {
                         Debug.Log("Hit by orb");

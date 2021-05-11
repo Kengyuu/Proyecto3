@@ -40,6 +40,8 @@ public class FSM_SeekPlayer : MonoBehaviour
     public void Exit()
     {
         //Arm.SetActive(false);
+        GetComponent<EnemyPriorities>().playerSeen = false;
+        GetComponent<EnemyPriorities>().playerDetected = false;
         this.enabled = false;
     }
 
@@ -61,7 +63,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
 
             case State.WANDERING:
-                enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                enemy.SetDestination(target.transform.position);
                 savedCorpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
                 if (savedCorpse != null)
@@ -76,6 +78,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
                 if (DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                 {
+                    GetComponent<EnemyPriorities>().playerSeen = true;
                     ChangeState(State.SEEKINGPLAYER);
                 }
                 break;
@@ -202,7 +205,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                             break;
                     }
 
-                    enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                    enemy.SetDestination(target.transform.position);
                     waypointSelected = true;
                 }
                 break;

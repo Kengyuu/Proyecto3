@@ -69,7 +69,7 @@ public class FSM_TrapSearcher : MonoBehaviour
             case State.WANDERING:
 
                 trap = behaviours.SearchObject("PasiveTrap", blackboard.trapDetectionRadius);
-                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(target.transform.position);
                 
                 if (trap != null)
                 {
@@ -209,7 +209,7 @@ public class FSM_TrapSearcher : MonoBehaviour
                 break;
             case State.GOINGTOTRAP:
                 target = trap;
-                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(target.transform.position);
                 break;
 
             case State.DEACTIVATINGTRAP:

@@ -57,8 +57,8 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
-                
                
+                ReEnter();
                 break;
 
 

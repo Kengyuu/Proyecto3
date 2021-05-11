@@ -25,7 +25,7 @@ public class PlayerShoot : MonoBehaviour
     public float m_OrbDetectionDistance = 20f;
 
     [Header("Shoot Noise")]
-    public float m_ShootNoise = 50f;
+    public float m_ShootNoise = 10f;
 
     [Header("Debug")]
     [SerializeField] bool m_IsPlayerShooting = false;
@@ -105,10 +105,10 @@ public class PlayerShoot : MonoBehaviour
                         hit.transform.GetComponent<ActiveTrap>().EnableTrap();
                     }
                     break;
-                case "PasiveTrap":
+                case "TrapDeactivated":
                     if (l_CurrentDistance < m_TrapDetectionDistance)
                     {
-                        //Debug.Log($"Trampa a distancia adecuada: {l_CurrentDistance}");
+                        Debug.Log($"Trampa a distancia adecuada: {l_CurrentDistance}");
                         hit.transform.GetComponent<PassiveTrap>().EnableTrap();
                     }
                     break;

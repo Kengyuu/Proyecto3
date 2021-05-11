@@ -59,7 +59,7 @@ public class FSM_AttackerOrb : MonoBehaviour
 
 
             case State.WANDERING:
-                blackboard.navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                blackboard.navMesh.SetDestination(target.transform.position);
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                 {
@@ -179,7 +179,7 @@ public class FSM_AttackerOrb : MonoBehaviour
                     if (l_RaycastHit.collider.tag == "Player")
                     {
                         //Debug.Log("Hit by orb");
-                        GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(1, gameObject, blackboard.XForceImpulseDamage, blackboard.YForceImpulseDamage);
+                        GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(2, gameObject, blackboard.XForceImpulseDamage, blackboard.YForceImpulseDamage);
                         attacking = false;
                         
                     }

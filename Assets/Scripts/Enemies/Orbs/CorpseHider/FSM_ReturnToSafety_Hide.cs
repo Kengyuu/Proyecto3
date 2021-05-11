@@ -56,6 +56,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
+                
                 ReEnter();
                 break;
 

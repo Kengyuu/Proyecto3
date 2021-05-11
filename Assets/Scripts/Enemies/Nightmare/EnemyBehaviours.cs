@@ -71,7 +71,7 @@ public class EnemyBehaviours : MonoBehaviour
     public void AddCorpseToScore()
     {
         m_ScoreManager.AddEnemyCorpse();
-       // m_ScoreManager.RemoveRemainingCorpse();
+        
     }
 
     public void SearchPlayer(float detectionRadius, float angleDetectionPlayer)
@@ -117,7 +117,7 @@ public class EnemyBehaviours : MonoBehaviour
         {
             spawnPosition = Random.Range(0, GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners.Count);
             target = GM.GetWaypointsList().GetComponent<RoomSpawner>().spawners[spawnPosition];
-            navMesh.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+            navMesh.SetDestination(target.transform.position);
             Debug.Log("Holi");
         }
         
@@ -145,7 +145,7 @@ public class EnemyBehaviours : MonoBehaviour
         //trap.SetActive(false);
         trap.GetComponent<MeshRenderer>().material = trap.GetComponent<PassiveTrap>().transparentMaterial;
         trap.GetComponent<PassiveTrap>().DisableTrap();
-        //trap.tag = "TrapDeactivated";
+        trap.tag = "TrapDeactivated";
     }
 
     public void ConvertTrap(GameObject trap)
