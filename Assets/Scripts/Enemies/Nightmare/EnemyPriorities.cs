@@ -49,7 +49,7 @@ public class EnemyPriorities : MonoBehaviour
     public void DetectPlayerActions(float playerDistance)
     {
         //Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");
-        if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < playerDistance)
+        if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < playerDistance && !GetComponent<HFSM_StunEnemy>().isStunned)
         {
             playerDetected = true;
             currState = EnemyStates.LOOKFORPLAYER;
@@ -69,7 +69,7 @@ public class EnemyPriorities : MonoBehaviour
         playerCorpses = m_ScoreManager.GetPlayerCorpses();
         enemyCorpses = m_ScoreManager.GetEnemyCorpses();
         remainingCorpses = m_ScoreManager.GetRemainingCorpses();
-        if(playerSeen || playerDetected)
+        if(playerSeen || playerDetected )
         {
             currState = EnemyStates.LOOKFORPLAYER;
             Debug.Log("Holi");

@@ -70,7 +70,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
         switch (currentState)
         {
             case State.NORMALBEHAVIOUR:
-                corpseSearch.enabled = false;          
+                corpseSearch.Exit();        
                 break;
         }
 
@@ -79,7 +79,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
         {
 
             case State.NORMALBEHAVIOUR:
-                corpseSearch.enabled = true;
+                corpseSearch.ReEnter();
                 break;
 
             case State.RETURNINGTOENEMY:
@@ -88,7 +88,6 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 if (blackboard.orbCorpseStored != null)
                 {
                     GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1, gameObject);
-                    
                 }     
                 Spawn();
                 gameObject.SetActive(false);

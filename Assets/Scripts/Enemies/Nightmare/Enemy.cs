@@ -49,7 +49,11 @@ public class Enemy : Entities
         if(m_ScoreManager.GetEnemyCorpses() > 0)
         {
             int lostEnemyCorpses = Mathf.Max(1, Mathf.RoundToInt(m_ScoreManager.GetEnemyCorpses()/ 3));
-            m_ScoreManager.SetEnemyCorpses(m_ScoreManager.GetEnemyCorpses() - lostEnemyCorpses);
+            for (int i = 0; i < lostEnemyCorpses; i++)
+            {
+                m_ScoreManager.RemoveEnemyCorpse();
+            }
+            
            
             
             //Debug.Log(m_ScoreManager.GetRemainingCorpses());

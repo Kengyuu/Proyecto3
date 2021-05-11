@@ -40,6 +40,8 @@ public class FSM_SeekPlayer : MonoBehaviour
     public void Exit()
     {
         //Arm.SetActive(false);
+        GetComponent<EnemyPriorities>().playerSeen = false;
+        GetComponent<EnemyPriorities>().playerDetected = false;
         this.enabled = false;
     }
 

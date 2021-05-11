@@ -44,6 +44,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     public void Exit()
     {
         blackboard.navMesh.isStopped = false;
+        target.tag = "Corpse";
         this.enabled = false;
     }
 
@@ -282,12 +283,11 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 Vector3 Direction = raycastPoint.position - castPosition.position;
                 Direction.Normalize();
                 Ray Ray = new Ray(castPosition.position, Direction);
-                Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
+                //Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
                 RaycastHit l_RaycastHit;
 
                 if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance,mask))
                 {
-                    Debug.Log(l_RaycastHit.collider.tag);
                     if (l_RaycastHit.collider.tag == "Player")
                     {
                         Debug.Log("Hit by orb");
