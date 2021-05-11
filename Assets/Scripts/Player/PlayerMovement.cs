@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float m_PlayerWalkSpeed = 8f;
     public float m_PlayerRunSpeed = 16f;
     private bool m_RunPressed = false;
+    public float m_RunNoise = 10f;
     public float m_PlayerJumpForce = 8f;
     public float m_Gravity = 25f;
     public float m_Mass = 1f;
@@ -129,6 +130,11 @@ public class PlayerMovement : MonoBehaviour
     void RunAction()
     {
         m_RunPressed = !m_RunPressed;
+
+        if (m_RunPressed)
+        {
+            GameManager.Instance.PlayerNoise(m_RunNoise);
+        }
     }
     // <- END INPUT SYSTEM HELPERS ->
 

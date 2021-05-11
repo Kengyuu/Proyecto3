@@ -82,7 +82,7 @@ public class PlayerDash : MonoBehaviour
 
     private void Dash()
     {
-        if (m_PlayerHiddenPrayer.m_IsPlayerVisibleToEnemy)
+        if (m_PlayerHiddenPrayer.m_IsPlayerVisibleToEnemy && m_PlayerMovement.m_CharacterController.velocity.magnitude > 0.2f)
         {
             GM.PlayerNoise(m_DashNoise);
             Debug.Log("Hago ruido al Dashear");

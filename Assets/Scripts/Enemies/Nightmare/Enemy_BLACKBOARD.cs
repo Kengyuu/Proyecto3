@@ -15,11 +15,10 @@ public class Enemy_BLACKBOARD : MonoBehaviour
 
     public float angleDetectionPlayer = 30f;
 
-    public float detectionSensingRadius = 10f;
+    //public float detectionSensingRadius = 10f;
     public GameObject waypointsList;
     public GameObject lastCorpseSeen;
 
-    public GameObject orbCorpseStored;
     public GameObject corpse;
     
 
@@ -27,27 +26,14 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     public GameObject Player;
     public float distanceToAttack = 0.5f;
     public float waypointsNearPlayerRadius = 20f;
-    public float senseRadius = 10f;
-
-    [Header("TrapDeactivate")]
-
-    public float cooldownToDeactivateTrap = 3f;
-    public GameObject trap;
-
-    public float trapDetectionRadius = 10f;
-
-    public float closeEnoughTrapRadius = 2f;
-
-    [Header("CorpseHide")]
-
-    public float areaOfEffectInvisible = 10f;
+    //public float senseRadius = 10f;
 
     [Header("GameState")]
     public int enemyCorpses;
     public int playerCorpses;
     public int remainingCorpses;
 
-    public float stunTime = 3f;
+    public float stunTime = 2.5f;
 
     private GameManager GM;
 
