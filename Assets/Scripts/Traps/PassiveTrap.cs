@@ -35,8 +35,9 @@ public class PassiveTrap : MonoBehaviour
                 {
                     Debug.Log("Enemigo estuneado por TRAMPA");
                     target.isStunned = true;
+                    Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
                 }
-                Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
+               
             }
             if (col.CompareTag("Player"))
             {
@@ -46,30 +47,37 @@ public class PassiveTrap : MonoBehaviour
                 {
                     Debug.Log("Player recibe daño de trampa");
                     player.TakeDamage(3, gameObject, XForceImpulseDamage, YForceImpulseDamage);
+                    Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
                 }
-                Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
+                
             }
         }
     }
 
     public void DisableTrap()
     {
+        gameObject.tag = "TrapDeactivated";
         m_TrapActive = false;
         GetComponent<MeshRenderer>().material = transparentMaterial;
         m_TrapCanBeEnabled = false;
+        Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
     }
 
     public void EnableTrap()
     {
+        Debug.Log("Reenabling");
         if (m_TrapCanBeEnabled)
         {
+            
             m_TrapActive = true;
             GetComponent<MeshRenderer>().material = originalMaterial;
+           // gameObject.tag = "PasiveTrap";
         }
     }
 
-    private void RestoreTrapCooldown()
+    public void RestoreTrapCooldown()
     {
+        
         m_TrapCanBeEnabled = true;
     }
 }
