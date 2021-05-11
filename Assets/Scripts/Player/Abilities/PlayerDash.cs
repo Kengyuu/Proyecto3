@@ -22,7 +22,7 @@ public class PlayerDash : MonoBehaviour
     public bool m_DashEvadeAttacks = false;
 
     [Header("DashNoise")]
-    public float m_DashNoise = 30f;
+    public float m_DashNoise = 10f;
 
     [Header("Debug")]
     [SerializeField] bool m_DashOnCooldown = false;

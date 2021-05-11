@@ -46,9 +46,9 @@ public class EnemyPriorities : MonoBehaviour
         GM.OnPlayerNoise += DetectPlayerActions;
     }
 
-    public void DetectPlayerActions(float playerDistance)
+   public void DetectPlayerActions(float playerDistance)
     {
-        //Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");
+        Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");
         if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < playerDistance && !GetComponent<HFSM_StunEnemy>().isStunned)
         {
             playerDetected = true;

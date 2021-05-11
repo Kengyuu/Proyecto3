@@ -25,7 +25,7 @@ public class PlayerShoot : MonoBehaviour
     public float m_OrbDetectionDistance = 20f;
 
     [Header("Shoot Noise")]
-    public float m_ShootNoise = 50f;
+    public float m_ShootNoise = 10f;
 
     [Header("Debug")]
     [SerializeField] bool m_IsPlayerShooting = false;
