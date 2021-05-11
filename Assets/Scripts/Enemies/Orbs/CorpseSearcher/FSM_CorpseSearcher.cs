@@ -217,7 +217,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 blackboard.navMesh.isStopped = false;
                 break;
             case State.RETURNINGTOENEMY:
-                if ((corpse == null) && newState != State.ATTACKINGPLAYER)
+                if ((blackboard.orbCorpseStored != null) && newState != State.ATTACKINGPLAYER)
                 {
                     blackboard.orbCorpseStored = null;
                     behaviours.AddCorpseToScore();
