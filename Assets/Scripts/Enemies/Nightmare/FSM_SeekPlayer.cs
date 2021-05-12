@@ -95,7 +95,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                 if (!DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                 {
                     ChangeState(State.GOTOLASTPLAYERPOSITION);
-
                 }
                 break;
             case State.GOTOLASTPLAYERPOSITION:

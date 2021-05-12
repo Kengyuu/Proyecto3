@@ -178,11 +178,12 @@ public class PlayerController : MonoBehaviour
                     GM.SetGameState(GameState.GAME_OVER);
                     return;
                 }
-                GetStunned();
                 if (m_ScoreManager.GetPlayerCorpses() > 0)
                 {
                     RemoveCorpse();
                 }
+                GetStunned();
+                
 
                 //Invoke("RestoreLife", m_MaxStunTime);
             }
@@ -238,8 +239,13 @@ public class PlayerController : MonoBehaviour
     {
         if (m_ScoreManager.GetPlayerCorpses() > 0)
         {
-            m_ScoreManager.RemovePlayerCorpse();
-            GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1, gameObject);
+            int lostPlayerCorpses = Mathf.Max(1, Mathf.RoundToInt(m_ScoreManager.GetPlayerCorpses()/ 3));
+            for (int i = 0; i < lostPlayerCorpses; i++)
+            {
+                m_ScoreManager.RemovePlayerCorpse();
+            }
+            //m_ScoreManager.RemovePlayerCorpse();
+            GameManager.Instance.GetGameObjectSpawner().SpawnBodys(lostPlayerCorpses, gameObject);
         }
         
     }

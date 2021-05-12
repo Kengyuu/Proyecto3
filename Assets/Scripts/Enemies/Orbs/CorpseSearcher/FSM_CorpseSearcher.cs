@@ -44,7 +44,10 @@ public class FSM_CorpseSearcher : MonoBehaviour
     public void Exit()
     {
         blackboard.navMesh.isStopped = false;
-        target.tag = "Corpse";
+        if (target.tag == "PickedCorpse")
+        {
+            target.tag = "Corpse";
+        }
         this.enabled = false;
     }
 
@@ -71,6 +74,12 @@ public class FSM_CorpseSearcher : MonoBehaviour
             case State.WANDERING:
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
                 blackboard.navMesh.SetDestination(target.transform.position);
+
+                if (blackboard.orbCorpseStored != null)
+                {
+                    ChangeState(State.RETURNINGTOENEMY);
+                    break;
+                }
                 
                 if (corpse != null)
                 {
@@ -90,11 +99,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                     break;
                 }
 
-                if (blackboard.orbCorpseStored != null)
-                {
-                    ChangeState(State.RETURNINGTOENEMY);
-                    break;
-                }
+                
 
                 if (alert)
                 {
@@ -138,7 +143,11 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                  if (blackboard.cooldownToGrabCorpse <= 0)
                  {
-                     behaviours.GrabCorpse(target, blackboard.cooldownToGrabCorpse);
+                    if(target != null)
+                    {
+                        behaviours.GrabCorpse(target, blackboard.cooldownToGrabCorpse);
+                    }
+                     
                      ChangeState(State.RETURNINGTOENEMY);
                      break;
                  }

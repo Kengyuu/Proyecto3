@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3394890271596319657}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 59.02, y: 0.597, z: 75.25}
-  m_LocalScale: {x: 1, y: 0.39149, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.39149, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3394890271596319657}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -2232952877369940510, guid: e8e7a4af4ce21454bba296f9dab898d7, type: 3}
 --- !u!23 &3394890271596319658
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94,8 +94,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.348255, y: 4.080585, z: 0.8318546}
+  m_Center: {x: -1.6741276, y: -1.5402939, z: 1.9019157}
 --- !u!114 &3394890271596319656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalMaterial: {fileID: 2100000, guid: 0a325dd0bfcd2af46bf4183441cb677e, type: 2}
   transparentMaterial: {fileID: 2100000, guid: a760e95edd9f4ca4097f945cb123fa7b, type: 2}
-  m_TrapEnableCooldown: 10
+  m_TrapEnableCooldown: 1
   XForceImpulseDamage: 2
   YForceImpulseDamage: 2
   m_TrapActive: 1
