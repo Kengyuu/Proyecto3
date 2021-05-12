@@ -106,12 +106,12 @@ public class FSM_AttackerOrb : MonoBehaviour
                     attacking = false;
                 }
 
-                if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance)
+                if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance ||
+                                                        !behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                 {
                     ChangeState(State.WANDERING);
                 }
 
-                
                 break;
         }
 
