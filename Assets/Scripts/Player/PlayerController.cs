@@ -239,13 +239,13 @@ public class PlayerController : MonoBehaviour
     {
         if (m_ScoreManager.GetPlayerCorpses() > 0)
         {
-            int lostPlayerCorpses = Mathf.Max(1, Mathf.RoundToInt(m_ScoreManager.GetPlayerCorpses()/ 3));
+            /*int lostPlayerCorpses = Mathf.Max(1, Mathf.RoundToInt(m_ScoreManager.GetPlayerCorpses()/ 3));
             for (int i = 0; i < lostPlayerCorpses; i++)
             {
                 m_ScoreManager.RemovePlayerCorpse();
-            }
-            //m_ScoreManager.RemovePlayerCorpse();
-            GameManager.Instance.GetGameObjectSpawner().SpawnBodys(lostPlayerCorpses, gameObject);
+            }*/
+            m_ScoreManager.RemovePlayerCorpse();
+            GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1, gameObject);
         }
         
     }

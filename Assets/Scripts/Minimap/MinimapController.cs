@@ -24,14 +24,14 @@ public class MinimapController : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 newPosition = m_Player.position;
+        /*Vector3 newPosition = m_Player.position;
         newPosition.y = transform.position.y;
-        transform.position = newPosition;
+        transform.position = newPosition;*/
 
-        Vector2 value = m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.ReadValue<Vector2>();
+        //Vector2 value = m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.ReadValue<Vector2>();
 
         //Debug.Log($"Scroll {value.y}");
-        if(value.y != 0)
+        /*if(value.y != 0)
         {
             //float newValue = value.y / 12;
             float newZoom = 0;
@@ -39,7 +39,7 @@ public class MinimapController : MonoBehaviour
             else newZoom = m_MinMapCamera.orthographicSize + m_ZoomIncrease;
 
             m_MinMapCamera.orthographicSize = Mathf.Clamp(newZoom, m_MinZoom, m_MaxZoom);
-        }
+        }*/
         
 
         //Si queremos que el minimapa rote con el player:

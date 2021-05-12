@@ -145,7 +145,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
             case State.GOINGTOCORPSE:
                 target = corpse;
-                enemy.SetDestination(new Vector3(target.transform.position.x, 0, target.transform.position.z));
+                enemy.SetDestination(target.transform.position);
 
                 break;
 

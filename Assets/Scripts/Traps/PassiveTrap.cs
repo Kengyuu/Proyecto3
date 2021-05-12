@@ -30,10 +30,11 @@ public class PassiveTrap : MonoBehaviour
             if (col.CompareTag("Enemy"))
             {
                 DisableTrap();
-                HFSM_StunEnemy target = col.GetComponent<HFSM_StunEnemy>();
-                if (target != null)
+                //HFSM_StunEnemy target = col.GetComponent<HFSM_StunEnemy>();
+                if (col != null)
                 {
-                    target.isStunned = true;
+                    //target.isStunned = true;
+                    col.GetComponent<Enemy>().GetStunned();
                     Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
                 }
                
