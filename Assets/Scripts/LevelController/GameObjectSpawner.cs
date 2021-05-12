@@ -165,50 +165,54 @@ public class GameObjectSpawner : MonoBehaviour
     public void SpawnBodys(int numberBodies, GameObject type)
     {
         int spawnPosition = -1;
-        for (int i = 0; i < numberBodies; i++)
+        if(numberBodies > 0)
         {
-            bool spawnable = false;
-            while (spawnable == false)
+            for (int i = 0; i < numberBodies; i++)
             {
-                bool canSpawn = true;
-
-                //Hace lo mismo de arriba
-                spawnPosition = Random.Range(0, deadBodyContainer.GetComponent<RoomSpawner>().spawners.Count);
-
-                //Comprueba que no se haya usado esa posición de spawn antes.
-                for (int j = 0; j < spawnersUsed.Count; j++)
+                bool spawnable = false;
+                while (spawnable == false)
                 {
-                    if(spawnPosition == spawnersUsed[j])
-                        canSpawn = false;
-                }
+                    bool canSpawn = true;
 
-                //Comprueba si se ha alcanzado el límite de spawns por sala. El límite se asigna al valor maxDeadBodyRoom.
+                    //Hace lo mismo de arriba
+                    spawnPosition = Random.Range(0, deadBodyContainer.GetComponent<RoomSpawner>().spawners.Count);
 
-                for (int j = 0; j < roomTags.Count; j++)
-                {
-                    if(canSpawn && deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnPosition].tag == roomTags[j])
+                    //Comprueba que no se haya usado esa posición de spawn antes.
+                    for (int j = 0; j < spawnersUsed.Count; j++)
                     {
-                        if(roomsController.currentSpawnersUsed[j] < maxDeadBodyRoom)
-                        {
-                            roomsController.currentSpawnersUsed[j]++;
-                        }
-                        else
-                        {
+                        if(spawnPosition == spawnersUsed[j])
                             canSpawn = false;
+                    }
+
+                    //Comprueba si se ha alcanzado el límite de spawns por sala. El límite se asigna al valor maxDeadBodyRoom.
+
+                    for (int j = 0; j < roomTags.Count; j++)
+                    {
+                        if(canSpawn && deadBodyContainer.GetComponent<RoomSpawner>().spawners[spawnPosition].tag == roomTags[j])
+                        {
+                            if(roomsController.currentSpawnersUsed[j] < maxDeadBodyRoom)
+                            {
+                                roomsController.currentSpawnersUsed[j]++;
+                            }
+                            else
+                            {
+                                canSpawn = false;
+                            }
                         }
                     }
+
+                    if(canSpawn)
+                        spawnable = true;
+
                 }
-
-                if(canSpawn)
-                    spawnable = true;
-
+                
+                spawnersUsed.Add(spawnPosition);
+                deadBodys[spawnPosition].SetActive(true);
+                
+                currentBodysSpawned++;
             }
-            
-            spawnersUsed.Add(spawnPosition);
-            deadBodys[spawnPosition].SetActive(true);
-            
-            currentBodysSpawned++;
         }
+        
 
     }
 }
