@@ -252,7 +252,11 @@ public class FSM_CorpseSearcher : MonoBehaviour
             case State.GRABBINGCORPSE:
                 blackboard.navMesh.isStopped = true;
                 blackboard.cooldownToGrabCorpse = 3f;
-                target.tag = "PickedCorpse";
+                if (target.tag == "Corpse")
+                {
+                    target.tag = "PickedCorpse";
+                }
+              
                 break;
 
             case State.RETURNINGTOENEMY:
