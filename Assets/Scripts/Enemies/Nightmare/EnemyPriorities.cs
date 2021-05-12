@@ -48,7 +48,7 @@ public class EnemyPriorities : MonoBehaviour
 
    public void DetectPlayerActions(float playerDistance)
     {
-        Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");
+        //Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");
         if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < playerDistance && !GetComponent<HFSM_StunEnemy>().isStunned)
         {
             playerDetected = true;
@@ -72,7 +72,6 @@ public class EnemyPriorities : MonoBehaviour
         if(playerSeen || playerDetected )
         {
             currState = EnemyStates.LOOKFORPLAYER;
-            Debug.Log("Holi");
         }
         else
         {

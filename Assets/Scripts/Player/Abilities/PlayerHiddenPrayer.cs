@@ -83,13 +83,13 @@ public class PlayerHiddenPrayer : MonoBehaviour
         {
             if (Skill_1)
             {
-                Debug.Log($"Habilidad 1 - Oraci�n Oculta DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
+                //Debug.Log($"Habilidad 1 - Oraci�n Oculta DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
                 Skill_1 = false;
             }
             if (Skill_2)
             {
-                Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
+                //Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 Skill_2 = false;
             }
             return;
@@ -98,7 +98,7 @@ public class PlayerHiddenPrayer : MonoBehaviour
         {
             if (!Skill_1)
             {
-                Debug.Log($"Habilidad 1 - Oraci�n Oculta ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
+                //Debug.Log($"Habilidad 1 - Oraci�n Oculta ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Enable();
                 Skill_1 = true;
             }
@@ -107,7 +107,7 @@ public class PlayerHiddenPrayer : MonoBehaviour
             {
                 if (!Skill_2)
                 {
-                    Debug.Log($"Habilidad 2 - pasiva ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
+                    //Debug.Log($"Habilidad 2 - pasiva ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = true;
                     m_Camera.cullingMask = m_EnemyTracesLayerMask;
                 }
@@ -117,7 +117,7 @@ public class PlayerHiddenPrayer : MonoBehaviour
             {
                 if (Skill_2)
                 {
-                    Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
+                    //Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = false;
                     m_Camera.cullingMask = m_OriginalLayerMask;
                 }

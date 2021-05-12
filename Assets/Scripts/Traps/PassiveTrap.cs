@@ -33,7 +33,6 @@ public class PassiveTrap : MonoBehaviour
                 HFSM_StunEnemy target = col.GetComponent<HFSM_StunEnemy>();
                 if (target != null)
                 {
-                    Debug.Log("Enemigo estuneado por TRAMPA");
                     target.isStunned = true;
                     Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
                 }
@@ -45,7 +44,6 @@ public class PassiveTrap : MonoBehaviour
                 PlayerController player = col.GetComponent<PlayerController>();
                 if(player != null)
                 {
-                    Debug.Log("Player recibe daño de trampa");
                     player.TakeDamage(3, gameObject, XForceImpulseDamage, YForceImpulseDamage);
                     Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
                 }

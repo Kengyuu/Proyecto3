@@ -69,6 +69,7 @@ public class GameObjectSpawner : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(spawnersUsed.Count + "Más te vale que funciones");
         // Test Spawn New Bodys
         if(Input.GetMouseButtonDown(0))
         {
@@ -177,7 +178,7 @@ public class GameObjectSpawner : MonoBehaviour
                     //Hace lo mismo de arriba
                     spawnPosition = Random.Range(0, deadBodyContainer.GetComponent<RoomSpawner>().spawners.Count);
 
-                    //Comprueba que no se haya usado esa posición de spawn antes.
+                    //Comprueba que no se haya usado esa posición de spawn.
                     for (int j = 0; j < spawnersUsed.Count; j++)
                     {
                         if(spawnPosition == spawnersUsed[j])

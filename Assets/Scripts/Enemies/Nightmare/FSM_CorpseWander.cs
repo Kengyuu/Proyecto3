@@ -40,20 +40,16 @@ public class FSM_CorpseWander : MonoBehaviour
 
     public void Exit()
     {
-        //target = null;
         if(corpse != null)
             corpse.tag = "Corpse";
-        //corpse = null;
         enemy.isStopped = false;
         this.enabled = false;
     }
 
     public void ReEnter()
     {
-        //Debug.Log("Soy yo mismo");
         this.enabled = true;
         currentState = State.INITIAL;
-        
     }
 
     // Update is called once per frame

@@ -88,8 +88,9 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 Debug.Log("RESPAWN");
                 if (blackboard.orbCorpseStored != null)
                 {
+                    blackboard.orbCorpseStored = null;
                     GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1, gameObject);
-                }     
+                }
                 Spawn();
                 gameObject.SetActive(false);
 

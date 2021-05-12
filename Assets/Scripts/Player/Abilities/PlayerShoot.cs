@@ -76,7 +76,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("PLAYER DISPARA");
+        //Debug.Log("PLAYER DISPARA");
 
 
         RaycastHit hit;
@@ -94,21 +94,21 @@ public class PlayerShoot : MonoBehaviour
                         hit.transform.gameObject.SetActive(false);
                         m_PlayerController.AddCorpse();
                         OrbEvents.current.ManageOrbs();
+                        GM.m_GameObjectSpawner.ClearBodys(hit.collider.GetComponent<CorpseControl>().spawnPosition);
                         //m_ScoreManager.RemoveRemainingCorpse();
-                        
                     }
                     break;
                 case "ActiveTrap":
                     if (l_CurrentDistance < m_ButtonDetectionDistance)
                     {
-                        Debug.Log($"Botón a distancia adecuada: {l_CurrentDistance}");
+                        //Debug.Log($"Botón a distancia adecuada: {l_CurrentDistance}");
                         hit.transform.GetComponent<ActiveTrap>().EnableTrap();
                     }
                     break;
                 case "TrapDeactivated":
                     if (l_CurrentDistance < m_TrapDetectionDistance)
                     {
-                        Debug.Log($"Trampa a distancia adecuada: {l_CurrentDistance}");
+                        //Debug.Log($"Trampa a distancia adecuada: {l_CurrentDistance}");
                         hit.transform.GetComponent<PassiveTrap>().EnableTrap();
                     }
                     break;
@@ -151,7 +151,7 @@ public class PlayerShoot : MonoBehaviour
                 case "AttackOrb":
                     if (l_CurrentDistance < m_OrbDetectionDistance)
                     {
-                        Debug.Log($"Attack Orb Hit");
+                        //Debug.Log($"Attack Orb Hit");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_AttackerOrb>().alert = true;
                     }

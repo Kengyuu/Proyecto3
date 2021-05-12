@@ -44,10 +44,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
     public void Exit()
     {
         blackboard.navMesh.isStopped = false;
-        if (target.tag == "PickedCorpse")
-        {
-            target.tag = "Corpse";
-        }
+        if(corpse != null)
+            corpse.tag = "Corpse";
         this.enabled = false;
     }
 
@@ -148,8 +146,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
                         behaviours.GrabCorpse(target, blackboard.cooldownToGrabCorpse);
                     }
                      
-                     ChangeState(State.RETURNINGTOENEMY);
-                     break;
+                    ChangeState(State.RETURNINGTOENEMY);
+                    break;
                  }
                 break;
 
@@ -304,7 +302,6 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 {
                     if (l_RaycastHit.collider.tag == "Player")
                     {
-                        Debug.Log("Hit by orb");
                         GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(1, gameObject, blackboard.XForceImpulseDamage,
                                                                                                      blackboard.YForceImpulseDamage);
                         

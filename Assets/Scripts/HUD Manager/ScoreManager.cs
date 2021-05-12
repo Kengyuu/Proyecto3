@@ -27,7 +27,7 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     public void AddPlayerCorpse()
     {
         this.m_PlayerCorpses++;
-        Debug.Log(this.m_RemainingCorpses);
+        //Debug.Log(this.m_RemainingCorpses);
         this.m_RemainingCorpses--;
         scoreChangedDelegate?.Invoke(this);
 
