@@ -14,6 +14,7 @@ public class PlayerShoot : MonoBehaviour
     public float m_ShootCastingTime = 2f;
     public float m_MaxShootDistance = 100f;
     private bool m_PlayerCanShoot = true;
+    public Animator crosshairAnim;
 
     [Header("Object detection distances")]
     public float m_CorpseDetectionDistance = 5f;
@@ -69,7 +70,9 @@ public class PlayerShoot : MonoBehaviour
 
     private void StartCasting()
     {
-        
+        crosshairAnim.SetBool("Shot", true);
+        StartCoroutine(Wait());
+
         m_IsPlayerShooting = true;
         Invoke("Shoot", m_ShootCastingTime);
     }
@@ -159,9 +162,19 @@ public class PlayerShoot : MonoBehaviour
             }
             
         }
-
+       
         GM.PlayerNoise(m_ShootNoise);
         ResetShoot();
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.5f);
+        StopAnim();
+    }
+    private void StopAnim()
+    {
+        crosshairAnim.SetBool("Shot", false);
     }
 
     private void ResetShoot()

@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 1625906704006444176}
   - component: {fileID: 1625906704006444174}
   - component: {fileID: 1625906704006444175}
+  - component: {fileID: 3524844319017834742}
   m_Layer: 8
   m_Name: RawImage
   m_TagString: Untagged
@@ -236,6 +237,25 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!95 &3524844319017834742
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625906704006444177}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 429f438b3d8a70b44801e1ee8d50db37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3428872807695205286
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +394,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 449
+    m_Bits: 1473
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -512,7 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Life: 3
   m_MaxLife: 3
-  m_MaxStunTime: 3
+  m_MaxStunTime: 2.5
   m_PlayerStunned: 0
   m_ScoreManager: {fileID: 0}
   m_Map: {fileID: 0}
@@ -529,14 +549,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8da4aaa544891440b9c3a26f2ddd211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HiddenPrayerCooldown: 3
-  m_InvisibilityMaxTime: 5
+  m_HiddenPrayerCooldown: 20
+  m_InvisibilityMaxTime: 7
   m_OriginalLayerMask:
     serializedVersion: 2
-    m_Bits: 449
+    m_Bits: 1473
   m_EnemyTracesLayerMask:
     serializedVersion: 2
-    m_Bits: 961
+    m_Bits: 1985
   m_IsPlayerVisibleToEnemy: 1
   m_AbilityOnCooldown: 0
   Skill_1: 0
@@ -575,8 +595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7fdec0adfb9ed4b87c6b58c6c7f19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerWalkSpeed: 8
-  m_PlayerRunSpeed: 10
+  m_PlayerWalkSpeed: 5
+  m_PlayerRunSpeed: 8
+  m_RunNoise: 10
   m_PlayerJumpForce: 8
   m_Gravity: 25
   m_Mass: 1
@@ -601,7 +622,7 @@ MonoBehaviour:
   m_PlayerCanDash: 1
   m_MaxDashEvasionTime: 0.5
   m_DashEvadeAttacks: 0
-  m_DashNoise: 30
+  m_DashNoise: 15
   m_DashOnCooldown: 0
 --- !u!114 &6654022584197075666
 MonoBehaviour:
@@ -618,13 +639,15 @@ MonoBehaviour:
   m_ShootLayers:
     serializedVersion: 2
     m_Bits: 64
-  m_ShootCastingTime: 0.3
+  m_ShootCastingTime: 0
   m_MaxShootDistance: 50
+  crosshairAnim: {fileID: 3524844319017834742}
   m_CorpseDetectionDistance: 5
-  m_ButtonDetectionDistance: 10
-  m_WeakPointDetectionDistance: 20
-  m_OrbDetectionDistance: 20
-  m_ShootNoise: 50
+  m_ButtonDetectionDistance: 15
+  m_TrapDetectionDistance: 5
+  m_WeakPointDetectionDistance: 15
+  m_OrbDetectionDistance: 15
+  m_ShootNoise: 20
   m_IsPlayerShooting: 0
 --- !u!114 &84312683
 MonoBehaviour:
@@ -776,8 +799,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3606897847344802559}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 3.22, z: 0}
-  m_LocalScale: {x: 5, y: 6, z: 5}
+  m_LocalPosition: {x: 0, y: 9.32, z: 0}
+  m_LocalScale: {x: 4, y: 4.5, z: 4}
   m_Children: []
   m_Father: {fileID: 3456542924278478863}
   m_RootOrder: 3
