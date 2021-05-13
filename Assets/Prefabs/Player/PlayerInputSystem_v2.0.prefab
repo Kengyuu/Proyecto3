@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 6654022584197075666}
   - component: {fileID: 84312683}
   - component: {fileID: 4013381784687075054}
+  - component: {fileID: 6857373135983297485}
   m_Layer: 8
   m_Name: PlayerInputSystem_v2.0
   m_TagString: Player
@@ -676,6 +677,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.5018702, z: 1}
   m_Center: {x: 0, y: 0.7509351, z: 0}
+--- !u!114 &6857373135983297485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3456542924278478860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37cb1d3f25a8bde44b22757425f79631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShootLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_TrapDetectionDistance: 5
 --- !u!1 &3456542924520641539
 GameObject:
   m_ObjectHideFlags: 0

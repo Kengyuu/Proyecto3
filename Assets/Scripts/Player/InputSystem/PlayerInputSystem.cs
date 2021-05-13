@@ -59,6 +59,14 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""EnableTrap"",
+                    ""type"": ""Button"",
+                    ""id"": ""39645a81-ae8d-4b62-b24b-1d592566c018"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""3202d8a1-1462-4ee2-a10e-03284b14797d"",
@@ -363,6 +371,28 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""action"": ""SpecialAbility_1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a643954-d5dc-4561-8202-6695e4321fc8"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableTrap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b76c86ee-c0a7-4ce6-af83-de42593f46af"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableTrap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -376,6 +406,7 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Run = m_Gameplay.FindAction("Run", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_EnableTrap = m_Gameplay.FindAction("EnableTrap", throwIfNotFound: true);
         m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
         m_Gameplay_Shoot = m_Gameplay.FindAction("Shoot", throwIfNotFound: true);
         m_Gameplay_Map = m_Gameplay.FindAction("Map", throwIfNotFound: true);
@@ -435,6 +466,7 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Run;
     private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_EnableTrap;
     private readonly InputAction m_Gameplay_Dash;
     private readonly InputAction m_Gameplay_Shoot;
     private readonly InputAction m_Gameplay_Map;
@@ -449,6 +481,7 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Run => m_Wrapper.m_Gameplay_Run;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @EnableTrap => m_Wrapper.m_Gameplay_EnableTrap;
         public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
         public InputAction @Shoot => m_Wrapper.m_Gameplay_Shoot;
         public InputAction @Map => m_Wrapper.m_Gameplay_Map;
@@ -478,6 +511,9 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @EnableTrap.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEnableTrap;
+                @EnableTrap.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEnableTrap;
+                @EnableTrap.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEnableTrap;
                 @Dash.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
@@ -512,6 +548,9 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @EnableTrap.started += instance.OnEnableTrap;
+                @EnableTrap.performed += instance.OnEnableTrap;
+                @EnableTrap.canceled += instance.OnEnableTrap;
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
@@ -538,6 +577,7 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnEnableTrap(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);

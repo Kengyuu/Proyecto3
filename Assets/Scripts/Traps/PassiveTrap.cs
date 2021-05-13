@@ -67,7 +67,7 @@ public class PassiveTrap : MonoBehaviour
         Debug.Log("Reenabling");
         if (m_TrapCanBeEnabled)
         {
-            
+            gameObject.tag = "PasiveTrap";
             m_TrapActive = true;
             GetComponent<MeshRenderer>().material = originalMaterial;
            // gameObject.tag = "PasiveTrap";

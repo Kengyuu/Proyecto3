@@ -44,18 +44,18 @@ public class PlayerShoot : MonoBehaviour
 
     }
 
-/*    private void StateChanged()
-    {
-        switch (GM.gameState)
+    /*    private void StateChanged()
         {
-            case GameState.MAP:
-                m_PlayerCanShoot = false;
-                break;
-            case GameState.GAME:
-                m_PlayerCanShoot = true;
-                break;
-        }
-    }*/
+            switch (GM.gameState)
+            {
+                case GameState.MAP:
+                    m_PlayerCanShoot = false;
+                    break;
+                case GameState.GAME:
+                    m_PlayerCanShoot = true;
+                    break;
+            }
+        }*/
 
     // Update is called once per frame
     void Update()
@@ -91,7 +91,7 @@ public class PlayerShoot : MonoBehaviour
             switch (tag)
             {
                 case "Corpse":
-                    if(l_CurrentDistance < m_CorpseDetectionDistance)
+                    if (l_CurrentDistance < m_CorpseDetectionDistance)
                     {
                         //Debug.Log($"Cadáver a distancia adecuada: {l_CurrentDistance}");
                         hit.transform.gameObject.SetActive(false);
@@ -108,13 +108,13 @@ public class PlayerShoot : MonoBehaviour
                         hit.transform.GetComponent<ActiveTrap>().EnableTrap();
                     }
                     break;
-                case "TrapDeactivated":
+                /*case "TrapDeactivated":
                     if (l_CurrentDistance < m_TrapDetectionDistance)
                     {
                         //Debug.Log($"Trampa a distancia adecuada: {l_CurrentDistance}");
                         hit.transform.GetComponent<PassiveTrap>().EnableTrap();
                     }
-                    break;
+                    break;*/
                 case "WeakPoint":
                     if (l_CurrentDistance < m_WeakPointDetectionDistance)
                     {
@@ -136,7 +136,7 @@ public class PlayerShoot : MonoBehaviour
                 case "HideOrb":
                     if (l_CurrentDistance < m_OrbDetectionDistance)
                     {
-                       // hit.collider.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+                        // hit.collider.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                     }
@@ -149,7 +149,7 @@ public class PlayerShoot : MonoBehaviour
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_TrapSearcher>().alert = true;
                     }
-            
+
                     break;
                 case "AttackOrb":
                     if (l_CurrentDistance < m_OrbDetectionDistance)
@@ -160,9 +160,9 @@ public class PlayerShoot : MonoBehaviour
                     }
                     break;
             }
-            
+
         }
-       
+
         GM.PlayerNoise(m_ShootNoise);
         ResetShoot();
     }
@@ -181,74 +181,5 @@ public class PlayerShoot : MonoBehaviour
     {
         m_IsPlayerShooting = false;
     }
-
-    /*private void CheckShootingCollisions()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
-        {
-            string tag = hit.collider.transform.tag;
-            float l_CurrentDistance = Vector3.Distance(hit.transform.position, transform.position);
-            bool l_InRange = false;
-            switch (tag)
-            {
-                case "Corpse":
-                    if (l_CurrentDistance < m_CorpseDetectionDistance)
-                    {
-                        hit.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-                        l_InRange = true;
-                    }
-                    break;
-                case "Button":
-                    if (l_CurrentDistance < m_ButtonDetectionDistance)
-                    {
-                        hit.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-                        l_InRange = true;
-                    }
-                    break;
-                case "WeakPoint":
-                    if (l_CurrentDistance < m_WeakPointDetectionDistance)
-                    {
-                        hit.collider.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-                        l_InRange = true;
-                    }
-                    break;
-
-                case "CorpseOrb":
-                    if (l_CurrentDistance < m_OrbDetectionDistance)
-                    {
-                       
-                        l_InRange = true;
-                    }
-                    break;
-                case "HideOrb":
-                    if (l_CurrentDistance < m_OrbDetectionDistance)
-                    {
-                        
-                        l_InRange = true;
-                    }
-                    break;
-                case "TrapOrb":
-                    if (l_CurrentDistance < m_OrbDetectionDistance)
-                    {
-                        
-                        l_InRange = true;
-                    }
-                    break;
-                case "AttackOrb":
-                    if (l_CurrentDistance < m_OrbDetectionDistance)
-                    {
-
-                        l_InRange = true;
-                    }
-                    break;
-            }
-
-            if (l_InRange && m_PlayerMovement.m_InputSystem.Gameplay.Shoot.triggered && !m_IsPlayerShooting)
-            {
-                StartCasting();
-            }
-        }
-    }*/
 
 }
