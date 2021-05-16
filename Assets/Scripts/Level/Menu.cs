@@ -82,19 +82,19 @@ public class Menu : MonoBehaviour
 	public void StartGame()
 	{
 		//start game scene
-		if(GM.m_GamesPlayed == 0)
+		/*if(GM.m_GamesPlayed == 0)
         {
-			Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
-			GM.SetGameState(GameState.GAME);
-			Initiate.Fade(GM.gameState.ToString(), Color.black, 2f);
+			
 		}
         else
         {
 			Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando escena de modificadores");
 			GM.SetGameState(GameState.MODIFIERS);
 			Initiate.Fade("MODIFIERS", Color.black, 2f);
-		}
-
+		}*/
+		Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
+		GM.SetGameState(GameState.GAME);
+		Initiate.Fade(GM.gameState.ToString(), Color.black, 2f);
 		
 	}
 

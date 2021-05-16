@@ -36,19 +36,20 @@ public class GameObjectSpawner : MonoBehaviour
         int spawnPosition = -1;
         maxDeadBodysMap = (int)m_ScoreManager.GetRemainingCorpses();
         
-        /*if(GM.m_GamesPlayed == 0)
+        if(GM.m_GamesPlayed == 1)
         {
             spawnPosition = 11;
-            playerSpawnRoom = 2;
+            //playerSpawnRoom = 3;
+            Debug.Log("Sí funciono");
         }
         else
-        {*/
+        {
             spawnPosition = Random.Range(0, deadBodyContainer.GetComponent<RoomSpawner>().spawners.Count);
-            playerSpawnRoom = SpawnPlayer();
-        //}
+            
+        }
 
         
-        
+        playerSpawnRoom = SpawnPlayer();
         
 
         SpawnEnemy();
@@ -73,33 +74,13 @@ public class GameObjectSpawner : MonoBehaviour
         }
 
         spawnersUsed.Add(spawnPosition);
+        deadBodys[spawnPosition].SetActive(true);
+        currentBodysSpawned++;
         //Esto crea una cantidad de cadáveres pasada desde el editor en el objeto GameObjectSpawner
 
-        SpawnBodys(maxDeadBodysMap, gameObject);
+        SpawnBodys(maxDeadBodysMap - 1, gameObject);
         m_ScoreManager.SetRemainingCorpses(maxDeadBodysMap);
 
-
-    }
-
-    void Update()
-    {
-        Debug.Log(spawnersUsed.Count + "Más te vale que funciones");
-        // Test Spawn New Bodys
-        if(Input.GetMouseButtonDown(0))
-        {
-            /*currentBodysSpawned = 10;
-            spawnersUsed.Clear();
-            for (int j = 0; j < roomTags.Count; j++)
-            {
-                roomsController.currentSpawnersUsed[j] = 0;
-            }
-            SpawnBodys(maxDeadBodysMap - currentBodysSpawned);*/
-            /*if(spawnersUsed.Count > 0)
-            {
-                ClearBodys(spawnersUsed[0]);
-            }*/
-            
-        }
 
     }
 
@@ -130,10 +111,16 @@ public class GameObjectSpawner : MonoBehaviour
     {
         // No queremos jugador que el jugador spawnee en la sala central. Por tanto mientras la sala random sea 5 (sala central)
         // seguirá generando números. 
+        if(GM.m_GamesPlayed == 1)
+        {
+            playerSpawnRoom = 3;
+        }
+        else
+        {
+            playerSpawnRoom = Random.Range(1, 5);
 
-        playerSpawnRoom = Random.Range(1, 5);
-
-        //Esto es para que spawnee el jugador
+            //Esto es para que spawnee el jugador
+        }
 
         for (int i = 0; i < roomsController.rooms.Count; i++)
         {
@@ -144,9 +131,9 @@ public class GameObjectSpawner : MonoBehaviour
                 GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().transform.position = roomsController.rooms[i].transform.position;
                 GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().transform.rotation = roomsController.rooms[i].transform.rotation;
                 GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().m_CharacterController.enabled = true;
-                
             }
         }
+        
         //Debug.Log(playerSpawnRoom);
         return playerSpawnRoom;
     }
@@ -165,18 +152,13 @@ public class GameObjectSpawner : MonoBehaviour
         {
             if(i == enemySpawnRoom - 1)
             {
-                // Instantiate(enemy, roomsController.rooms[i].transform.position, Quaternion.identity);
                 
                 GameManager.Instance.GetEnemy().GetComponent<NavMeshAgent>().Warp(roomsController.rooms[i].transform.position);
                
             }
         }
-        //Debug.Log(enemySpawnRoom + " enemy");
-        //GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy_BLACKBOARD>().remainingCorpses = maxDeadBodysMap;
     }
 
-    //numberBodys = maxDeadBodysMap - currentBodysSpawned;
-    // First time --> currentBodysSpawned = 0, so --> numberBodys = maxDeadBodysMap
     public void SpawnBodys(int numberBodies, GameObject type)
     {
         int spawnPosition = -1;
