@@ -21,27 +21,41 @@ public class GameObjectSpawner : MonoBehaviour
     List<int> spawnersUsed = new List<int>();
 
     private ScoreManager m_ScoreManager;
+
+    private GameManager GM;
     
     // Start is called before the first frame update
     void Start()
     {
-
+        GM = GameManager.Instance;
         m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         foreach (GameObject room in roomsController.rooms)
         {
             roomTags.Add(room.tag);
         }
-
+        int spawnPosition = -1;
         maxDeadBodysMap = (int)m_ScoreManager.GetRemainingCorpses();
         
+        /*if(GM.m_GamesPlayed == 0)
+        {
+            spawnPosition = 11;
+            playerSpawnRoom = 2;
+        }
+        else
+        {*/
+            spawnPosition = Random.Range(0, deadBodyContainer.GetComponent<RoomSpawner>().spawners.Count);
+            playerSpawnRoom = SpawnPlayer();
+        //}
 
-        playerSpawnRoom = SpawnPlayer();
+        
+        
+        
 
         SpawnEnemy();
 
         //Esto recoge todos los spawns posibles y crea un cadáver en unos de esos spawns. Los spawns los coge de una lista en RoomSpawner
 
-        int spawnPosition = Random.Range(0, deadBodyContainer.GetComponent<RoomSpawner>().spawners.Count);
+        
 
         //Esto comprueba en qué sala está el tag, para añadir 1 a la cantidad de spawners usados en la sala que haya tocado
 

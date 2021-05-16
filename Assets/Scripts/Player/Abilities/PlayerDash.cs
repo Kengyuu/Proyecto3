@@ -94,6 +94,10 @@ public class PlayerDash : MonoBehaviour
         m_DashEvadeAttacks = true;
         //Invoke("ResetDash", m_DashMaxCooldown);
         m_DashDirection = m_PlayerMovement.m_InputSystem.Gameplay.Move.ReadValue<Vector2>();
+        if(m_DashDirection.magnitude == 0)
+        {
+            m_DashDirection.y = 1;
+        }
         Vector3 l_DirectionCorrected = new Vector3(m_DashDirection.x, 0f, m_DashDirection.y);
         l_DirectionCorrected = transform.TransformVector(l_DirectionCorrected);
         m_PlayerMovement.AddForceX(l_DirectionCorrected, m_DashForce);
