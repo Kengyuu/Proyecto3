@@ -10,6 +10,8 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
     Orb_Blackboard blackboard;
     ScoreManager m_ScoreManager;
 
+    public bool killed = false;
+
     public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY };
     public State currentState;
 
@@ -56,6 +58,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
+                killed = false;
                 ReEnter();
                
                 break;
@@ -71,7 +74,8 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
         switch (currentState)
         {
             case State.NORMALBEHAVIOUR:
-                corpseSearch.Exit();        
+                corpseSearch.Exit();    
+                killed = true;    
                 break;
         }
 
@@ -81,6 +85,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
 
             case State.NORMALBEHAVIOUR:
                 corpseSearch.ReEnter();
+                killed = false;
                 break;
 
             case State.RETURNINGTOENEMY:

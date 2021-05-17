@@ -20,6 +20,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
     public bool alert = false;
     bool attacking = false;
     bool rotating = true;
+
+    GameManager GM;
     EnemyBehaviours behaviours;
     
 
@@ -34,6 +36,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     void OnEnable()
     {
+        GM = GameManager.Instance;
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
@@ -91,7 +94,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
                      break;
                  }
 
-                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer) 
+                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
                 {
                     ChangeState(State.ATTACKINGPLAYER);
                     break;
@@ -160,7 +164,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
                       ChangeState(State.WANDERING);
                   }
 
-                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
+                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
                  {
                     
                     ChangeState(State.ATTACKINGPLAYER);
@@ -178,7 +183,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
             case State.ALERT:
 
                 Rotate();
-                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
+                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
                 {
                     //Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
@@ -264,7 +270,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 {
                     target.tag = "PickedCorpse";
                 }
-              
+                target.GetComponent<CorpseAbsortion>().AbsorbParticles(blackboard.cooldownToGrabCorpse, gameObject);
                 break;
 
             case State.RETURNINGTOENEMY:

@@ -93,12 +93,15 @@ public class PlayerShoot : MonoBehaviour
                 case "Corpse":
                     if (l_CurrentDistance < m_CorpseDetectionDistance)
                     {
-                        hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles();
+                        //AQUÍ PARA LLAMAR AL SISTEMA DE PARTÍCULAS
+                        hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2f, gameObject);
+
+                        
                         //Debug.Log($"Cadáver a distancia adecuada: {l_CurrentDistance}");
-                        hit.transform.gameObject.SetActive(false);
+                        //hit.transform.gameObject.SetActive(false);
                         m_PlayerController.AddCorpse();
                         OrbEvents.current.ManageOrbs();
-                        GM.m_GameObjectSpawner.ClearBodys(hit.collider.GetComponent<CorpseControl>().spawnPosition);
+                        //GM.m_GameObjectSpawner.ClearBodys(hit.collider.GetComponent<CorpseControl>().spawnPosition);
                         //m_ScoreManager.RemoveRemainingCorpse();
                     }
                     break;

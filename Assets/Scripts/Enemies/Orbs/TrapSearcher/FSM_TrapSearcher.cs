@@ -23,6 +23,8 @@ public class FSM_TrapSearcher : MonoBehaviour
     bool rotating = true;
     public bool alert = false;
 
+    GameManager GM;
+
     [Header("State")]
     public State currentState;
     public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP, ALERT, ATTACKINGPLAYER };
@@ -30,7 +32,7 @@ public class FSM_TrapSearcher : MonoBehaviour
 
     void OnEnable()
     {
-        
+        GM = GameManager.Instance;
         blackboard = GetComponent<Orb_Blackboard>();
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard.SetOrbHealth(3);
@@ -84,7 +86,8 @@ public class FSM_TrapSearcher : MonoBehaviour
                     break;
                 }
 
-                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
+                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
                 {
                     //Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
@@ -109,7 +112,8 @@ public class FSM_TrapSearcher : MonoBehaviour
                     break;
                 }
 
-                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
+                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
                 {
                    // Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
@@ -143,7 +147,8 @@ public class FSM_TrapSearcher : MonoBehaviour
             case State.ALERT:
 
                 Rotate();
-                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
+                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
                 {
                     
                     ChangeState(State.ATTACKINGPLAYER);
