@@ -93,6 +93,7 @@ public class PlayerShoot : MonoBehaviour
                 case "Corpse":
                     if (l_CurrentDistance < m_CorpseDetectionDistance)
                     {
+                        hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles();
                         //Debug.Log($"Cadáver a distancia adecuada: {l_CurrentDistance}");
                         hit.transform.gameObject.SetActive(false);
                         m_PlayerController.AddCorpse();
