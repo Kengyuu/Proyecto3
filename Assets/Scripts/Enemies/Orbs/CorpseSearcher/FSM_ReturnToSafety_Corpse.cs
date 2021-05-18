@@ -109,10 +109,9 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
 
     void Spawn()
     {
+        corpseSearch.m_Laser.enabled = false;
         OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
         blackboard.navMesh.isStopped = false;
-        corpseSearch.m_Laser.enabled = false;
-        
         corpseSearch.enabled = true;
     }
 

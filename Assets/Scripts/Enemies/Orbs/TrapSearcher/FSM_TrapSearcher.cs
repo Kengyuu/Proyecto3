@@ -145,17 +145,8 @@ public class FSM_TrapSearcher : MonoBehaviour
 
 
             case State.ALERT:
-
                 Rotate();
-                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
-                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
-                {
-                    
-                    ChangeState(State.ATTACKINGPLAYER);
-                    break;
-                }
-                else StartCoroutine(StayAlert());
-
+                Invoke("StayAlert", 1);
                 break;
 
 
@@ -274,10 +265,17 @@ public class FSM_TrapSearcher : MonoBehaviour
 
     }
 
-    IEnumerator StayAlert()
+    void StayAlert()
     {
-        yield return new WaitForSeconds(2);
-        ChangeState(State.WANDERING);
+        
+
+        if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
+                   && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
+        {
+            //Debug.Log("aTTACKING");
+            ChangeState(State.ATTACKINGPLAYER);
+        }
+        else ChangeState(State.WANDERING);
     }
 
     void Rotate()

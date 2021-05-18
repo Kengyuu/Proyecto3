@@ -24,6 +24,8 @@ public class OrbSpawner : MonoBehaviour
         OrbEvents.current.spawnOrb += SpawnOrbs;
         OrbEvents.current.respawnOrb += RespawnOrb;
         OrbEvents.current.ManageOrbs();
+        secondOrb.SetActive(false);
+        thirdOrb.SetActive(false);
 
     }
     private void OnDestroy()

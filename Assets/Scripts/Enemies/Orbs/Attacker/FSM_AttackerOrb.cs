@@ -21,6 +21,8 @@ public class FSM_AttackerOrb : MonoBehaviour
     private Orb_Blackboard blackboard;
     public LayerMask mask;
 
+    GameManager GM;
+
     [Header("State")]
     public State currentState;
     public enum State { INITIAL, WANDERING, ALERT ,  ATTACKINGPLAYER};
@@ -29,6 +31,7 @@ public class FSM_AttackerOrb : MonoBehaviour
    
     void OnEnable()
     {
+        GM = GameManager.Instance;
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
@@ -83,15 +86,8 @@ public class FSM_AttackerOrb : MonoBehaviour
 
 
             case State.ALERT:
-
                 Rotate();
-                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
-                {
-                    //Debug.Log("aTTACKING");
-                    ChangeState(State.ATTACKINGPLAYER);
-                    break;
-                }
-                else StartCoroutine(StayAlert());
+                Invoke("StayAlert", 1);
                 break;
 
 
@@ -195,10 +191,16 @@ public class FSM_AttackerOrb : MonoBehaviour
         
     }
 
-    IEnumerator StayAlert()
+    void StayAlert()
     {
-        yield return new WaitForSeconds(2);
-        ChangeState(State.WANDERING);
+
+        if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
+                   && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
+        {
+            //Debug.Log("aTTACKING");
+            ChangeState(State.ATTACKINGPLAYER);
+        }
+        else ChangeState(State.WANDERING);
     }
 
     void Rotate()

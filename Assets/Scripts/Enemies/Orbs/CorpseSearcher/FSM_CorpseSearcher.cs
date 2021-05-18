@@ -76,6 +76,12 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
                 blackboard.navMesh.SetDestination(target.transform.position);
 
+                if (alert)
+                {
+                    ChangeState(State.ALERT);
+                    break;
+                }
+
                 if (blackboard.orbCorpseStored != null)
                 {
                     ChangeState(State.RETURNINGTOENEMY);
@@ -103,28 +109,26 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
                 
 
-                if (alert)
-                {
-                    ChangeState(State.ALERT);
-                    break;
-                }
+               
                 break;
 
 
 
 
             case State.GOINGTOCORPSE:
-                if (target.tag != "Corpse" || !target.activeSelf)
-                {
-                    ChangeState(State.WANDERING);
-                    break;
-                }
 
                 if (alert)
                 {
                     ChangeState(State.ALERT);
                     break;
                 }
+                if (target.tag != "Corpse" || !target.activeSelf)
+                {
+                    ChangeState(State.WANDERING);
+                    break;
+                }
+
+               
 
                 else
                 {
@@ -158,7 +162,13 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
 
             case State.RETURNINGTOENEMY:
-                  target = behaviours.ReturnToEnemy();
+
+                if (alert)
+                {
+                    ChangeState(State.ALERT);
+                }
+
+                target = behaviours.ReturnToEnemy();
                   if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance + 1)
                   {
                       ChangeState(State.WANDERING);
@@ -171,26 +181,15 @@ public class FSM_CorpseSearcher : MonoBehaviour
                     ChangeState(State.ATTACKINGPLAYER);
                  }
 
-                if (alert)
-                {
-                    ChangeState(State.ALERT);
-                }
+               
 
                 break;
 
 
 
             case State.ALERT:
-
                 Rotate();
-                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
-                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
-                {
-                    //Debug.Log("aTTACKING");
-                    ChangeState(State.ATTACKINGPLAYER);
-                }
-                else StartCoroutine(StayAlert());
-
+                Invoke("StayAlert", 1);
                 break;
 
 
@@ -326,11 +325,17 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     }
 
-    IEnumerator StayAlert()
+    void StayAlert()
     {
-        Rotate();
-        yield return new WaitForSeconds(2);
-        ChangeState(State.WANDERING);
+        Debug.Log("return to monke");
+
+        if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
+                   && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
+        {
+            //Debug.Log("aTTACKING");
+            ChangeState(State.ATTACKINGPLAYER);
+        }
+       else ChangeState(State.WANDERING);
     }
 
     void Rotate()
