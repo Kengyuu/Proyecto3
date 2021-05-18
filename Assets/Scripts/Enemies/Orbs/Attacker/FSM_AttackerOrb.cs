@@ -22,6 +22,7 @@ public class FSM_AttackerOrb : MonoBehaviour
     public LayerMask mask;
 
     GameManager GM;
+    public ParticleSystem particles;
 
     [Header("State")]
     public State currentState;
@@ -157,6 +158,33 @@ public class FSM_AttackerOrb : MonoBehaviour
 
     //ATTACK FUNCTIONS
 
+    public void ChangeParticleColor()
+    {
+        if (blackboard.GetOrbHealth() == 3)
+        {
+            var main = particles.main;
+            Color32 color = new Color32(212, 62, 55, 255);
+
+            main.startColor = (Color)color;
+
+        }
+        if (blackboard.GetOrbHealth() == 2)
+        {
+            var main = particles.main;
+            Color32 color = new Color32(128, 34, 30, 120);
+
+            main.startColor = (Color)color;
+
+        }
+        if (blackboard.GetOrbHealth() == 1)
+        {
+            var main = particles.main;
+            Color32 color = new Color32(56, 15, 13, 50);
+
+            main.startColor = (Color)color;
+
+        }
+    }
     void TriggerAttack()
     {
         if (attacking)

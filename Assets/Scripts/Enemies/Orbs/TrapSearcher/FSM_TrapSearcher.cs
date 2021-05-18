@@ -25,6 +25,8 @@ public class FSM_TrapSearcher : MonoBehaviour
 
     GameManager GM;
 
+    public ParticleSystem particles;
+
     [Header("State")]
     public State currentState;
     public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP, ALERT, ATTACKINGPLAYER };
@@ -231,6 +233,34 @@ public class FSM_TrapSearcher : MonoBehaviour
 
 
     //ATTACK FUNCTIONS
+
+    public void ChangeParticleColor()
+    {
+        if (blackboard.GetOrbHealth() == 3)
+        {
+            var main = particles.main;
+            Color32 color = new Color32(195, 38, 158, 255);
+
+            main.startColor = (Color)color;
+
+        }
+        if (blackboard.GetOrbHealth() == 2)
+        {
+            var main = particles.main;
+            Color32 color = new Color32(118, 26, 96, 120);
+
+            main.startColor = (Color)color;
+
+        }
+        if (blackboard.GetOrbHealth() == 1)
+        {
+            var main = particles.main;
+            Color32 color = new Color32(53, 12, 44, 50);
+
+            main.startColor = (Color)color;
+
+        }
+    }
     void TriggerAttack()
     {
         if (attacking)

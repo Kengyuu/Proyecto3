@@ -133,6 +133,7 @@ public class PlayerShoot : MonoBehaviour
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_CorpseSearcher>().alert = true;
+                        hit.collider.GetComponent<FSM_CorpseSearcher>().ChangeParticleColor();
 
                     }
                     break;

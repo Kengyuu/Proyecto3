@@ -104,6 +104,8 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
     void Spawn()
     {
         trapSearch.m_Laser.enabled = false;
+        blackboard.SetOrbHealth(blackboard.m_maxLife);
+        trapSearch.ChangeParticleColor();
         OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
         blackboard.navMesh.isStopped = false;
        

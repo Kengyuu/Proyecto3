@@ -23,6 +23,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     GameManager GM;
     EnemyBehaviours behaviours;
+
+    public ParticleSystem particles;
     
 
     private Orb_Blackboard blackboard;
@@ -62,7 +64,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     
     void Update()
     {
-
+        
         switch (currentState)
         {
             case State.INITIAL:
@@ -215,6 +217,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
         }
     }
 
+
+
     void ChangeState(State newState)
     {
 
@@ -291,6 +295,34 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     //ATTACK FUNCTIONS
 
+    public void ChangeParticleColor()
+    {
+        if (blackboard.GetOrbHealth() == 3)
+        {
+            var main = particles.main;
+            Color32 color = new Color32(98, 204, 70, 255);
+
+            main.startColor = (Color)color;
+           
+        }
+        if (blackboard.GetOrbHealth() == 2)
+        {
+            var main = particles.main;
+            Color32 color = new Color32(54, 121, 35, 120);
+           
+            main.startColor = (Color)color;
+            
+        }
+        if (blackboard.GetOrbHealth() == 1)
+        {
+            var main = particles.main;
+            Color32 color = new Color32(28, 58, 20, 50);
+
+            main.startColor = (Color)color;
+            
+        }
+    }
+
     void TriggerAttack()
     {
         if (attacking)
@@ -327,7 +359,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     void StayAlert()
     {
-        Debug.Log("return to monke");
+        
 
         if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
