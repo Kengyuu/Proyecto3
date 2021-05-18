@@ -64,7 +64,7 @@ public class FSM_CorpseWander : MonoBehaviour
 
             case State.WANDERING:
                 behaviours.SearchPlayer(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer);
-                //enemy.SetDestination(target.transform.position);
+                enemy.SetDestination(target.transform.position);
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
                 if(corpse != null)
