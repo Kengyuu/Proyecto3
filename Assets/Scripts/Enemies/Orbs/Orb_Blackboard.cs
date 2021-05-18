@@ -37,6 +37,7 @@ public class Orb_Blackboard : MonoBehaviour
     public void TakeDamage(int damage)
     {
         m_Life -= damage;
+        OrbAuraLight();
     }
 
 
@@ -48,11 +49,16 @@ public class Orb_Blackboard : MonoBehaviour
     public void SetOrbHealth(int health)
     {
         m_Life = health;
+        OrbAuraLight();
     }
 
     public void OrbAuraLight()
     {
+        ParticleSystem.ColorOverLifetimeModule colf = particleSystem.colorOverLifetime;
+        ParticleSystem.MainModule main = particleSystem.main;
 
+        colf.color = new Color(main.startColor.color.r, main.startColor.color.g, main.startColor.color.b, (GetOrbHealth()/m_maxLife) * 0.7f );
+        Debug.Log(colf.color.color.a);
     }
 }
 

@@ -74,7 +74,7 @@ public class CorpseAbsortion : MonoBehaviour {
                     ParticleSystem.Particle particle = particles[i];
                     Vector3 v1 = system.transform.TransformPoint(particle.position);
                     Vector3 v2 = Target.transform.position;
-                    Vector3 tarPosi = (v2 - v1) *  (particle.remainingLifetime / particle.startLifetime);
+                    Vector3 tarPosi = (v1 - v2) *  (particle.remainingLifetime / particle.startLifetime);
                     particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
                     particles[i] = particle;
                     
