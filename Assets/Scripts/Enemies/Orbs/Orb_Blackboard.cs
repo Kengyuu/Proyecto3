@@ -11,6 +11,8 @@ public class Orb_Blackboard : MonoBehaviour
     public float respawnTime;
     public NavMeshAgent navMesh;
 
+    public ParticleSystem particleSystem;
+
     [Header("CorpseSearcher")]
     public float closeEnoughCorpseRadius = 3;
     public float cooldownToGrabCorpse = 2;
@@ -48,6 +50,10 @@ public class Orb_Blackboard : MonoBehaviour
         m_Life = health;
     }
 
+    public void OrbAuraLight()
+    {
+
+    }
 }
 
 
