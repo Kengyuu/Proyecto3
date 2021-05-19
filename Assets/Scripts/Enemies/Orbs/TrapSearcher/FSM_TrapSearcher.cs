@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class FSM_TrapSearcher : MonoBehaviour
@@ -13,6 +14,7 @@ public class FSM_TrapSearcher : MonoBehaviour
     private Orb_Blackboard blackboard;
     EnemyBehaviours behaviours;
     GameObject trap;
+    public Image icon;
 
     [Header("Attack")]
     public List<Transform> rayPoints;

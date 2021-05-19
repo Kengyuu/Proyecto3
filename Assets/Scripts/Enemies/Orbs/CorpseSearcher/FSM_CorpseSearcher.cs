@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class FSM_CorpseSearcher : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     public GameObject corpse;
     public Transform child;
     public LayerMask mask;
+    public Image icon;
 
     [Header("Attack")]
     public List<Transform> rayPoints;

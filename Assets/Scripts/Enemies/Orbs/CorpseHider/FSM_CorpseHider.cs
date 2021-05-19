@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class FSM_CorpseHider : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class FSM_CorpseHider : MonoBehaviour
     public GameObject target; 
     private Orb_Blackboard blackboard;
     EnemyBehaviours behaviours;
+    public Image icon;
 
     [Header("State")]
     public State currentState;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Orb_Blackboard : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Orb_Blackboard : MonoBehaviour
     public int m_maxLife;
     public float respawnTime;
     public NavMeshAgent navMesh;
-
+    public Sprite icon;
     public ParticleSystem particleSystem;
 
     [Header("CorpseSearcher")]

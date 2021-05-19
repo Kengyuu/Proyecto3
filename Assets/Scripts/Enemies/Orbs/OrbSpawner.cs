@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
@@ -11,6 +12,9 @@ public class OrbSpawner : MonoBehaviour
     public GameObject CorpseOrb;
     public GameObject secondOrb;
     public GameObject thirdOrb;
+
+    public Image second;
+    public Image third;
 
     private Transform spawnPosition;
 
@@ -48,7 +52,9 @@ public class OrbSpawner : MonoBehaviour
 
             }
             secondOrb.SetActive(false);
+            second.gameObject.SetActive(false);
             thirdOrb.SetActive(false);
+            third.gameObject.SetActive(false);
 
         }
 
@@ -58,11 +64,12 @@ public class OrbSpawner : MonoBehaviour
             if (!secondOrb.activeSelf)
             {
                 secondOrb.SetActive(true);
+                second.gameObject.SetActive(true);
                 secondOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 secondOrb.GetComponent<NavMeshAgent>().enabled = true;
 
             }
-
+            third.gameObject.SetActive(false);
             thirdOrb.SetActive(false);
         }
 
@@ -72,6 +79,7 @@ public class OrbSpawner : MonoBehaviour
             if (!thirdOrb.activeSelf)
             {
                 thirdOrb.SetActive(true);
+                third.gameObject.SetActive(true);
                 thirdOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 thirdOrb.GetComponent<NavMeshAgent>().enabled = true;
 
@@ -93,10 +101,12 @@ public class OrbSpawner : MonoBehaviour
        GameObject randomSecondOrb = orbs[Random.Range(0, orbs.Count)];
         orbs.Remove(randomSecondOrb);
         secondOrb = randomSecondOrb;
+        second.sprite = secondOrb.GetComponent<Orb_Blackboard>().icon;
 
         GameObject randomThirdOrb = orbs[Random.Range(0, orbs.Count)];
         orbs.Remove(randomThirdOrb);
         thirdOrb = randomThirdOrb;
+        third.sprite = thirdOrb.GetComponent<Orb_Blackboard>().icon;
     } 
 
     

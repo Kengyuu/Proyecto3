@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FSM_AttackerOrb : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class FSM_AttackerOrb : MonoBehaviour
     public bool alert = false;
     bool attacking = false;
     bool rotating = true;
+    public Image icon;
 
     [Header("Target")]
     public GameObject target;
