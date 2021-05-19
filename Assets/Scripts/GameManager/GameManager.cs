@@ -19,6 +19,7 @@ public enum GameState
 public delegate void OnStateChangeHandler();
 public delegate void OnPlayerMakesNoise(float intensity);
 public delegate void MofidiersHandler();
+public delegate void HealthController(float health);
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     public event OnStateChangeHandler OnStateChange;
     public event OnPlayerMakesNoise OnPlayerNoise;
     public event MofidiersHandler OnMofidiersHandler;
+    public event HealthController HealthController;
     public GameState gameState { get; private set; }
 
     //[Header("Debug")]
@@ -86,6 +88,10 @@ public class GameManager : MonoBehaviour
     {
         this.gameState = state;
         OnStateChange?.Invoke();
+    }
+    public void ChangeHealth(float health)
+    {
+        HealthController?.Invoke(health);
     }
 
     public void PlayerNoise(float intensity)

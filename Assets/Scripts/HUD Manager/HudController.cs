@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HudController : MonoBehaviour
 {
     private GameManager GM;
 
-    
+    public Image[] healthIcons;
     
 
 
@@ -16,7 +17,7 @@ public class HudController : MonoBehaviour
     public TextMeshProUGUI m_PlayerCorpses;
     public TextMeshProUGUI m_EnemyCorpses;
     public TextMeshProUGUI m_RemainingCorpses;
-    public TextMeshProUGUI m_PlayerHP;
+    //public TextMeshProUGUI m_PlayerHP;
 
     [Header("Canvas Win/Lose")]
     public GameObject m_CanvasEnd;
@@ -25,7 +26,9 @@ public class HudController : MonoBehaviour
     private void Start()
     {
         DependencyInjector.GetDependency<IScoreManager>()
-        .scoreChangedDelegate += updateScore;
+        .scoreChangedDelegate += UpdateHUD;
+
+       
 
         if (GM == null) GM = GameManager.Instance;
 
@@ -41,7 +44,7 @@ public class HudController : MonoBehaviour
         m_PlayerCorpses.text = "Player Corpses: " + scoreManager.GetPlayerCorpses().ToString("0");
         m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.GetEnemyCorpses().ToString("0");
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
-        m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
+       // m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
 
 
     }
@@ -87,16 +90,50 @@ public class HudController : MonoBehaviour
     private void OnDestroy()
     {
         DependencyInjector.GetDependency<IScoreManager>()
-        .scoreChangedDelegate -= updateScore;
+        .scoreChangedDelegate -= UpdateHUD;
         GM.OnStateChange -= StateChanged;
     }
-    public void updateScore(IScoreManager scoreManager)
+    public void UpdateHUD(IScoreManager scoreManager)
     {
         m_PlayerCorpses.text = "Player Corpses: " + scoreManager.GetPlayerCorpses().ToString("0");
         m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.GetEnemyCorpses().ToString("0");
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
-        m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
+        //m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
         GM.UpdateModifiers();
+
+        UpdateHealth(scoreManager.GetPlayerHP());
+
+    }
+
+    public void UpdateHealth(float health)
+    {
+        switch (health)
+        {
+            case 3:
+                foreach (Image image in healthIcons)
+                {
+                    image.gameObject.SetActive(true);
+                }
+                break;
+            case 2:
+                healthIcons[0].gameObject.SetActive(false);
+                healthIcons[1].gameObject.SetActive(true);
+                healthIcons[2].gameObject.SetActive(true);
+                break;
+            case 1:
+                healthIcons[0].gameObject.SetActive(false);
+                healthIcons[1].gameObject.SetActive(false);
+                healthIcons[2].gameObject.SetActive(true);
+                break;
+
+            case 0:
+                foreach (Image image in healthIcons)
+                {
+                    image.gameObject.SetActive(false);
+                }
+                break;
+
+        }
     }
 
 
