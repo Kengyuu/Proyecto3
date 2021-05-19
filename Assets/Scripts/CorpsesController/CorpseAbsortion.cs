@@ -93,20 +93,24 @@ public class CorpseAbsortion : MonoBehaviour {
                     
                     ParticleSystem.Particle particle = particles[i];
                     Vector3 v1 = system.transform.TransformPoint(particle.position);
-                    Vector3 v2 = Target.transform.position;
+                    Vector3 v2 = Target.position;
                     Vector3 tarPosi = (v1 - v2) *  (particle.remainingLifetime / particle.startLifetime);
                     particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
-                    particles[i] = particle;
-                    if(Vector3.Distance(transform.TransformPoint( particles[i].position), Target.position) < 100f)
+                    
+                    if((transform.TransformPoint( particle.position) - Target.position).magnitude < 5)
                     {
                         Debug.Log("He entrado");
-                        particles[i].remainingLifetime = 0;
-                    }
-
-                    Debug.Log(transform.TransformPoint( particles[i].position));
+                        
+                        //particles[i].remainingLifetime = 0;
+                        particle.position = Target.position;
+                        Debug.Log(particle.position + " " + Target.position);
+                        particle.remainingLifetime = 0;
+                    } 
+                    particles[i] = particle;
+                    //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                     
                 }
-                //system.SetParticles(particles, count);
+                system.SetParticles(particles, count);
                 currentAbsorbTime += Time.deltaTime;
                 //currentAbsorbTime += Time.deltaTime;
                 
