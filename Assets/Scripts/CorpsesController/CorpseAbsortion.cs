@@ -15,7 +15,7 @@ public class CorpseAbsortion : MonoBehaviour {
     bool absorberStunned = false;
 
     private GameManager GM;
-	private static ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+	private static ParticleSystem.Particle[] particles = new ParticleSystem.Particle[200];
 
 	int count;
     void OnEnable()
@@ -26,12 +26,9 @@ public class CorpseAbsortion : MonoBehaviour {
 		if (system == null){
 			this.enabled = false;
 		}
-        if(auraSystem != null)
-        {
-            system.Stop();
+        system.Stop();
         //lightAuraSystem.Play();
-            auraSystem.Play();
-        }
+        auraSystem.Play();
     }
 	void Start() {
         GM = GameManager.Instance;
@@ -66,22 +63,32 @@ public class CorpseAbsortion : MonoBehaviour {
 
             if(!absorberStunned)
             {
-                system.gameObject.transform.forward = system.gameObject.transform.forward - Target.transform.forward;
+                ParticleSystem.ShapeModule edge = system.shape;
+                float distPartToTarget = (Target.position - edge.position).magnitude;
+                //edge.radius = distPartToTarget;
+                system.transform.LookAt(Target.transform.position, system.gameObject.transform.up);
+                currentAbsorbTime += Time.deltaTime;
+                //system.gameObject.transform.forward = (system.gameObject.transform.forward - Target.transform.forward).normalized;
+                
                 count = system.GetParticles(particles);
                 for (int i = 0; i < count; i++)
                 {
                     
-                    ParticleSystem.Particle particle = particles[i];
+                    /*ParticleSystem.Particle particle = particles[i];
                     Vector3 v1 = system.transform.TransformPoint(particle.position);
                     Vector3 v2 = Target.transform.position;
                     Vector3 tarPosi = (v1 - v2) *  (particle.remainingLifetime / particle.startLifetime);
                     particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
-                    particles[i] = particle;
+                    particles[i] = particle;*/
+                    if((particles[i].position - Target.position).magnitude < 0.1f)
+                    {
+                        particles[i].remainingLifetime = 0;
+                    }
                     
                 }
                 system.SetParticles(particles, count);
-                currentAbsorbTime += Time.deltaTime;
-
+                /*currentAbsorbTime += Time.deltaTime;*/
+                
             }
             else
             {
@@ -133,6 +140,7 @@ public class CorpseAbsortion : MonoBehaviour {
     public void StopAbsortion()
     {
         systemActive = false;
+        system.Clear();
         system.Stop();
         currentAbsorbTime = 0f;
         Target = null;
