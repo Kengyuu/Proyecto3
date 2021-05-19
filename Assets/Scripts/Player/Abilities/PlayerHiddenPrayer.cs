@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHiddenPrayer : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class PlayerHiddenPrayer : MonoBehaviour
     public LayerMask m_EnemyTracesLayerMask;
     public bool m_IsPlayerVisibleToEnemy = true;
     public bool m_AbilityOnCooldown = false;
+
+    public Image cooldownSlider;
+    public Image cloakIcon;
+    public Image traceIcon;
 
     [Header("Debug")]
     [SerializeField] bool Skill_1 = false;
@@ -56,18 +61,24 @@ public class PlayerHiddenPrayer : MonoBehaviour
             m_IsPlayerVisibleToEnemy = false;
             m_AbilityOnCooldown = true;
             Invoke("ResetAbilityAndStartCooldown", m_InvisibilityMaxTime);
+            cooldownSlider.fillAmount = 0;
         }
     }
 
     private void ResetAbilityAndStartCooldown()
     {
+        Debug.Log("Empezando cooldown");
         m_IsPlayerVisibleToEnemy = true;
+        
+        
+        
         Invoke("EnableAbility", m_HiddenPrayerCooldown);
         Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer, false);
     }
 
     private void EnableAbility()
     {
+        cooldownSlider.fillAmount = 1;
         m_AbilityOnCooldown = false;
         Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer);
     }
@@ -85,12 +96,14 @@ public class PlayerHiddenPrayer : MonoBehaviour
             {
                 //Debug.Log($"Habilidad 1 - Oraci�n Oculta DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
+                cloakIcon.gameObject.SetActive(false);
                 Skill_1 = false;
             }
             if (Skill_2)
             {
                 //Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 Skill_2 = false;
+                traceIcon.gameObject.SetActive(false);
             }
             return;
         }
@@ -100,6 +113,7 @@ public class PlayerHiddenPrayer : MonoBehaviour
             {
                 //Debug.Log($"Habilidad 1 - Oraci�n Oculta ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Enable();
+                cloakIcon.gameObject.SetActive(true);
                 Skill_1 = true;
             }
 
@@ -109,6 +123,7 @@ public class PlayerHiddenPrayer : MonoBehaviour
                 {
                     //Debug.Log($"Habilidad 2 - pasiva ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = true;
+                    traceIcon.gameObject.SetActive(true);
                     m_Camera.cullingMask = m_EnemyTracesLayerMask;
                 }
                 return;
@@ -119,6 +134,7 @@ public class PlayerHiddenPrayer : MonoBehaviour
                 {
                     //Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = false;
+                    traceIcon.gameObject.SetActive(false);
                     m_Camera.cullingMask = m_OriginalLayerMask;
                 }
             }
