@@ -9,6 +9,8 @@ public class PlayerShoot : MonoBehaviour
     private GameManager GM;
     private ScoreManager m_ScoreManager;
 
+    public GameObject absorbObjective;
+
     [Header("Shoot")]
     public LayerMask m_ShootLayers;
     public float m_ShootCastingTime = 2f;
@@ -94,7 +96,7 @@ public class PlayerShoot : MonoBehaviour
                     if (l_CurrentDistance < m_CorpseDetectionDistance)
                     {
                         //AQUÍ PARA LLAMAR AL SISTEMA DE PARTÍCULAS
-                        hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2f, gameObject);
+                        hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.5f, absorbObjective);
 
                         
                         //Debug.Log($"Cadáver a distancia adecuada: {l_CurrentDistance}");

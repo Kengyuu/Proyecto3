@@ -15,7 +15,7 @@ public class CorpseAbsortion : MonoBehaviour {
     bool absorberStunned = false;
 
     private GameManager GM;
-	private static ParticleSystem.Particle[] particles = new ParticleSystem.Particle[200];
+	private static ParticleSystem.Particle[] particles = new ParticleSystem.Particle[100];
 
 	int count;
     void OnEnable()
@@ -41,12 +41,13 @@ public class CorpseAbsortion : MonoBehaviour {
 	}
 	void Update(){
 		
-		if(systemActive && currentAbsorbTime <= absorbDuration)
+		if(systemActive&& currentAbsorbTime <= absorbDuration)
         {
             switch(Target.tag)
             {
                 case "Player":
                     absorberStunned = Target.GetComponent<PlayerController>().m_PlayerStunned;
+                    //Target.position = GM.GetPlayer().transform.position;
                     break;
                 case "Enemy":
                     absorberStunned = Target.GetComponent<HFSM_StunEnemy>().isStunned;
@@ -63,31 +64,51 @@ public class CorpseAbsortion : MonoBehaviour {
 
             if(!absorberStunned)
             {
-                ParticleSystem.ShapeModule edge = system.shape;
-                float distPartToTarget = (Target.position - edge.position).magnitude;
-                //edge.radius = distPartToTarget;
+                /*if (system.isPlaying) 
+                {
+                    system.transform.LookAt(Target.transform.position, system.gameObject.transform.up);
+                    int length = system.GetParticles (particles);
+                    Vector3 attractorPosition = Target.position;
+        
+                    for (int i=0; i < length; i++) 
+                    {
+                        particles[i].position = particles[i].position + (attractorPosition - particles[i].position) / (particles[i].remainingLifetime) * Time.deltaTime;
+                        /*if((particles[i].position - Target.position).magnitude < 0.2f)
+                        {
+                            particles[i].remainingLifetime =  0;
+                        }
+                    }
+                    system.SetParticles (particles, length);
+                }*/
+                ParticleSystem.ShapeModule cone = system.shape;
+                float distPartToTarget = (Target.position - system.transform.position).magnitude;
+                //cone.length = distPartToTarget;
                 system.transform.LookAt(Target.transform.position, system.gameObject.transform.up);
-                currentAbsorbTime += Time.deltaTime;
+                
                 //system.gameObject.transform.forward = (system.gameObject.transform.forward - Target.transform.forward).normalized;
                 
                 count = system.GetParticles(particles);
                 for (int i = 0; i < count; i++)
                 {
                     
-                    /*ParticleSystem.Particle particle = particles[i];
+                    ParticleSystem.Particle particle = particles[i];
                     Vector3 v1 = system.transform.TransformPoint(particle.position);
                     Vector3 v2 = Target.transform.position;
                     Vector3 tarPosi = (v1 - v2) *  (particle.remainingLifetime / particle.startLifetime);
                     particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
-                    particles[i] = particle;*/
-                    if((particles[i].position - Target.position).magnitude < 0.1f)
+                    particles[i] = particle;
+                    if(Vector3.Distance(transform.TransformPoint( particles[i].position), Target.position) < 100f)
                     {
+                        Debug.Log("He entrado");
                         particles[i].remainingLifetime = 0;
                     }
+
+                    Debug.Log(transform.TransformPoint( particles[i].position));
                     
                 }
-                system.SetParticles(particles, count);
-                /*currentAbsorbTime += Time.deltaTime;*/
+                //system.SetParticles(particles, count);
+                currentAbsorbTime += Time.deltaTime;
+                //currentAbsorbTime += Time.deltaTime;
                 
             }
             else

@@ -59,7 +59,6 @@ public class Orb_Blackboard : MonoBehaviour
         ParticleSystem.MainModule main = particleSystem.main;
 
         colf.color = new Color(main.startColor.color.r, main.startColor.color.g, main.startColor.color.b, (GetOrbHealth()/m_maxLife) * 0.7f );
-        Debug.Log(colf.color.color.a);
     }
 }
 
