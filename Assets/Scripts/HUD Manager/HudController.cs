@@ -9,7 +9,9 @@ public class HudController : MonoBehaviour
     private GameManager GM;
 
     public Image[] healthIcons;
-    
+    public Image Objective;
+    public Sprite objectiveNightmare;
+    public Sprite objectiveCorpse;
 
 
     [Header("Canvas Game")]
@@ -44,7 +46,9 @@ public class HudController : MonoBehaviour
         m_PlayerCorpses.text = "Player Corpses: " + scoreManager.GetPlayerCorpses().ToString("0");
         m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.GetEnemyCorpses().ToString("0");
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
-       // m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
+        UpdateHealth(scoreManager.GetPlayerHP());
+        UpdateObjective(scoreManager.GetPlayerCorpses(), scoreManager.GetEnemyCorpses());
+        // m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
 
 
     }
@@ -100,8 +104,8 @@ public class HudController : MonoBehaviour
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
         //m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
         GM.UpdateModifiers();
-
         UpdateHealth(scoreManager.GetPlayerHP());
+        UpdateObjective(scoreManager.GetPlayerCorpses(), scoreManager.GetEnemyCorpses());
 
     }
 
@@ -134,6 +138,15 @@ public class HudController : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void UpdateObjective(float playerCorpses, float enemyCorpses)
+    {
+        if (playerCorpses >= 10 || enemyCorpses >= 10)
+        {
+            Objective.sprite = objectiveNightmare;
+        }
+        else Objective.sprite = objectiveCorpse;
     }
 
 
