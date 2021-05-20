@@ -41,7 +41,7 @@ public class CorpseAbsortion : MonoBehaviour {
 	}
 	void Update(){
 		
-		if(systemActive&& currentAbsorbTime <= absorbDuration)
+		if(systemActive /*&& currentAbsorbTime <= absorbDuration*/)
         {
             switch(Target.tag)
             {
@@ -64,55 +64,55 @@ public class CorpseAbsortion : MonoBehaviour {
 
             if(!absorberStunned)
             {
-                /*if (system.isPlaying) 
-                {
-                    system.transform.LookAt(Target.transform.position, system.gameObject.transform.up);
-                    int length = system.GetParticles (particles);
-                    Vector3 attractorPosition = Target.position;
-        
-                    for (int i=0; i < length; i++) 
-                    {
-                        particles[i].position = particles[i].position + (attractorPosition - particles[i].position) / (particles[i].remainingLifetime) * Time.deltaTime;
-                        /*if((particles[i].position - Target.position).magnitude < 0.2f)
-                        {
-                            particles[i].remainingLifetime =  0;
-                        }
-                    }
-                    system.SetParticles (particles, length);
-                }*/
-                ParticleSystem.ShapeModule cone = system.shape;
-                float distPartToTarget = (Target.position - system.transform.position).magnitude;
-                //cone.length = distPartToTarget;
                 system.transform.LookAt(Target.transform.position, system.gameObject.transform.up);
+                int length = system.GetParticles (particles);
+                Vector3 attractorPosition = Target.position;
+    
+                for (int i=0; i < length; i++) 
+                {
+                    particles[i].position += (attractorPosition - system.transform.TransformPoint(particles[i].position)) /*/ (particles[i].remainingLifetime)*/ * Time.deltaTime;
+                    if(Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) < 0.01f)
+                    {
+                        
+                        //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
+                        particles[i].remainingLifetime =  0;
+                        //particles[i].position = Target.position;
+                    }
+                    Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
+                }
+                system.SetParticles (particles, length);
+                currentAbsorbTime += Time.deltaTime;
+                //ParticleSystem.ShapeModule cone = system.shape;
+                //float distPartToTarget = (Target.position - system.transform.position).magnitude;
+                //cone.length = distPartToTarget;
+                //system.transform.LookAt(Target.transform.position, system.gameObject.transform.up);
                 
                 //system.gameObject.transform.forward = (system.gameObject.transform.forward - Target.transform.forward).normalized;
                 
-                count = system.GetParticles(particles);
+                /*count = system.GetParticles(particles);
                 for (int i = 0; i < count; i++)
                 {
                     
                     ParticleSystem.Particle particle = particles[i];
-                    Vector3 v1 = system.transform.TransformPoint(particle.position);
-                    Vector3 v2 = Target.position;
-                    Vector3 tarPosi = (v1 - v2) *  (particle.remainingLifetime / particle.startLifetime);
-                    particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
                     
-                    if((transform.TransformPoint( particle.position) - Target.position).magnitude < 5)
+                    Vector3 particleWorldPos = system.transform.TransformPoint(particle.position);
+                    Vector3 targetPos = Target.position;
+                    //particle.startLifetime = particle.velocity.magnitude/(Target.position - particleWorldPos).magnitude;
+                    Vector3 tarPosi = (particleWorldPos - targetPos) *  (particle.remainingLifetime / particle.startLifetime);
+                    particle.position = (system.transform.InverseTransformPoint(targetPos - tarPosi));
+                    
+                    if(Vector3.Distance(transform.TransformPoint(particle.position), Target.position) < 2f)
                     {
-                        Debug.Log("He entrado");
-                        
-                        //particles[i].remainingLifetime = 0;
                         particle.position = Target.position;
-                        Debug.Log(particle.position + " " + Target.position);
+                        Debug.Log((transform.TransformPoint( particle.position) - Target.position).magnitude);
                         particle.remainingLifetime = 0;
-                    } 
+                    }
                     particles[i] = particle;
-                    //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                     
                 }
                 system.SetParticles(particles, count);
                 currentAbsorbTime += Time.deltaTime;
-                //currentAbsorbTime += Time.deltaTime;
+                currentAbsorbTime += Time.deltaTime;*/
                 
             }
             else
@@ -156,18 +156,18 @@ public class CorpseAbsortion : MonoBehaviour {
         if(systemActive)
         {
             StopAbsortion();
-            gameObject.SetActive(false);
-            GM.m_GameObjectSpawner.ClearBodys(gameObject.GetComponent<CorpseControl>().spawnPosition);
+            //gameObject.SetActive(false);
+            //GM.m_GameObjectSpawner.ClearBodys(gameObject.GetComponent<CorpseControl>().spawnPosition);
             
         }
         
     }
     public void StopAbsortion()
     {
-        systemActive = false;
+        /*systemActive = false;
         system.Clear();
         system.Stop();
         currentAbsorbTime = 0f;
-        Target = null;
+        Target = null;*/
     }
 }
