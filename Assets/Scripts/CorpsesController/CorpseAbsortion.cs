@@ -70,10 +70,10 @@ public class CorpseAbsortion : MonoBehaviour {
     
                 for (int i=0; i < length; i++) 
                 {
-                    particles[i].position += (attractorPosition - system.transform.TransformPoint(particles[i].position)) /*/ (particles[i].remainingLifetime)*/ * Time.deltaTime;
-                    if(Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) < 0.01f)
+                    particles[i].position += (attractorPosition - system.transform.TransformPoint(particles[i].position)).normalized / (particles[i].remainingLifetime * 10) * Time.deltaTime;
+                    if(Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) < 0.3f)
                     {
-                        
+                        particles[i].velocity = new Vector3(0,0,0);
                         //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                         particles[i].remainingLifetime =  0;
                         //particles[i].position = Target.position;
