@@ -11,12 +11,13 @@ public class Enemy : Entities
     List<int> spawnersUsed = new List<int>();
 
     ScoreManager m_ScoreManager;
-
+    private HudController M_HudController;
     GameManager GM;
 
     void Start()
     {
         m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         GM = GameManager.Instance;
         maxLife = 3;
         
@@ -52,6 +53,7 @@ public class Enemy : Entities
             for (int i = 0; i < lostEnemyCorpses; i++)
             {
                 m_ScoreManager.RemoveEnemyCorpse();
+                M_HudController.UpdateRemoveCorpses(gameObject);
             }
             
            

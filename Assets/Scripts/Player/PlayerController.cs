@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Camera m_Camera;
     private GameObjectSpawner spawner;
     private GameManager GM;
+    private HudController M_HudController;
 
     [Header("Player Stats")]
     public float m_Life;
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         m_Camera = Camera.main;
 
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (GM == null) GM = GameManager.Instance;
 
         GM.OnStateChange += StateChanged;
@@ -181,6 +183,8 @@ public class PlayerController : MonoBehaviour
                 if (m_ScoreManager.GetPlayerCorpses() > 0)
                 {
                     RemoveCorpse();
+                    
+                    
                 }
                 GetStunned();
                 
@@ -245,6 +249,7 @@ public class PlayerController : MonoBehaviour
                 m_ScoreManager.RemovePlayerCorpse();
             }*/
             m_ScoreManager.RemovePlayerCorpse();
+            M_HudController.UpdateRemoveCorpses(gameObject);
             GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1, gameObject);
         }
         

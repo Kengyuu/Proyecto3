@@ -78,7 +78,7 @@ public class CorpseAbsortion : MonoBehaviour {
                         particles[i].remainingLifetime =  0;
                         //particles[i].position = Target.position;
                     }
-                    Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
+                    //Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                 }
                 system.SetParticles (particles, length);
                 currentAbsorbTime += Time.deltaTime;

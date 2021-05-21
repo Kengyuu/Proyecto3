@@ -27,7 +27,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     EnemyBehaviours behaviours;
 
     public ParticleSystem particles;
-    
+    private HudController M_HudController;
 
     private Orb_Blackboard blackboard;
 
@@ -45,6 +45,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
         child.rotation = Quaternion.LookRotation(gameObject.transform.forward);
+        if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         ReEnter(); 
     }
 
@@ -240,7 +241,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 {
                     blackboard.orbCorpseStored = null;
                     behaviours.AddCorpseToScore();
-                    
+                    M_HudController.UpdateAddCorpses(GM.GetEnemy());
                     corpse = null;
                 }
                 break;

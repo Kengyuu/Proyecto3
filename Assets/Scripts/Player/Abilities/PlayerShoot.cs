@@ -8,7 +8,7 @@ public class PlayerShoot : MonoBehaviour
     private PlayerController m_PlayerController;
     private GameManager GM;
     private ScoreManager m_ScoreManager;
-
+    private HudController M_HudController;
     public GameObject absorbObjective;
 
     [Header("Shoot")]
@@ -39,6 +39,7 @@ public class PlayerShoot : MonoBehaviour
         m_PlayerMovement = GetComponent<PlayerMovement>();
         m_PlayerController = GetComponent<PlayerController>();
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (GM == null) GM = GameManager.Instance;
 
         //GM.OnStateChange += StateChanged;
@@ -102,6 +103,7 @@ public class PlayerShoot : MonoBehaviour
                         //Debug.Log($"Cadáver a distancia adecuada: {l_CurrentDistance}");
                         //hit.transform.gameObject.SetActive(false);
                         m_PlayerController.AddCorpse();
+                        M_HudController.UpdateAddCorpses(gameObject);
                         OrbEvents.current.ManageOrbs();
                         //GM.m_GameObjectSpawner.ClearBodys(hit.collider.GetComponent<CorpseControl>().spawnPosition);
                         //m_ScoreManager.RemoveRemainingCorpse();

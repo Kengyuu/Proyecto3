@@ -13,6 +13,12 @@ public class HudController : MonoBehaviour
     public Sprite objectiveNightmare;
     public Sprite objectiveCorpse;
 
+    public GameObject[] totalCorpses;
+    public List<GameObject> activeCorpses = new List<GameObject>();
+    public Image[] corpseSprites;
+    public Sprite playerCorpse;
+    public Sprite enemyCorpse;
+    public Sprite neutralCorpse;
 
     [Header("Canvas Game")]
     public GameObject m_CanvasGame;
@@ -25,6 +31,18 @@ public class HudController : MonoBehaviour
     public GameObject m_CanvasEnd;
     public TextMeshProUGUI m_centerText;
 
+    private void Awake()
+    {
+        totalCorpses = GameObject.FindGameObjectsWithTag("Corpse");
+        /*foreach (GameObject corpse in totalCorpses)
+        {
+            if (corpse.activeSelf)
+            {
+                activeCorpses.Add(corpse);
+            }
+        }*/
+        
+    }
     private void Start()
     {
         DependencyInjector.GetDependency<IScoreManager>()
@@ -147,6 +165,74 @@ public class HudController : MonoBehaviour
             Objective.sprite = objectiveNightmare;
         }
         else Objective.sprite = objectiveCorpse;
+    }
+
+    public void UpdateAddCorpses(GameObject type)
+    {
+
+        switch (type.tag)
+        {
+            case "Player":
+                for (int i = 0; i < corpseSprites.Length; i++)
+                {
+                    if (corpseSprites[i].sprite != playerCorpse && corpseSprites[i].sprite != enemyCorpse)
+                    {
+                        
+                        corpseSprites[i].sprite = playerCorpse;
+                        break;
+                    }
+                }
+                break;
+
+            case "Enemy":
+                for (int i = corpseSprites.Length - 1; i > 0; i--)
+                {
+                    if (corpseSprites[i].sprite != playerCorpse && corpseSprites[i].sprite != enemyCorpse)
+                    {
+                        //Debug.Log($"{corpseSprites[i].sprite} se ha comparado con {playerCorpse.name}");
+                        corpseSprites[i].sprite = enemyCorpse;
+                        break;
+                    }
+
+                    
+                }
+                break;
+        }
+        
+    }
+
+    public void UpdateRemoveCorpses(GameObject type)
+    {
+
+        switch (type.tag)
+        {
+            case "Enemy":
+                for (int i = 0; i < corpseSprites.Length; i++)
+                {
+                    if (corpseSprites[i].sprite == enemyCorpse)
+                    {
+
+                        corpseSprites[i].sprite = neutralCorpse;
+                        break;
+                    }
+                }
+                break;
+
+            case "Player":
+                for (int i = corpseSprites.Length - 1; i > 0; i--)
+                {
+                    if (corpseSprites[i].sprite == playerCorpse)
+                    {
+                        
+                        corpseSprites[i].sprite = neutralCorpse;
+                        break;
+                    }
+
+
+                }
+                break;
+        }
+
     }
 
 

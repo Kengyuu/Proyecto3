@@ -11,7 +11,7 @@ public class FSM_CorpseWander : MonoBehaviour
     public NavMeshAgent enemy;
     public GameObject target;
     private Enemy_BLACKBOARD blackboard;
-
+    private HudController M_HudController;
     EnemyBehaviours behaviours;
     string enemyType;
     GameObject corpse;
@@ -34,6 +34,7 @@ public class FSM_CorpseWander : MonoBehaviour
         blackboard = GetComponent<Enemy_BLACKBOARD>();
         behaviours = GetComponent<EnemyBehaviours>();
         enemyType = transform.tag;
+        if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         //target = behaviours.PickRandomWaypoint();
         //enemy.SetDestination(target.transform.position);
     }
@@ -101,6 +102,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 {
                     behaviours.GrabCorpse(target, blackboard.cooldownToGrabCorpse);
                     behaviours.AddCorpseToScore();
+                    M_HudController.UpdateAddCorpses(gameObject);
                     ChangeState(State.WANDERING);
                     break;
                 }
