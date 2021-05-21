@@ -70,15 +70,19 @@ public class CorpseAbsortion : MonoBehaviour {
     
                 for (int i=0; i < length; i++) 
                 {
-                    particles[i].position += (attractorPosition - system.transform.TransformPoint(particles[i].position)).normalized / (particles[i].remainingLifetime * 15) * Time.deltaTime;
+                    Vector3 distanceParticleTarget = (attractorPosition - system.transform.TransformPoint(particles[i].position)).normalized;
+                    //particles[i].remainingLifetime = distanceParticleTarget.magnitude / particles[i].velocity.magnitude;
+                    Vector3 particleSpeed = distanceParticleTarget / (particles[i].remainingLifetime);
+                    particles[i].position += particleSpeed  * Time.deltaTime;
                     if(Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) < 0.5f)
                     {
-                        particles[i].velocity = new Vector3(0,0,0);
+                        particles[i].position = Target.position;
+                        //particles[i].velocity = new Vector3(0,0,0);
                         //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                         particles[i].remainingLifetime =  0;
                         //particles[i].position = Target.position;
                     }
-                    //Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
+                    Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                 }
                 system.SetParticles (particles, length);
                 currentAbsorbTime += Time.deltaTime;
@@ -156,18 +160,18 @@ public class CorpseAbsortion : MonoBehaviour {
         if(systemActive)
         {
             StopAbsortion();
-            //gameObject.SetActive(false);
-            //GM.m_GameObjectSpawner.ClearBodys(gameObject.GetComponent<CorpseControl>().spawnPosition);
+            gameObject.SetActive(false);
+            GM.m_GameObjectSpawner.ClearBodys(gameObject.GetComponent<CorpseControl>().spawnPosition);
             
         }
         
     }
     public void StopAbsortion()
     {
-        /*systemActive = false;
+        systemActive = false;
         system.Clear();
         system.Stop();
         currentAbsorbTime = 0f;
-        Target = null;*/
+        Target = null;
     }
 }
