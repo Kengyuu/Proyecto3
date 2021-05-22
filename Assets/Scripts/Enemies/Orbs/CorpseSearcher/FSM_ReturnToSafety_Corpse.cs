@@ -117,7 +117,14 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
         corpseSearch.enabled = true;
     }
 
-    
 
-   
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Enemy" && currentState == State.NORMALBEHAVIOUR)
+        {
+            corpseSearch.target = blackboard.behaviours.PickRandomWaypointOrb();
+        }
+
+    }
+
 }

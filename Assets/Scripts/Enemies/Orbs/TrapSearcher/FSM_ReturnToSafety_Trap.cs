@@ -112,5 +112,13 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
         trapSearch.enabled = true;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Enemy" && currentState == State.NORMALBEHAVIOUR)
+        {
+            trapSearch.target = blackboard.behaviours.PickRandomWaypointOrb();
+        }
+
+    }
 
 }

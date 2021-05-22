@@ -106,7 +106,14 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
         Attacker.enabled = true;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Enemy" && currentState == State.NORMALBEHAVIOUR)
+        {
+            Attacker.target = blackboard.behaviours.PickRandomWaypointOrb();
+        }
 
+    }
 
 
 }

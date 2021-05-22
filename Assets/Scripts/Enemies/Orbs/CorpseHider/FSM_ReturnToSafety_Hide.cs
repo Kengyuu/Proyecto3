@@ -99,4 +99,13 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
     {
         OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Enemy" && currentState == State.NORMALBEHAVIOUR)
+        {
+            corpseHide.target = blackboard.behaviours.PickRandomWaypointOrb();
+        }
+
+    }
 }

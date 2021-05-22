@@ -13,6 +13,7 @@ public class Orb_Blackboard : MonoBehaviour
     public NavMeshAgent navMesh;
     public Sprite icon;
     public ParticleSystem particleSystem;
+    public EnemyBehaviours behaviours;
 
     [Header("CorpseSearcher")]
     public float closeEnoughCorpseRadius = 3;
@@ -34,7 +35,10 @@ public class Orb_Blackboard : MonoBehaviour
     public float YForceImpulseDamage = 5f;
     public float angleDetectionPlayer = 90;
 
-
+    private void Start()
+    {
+        behaviours = GetComponent<EnemyBehaviours>();
+    }
     public void TakeDamage(int damage)
     {
         m_Life -= damage;
