@@ -24,6 +24,7 @@ public class Enemy_BLACKBOARD : MonoBehaviour
 
     [Header("SeekPlayer")]
     public GameObject Player;
+    public GameObject eyesPosition;
     public float distanceToAttack = 0.5f;
     public float waypointsNearPlayerRadius = 20f;
     //public float senseRadius = 10f;

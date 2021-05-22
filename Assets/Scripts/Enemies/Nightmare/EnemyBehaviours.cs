@@ -81,7 +81,7 @@ public class EnemyBehaviours : MonoBehaviour
             gameObject.GetComponent<EnemyPriorities>().playerSeen = true;
             gameObject.GetComponent<EnemyPriorities>().ChangePriority();
         }*/
-        if(DetectionFunctions.PlayerInCone(gameObject, GM.GetPlayer(), angleDetectionPlayer, detectionRadius, mask))
+        if(DetectionFunctions.PlayerInCone(blackboard.eyesPosition, GM.GetPlayer(), angleDetectionPlayer, detectionRadius, mask))
         {
             gameObject.GetComponent<EnemyPriorities>().playerSeen = true;
             gameObject.GetComponent<EnemyPriorities>().ChangePriority();

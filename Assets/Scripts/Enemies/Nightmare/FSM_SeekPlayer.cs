@@ -42,6 +42,8 @@ public class FSM_SeekPlayer : MonoBehaviour
         //Arm.SetActive(false);
         GetComponent<EnemyPriorities>().playerSeen = false;
         GetComponent<EnemyPriorities>().playerDetected = false;
+        target = null;
+        waypointSelected = false;
         this.enabled = false;
     }
 
@@ -59,11 +61,17 @@ public class FSM_SeekPlayer : MonoBehaviour
         switch (currentState)
         {
             case State.INITIAL:
+                
                 ChangeState(State.WANDERING);
                 break;
 
             case State.WANDERING:
                 enemy.SetDestination(target.transform.position);
+                if (DetectionFunctions.PlayerInCone(blackboard.eyesPosition, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
+                {
+                    GetComponent<EnemyPriorities>().playerSeen = true;
+                    ChangeState(State.SEEKINGPLAYER);
+                }
                 savedCorpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
                 if (savedCorpse != null)
@@ -76,11 +84,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                     ChangeState(State.WANDERING);
                 }
 
-                if (DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
-                {
-                    GetComponent<EnemyPriorities>().playerSeen = true;
-                    ChangeState(State.SEEKINGPLAYER);
-                }
+                
                 break;
 
             case State.SEEKINGPLAYER:
@@ -92,25 +96,25 @@ public class FSM_SeekPlayer : MonoBehaviour
                     break;
                 }
 
-                if (!DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
+                if (!DetectionFunctions.PlayerInCone(blackboard.eyesPosition, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                 {
                     ChangeState(State.GOTOLASTPLAYERPOSITION);
                 }
                 break;
             case State.GOTOLASTPLAYERPOSITION:
-
-                if (DetectionFunctions.PlayerInCone(gameObject, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
+                enemy.SetDestination(lastPlayerPosition);
+                if (DetectionFunctions.PlayerInCone(blackboard.eyesPosition, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                 {
                     ChangeState(State.SEEKINGPLAYER);
 
                 }
 
-                if (enemy.remainingDistance < 0.5f)
+                if (enemy.remainingDistance < 0.4f)
                 {
                     GetComponent<EnemyPriorities>().playerSeen = false;
                     GetComponent<EnemyPriorities>().playerDetected = false;
                     GetComponent<EnemyPriorities>().ChangePriority();
-
+                
                 }
 
 
@@ -240,14 +244,11 @@ public class FSM_SeekPlayer : MonoBehaviour
             GameObject closest = list[1];
 
             //float minDistance = (closest.transform.position - user.transform.position).magnitude;
-            float minDistance = new Vector3(closest.transform.position.x - player.transform.position.x, 0, 
-                                            closest.transform.position.z - player.transform.position.z).magnitude;
-
+            float minDistance = (closest.transform.position - player.transform.position).magnitude;
             for (int i = 1; i < list.Count; i++)
             {
                 //dist = (targets[i].transform.position - user.transform.position).magnitude;
-                float dist = new Vector3(list[i].transform.position.x - player.transform.position.x, 0, 
-                                         list[i].transform.position.z - player.transform.position.z).magnitude;
+                float dist = (list[i].transform.position - player.transform.position).magnitude; 
                 if (dist < minDistance)
                 {
                     minDistance = dist;

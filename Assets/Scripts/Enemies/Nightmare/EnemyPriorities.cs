@@ -148,6 +148,7 @@ public class EnemyPriorities : MonoBehaviour
             case EnemyStates.LOOKFORPLAYER:
                 searchCorpse.Exit();
                 seekPlayer.ReEnter();
+                Debug.Log("entro aquí");
                 //GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                 break;
         }

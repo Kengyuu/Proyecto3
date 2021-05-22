@@ -70,7 +70,7 @@ public class DetectionFunctions : MonoBehaviour
 	{
 		/*Vector3 vectorEnemyPlayer = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
         target.transform.position.z - user.transform.position.z);*/
-		Vector3 vectorEnemyPlayer = new Vector3(target.transform.position.x, target.transform.position.y + 0.5f, target.transform.position.z) - user.transform.position;
+		Vector3 vectorEnemyPlayer = target.transform.position - user.transform.position;
 
 
 		float angle =  Vector3.Angle(user.transform.forward, vectorEnemyPlayer);
