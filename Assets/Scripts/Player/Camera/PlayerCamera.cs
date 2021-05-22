@@ -83,25 +83,28 @@ public class PlayerCamera : MonoBehaviour
         }*/
 
         //Update yaw & pitch (Camera)
-        float l_MouseAxisX = Input.GetAxis("Mouse X");
-        float l_MouseAxisY = Input.GetAxis("Mouse Y");
-
-        //Invert camera movement from Editor
-        if (m_InvertHorizontalAxis) l_MouseAxisX = -l_MouseAxisX;
-        if (m_InvertVerticalAxis) l_MouseAxisY = -l_MouseAxisY;
-
-        //If the Angle movement isn't locked, allow moving the camera around
-        if (!m_AngleLocked)
+        if(GameManager.Instance.gameState != GameState.PAUSE)
         {
-            //set the new vars to move the camera...
-            m_Yaw = m_Yaw + l_MouseAxisX * m_YawRotationalSpeed;
-            m_Pitch = m_Pitch + l_MouseAxisY * m_PitchRotationalSpeed;
-            m_Pitch = Mathf.Clamp(m_Pitch, m_MinPitch, m_MaxPitch);
-        }
+            float l_MouseAxisX = Input.GetAxis("Mouse X");
+            float l_MouseAxisY = Input.GetAxis("Mouse Y");
 
-        //Move the camera
-        transform.rotation = Quaternion.Euler(0.0f, m_Yaw, 0.0f);
-        m_PitchController.localRotation = Quaternion.Euler(m_Pitch, 0.0f, 0.0f);
+            //Invert camera movement from Editor
+            if (m_InvertHorizontalAxis) l_MouseAxisX = -l_MouseAxisX;
+            if (m_InvertVerticalAxis) l_MouseAxisY = -l_MouseAxisY;
+
+            //If the Angle movement isn't locked, allow moving the camera around
+            if (!m_AngleLocked)
+            {
+                //set the new vars to move the camera...
+                m_Yaw = m_Yaw + l_MouseAxisX * m_YawRotationalSpeed;
+                m_Pitch = m_Pitch + l_MouseAxisY * m_PitchRotationalSpeed;
+                m_Pitch = Mathf.Clamp(m_Pitch, m_MinPitch, m_MaxPitch);
+            }
+
+            //Move the camera
+            transform.rotation = Quaternion.Euler(0.0f, m_Yaw, 0.0f);
+            m_PitchController.localRotation = Quaternion.Euler(m_Pitch, 0.0f, 0.0f);
+        }
 
     }
 

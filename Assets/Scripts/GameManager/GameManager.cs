@@ -13,7 +13,8 @@ public enum GameState
     MODIFIERS,
     GAME_OVER,
     WIN,
-    MAP
+    MAP,
+    PAUSE
 }
 
 public delegate void OnStateChangeHandler();

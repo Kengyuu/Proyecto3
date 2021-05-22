@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
                 m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Enable();
                 m_PlayerMovement.m_InputSystem.Gameplay.Move.Enable();
                 m_PlayerMovement.m_InputSystem.Gameplay.Jump.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.TrapInteraction.Enable();
+                m_PlayerMovement.m_InputSystem.Gameplay.EnableTrap.Enable();
                 m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Disable();
                 break;
 
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
                 m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Disable();
                 m_PlayerMovement.m_InputSystem.Gameplay.Move.Disable();
                 m_PlayerMovement.m_InputSystem.Gameplay.Jump.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.TrapInteraction.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.EnableTrap.Disable();
                 m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Enable();
 
                 //Disable just in case:

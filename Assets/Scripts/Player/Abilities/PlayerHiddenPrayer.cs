@@ -27,6 +27,9 @@ public class PlayerHiddenPrayer : MonoBehaviour
     public Image cloakIcon;
     public Image traceIcon;
 
+    [Header("Invisibility Materials")]
+    public List<GameObject> m_Arms;
+
     [Header("Debug")]
     [SerializeField] bool Skill_1 = false;
     [SerializeField] bool Skill_2 = false;
@@ -61,6 +64,10 @@ public class PlayerHiddenPrayer : MonoBehaviour
             Debug.Log("He apretado la habilidad especial 1 con la letra 'Q'.");
             m_IsPlayerVisibleToEnemy = false;
             m_AbilityOnCooldown = true;
+
+            StartCoroutine(FadeTo(0.9f, 0.7f));
+
+
             Invoke("ResetAbilityAndStartCooldown", m_InvisibilityMaxTime);
             cooldownSlider.fillAmount = 0;
         }
@@ -77,10 +84,27 @@ public class PlayerHiddenPrayer : MonoBehaviour
         Debug.Log("Empezando cooldown");
         m_IsPlayerVisibleToEnemy = true;
         m_SliderOnCooldown = true;
-        
-        
+
+        StartCoroutine(FadeTo(0.0f, 0.9f));
         Invoke("EnableAbility", m_HiddenPrayerCooldown);
         Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer, false);
+    }
+
+    IEnumerator FadeTo(float targetColor, float fadeDuration)
+    {
+        float alpha = m_Arms[1].GetComponent<MeshRenderer>().material.GetFloat("_IntensityTransparentMap");
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            foreach(GameObject obj in m_Arms)
+            {
+                obj.GetComponent<MeshRenderer>().material.SetFloat("_IntensityTransparentMap", Mathf.Lerp(alpha, targetColor, elapsedTime / fadeDuration));
+            }
+            
+            yield return null;
+        }
     }
 
     private void EnableAbility()

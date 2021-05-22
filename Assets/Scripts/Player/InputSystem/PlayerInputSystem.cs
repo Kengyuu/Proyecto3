@@ -91,17 +91,17 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""TrapInteraction"",
+                    ""name"": ""SpecialAbility_1"",
                     ""type"": ""Button"",
-                    ""id"": ""fbfaa731-d477-469b-91e0-b4a684302915"",
+                    ""id"": ""68a95db9-0091-4fe7-96ce-6a2865cf4e08"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""SpecialAbility_1"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
-                    ""id"": ""68a95db9-0091-4fe7-96ce-6a2865cf4e08"",
+                    ""id"": ""cec2ad91-a77c-4f0e-a826-57369479fe52"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -220,28 +220,6 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""91347311-23c6-413f-9568-8cf97eaed70e"",
-                    ""path"": ""<Keyboard>/semicolon"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4b1b118c-61a0-49d2-b6a4-84d5ca2166e1"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ef056052-c7f4-4a4f-8e38-5a805b4d80ae"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -297,45 +275,12 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""79d1ebd8-ec27-4d8b-a8fc-950886c9e123"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Map"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""41abeb14-4db1-49b2-bf83-258fda4547d0"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Map"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7d67cd2d-2e8c-4024-a53d-c08c92c76133"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TrapInteraction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""eb17e5ab-4052-459d-98cc-ccef8ea87fac"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TrapInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -393,6 +338,28 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""action"": ""EnableTrap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73bf1cec-c747-4387-a97d-05262c50251f"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90ce022b-933e-4237-a21a-40d2adcf3ec9"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -410,8 +377,8 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
         m_Gameplay_Shoot = m_Gameplay.FindAction("Shoot", throwIfNotFound: true);
         m_Gameplay_Map = m_Gameplay.FindAction("Map", throwIfNotFound: true);
-        m_Gameplay_TrapInteraction = m_Gameplay.FindAction("TrapInteraction", throwIfNotFound: true);
         m_Gameplay_SpecialAbility_1 = m_Gameplay.FindAction("SpecialAbility_1", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -470,8 +437,8 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Dash;
     private readonly InputAction m_Gameplay_Shoot;
     private readonly InputAction m_Gameplay_Map;
-    private readonly InputAction m_Gameplay_TrapInteraction;
     private readonly InputAction m_Gameplay_SpecialAbility_1;
+    private readonly InputAction m_Gameplay_Pause;
     public struct GameplayActions
     {
         private @PlayerInputSystem m_Wrapper;
@@ -485,8 +452,8 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
         public InputAction @Shoot => m_Wrapper.m_Gameplay_Shoot;
         public InputAction @Map => m_Wrapper.m_Gameplay_Map;
-        public InputAction @TrapInteraction => m_Wrapper.m_Gameplay_TrapInteraction;
         public InputAction @SpecialAbility_1 => m_Wrapper.m_Gameplay_SpecialAbility_1;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -523,12 +490,12 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @Map.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMap;
                 @Map.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMap;
                 @Map.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMap;
-                @TrapInteraction.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTrapInteraction;
-                @TrapInteraction.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTrapInteraction;
-                @TrapInteraction.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTrapInteraction;
                 @SpecialAbility_1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialAbility_1;
                 @SpecialAbility_1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialAbility_1;
                 @SpecialAbility_1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialAbility_1;
+                @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -560,12 +527,12 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @Map.started += instance.OnMap;
                 @Map.performed += instance.OnMap;
                 @Map.canceled += instance.OnMap;
-                @TrapInteraction.started += instance.OnTrapInteraction;
-                @TrapInteraction.performed += instance.OnTrapInteraction;
-                @TrapInteraction.canceled += instance.OnTrapInteraction;
                 @SpecialAbility_1.started += instance.OnSpecialAbility_1;
                 @SpecialAbility_1.performed += instance.OnSpecialAbility_1;
                 @SpecialAbility_1.canceled += instance.OnSpecialAbility_1;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -581,7 +548,7 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
-        void OnTrapInteraction(InputAction.CallbackContext context);
         void OnSpecialAbility_1(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

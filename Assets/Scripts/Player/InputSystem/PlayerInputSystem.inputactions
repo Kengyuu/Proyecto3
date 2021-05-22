@@ -78,17 +78,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "TrapInteraction",
+                    "name": "SpecialAbility_1",
                     "type": "Button",
-                    "id": "fbfaa731-d477-469b-91e0-b4a684302915",
+                    "id": "68a95db9-0091-4fe7-96ce-6a2865cf4e08",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "SpecialAbility_1",
+                    "name": "Pause",
                     "type": "Button",
-                    "id": "68a95db9-0091-4fe7-96ce-6a2865cf4e08",
+                    "id": "cec2ad91-a77c-4f0e-a826-57369479fe52",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -207,28 +207,6 @@
                 },
                 {
                     "name": "",
-                    "id": "91347311-23c6-413f-9568-8cf97eaed70e",
-                    "path": "<Keyboard>/semicolon",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4b1b118c-61a0-49d2-b6a4-84d5ca2166e1",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ef056052-c7f4-4a4f-8e38-5a805b4d80ae",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -284,45 +262,12 @@
                 },
                 {
                     "name": "",
-                    "id": "79d1ebd8-ec27-4d8b-a8fc-950886c9e123",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Map",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "41abeb14-4db1-49b2-bf83-258fda4547d0",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Map",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7d67cd2d-2e8c-4024-a53d-c08c92c76133",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TrapInteraction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "eb17e5ab-4052-459d-98cc-ccef8ea87fac",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TrapInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -378,6 +323,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "EnableTrap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73bf1cec-c747-4387-a97d-05262c50251f",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90ce022b-933e-4237-a21a-40d2adcf3ec9",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
