@@ -9,7 +9,7 @@ public class PlayerShoot : MonoBehaviour
     private GameManager GM;
     private ScoreManager m_ScoreManager;
     private HudController M_HudController;
-    public GameObject absorbObjective;
+    
 
     [Header("Shoot")]
     public LayerMask m_ShootLayers;
@@ -17,6 +17,12 @@ public class PlayerShoot : MonoBehaviour
     public float m_MaxShootDistance = 100f;
     private bool m_PlayerCanShoot = true;
     public Animator crosshairAnim;
+    public GameObject absorbObjective;
+
+    
+
+    public ParticleSystem chargeBeam;
+    public GameObject beam;
 
     [Header("Object detection distances")]
     public float m_CorpseDetectionDistance = 5f;
@@ -73,7 +79,9 @@ public class PlayerShoot : MonoBehaviour
 
     private void StartCasting()
     {
+        
         crosshairAnim.SetBool("Shot", true);
+        chargeBeam.Play();
         StartCoroutine(Wait());
 
         m_IsPlayerShooting = true;
@@ -84,12 +92,14 @@ public class PlayerShoot : MonoBehaviour
     {
         //Debug.Log("PLAYER DISPARA");
 
-
+        bool corpseHit = false;
+        float distanceToObjective = 2f;
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
         {
             string tag = hit.collider.transform.tag;
             float l_CurrentDistance = Vector3.Distance(hit.transform.position, transform.position);
+            distanceToObjective = Vector3.Distance(beam.transform.position, hit.point);
             //Debug.Log($"{hit.transform.name} ha sido impactado a una distancia de {l_CurrentDistance}");
             switch (tag)
             {
@@ -98,7 +108,7 @@ public class PlayerShoot : MonoBehaviour
                     {
                         //AQUÍ PARA LLAMAR AL SISTEMA DE PARTÍCULAS
                         hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.5f, absorbObjective);
-
+                        corpseHit = true;
                         
                         //Debug.Log($"Cadáver a distancia adecuada: {l_CurrentDistance}");
                         //hit.transform.gameObject.SetActive(false);
@@ -128,6 +138,7 @@ public class PlayerShoot : MonoBehaviour
                     {
                         //Debug.Log($"Weak Point a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<WeakPoint>().TakeDamage();
+                        beam.transform.LookAt(hit.point);
                     }
                     break;
 
@@ -138,6 +149,7 @@ public class PlayerShoot : MonoBehaviour
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_CorpseSearcher>().alert = true;
                         hit.collider.GetComponent<FSM_CorpseSearcher>().ChangeParticleColor();
+                        beam.transform.LookAt(hit.point);
 
                     }
                     break;
@@ -148,6 +160,7 @@ public class PlayerShoot : MonoBehaviour
                         // hit.collider.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
+                        beam.transform.LookAt(hit.point);
                     }
                     break;
 
@@ -157,6 +170,7 @@ public class PlayerShoot : MonoBehaviour
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_TrapSearcher>().alert = true;
+                        beam.transform.LookAt(hit.point);
                     }
 
                     break;
@@ -166,19 +180,23 @@ public class PlayerShoot : MonoBehaviour
                         //Debug.Log($"Attack Orb Hit");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_AttackerOrb>().alert = true;
+                        beam.transform.LookAt(hit.point);
                     }
                     break;
             }
 
         }
-
+        if(!corpseHit)
+        {
+            ShootBeam(distanceToObjective);
+        }
         GM.PlayerNoise(m_ShootNoise);
         ResetShoot();
     }
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         StopAnim();
     }
     private void StopAnim()
@@ -191,4 +209,17 @@ public class PlayerShoot : MonoBehaviour
         m_IsPlayerShooting = false;
     }
 
+    private void ShootBeam(float distance)
+    {
+        beam.transform.localScale = new Vector3(beam.transform.localScale.x, beam.transform.localScale.y, distance);
+        
+        beam.SetActive(true);
+        StartCoroutine(WaitBeam());
+    }
+
+    IEnumerator WaitBeam()
+    {
+        yield return new WaitForSeconds(0.2f);
+        beam.SetActive(false);
+    }
 }
