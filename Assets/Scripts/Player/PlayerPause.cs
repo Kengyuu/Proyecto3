@@ -80,4 +80,9 @@ public class PlayerPause : MonoBehaviour
         m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
 
     }
+
+    private void OnDestroy()
+    {
+        GM.OnStateChange -= StateChanged;
+    }
 }

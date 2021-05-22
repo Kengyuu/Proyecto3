@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
         m_IsGrounded = m_CharacterController.isGrounded;
 
         Move();
-
     }//End Update()
 
     private void Move()

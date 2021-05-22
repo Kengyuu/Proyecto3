@@ -362,6 +362,491 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Minimap"",
+            ""id"": ""4b79d59a-2f7c-446b-bc2a-14f19fc00730"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""3f059e74-914d-4ee8-a921-9c57ac78b0d3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""607e0ddd-08be-476e-ad54-5be682cbb9e3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""97250a55-eba7-49fa-979f-d08dadf390dc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2a2a8d71-abf3-4df7-8385-864591946d09"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2acfc74e-c321-408b-b2da-86fd380fbfaa"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone,ScaleVector2(x=10,y=10)"",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d39b67e1-9db0-47d6-97a1-36f307bd4e61"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49129bbe-6363-47ee-91ff-333b96c7563e"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eaf84dae-f5fc-4a87-a7b8-9b2b85eefeac"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c4a3809-cbed-40be-baf1-ff99c28983e4"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Pause"",
+            ""id"": ""9a0651cb-1855-48d7-a0fc-9e328cbfeaca"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""560874a3-8341-4268-be8f-9315c5977adb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d91ba57a-3c32-4f9a-8db3-02a7c38980a3"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c2f05ae-5f07-4664-8c48-acab68fb169d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gameplay_BACKUP"",
+            ""id"": ""9e41b8bc-1be3-4329-8800-658ab927966a"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""57604488-2ccb-4d4f-9d86-04e972cfcc13"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseScroll"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""0bd9dfe4-9926-4885-8abe-accd8f6ddfce"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""9a836e7c-6c2f-4851-91aa-6cca5b83c29e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""527afb49-be62-4a93-a766-1abb19e19545"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold,Press(behavior=2)""
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""8bde9c84-b1cc-4714-bf53-988faf4fd884"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""EnableTrap"",
+                    ""type"": ""Button"",
+                    ""id"": ""4593f19c-9141-4e2d-abe7-c597db1db1d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a060a13-dad4-48df-a2f0-581559eb0149"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b3ddf75-c687-4385-ac47-4e278aae974b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d004a8f-a90e-4339-8005-8ec4d5dabeb7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SpecialAbility_1"",
+                    ""type"": ""Button"",
+                    ""id"": ""e37836d8-5ccb-4b8d-8eb2-b37fa7520310"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""be1ca991-51a9-490a-a1ec-caae9af1b462"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""98e0d07a-71b3-4bdd-8f1d-7c8f70f79c37"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""638e6697-e417-480c-8406-fc626365c6fd"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone,ScaleVector2(x=10,y=10)"",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d75c0f7-b6af-4e4c-b7fa-9b6cec0b0cbb"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14dc8fe6-60c8-4e63-8987-4b141d868558"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""9f647417-dff2-4f9a-a239-efd5ec7d498e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""bda17b26-da2f-4694-af29-9b683a4a114a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""bf32a58c-f83a-4c23-ba36-fe727166c63d"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""e06185d8-a338-4057-b1bf-86fc9ca7d8ec"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f83315c0-3824-4e44-9fea-2959c9e691e6"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99628c82-37bb-4c55-b581-f525d4777db4"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21c64d21-9a60-4793-97a5-78a1fa6282bf"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ede5a51f-6910-460f-ad27-4b1363e6e4dc"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62947f52-67ca-4469-8779-13e620434efc"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74743438-8e9d-4e5d-84cf-9172660d3911"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88fb6ce2-fe95-4c07-bc64-e4f6130f3c49"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5a2a3a9-d80f-4583-a5ad-204981823d2d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63865a76-9d32-4d37-a5af-e43bc02dad62"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""854a270f-80d3-430e-bba0-2d9283305284"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialAbility_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26c12e37-34a7-4496-a06c-116a66eb8b17"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialAbility_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c10d064a-3c2b-4c9b-b4bd-f00a18bc8206"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableTrap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa128443-0c79-474d-9158-91ad92e95a85"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnableTrap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a177c09-dbb5-4f48-9173-5afffea0b6fc"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""152f7bc5-98bb-4dcd-ae74-b65f2e7dad5b"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -379,6 +864,27 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         m_Gameplay_Map = m_Gameplay.FindAction("Map", throwIfNotFound: true);
         m_Gameplay_SpecialAbility_1 = m_Gameplay.FindAction("SpecialAbility_1", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        // Minimap
+        m_Minimap = asset.FindActionMap("Minimap", throwIfNotFound: true);
+        m_Minimap_Look = m_Minimap.FindAction("Look", throwIfNotFound: true);
+        m_Minimap_Map = m_Minimap.FindAction("Map", throwIfNotFound: true);
+        m_Minimap_Pause = m_Minimap.FindAction("Pause", throwIfNotFound: true);
+        // Pause
+        m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
+        m_Pause_Pause = m_Pause.FindAction("Pause", throwIfNotFound: true);
+        // Gameplay_BACKUP
+        m_Gameplay_BACKUP = asset.FindActionMap("Gameplay_BACKUP", throwIfNotFound: true);
+        m_Gameplay_BACKUP_Look = m_Gameplay_BACKUP.FindAction("Look", throwIfNotFound: true);
+        m_Gameplay_BACKUP_MouseScroll = m_Gameplay_BACKUP.FindAction("MouseScroll", throwIfNotFound: true);
+        m_Gameplay_BACKUP_Move = m_Gameplay_BACKUP.FindAction("Move", throwIfNotFound: true);
+        m_Gameplay_BACKUP_Run = m_Gameplay_BACKUP.FindAction("Run", throwIfNotFound: true);
+        m_Gameplay_BACKUP_Jump = m_Gameplay_BACKUP.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_BACKUP_EnableTrap = m_Gameplay_BACKUP.FindAction("EnableTrap", throwIfNotFound: true);
+        m_Gameplay_BACKUP_Dash = m_Gameplay_BACKUP.FindAction("Dash", throwIfNotFound: true);
+        m_Gameplay_BACKUP_Shoot = m_Gameplay_BACKUP.FindAction("Shoot", throwIfNotFound: true);
+        m_Gameplay_BACKUP_Map = m_Gameplay_BACKUP.FindAction("Map", throwIfNotFound: true);
+        m_Gameplay_BACKUP_SpecialAbility_1 = m_Gameplay_BACKUP.FindAction("SpecialAbility_1", throwIfNotFound: true);
+        m_Gameplay_BACKUP_Pause = m_Gameplay_BACKUP.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -537,7 +1043,226 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Minimap
+    private readonly InputActionMap m_Minimap;
+    private IMinimapActions m_MinimapActionsCallbackInterface;
+    private readonly InputAction m_Minimap_Look;
+    private readonly InputAction m_Minimap_Map;
+    private readonly InputAction m_Minimap_Pause;
+    public struct MinimapActions
+    {
+        private @PlayerInputSystem m_Wrapper;
+        public MinimapActions(@PlayerInputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Look => m_Wrapper.m_Minimap_Look;
+        public InputAction @Map => m_Wrapper.m_Minimap_Map;
+        public InputAction @Pause => m_Wrapper.m_Minimap_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Minimap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MinimapActions set) { return set.Get(); }
+        public void SetCallbacks(IMinimapActions instance)
+        {
+            if (m_Wrapper.m_MinimapActionsCallbackInterface != null)
+            {
+                @Look.started -= m_Wrapper.m_MinimapActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_MinimapActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_MinimapActionsCallbackInterface.OnLook;
+                @Map.started -= m_Wrapper.m_MinimapActionsCallbackInterface.OnMap;
+                @Map.performed -= m_Wrapper.m_MinimapActionsCallbackInterface.OnMap;
+                @Map.canceled -= m_Wrapper.m_MinimapActionsCallbackInterface.OnMap;
+                @Pause.started -= m_Wrapper.m_MinimapActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_MinimapActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_MinimapActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_MinimapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @Map.started += instance.OnMap;
+                @Map.performed += instance.OnMap;
+                @Map.canceled += instance.OnMap;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public MinimapActions @Minimap => new MinimapActions(this);
+
+    // Pause
+    private readonly InputActionMap m_Pause;
+    private IPauseActions m_PauseActionsCallbackInterface;
+    private readonly InputAction m_Pause_Pause;
+    public struct PauseActions
+    {
+        private @PlayerInputSystem m_Wrapper;
+        public PauseActions(@PlayerInputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_Pause_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Pause; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseActions set) { return set.Get(); }
+        public void SetCallbacks(IPauseActions instance)
+        {
+            if (m_Wrapper.m_PauseActionsCallbackInterface != null)
+            {
+                @Pause.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_PauseActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public PauseActions @Pause => new PauseActions(this);
+
+    // Gameplay_BACKUP
+    private readonly InputActionMap m_Gameplay_BACKUP;
+    private IGameplay_BACKUPActions m_Gameplay_BACKUPActionsCallbackInterface;
+    private readonly InputAction m_Gameplay_BACKUP_Look;
+    private readonly InputAction m_Gameplay_BACKUP_MouseScroll;
+    private readonly InputAction m_Gameplay_BACKUP_Move;
+    private readonly InputAction m_Gameplay_BACKUP_Run;
+    private readonly InputAction m_Gameplay_BACKUP_Jump;
+    private readonly InputAction m_Gameplay_BACKUP_EnableTrap;
+    private readonly InputAction m_Gameplay_BACKUP_Dash;
+    private readonly InputAction m_Gameplay_BACKUP_Shoot;
+    private readonly InputAction m_Gameplay_BACKUP_Map;
+    private readonly InputAction m_Gameplay_BACKUP_SpecialAbility_1;
+    private readonly InputAction m_Gameplay_BACKUP_Pause;
+    public struct Gameplay_BACKUPActions
+    {
+        private @PlayerInputSystem m_Wrapper;
+        public Gameplay_BACKUPActions(@PlayerInputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Look => m_Wrapper.m_Gameplay_BACKUP_Look;
+        public InputAction @MouseScroll => m_Wrapper.m_Gameplay_BACKUP_MouseScroll;
+        public InputAction @Move => m_Wrapper.m_Gameplay_BACKUP_Move;
+        public InputAction @Run => m_Wrapper.m_Gameplay_BACKUP_Run;
+        public InputAction @Jump => m_Wrapper.m_Gameplay_BACKUP_Jump;
+        public InputAction @EnableTrap => m_Wrapper.m_Gameplay_BACKUP_EnableTrap;
+        public InputAction @Dash => m_Wrapper.m_Gameplay_BACKUP_Dash;
+        public InputAction @Shoot => m_Wrapper.m_Gameplay_BACKUP_Shoot;
+        public InputAction @Map => m_Wrapper.m_Gameplay_BACKUP_Map;
+        public InputAction @SpecialAbility_1 => m_Wrapper.m_Gameplay_BACKUP_SpecialAbility_1;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_BACKUP_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay_BACKUP; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Gameplay_BACKUPActions set) { return set.Get(); }
+        public void SetCallbacks(IGameplay_BACKUPActions instance)
+        {
+            if (m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface != null)
+            {
+                @Look.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnLook;
+                @MouseScroll.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnMouseScroll;
+                @MouseScroll.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnMouseScroll;
+                @MouseScroll.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnMouseScroll;
+                @Move.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnMove;
+                @Run.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnRun;
+                @Jump.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnJump;
+                @EnableTrap.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnEnableTrap;
+                @EnableTrap.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnEnableTrap;
+                @EnableTrap.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnEnableTrap;
+                @Dash.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnDash;
+                @Shoot.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnShoot;
+                @Map.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnMap;
+                @Map.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnMap;
+                @Map.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnMap;
+                @SpecialAbility_1.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnSpecialAbility_1;
+                @SpecialAbility_1.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnSpecialAbility_1;
+                @SpecialAbility_1.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnSpecialAbility_1;
+                @Pause.started -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_Gameplay_BACKUPActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @MouseScroll.started += instance.OnMouseScroll;
+                @MouseScroll.performed += instance.OnMouseScroll;
+                @MouseScroll.canceled += instance.OnMouseScroll;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @EnableTrap.started += instance.OnEnableTrap;
+                @EnableTrap.performed += instance.OnEnableTrap;
+                @EnableTrap.canceled += instance.OnEnableTrap;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @Map.started += instance.OnMap;
+                @Map.performed += instance.OnMap;
+                @Map.canceled += instance.OnMap;
+                @SpecialAbility_1.started += instance.OnSpecialAbility_1;
+                @SpecialAbility_1.performed += instance.OnSpecialAbility_1;
+                @SpecialAbility_1.canceled += instance.OnSpecialAbility_1;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public Gameplay_BACKUPActions @Gameplay_BACKUP => new Gameplay_BACKUPActions(this);
     public interface IGameplayActions
+    {
+        void OnLook(InputAction.CallbackContext context);
+        void OnMouseScroll(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnEnableTrap(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnMap(InputAction.CallbackContext context);
+        void OnSpecialAbility_1(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IMinimapActions
+    {
+        void OnLook(InputAction.CallbackContext context);
+        void OnMap(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IPauseActions
+    {
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IGameplay_BACKUPActions
     {
         void OnLook(InputAction.CallbackContext context);
         void OnMouseScroll(InputAction.CallbackContext context);
