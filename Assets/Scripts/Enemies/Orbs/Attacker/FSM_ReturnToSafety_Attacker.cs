@@ -99,7 +99,7 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
     {
         Attacker.m_Laser.enabled = false;
         blackboard.SetOrbHealth(blackboard.m_maxLife);
-        Attacker.ChangeParticleColor();
+        //Attacker.ChangeParticleColor();
         OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
         blackboard.navMesh.isStopped = false;
         
