@@ -106,7 +106,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                 if (DetectionFunctions.PlayerInCone(blackboard.eyesPosition, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                 {
                     ChangeState(State.SEEKINGPLAYER);
-
                 }
 
                 if (enemy.remainingDistance < 0.4f)

@@ -68,9 +68,9 @@ public class DetectionFunctions : MonoBehaviour
 
 	public static bool PlayerInCone(GameObject user, GameObject target, float maxAngle, float maxRange, LayerMask mask)
 	{
-		/*Vector3 vectorEnemyPlayer = new Vector3(target.transform.position.x - user.transform.position.x, 0, 
-        target.transform.position.z - user.transform.position.z);*/
-		Vector3 vectorEnemyPlayer = target.transform.position - user.transform.position;
+		Vector3 vectorEnemyPlayer = new Vector3(target.transform.position.x - user.transform.position.x, (target.transform.position.y + 1f - user.transform.position.y), 
+        target.transform.position.z - user.transform.position.z);
+		//Vector3 vectorEnemyPlayer = target.transform.position - user.transform.position;
 
 
 		float angle =  Vector3.Angle(user.transform.forward, vectorEnemyPlayer);
@@ -90,7 +90,7 @@ public class DetectionFunctions : MonoBehaviour
 			//Debug.Log(vectorEnemyPlayer.normalized * maxRange);
 			if (Physics.Raycast(Ray, out hit, maxRange, mask) && GameManager.Instance.GetPlayer().GetComponent<PlayerHiddenPrayer>().m_IsPlayerVisibleToEnemy)
 			{
-				//Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange,  Color.red);
+				Debug.Log(angle);
 				/*Debug.DrawRay(user.transform.position, user.transform.forward * maxRange, Color.blue);*/
 				//Debug.Log("Distancia hit: " + hit.distance + " Distancia Player: " + vectorEnemyPlayer.magnitude);
 				//Debug.Log(hit.collider.transform.name);
@@ -100,6 +100,7 @@ public class DetectionFunctions : MonoBehaviour
 				}*/
 				if (hit.collider.CompareTag("Player"))
 				{
+					Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange,  Color.red);
 					//user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
 					//Debug.Log(angle + " Estoy IN");
 					//Debug.Log(angle + " MaxAngle: " + maxAngle);
