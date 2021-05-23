@@ -90,7 +90,7 @@ public class DetectionFunctions : MonoBehaviour
 			//Debug.Log(vectorEnemyPlayer.normalized * maxRange);
 			if (Physics.Raycast(Ray, out hit, maxRange, mask) && GameManager.Instance.GetPlayer().GetComponent<PlayerHiddenPrayer>().m_IsPlayerVisibleToEnemy)
 			{
-				Debug.Log(angle);
+				//Debug.Log(angle);
 				/*Debug.DrawRay(user.transform.position, user.transform.forward * maxRange, Color.blue);*/
 				//Debug.Log("Distancia hit: " + hit.distance + " Distancia Player: " + vectorEnemyPlayer.magnitude);
 				//Debug.Log(hit.collider.transform.name);
