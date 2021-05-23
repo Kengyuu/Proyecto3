@@ -46,7 +46,7 @@ public class CorpseAbsortion : MonoBehaviour {
             switch(Target.tag)
             {
                 case "Player":
-                    absorberStunned = Target.GetComponent<PlayerController>().m_PlayerStunned;
+                    absorberStunned = GM.GetPlayer().GetComponent<PlayerController>().m_PlayerStunned;
                     //Target.position = GM.GetPlayer().transform.position;
                     break;
                 case "Enemy":
@@ -72,8 +72,8 @@ public class CorpseAbsortion : MonoBehaviour {
                 {
                     Vector3 distanceParticleTarget = (attractorPosition - system.transform.TransformPoint(particles[i].position)).normalized;
                     //particles[i].remainingLifetime = distanceParticleTarget.magnitude / particles[i].velocity.magnitude;
-                    Vector3 particleSpeed = distanceParticleTarget / (particles[i].remainingLifetime);
-                    particles[i].position += particleSpeed  * Time.deltaTime;
+                    Vector3 particleSpeed = Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) * distanceParticleTarget / (particles[i].remainingLifetime);
+                    particles[i].position += particleSpeed * Time.deltaTime;
                     if(Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) < 0.5f)
                     {
                         particles[i].position = Target.position;
@@ -172,6 +172,11 @@ public class CorpseAbsortion : MonoBehaviour {
         system.Clear();
         system.Stop();
         currentAbsorbTime = 0f;
+        if(Target.CompareTag("Player"))
+        {
+            GameObject player = GM.GetPlayer();
+            player.GetComponent<PlayerShoot>().ResetShoot();
+        }
         Target = null;
     }
 }
