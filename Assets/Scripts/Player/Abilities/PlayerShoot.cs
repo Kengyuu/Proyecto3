@@ -211,7 +211,10 @@ public class PlayerShoot : MonoBehaviour
 
     private void ShootBeam(float distance)
     {
-        beam.transform.localScale = new Vector3(beam.transform.localScale.x, beam.transform.localScale.y, distance);
+        ParticleSystem particles = beam.GetComponent<ParticleSystem>();
+        ParticleSystem.ShapeModule shape = particles.shape;
+        shape.scale =  new Vector3(shape.scale.x, shape.scale.y, distance);
+        //beam.transform.localScale =
         
         beam.SetActive(true);
         StartCoroutine(WaitBeam());
