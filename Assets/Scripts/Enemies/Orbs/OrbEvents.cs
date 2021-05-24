@@ -29,9 +29,11 @@ public class OrbEvents : MonoBehaviour
         spawnOrb?.Invoke(m_ScoreManager.GetPlayerCorpses());
     }
 
-    public IEnumerator RespawnOrbs(GameObject orb)
+   
+
+    public void RespawnOrbs(GameObject orb)
     {
-        yield return new WaitForSeconds(0);
+        
         respawnOrb?.Invoke(orb);
     }
 

@@ -97,7 +97,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
 
     void Spawn()
     {
-        OrbEvents.current.StartCoroutine(OrbEvents.current.RespawnOrbs(gameObject));
+        OrbEvents.current.RespawnOrbs(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
