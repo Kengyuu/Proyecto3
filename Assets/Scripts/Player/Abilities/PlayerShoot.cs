@@ -20,11 +20,12 @@ public class PlayerShoot : MonoBehaviour
     public GameObject absorbObjective;
 
     
-
+    [Header("ShootEffects")]
     public ParticleSystem chargeBeam;
     public GameObject beam;
-
+    public GameObject mainBeam;
     public GameObject splashBeam;
+    public ParticleSystem handLight;
 
     [Header("Object detection distances")]
     public float m_CorpseDetectionDistance = 5f;
@@ -84,6 +85,8 @@ public class PlayerShoot : MonoBehaviour
         m_IsPlayerShooting = true;
         crosshairAnim.SetBool("Shot", true);
         chargeBeam.Play();
+        handLight.Play();
+
         
         StartCoroutine(Wait());
 
@@ -142,6 +145,7 @@ public class PlayerShoot : MonoBehaviour
                         //Debug.Log($"Weak Point a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<WeakPoint>().TakeDamage();
                         beam.transform.LookAt(hit.point);
+                        mainBeam.transform.LookAt(hit.point);
                         splashBeam.transform.LookAt(hit.point);
                     }
                     break;
@@ -154,6 +158,7 @@ public class PlayerShoot : MonoBehaviour
                         hit.collider.GetComponent<FSM_CorpseSearcher>().alert = true;
                         hit.collider.GetComponent<FSM_CorpseSearcher>().ChangeParticleColor();
                         beam.transform.LookAt(hit.point);
+                        mainBeam.transform.LookAt(hit.point);
                         splashBeam.transform.LookAt(hit.point);
                     }
                     break;
@@ -165,6 +170,7 @@ public class PlayerShoot : MonoBehaviour
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         beam.transform.LookAt(hit.point);
+                        mainBeam.transform.LookAt(hit.point);
                         splashBeam.transform.LookAt(hit.point);
                     }
                     break;
@@ -176,6 +182,7 @@ public class PlayerShoot : MonoBehaviour
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_TrapSearcher>().alert = true;
                         beam.transform.LookAt(hit.point);
+                        mainBeam.transform.LookAt(hit.point);
                         splashBeam.transform.LookAt(hit.point);
                     }
 
@@ -187,6 +194,7 @@ public class PlayerShoot : MonoBehaviour
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_AttackerOrb>().alert = true;
                         beam.transform.LookAt(hit.point);
+                        mainBeam.transform.LookAt(hit.point);
                         splashBeam.transform.LookAt(hit.point);
                     }
                     break;
@@ -203,7 +211,7 @@ public class PlayerShoot : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.4f);
         StopAnim();
     }
     private void StopAnim()
@@ -220,11 +228,12 @@ public class PlayerShoot : MonoBehaviour
     {
         ParticleSystem particles = beam.GetComponent<ParticleSystem>();
         ParticleSystem.ShapeModule shape = particles.shape;
-        shape.length = distance/5;
-        Debug.Log(distance);
+        //shape.length = distance/5;
+        //Debug.Log(distance);
         //beam.transform.localScale =
         
         beam.SetActive(true);
+        mainBeam.SetActive(true);
         splashBeam.SetActive(true);
         StartCoroutine(WaitBeam());
     }
@@ -233,6 +242,7 @@ public class PlayerShoot : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         beam.SetActive(false);
+        mainBeam.SetActive(false);
         splashBeam.SetActive(false);
         ResetShoot();
     }
