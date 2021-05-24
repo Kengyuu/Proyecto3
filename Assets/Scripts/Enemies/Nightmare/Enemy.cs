@@ -38,6 +38,7 @@ public class Enemy : Entities
             if(m_ScoreManager.GetPlayerCorpses() >= 10)
             {
                 GM.SetGameState(GameState.WIN);
+                Cursor.lockState = CursorLockMode.None; //TBD
                 return;
             }
         }

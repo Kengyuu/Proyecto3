@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour
                 if (m_ScoreManager.GetEnemyCorpses() >= 10)
                 {
                     GM.SetGameState(GameState.GAME_OVER);
+                    Cursor.lockState = CursorLockMode.None; //TBD
                     return;
                 }
                 if (m_ScoreManager.GetPlayerCorpses() > 0)

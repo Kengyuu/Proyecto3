@@ -7,11 +7,11 @@ public class MinimapController : MonoBehaviour
     private Transform m_Player;
     //private PlayerMovement m_PlayerMovement;
 
-    [Header("Camera Control")]
+    /*[Header("Camera Control")]
     public Camera m_MinMapCamera;
     public float m_ZoomIncrease = 10f;
     public float m_MinZoom = 10f;
-    public float m_MaxZoom = 60f;
+    public float m_MaxZoom = 60f;*/
 
 
     //public float m_CorpseShowRadius = 50f;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour, IScoreManager
 {
+    [Header("CAMBIAR EL START DEL SCRIPT!!!")]
     [SerializeField] float m_PlayerCorpses;
     [SerializeField] float m_EnemyCorpses;
     [SerializeField] float m_RemainingCorpses;
@@ -15,6 +16,13 @@ public class ScoreManager : MonoBehaviour, IScoreManager
         DependencyInjector.AddDependency<IScoreManager>(this);
 
        
+    }
+
+    private void Start()
+    {
+        m_PlayerCorpses = 0f;
+        m_EnemyCorpses = 0f;
+        m_PlayerHP = 3f;
     }
 
     //Player

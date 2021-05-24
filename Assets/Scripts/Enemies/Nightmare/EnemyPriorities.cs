@@ -49,14 +49,18 @@ public class EnemyPriorities : MonoBehaviour
    public void DetectPlayerActions(float playerDistance)
     {
         //Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");
-        if(DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < playerDistance && !GetComponent<HFSM_StunEnemy>().isStunned)
+        if(GM.gameState == GameState.GAME)
         {
-            playerDetected = true;
-            currState = EnemyStates.LOOKFORPLAYER;
-            ChangePriority();
-            //ActivateFSM();
-            seekPlayer.target = GM.GetPlayer();
+            if (DetectionFunctions.DistanceToTarget(gameObject, GM.GetPlayer()) < playerDistance && !GetComponent<HFSM_StunEnemy>().isStunned)
+            {
+                playerDetected = true;
+                currState = EnemyStates.LOOKFORPLAYER;
+                ChangePriority();
+                //ActivateFSM();
+                seekPlayer.target = GM.GetPlayer();
+            }
         }
+        
     }
 
     /*private void Update()
