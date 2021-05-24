@@ -283,7 +283,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 blackboard.lastCorpseSeen = corpse;
                 break;
             case State.ATTACKINGPLAYER:
-                blackboard.navMesh.isStopped = true;
+                //blackboard.navMesh.isStopped = true;
                 anim.SetBool("AttackOrb", true);
                 break;
             case State.ALERT:
