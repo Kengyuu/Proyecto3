@@ -31,7 +31,7 @@ public class OrbEvents : MonoBehaviour
 
     public IEnumerator RespawnOrbs(GameObject orb)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0);
         respawnOrb?.Invoke(orb);
     }
 
