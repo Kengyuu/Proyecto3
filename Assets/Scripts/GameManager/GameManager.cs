@@ -8,8 +8,6 @@ public enum GameState
     INTRO,
     MAIN_MENU,
     GAME,
-    CREDITS,
-    HELP,
     MODIFIERS,
     GAME_OVER,
     WIN,

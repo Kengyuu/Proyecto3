@@ -66,18 +66,18 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         GM.SetGameState(GameState.GAME);
-        m_PauseCanvas.SetActive(false);
+        //m_PauseCanvas.SetActive(false);
         m_GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
 
-    public void LoadSettings()
+ /*   public void LoadSettings()
     {
         Debug.Log("Abriendo menú de opciones");
         m_PauseCanvas.SetActive(false);
         m_SettingsCanvas.SetActive(true);
-    }
+    }*/
 
     public void QuitGame()
     {
