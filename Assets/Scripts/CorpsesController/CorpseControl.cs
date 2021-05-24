@@ -12,6 +12,8 @@ public class CorpseControl : MonoBehaviour
     public float timerInvisible = 10f;
 
     public GameObject hideOrb;
+
+    public GameObject mesh;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,7 @@ public class CorpseControl : MonoBehaviour
     {
         if (!hideOrb.activeSelf)
         {
-            GetComponent<MeshRenderer>().material = originalMaterial;
+            mesh.GetComponent<MeshRenderer>().material = originalMaterial;
         }
         /*if(changeVisibility)
         {
@@ -46,7 +48,7 @@ public class CorpseControl : MonoBehaviour
     {
         if(col.CompareTag("HideOrb"))
         {
-            GetComponent<MeshRenderer>().material = transparentMaterial;
+            mesh.GetComponent<MeshRenderer>().material = transparentMaterial;
         }
     }
 
@@ -54,7 +56,7 @@ public class CorpseControl : MonoBehaviour
     {
         if(col.CompareTag("HideOrb"))
         {
-            GetComponent<MeshRenderer>().material = originalMaterial;
+            mesh.GetComponent<MeshRenderer>().material = originalMaterial;
         }
     }
 }

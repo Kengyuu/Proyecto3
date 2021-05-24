@@ -84,10 +84,10 @@ public class PlayerShoot : MonoBehaviour
     {
         m_IsPlayerShooting = true;
         crosshairAnim.SetBool("Shot", true);
+        
+
         chargeBeam.Play();
         handLight.Play();
-
-        
         StartCoroutine(Wait());
 
         
@@ -203,7 +203,9 @@ public class PlayerShoot : MonoBehaviour
         }
         if(!corpseHit)
         {
+            
             ShootBeam(distanceToObjective);
+            
         }
         GM.PlayerNoise(m_ShootNoise);
         

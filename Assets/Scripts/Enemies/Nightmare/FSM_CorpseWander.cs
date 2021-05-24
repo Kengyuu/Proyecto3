@@ -157,6 +157,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 
                 blackboard.cooldownToGrabCorpse = 3f;
                 target.GetComponent<CorpseAbsortion>().AbsorbParticles(blackboard.cooldownToGrabCorpse, gameObject);
+                transform.LookAt(target.transform.position, gameObject.transform.up);
                 break;
 
         }
