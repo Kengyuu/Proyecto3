@@ -73,7 +73,8 @@ public class FSM_AttackerOrb : MonoBehaviour
                     break;
                 }
 
-                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer) &&
+                    !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
                 {
                     //Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
