@@ -73,6 +73,7 @@ public class EnemyPriorities : MonoBehaviour
         playerCorpses = m_ScoreManager.GetPlayerCorpses();
         enemyCorpses = m_ScoreManager.GetEnemyCorpses();
         remainingCorpses = m_ScoreManager.GetRemainingCorpses();
+        
         if(playerSeen || playerDetected )
         {
             currState = EnemyStates.LOOKFORPLAYER;

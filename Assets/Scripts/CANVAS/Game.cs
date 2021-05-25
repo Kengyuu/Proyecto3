@@ -5,6 +5,7 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
 	GameManager GM;
+    ScoreManager m_ScoreManager;
 
 	void Awake()
 	{
@@ -14,7 +15,11 @@ public class Game : MonoBehaviour
         GM.m_GameObjectSpawner = GameObject.FindObjectOfType<GameObjectSpawner>();
         GM.m_WaypointsList = GameObject.FindObjectOfType<RoomSpawner>();
         GM.m_GamesPlayed++;
-
+        if(m_ScoreManager == null)
+        {
+            m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        }
+        
         Cursor.lockState = CursorLockMode.Locked;
     }
 }

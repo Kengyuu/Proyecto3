@@ -102,7 +102,7 @@ public class PlayerMap : MonoBehaviour
 
             if (corpse.activeSelf)
             {
-                //Debug.Log($"Cuerpo en el radio con distancia: {l_Distance} y está {corpse.activeSelf}");
+                //Debug.Log($"Cuerpo en el radio con distancia: {l_Distance} y estï¿½ {corpse.activeSelf}");
                 foreach (Transform t in corpse.transform)
                 {
                     float l_Distance = Vector3.Distance(corpse.transform.position, m_PlayerMovement.transform.position);
@@ -110,7 +110,7 @@ public class PlayerMap : MonoBehaviour
                     {
                         t.gameObject.layer = LayerMask.NameToLayer("UI");
                     }
-                    else
+                    else if( t.gameObject.CompareTag("Map") && l_Distance >= m_CorpseShowRadius )
                     {
                         t.gameObject.layer = LayerMask.NameToLayer("Void");
                     }
