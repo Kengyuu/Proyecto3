@@ -18,7 +18,7 @@ public class PlayerShoot : MonoBehaviour
     private bool m_PlayerCanShoot = true;
     public Animator crosshairAnim;
     public GameObject absorbObjective;
-
+    
     
     [Header("ShootEffects")]
     public ParticleSystem chargeBeam;
@@ -73,7 +73,38 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {
         //if(m_PlayerCanShoot) CheckShootingCollisions();
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
+        {
+            string tag = hit.collider.transform.tag;
+            bool firstTimeCorpse = true;
+            //Debug.Log($"{hit.transform.name} ha sido impactado a una distancia de {l_CurrentDistance}");
+            switch (tag)
+            {
+                case "Corpse":
+                    if (firstTimeCorpse)
+                    {
+                        M_HudController.triggerShot = true;
+                        firstTimeCorpse = false;
+                    }
+                    
+                    break;
+                case "ActiveTrap":
+                   
+                    break;
+               
+                case "WeakPoint":
+                   
+                    break;
 
+                case "CorpseOrb":
+                    
+                    break;
+
+               
+            }
+
+        }
         if (m_PlayerMovement.m_InputSystem.Gameplay.Shoot.triggered && !m_IsPlayerShooting)
         {
             StartCasting();
@@ -112,6 +143,7 @@ public class PlayerShoot : MonoBehaviour
                 case "Corpse":
                     if (l_CurrentDistance < m_CorpseDetectionDistance)
                     {
+                        M_HudController.hasShot = true;
                         //AQUÍ PARA LLAMAR AL SISTEMA DE PARTÍCULAS
                         hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.5f, absorbObjective);
                         corpseHit = true;

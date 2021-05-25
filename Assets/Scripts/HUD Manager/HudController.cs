@@ -27,6 +27,33 @@ public class HudController : MonoBehaviour
     public TextMeshProUGUI m_RemainingCorpses;
     //public TextMeshProUGUI m_PlayerHP;
 
+    [Header("Prompts")]
+    public TextMeshProUGUI[] promptList;
+    public TextMeshProUGUI movementPrompt;
+    public TextMeshProUGUI runPrompt;
+    public TextMeshProUGUI dashPrompt;
+    public TextMeshProUGUI shootCorpsePrompt;
+    public TextMeshProUGUI shootTrapPrompt;
+    public TextMeshProUGUI shootEnemyPrompt;
+    public TextMeshProUGUI modifierPrompt;
+    public TextMeshProUGUI trapRepairPrompt;
+    public TextMeshProUGUI mapPrompt;
+    public bool hasMoved = false;
+    public bool hasRun = false;
+    public bool hasDashed = false;
+    public bool hasShot = false;
+    public bool hasShotEnemy = false;
+    public bool hasModified = false;
+    public bool hasRepaired = false;
+    public bool hasMapped = false;
+    
+    public bool triggerShot = false;
+    public bool triggerShotEnemy = false;
+    float cooldownMovement = 5;
+    float cooldownRun = 3;
+    float cooldownDash = 4;
+
+
     [Header("Canvas")]
     public GameObject m_CanvasGame;
     public GameObject m_CanvasGameOver;
@@ -75,6 +102,18 @@ public class HudController : MonoBehaviour
 
         m_CanvasGame.SetActive(true);
 
+    }
+
+    private void Update()
+    {
+        ManagePrompts();
+        if (!hasMoved)
+        {
+            cooldownMovement -= Time.deltaTime;
+        }
+        if (hasMoved) cooldownRun -= Time.deltaTime;
+        if (hasRun) cooldownDash -= Time.deltaTime;
+        
     }
 
 
@@ -165,6 +204,56 @@ public class HudController : MonoBehaviour
         UpdateObjective(scoreManager.GetPlayerCorpses(), scoreManager.GetEnemyCorpses());
 
     }
+
+    public void ManagePrompts()
+    {
+        if (cooldownMovement <= 0 && !hasMoved && !CheckIfPromptActive())
+        {
+            movementPrompt.gameObject.SetActive(true);
+            
+            
+        }
+        if (hasMoved) StartCoroutine(SetToFalse(movementPrompt));
+
+        if (cooldownRun <= 0 && !hasRun && !CheckIfPromptActive())
+        {
+            runPrompt.gameObject.SetActive(true);
+        }
+        if (hasRun) StartCoroutine(SetToFalse(runPrompt));
+
+        if (cooldownDash <= 0 && !hasDashed && !CheckIfPromptActive())
+        {
+            dashPrompt.gameObject.SetActive(true);
+        }
+        if (hasDashed) StartCoroutine(SetToFalse(dashPrompt));
+
+        if (triggerShot && !CheckIfPromptActive())
+        {
+            shootCorpsePrompt.gameObject.SetActive(true);
+            triggerShot = false;
+        }
+        if (hasShot)StartCoroutine(SetToFalse(shootCorpsePrompt));
+
+    }
+
+    public bool CheckIfPromptActive()
+    {
+        foreach (TextMeshProUGUI text in promptList)
+        {
+            if (text.gameObject.activeSelf)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    IEnumerator SetToFalse(TextMeshProUGUI text)
+    {
+        yield return new WaitForSeconds(1);
+        text.gameObject.SetActive(false);
+    }
+   
 
     public void UpdateHealth(float health)
     {

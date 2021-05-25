@@ -16,6 +16,7 @@ public class PlayerDash : MonoBehaviour
     public float m_DashMaxCooldown = 2f;
     public float m_DashCooldown = 0f;
     public bool m_PlayerCanDash = true;
+    private HudController hud;
 
     [Header("Dash Evasion")]
     public float m_MaxDashEvasionTime = 0.5f;
@@ -33,7 +34,7 @@ public class PlayerDash : MonoBehaviour
         m_PlayerMovement = GetComponent<PlayerMovement>();
         //m_PlayerController = GetComponent<PlayerController>();
         m_PlayerHiddenPrayer = GetComponent<PlayerHiddenPrayer>();
-
+        if (hud == null) hud = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (GM == null) GM = GameManager.Instance;
 
         //GM.OnStateChange += StateChanged;
@@ -82,6 +83,7 @@ public class PlayerDash : MonoBehaviour
 
     private void Dash()
     {
+        hud.hasDashed = true;
         if (m_PlayerHiddenPrayer.m_IsPlayerVisibleToEnemy && m_PlayerMovement.m_CharacterController.velocity.magnitude > 0.2f)
         {
             GM.PlayerNoise(m_DashNoise);

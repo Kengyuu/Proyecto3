@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float m_Mass = 1f;
     private float m_VerticalVelocity;
     [HideInInspector] public CharacterController m_CharacterController;
+    private HudController hud;
     public PlayerInputSystem m_InputSystem;
     private Vector2 m_InputMove;
     private Vector3 m_Movement;
@@ -29,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
     {
         m_InputSystem = new PlayerInputSystem();
         m_CharacterController = GetComponent<CharacterController>();
-
+        if (hud == null) hud = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
+        
         //Check run button actions
         m_InputSystem.Gameplay.Run.started += ctx => RunAction();
         m_InputSystem.Gameplay.Run.canceled += ctx => RunAction();
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Ground debug
         m_IsGrounded = m_CharacterController.isGrounded;
+        
 
         Move();
     }//End Update()
@@ -47,6 +50,11 @@ public class PlayerMovement : MonoBehaviour
     {
         float l_PlayerCurrentSpeed = m_PlayerWalkSpeed;
         m_Movement = Vector3.zero;
+        if (m_InputSystem.Gameplay.Move.ReadValue<Vector2>().magnitude != 0)
+        {
+           
+            hud.hasMoved = true;
+        }
         m_InputMove = m_InputSystem.Gameplay.Move.ReadValue<Vector2>();
         m_Movement = (m_InputMove.y * transform.forward) + (m_InputMove.x * transform.right);
 
@@ -62,7 +70,11 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //Player Run
-            if (m_RunPressed) l_PlayerCurrentSpeed = m_PlayerRunSpeed;
+            if (m_RunPressed)
+            {
+                l_PlayerCurrentSpeed = m_PlayerRunSpeed;
+                hud.hasRun = true;
+            }
         }
         else
         {
