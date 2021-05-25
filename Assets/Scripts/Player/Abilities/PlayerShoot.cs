@@ -26,6 +26,7 @@ public class PlayerShoot : MonoBehaviour
     public GameObject mainBeam;
     public GameObject splashBeam;
     public ParticleSystem handLight;
+    public ParticleSystem absorbSphere;
 
     [Header("Object detection distances")]
     public float m_CorpseDetectionDistance = 5f;
@@ -131,12 +132,11 @@ public class PlayerShoot : MonoBehaviour
         crosshairAnim.SetBool("Shot", true);
         
 
-        chargeBeam.Play();
-        handLight.Play();
-        StartCoroutine(Wait());
-
         
-        Invoke("Shoot", m_ShootCastingTime);
+       
+
+        Shoot();
+        //Invoke("Shoot", m_ShootCastingTime);
     }
 
     private void Shoot()
@@ -157,6 +157,7 @@ public class PlayerShoot : MonoBehaviour
                 case "Corpse":
                     if (l_CurrentDistance < m_CorpseDetectionDistance)
                     {
+                        absorbSphere.Play();
                         M_HudController.hasShot = true;
                         //AQUÍ PARA LLAMAR AL SISTEMA DE PARTÍCULAS
                         hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.5f, absorbObjective);
@@ -249,8 +250,11 @@ public class PlayerShoot : MonoBehaviour
         }
         if(!corpseHit)
         {
-            
-            ShootBeam(distanceToObjective);
+            chargeBeam.Play();
+            handLight.Play();
+            StartCoroutine(Wait());
+            Invoke("ShootBeam", m_ShootCastingTime);
+            //ShootBeam(distanceToObjective);
             
         }
         GM.PlayerNoise(m_ShootNoise);
@@ -272,7 +276,7 @@ public class PlayerShoot : MonoBehaviour
         m_IsPlayerShooting = false;
     }
 
-    private void ShootBeam(float distance)
+    private void ShootBeam()
     {
         ParticleSystem particles = beam.GetComponent<ParticleSystem>();
         ParticleSystem.ShapeModule shape = particles.shape;

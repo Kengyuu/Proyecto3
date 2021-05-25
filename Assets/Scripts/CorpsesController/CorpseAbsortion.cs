@@ -6,6 +6,9 @@ public class CorpseAbsortion : MonoBehaviour {
 
 	public ParticleSystem system;
 
+    public ParticleSystem playerSystem;
+    public ParticleSystem enemySystem;
+    public ParticleSystem orbSystem; 
     public ParticleSystem auraSystem;
     //public ParticleSystem lightAuraSystem;
     bool systemActive = false;
@@ -26,9 +29,9 @@ public class CorpseAbsortion : MonoBehaviour {
 		if (system == null){
 			this.enabled = false;
 		}
-        system.Stop();
         //lightAuraSystem.Play();
         auraSystem.Play();
+        Target = null;
     }
 	void Start() {
         GM = GameManager.Instance;
@@ -67,20 +70,26 @@ public class CorpseAbsortion : MonoBehaviour {
             {
                 if(Target != null)
                 {
+                    Vector3 attractorPosition = Target.position;
                     system.transform.LookAt(Target.transform.position, system.gameObject.transform.up);
                     int length = system.GetParticles (particles);
-                    Vector3 attractorPosition = Target.position;
-        
+                    
+                    //Debug.Log(attractorPosition + " " + Target.name);
                     for (int i=0; i < length; i++) 
                     {
-                        Vector3 distanceParticleTarget = (attractorPosition - system.transform.TransformPoint(particles[i].position)).normalized;
-                        //particles[i].remainingLifetime = distanceParticleTarget.magnitude / particles[i].velocity.magnitude;
-                        Vector3 particleSpeed = Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) * distanceParticleTarget / (particles[i].remainingLifetime);
-                        particles[i].position += particleSpeed * Time.deltaTime;
+                        if(particles[i].remainingLifetime != 0)
+                        {
+                            Vector3 distanceParticleTarget = (attractorPosition - system.transform.TransformPoint(particles[i].position)).normalized;
+                            Debug.Log(distanceParticleTarget);
+                            //particles[i].remainingLifetime = distanceParticleTarget.magnitude / particles[i].velocity.magnitude;
+                            Vector3 particleSpeed = Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) * distanceParticleTarget / (particles[i].startLifetime);
+                            particles[i].position += particleSpeed * Time.deltaTime;
+                        }
+                        
                         if(Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) < 0.5f)
                         {
                             particles[i].position = Target.position;
-                            //particles[i].velocity = new Vector3(0,0,0);
+                            particles[i].velocity = new Vector3(0,0,0);
                             //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                             particles[i].remainingLifetime =  0;
                             //particles[i].position = Target.position;
@@ -100,7 +109,18 @@ public class CorpseAbsortion : MonoBehaviour {
 
     public void AbsorbParticles(float particleDuration, GameObject target)
     {
-        
+        switch(target.tag)
+        {
+            case "Player":
+                system = playerSystem.GetComponent<ParticleSystem>();
+                break;
+            case "Enemy":
+                system = enemySystem.GetComponent<ParticleSystem>();
+                break;
+            case "CorpseOrb":
+                system = playerSystem.GetComponent<ParticleSystem>();
+                break;
+        }
         system.Play();
         absorbDuration = particleDuration;
         StartCoroutine(Wait(particleDuration));
@@ -132,6 +152,6 @@ public class CorpseAbsortion : MonoBehaviour {
             GameObject player = GM.GetPlayer();
             player.GetComponent<PlayerShoot>().ResetShoot();
         }
-        Target = null;
+        //Target = null;
     }
 }
