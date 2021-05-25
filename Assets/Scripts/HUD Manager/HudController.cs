@@ -48,6 +48,7 @@ public class HudController : MonoBehaviour
     public bool hasMapped = false;
     
     public bool triggerShot = false;
+    public bool triggerShotTrap = false;
     public bool triggerShotEnemy = false;
     float cooldownMovement = 5;
     float cooldownRun = 3;
@@ -233,6 +234,20 @@ public class HudController : MonoBehaviour
             triggerShot = false;
         }
         if (hasShot)StartCoroutine(SetToFalse(shootCorpsePrompt));
+
+        if (triggerShotTrap && !CheckIfPromptActive())
+        {
+            shootTrapPrompt.gameObject.SetActive(true);
+            triggerShotTrap = false;
+        }
+        if (hasShot) StartCoroutine(SetToFalse(shootTrapPrompt));
+
+        if (triggerShotEnemy && !CheckIfPromptActive())
+        {
+            shootEnemyPrompt.gameObject.SetActive(true);
+            triggerShotEnemy = false;
+        }
+        if (hasShot) StartCoroutine(SetToFalse(shootEnemyPrompt));
 
     }
 
