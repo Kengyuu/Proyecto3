@@ -19,7 +19,7 @@ public class FSM_SeekPlayer : MonoBehaviour
     public List<GameObject> waypointsNearPlayer;
     public bool waypointSelected = false;
 
-    public float attackCooldown = 1f;
+    public float attackCooldown = 0.5f;
     float currentAttackTime = 0f;
     //Transform child;
     public GameObject Arm;
@@ -92,7 +92,8 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
 
             case State.SEEKINGPLAYER:
-                enemy.SetDestination(Player.transform.position);
+                if(!enemy.isStopped)
+                    enemy.SetDestination(Player.transform.position);
                 //transform.LookAt(Player.transform,transform.up);
                 if (DetectionFunctions.DistanceToTarget(gameObject,Player) <= blackboard.distanceToAttack)
                 {
@@ -107,7 +108,8 @@ public class FSM_SeekPlayer : MonoBehaviour
                 }
                 break;
             case State.GOTOLASTPLAYERPOSITION:
-                enemy.SetDestination(lastPlayerPosition);
+                if(!enemy.isStopped)
+                    enemy.SetDestination(lastPlayerPosition);
                 if (DetectionFunctions.PlayerInCone(blackboard.eyesPosition, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                 {
                     ChangeState(State.SEEKINGPLAYER);
@@ -179,14 +181,15 @@ public class FSM_SeekPlayer : MonoBehaviour
         {
 
             case State.SEEKINGPLAYER:
-                enemy.SetDestination(Player.transform.position);
+                if(!enemy.isStopped)
+                    enemy.SetDestination(Player.transform.position);
                 blackboard.animatorController.WalkAgressiveEnter();
 
                 break;
             case State.GOTOLASTPLAYERPOSITION:
                 lastPlayerPosition = Player.transform.position;
-
-                enemy.SetDestination(lastPlayerPosition);
+                if(!enemy.isStopped)
+                    enemy.SetDestination(lastPlayerPosition);
                 break;
 
             
