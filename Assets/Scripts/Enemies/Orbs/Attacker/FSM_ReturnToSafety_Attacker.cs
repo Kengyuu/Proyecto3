@@ -85,7 +85,7 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
             case State.RETURNINGTOENEMY:
                 Attacker.anim.SetBool("AttackOrb", false);
                 Spawn();
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
 
                 break;
 

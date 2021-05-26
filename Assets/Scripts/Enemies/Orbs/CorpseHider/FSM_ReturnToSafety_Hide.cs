@@ -86,7 +86,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
 
             case State.RETURNINGTOENEMY:
                 Spawn();
-                gameObject.SetActive(false);
+               // gameObject.SetActive(false);
                 break;
 
         }

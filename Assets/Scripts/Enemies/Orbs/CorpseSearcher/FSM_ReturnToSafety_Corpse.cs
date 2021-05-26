@@ -97,7 +97,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                     GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1, gameObject);
                 }
                 Spawn();
-                gameObject.SetActive(false);
+               // gameObject.SetActive(false);
 
                 break;
 
@@ -122,6 +122,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy" && currentState == State.NORMALBEHAVIOUR)
         {
+            Debug.Log("Colisionao");
             corpseSearch.target = blackboard.behaviours.PickRandomWaypointOrb();
         }
 

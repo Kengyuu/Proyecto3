@@ -195,7 +195,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
             case State.ALERT:
                 //Rotate();
-                transform.LookAt(GM.GetPlayer().transform.up);
+                transform.LookAt(GM.GetPlayer().transform,transform.up);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 Invoke("StayAlert", 1);
                 break;
@@ -203,10 +203,10 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
 
             case State.ATTACKINGPLAYER:
-                transform.LookAt(GM.GetPlayer().transform.up);
+                
                 if (rotating)
                 {
-                    
+                    transform.LookAt(GM.GetPlayer().transform, transform.up);
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 } //Rotate();
                 TriggerAttack();

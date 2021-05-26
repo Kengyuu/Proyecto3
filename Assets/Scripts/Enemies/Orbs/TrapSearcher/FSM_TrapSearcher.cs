@@ -150,14 +150,19 @@ public class FSM_TrapSearcher : MonoBehaviour
 
 
             case State.ALERT:
-                Rotate();
+                transform.LookAt(GM.GetPlayer().transform, transform.up);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 Invoke("StayAlert", 1);
                 break;
 
 
             case State.ATTACKINGPLAYER:
 
-                if (rotating) Rotate();
+                if (rotating)
+                {
+                    transform.LookAt(GM.GetPlayer().transform, transform.up);
+                    transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                } //Rotate();
 
                 TriggerAttack();
 

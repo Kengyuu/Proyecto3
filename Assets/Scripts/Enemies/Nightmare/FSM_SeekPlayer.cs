@@ -81,7 +81,8 @@ public class FSM_SeekPlayer : MonoBehaviour
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughCorpseRadius)
                 {
                     waypointSelected = false;
-                    ChangeState(State.WANDERING);
+                    GetComponent<EnemyPriorities>().playerSeen = false;
+                    //ChangeState(State.WANDERING);
                 }
 
                 

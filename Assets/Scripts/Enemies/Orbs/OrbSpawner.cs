@@ -98,7 +98,7 @@ public class OrbSpawner : MonoBehaviour
 
     public void SelectOrbs()
     {
-       GameObject randomSecondOrb = orbs[Random.Range(0, orbs.Count)];
+        GameObject randomSecondOrb = orbs[Random.Range(0, orbs.Count)];
         orbs.Remove(randomSecondOrb);
         secondOrb = randomSecondOrb;
         second.sprite = secondOrb.GetComponent<Orb_Blackboard>().icon;

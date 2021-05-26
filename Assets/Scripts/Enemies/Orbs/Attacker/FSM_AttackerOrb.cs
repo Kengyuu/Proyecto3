@@ -91,7 +91,8 @@ public class FSM_AttackerOrb : MonoBehaviour
 
 
             case State.ALERT:
-                Rotate();
+                transform.LookAt(GM.GetPlayer().transform, transform.up);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 Invoke("StayAlert", 1);
                 break;
 
@@ -99,7 +100,11 @@ public class FSM_AttackerOrb : MonoBehaviour
 
             case State.ATTACKINGPLAYER:
 
-                if (rotating) Rotate();
+                if (rotating)
+                {
+                    transform.LookAt(GM.GetPlayer().transform, transform.up);
+                    transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                } //Rotate();
 
                 TriggerAttack();
                 if (GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_Life <= 0)
