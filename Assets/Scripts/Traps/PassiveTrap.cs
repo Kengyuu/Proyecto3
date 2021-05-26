@@ -7,6 +7,8 @@ public class PassiveTrap : MonoBehaviour
     [Header("Trap Settings")]
     public Material originalMaterial;
     public Material transparentMaterial;
+    public Animator anim;
+    public BoxCollider trigger;
     public float m_TrapEnableCooldown = 10f;
     
 
@@ -23,32 +25,39 @@ public class PassiveTrap : MonoBehaviour
         m_TrapActive = true;
     }
 
+   
     private void OnTriggerEnter(Collider col)
     {
+
         if (m_TrapActive)
         {
-            if (col.CompareTag("Enemy"))
+            if (col.gameObject.CompareTag("Enemy"))
             {
+                trigger.enabled = false;
+                //target.isStunned = true;
                 DisableTrap();
                 //HFSM_StunEnemy target = col.GetComponent<HFSM_StunEnemy>();
                 if (col != null)
                 {
+                    anim.SetBool("Active", true);
                     //target.isStunned = true;
-                    col.GetComponent<Enemy>().GetStunned();
+                    col.gameObject.GetComponent<Enemy>().GetStunned();
                     Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
                 }
-               
+
             }
-            if (col.CompareTag("Player"))
+            if (col.gameObject.CompareTag("Player"))
             {
+                trigger.enabled = false;
+                Debug.Log("Daño");
                 DisableTrap();
-                PlayerController player = col.GetComponent<PlayerController>();
-                if(player != null)
+                PlayerController player = col.gameObject.GetComponent<PlayerController>();
+                if (player != null)
                 {
                     player.TakeDamage(3, gameObject, XForceImpulseDamage, YForceImpulseDamage);
                     Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
                 }
-                
+
             }
         }
     }
@@ -58,6 +67,7 @@ public class PassiveTrap : MonoBehaviour
         gameObject.tag = "TrapDeactivated";
         m_TrapActive = false;
         GetComponent<MeshRenderer>().material = transparentMaterial;
+        transform.GetChild(0).GetComponent<MeshRenderer>().material = transparentMaterial;
         m_TrapCanBeEnabled = false;
         Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
     }
@@ -67,11 +77,17 @@ public class PassiveTrap : MonoBehaviour
         Debug.Log("Reenabling");
         if (m_TrapCanBeEnabled)
         {
+            trigger.enabled = true;
             gameObject.tag = "PasiveTrap";
             m_TrapActive = true;
             GetComponent<MeshRenderer>().material = originalMaterial;
-           // gameObject.tag = "PasiveTrap";
+            transform.GetChild(0).GetComponent<MeshRenderer>().material = originalMaterial;
+            // gameObject.tag = "PasiveTrap";
         }
+    }
+    public void SetAnimToFalse()
+    {
+        anim.SetBool("Active", false);
     }
 
     public void RestoreTrapCooldown()

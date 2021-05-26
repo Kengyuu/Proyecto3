@@ -179,7 +179,7 @@ public class PlayerShoot : MonoBehaviour
                         hit.transform.GetComponent<ActiveTrap>().EnableTrap();
                     }
                     break;
-                /*case "TrapDeactivated":
+                  /*case "TrapDeactivated":
                     if (l_CurrentDistance < m_TrapDetectionDistance)
                     {
                         //Debug.Log($"Trampa a distancia adecuada: {l_CurrentDistance}");
