@@ -209,20 +209,22 @@ public class HudController : MonoBehaviour
         if (cooldownMovement <= 0 && !hasMoved && !CheckIfPromptActive())
         {
             movementPrompt.gameObject.SetActive(true);
-            
-            
+            StartCoroutine(SetToFalse(movementPrompt));
+
         }
         if (hasMoved) StartCoroutine(SetToFalse(movementPrompt));
 
         if (cooldownRun <= 0 && !hasRun && !CheckIfPromptActive())
         {
             runPrompt.gameObject.SetActive(true);
+            StartCoroutine(SetToFalse(runPrompt));
         }
         if (hasRun) StartCoroutine(SetToFalse(runPrompt));
 
         if (cooldownDash <= 0 && !hasDashed && !CheckIfPromptActive())
         {
             dashPrompt.gameObject.SetActive(true);
+            StartCoroutine(SetToFalse(dashPrompt));
         }
         if (hasDashed) StartCoroutine(SetToFalse(dashPrompt));
 
@@ -230,6 +232,7 @@ public class HudController : MonoBehaviour
         {
             shootCorpsePrompt.gameObject.SetActive(true);
             triggerShot = false;
+            StartCoroutine(SetToFalse(shootCorpsePrompt));
         }
         if (hasShot)StartCoroutine(SetToFalse(shootCorpsePrompt));
 
@@ -237,6 +240,7 @@ public class HudController : MonoBehaviour
         {
             shootTrapPrompt.gameObject.SetActive(true);
             triggerShotTrap = false;
+            StartCoroutine(SetToFalse(shootTrapPrompt));
         }
         if (hasShot) StartCoroutine(SetToFalse(shootTrapPrompt));
 
@@ -244,6 +248,7 @@ public class HudController : MonoBehaviour
         {
             shootEnemyPrompt.gameObject.SetActive(true);
             triggerShotEnemy = false;
+            StartCoroutine(SetToFalse(shootEnemyPrompt));
         }
         if (hasShot) StartCoroutine(SetToFalse(shootEnemyPrompt));
 
@@ -251,6 +256,7 @@ public class HudController : MonoBehaviour
         {
             trapRepairPrompt.gameObject.SetActive(true);
             triggerShotTrapD = false;
+            StartCoroutine(SetToFalse(trapRepairPrompt));
         }
         if (hasRepaired) StartCoroutine(SetToFalse(trapRepairPrompt));
 

@@ -69,15 +69,11 @@ public class DetectionFunctions : MonoBehaviour
 	public static bool PlayerInCone(GameObject user, GameObject target, float maxAngle, float maxRange, LayerMask mask)
 	{
 		Vector3 vectorEnemyPlayer = Vector3.zero;
-		if(user.CompareTag("Enemy"))
-		{
-			vectorEnemyPlayer = new Vector3(target.transform.position.x - user.transform.position.x, (target.transform.position.y + 1f - user.transform.position.y), 
-        	target.transform.position.z - user.transform.position.z);
-		}
-		else
-		{
-			vectorEnemyPlayer = target.transform.position - user.transform.position;
-		}
+		
+	    vectorEnemyPlayer = new Vector3(target.transform.position.x - user.transform.position.x, (target.transform.position.y + 1f - user.transform.position.y), 
+        	                            target.transform.position.z - user.transform.position.z);
+		
+		
 		
 		//Vector3 vectorEnemyPlayer = target.transform.position - user.transform.position;
 

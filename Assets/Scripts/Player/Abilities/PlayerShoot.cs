@@ -9,8 +9,11 @@ public class PlayerShoot : MonoBehaviour
     private GameManager GM;
     private ScoreManager m_ScoreManager;
     private HudController M_HudController;
-    
 
+    bool firstTimeCorpse = true;
+    bool firstTimeTrap = true;
+    bool firstTimeTrapD = true;
+    bool firstTimeShootEnemy = true;
     [Header("Shoot")]
     public LayerMask m_ShootLayers;
     public float m_ShootCastingTime = 2f;
@@ -78,10 +81,7 @@ public class PlayerShoot : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
         {
             string tag = hit.collider.transform.tag;
-            bool firstTimeCorpse = true;
-            bool firstTimeTrap = true;
-            bool firstTimeTrapD = true;
-            bool firstTimeShootEnemy = true;
+           
             //Debug.Log($"{hit.transform.name} ha sido impactado a una distancia de {l_CurrentDistance}");
             switch (tag)
             {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHiddenPrayer : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PlayerHiddenPrayer : MonoBehaviour
     public Image chainsInv;
     public Image chainsTrace;
     public Image invIcon;
-    public Image q;
+    public TextMeshProUGUI q;
     public Image traceIcon;
 
     [Header("Invisibility Materials")]

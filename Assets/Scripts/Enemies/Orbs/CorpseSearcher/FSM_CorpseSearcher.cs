@@ -203,10 +203,10 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
 
             case State.ATTACKINGPLAYER:
-
+                transform.LookAt(GM.GetPlayer().transform.up);
                 if (rotating)
                 {
-                    transform.LookAt(GM.GetPlayer().transform.up);
+                    
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 } //Rotate();
                 TriggerAttack();
@@ -215,7 +215,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                     attacking = false;
                 }
 
-                if (/*DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance || */
+                if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance || 
                                                        !behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                 {
                     ChangeState(State.WANDERING);
@@ -290,7 +290,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 blackboard.lastCorpseSeen = corpse;
                 break;
             case State.ATTACKINGPLAYER:
-                //blackboard.navMesh.isStopped = true;
+                blackboard.navMesh.isStopped = true;
                 anim.SetBool("AttackOrb", true);
                 break;
             case State.ALERT:
