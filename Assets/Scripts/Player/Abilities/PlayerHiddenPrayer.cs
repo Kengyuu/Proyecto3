@@ -24,7 +24,10 @@ public class PlayerHiddenPrayer : MonoBehaviour
     public bool m_SliderOnCooldown = false;
 
     public Image cooldownSlider;
-    public Image cloakIcon;
+    public Image chainsInv;
+    public Image chainsTrace;
+    public Image invIcon;
+    public Image q;
     public Image traceIcon;
 
     [Header("Invisibility Materials")]
@@ -128,24 +131,29 @@ public class PlayerHiddenPrayer : MonoBehaviour
             {
                 //Debug.Log($"Habilidad 1 - Oraci�n Oculta DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
-                cloakIcon.gameObject.SetActive(true);
+                chainsInv.gameObject.SetActive(true);
+                q.gameObject.SetActive(false);
+                invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
                 Skill_1 = false;
             }
             if (Skill_2)
             {
                 //Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 Skill_2 = false;
-                traceIcon.gameObject.SetActive(true);
+                chainsTrace.gameObject.SetActive(true);
+                invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
             }
             return;
         }
         else if (l_Corpses >= 3)
         {
-            if (!Skill_1 && !m_SliderOnCooldown)
+            if (!Skill_1)
             {
                 //Debug.Log($"Habilidad 1 - Oraci�n Oculta ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Enable();
-                cloakIcon.gameObject.SetActive(false);
+                chainsInv.gameObject.SetActive(false);
+                q.gameObject.SetActive(true);
+                invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 1f);
                 Skill_1 = true;
             }
 
@@ -155,7 +163,8 @@ public class PlayerHiddenPrayer : MonoBehaviour
                 {
                     //Debug.Log($"Habilidad 2 - pasiva ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = true;
-                    traceIcon.gameObject.SetActive(false);
+                    chainsTrace.gameObject.SetActive(false);
+                    invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 1f);
                     m_Camera.cullingMask = m_EnemyTracesLayerMask;
                 }
                 return;
@@ -166,7 +175,8 @@ public class PlayerHiddenPrayer : MonoBehaviour
                 {
                     //Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = false;
-                    traceIcon.gameObject.SetActive(true);
+                    chainsTrace.gameObject.SetActive(true);
+                    invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
                     m_Camera.cullingMask = m_OriginalLayerMask;
                 }
             }
