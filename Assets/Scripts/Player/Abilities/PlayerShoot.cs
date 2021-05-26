@@ -80,6 +80,7 @@ public class PlayerShoot : MonoBehaviour
             string tag = hit.collider.transform.tag;
             bool firstTimeCorpse = true;
             bool firstTimeTrap = true;
+            bool firstTimeTrapD = true;
             bool firstTimeShootEnemy = true;
             //Debug.Log($"{hit.transform.name} ha sido impactado a una distancia de {l_CurrentDistance}");
             switch (tag)
@@ -99,7 +100,14 @@ public class PlayerShoot : MonoBehaviour
                         firstTimeTrap = false;
                     }
                     break;
-               
+                case "TrapDeactivated":
+                    if (firstTimeTrapD)
+                    {
+                        M_HudController.triggerShotTrapD = true;
+                        firstTimeTrapD = false;
+                    }
+                    break;
+
                 case "WeakPoint":
                    if (firstTimeShootEnemy)
                     {

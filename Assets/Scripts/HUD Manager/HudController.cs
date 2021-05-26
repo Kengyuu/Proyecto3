@@ -35,20 +35,18 @@ public class HudController : MonoBehaviour
     public TextMeshProUGUI shootCorpsePrompt;
     public TextMeshProUGUI shootTrapPrompt;
     public TextMeshProUGUI shootEnemyPrompt;
-    public TextMeshProUGUI modifierPrompt;
     public TextMeshProUGUI trapRepairPrompt;
-    public TextMeshProUGUI mapPrompt;
+    
     public bool hasMoved = false;
     public bool hasRun = false;
     public bool hasDashed = false;
     public bool hasShot = false;
     public bool hasShotEnemy = false;
-    public bool hasModified = false;
     public bool hasRepaired = false;
-    public bool hasMapped = false;
-    
+ 
     public bool triggerShot = false;
     public bool triggerShotTrap = false;
+    public bool triggerShotTrapD = false;
     public bool triggerShotEnemy = false;
     float cooldownMovement = 5;
     float cooldownRun = 3;
@@ -248,6 +246,13 @@ public class HudController : MonoBehaviour
             triggerShotEnemy = false;
         }
         if (hasShot) StartCoroutine(SetToFalse(shootEnemyPrompt));
+
+        if (triggerShotTrapD && !CheckIfPromptActive())
+        {
+            trapRepairPrompt.gameObject.SetActive(true);
+            triggerShotTrapD = false;
+        }
+        if (hasRepaired) StartCoroutine(SetToFalse(trapRepairPrompt));
 
     }
 
