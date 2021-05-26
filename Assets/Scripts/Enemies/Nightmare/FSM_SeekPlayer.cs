@@ -18,6 +18,9 @@ public class FSM_SeekPlayer : MonoBehaviour
     public Vector3 lastPlayerPosition;
     public List<GameObject> waypointsNearPlayer;
     public bool waypointSelected = false;
+
+    public float attackCooldown = 1f;
+    float currentAttackTime = 0f;
     //Transform child;
     public GameObject Arm;
     public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
@@ -99,6 +102,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
                 if (!DetectionFunctions.PlayerInCone(blackboard.eyesPosition, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                 {
+                    blackboard.animatorController.WalkAgressiveExit();
                     ChangeState(State.GOTOLASTPLAYERPOSITION);
                 }
                 break;
@@ -131,7 +135,11 @@ public class FSM_SeekPlayer : MonoBehaviour
                 {
                     ChangeState(State.SEEKINGPLAYER);
                 }
-
+                if(currentAttackTime >= attackCooldown)
+                {
+                    ChangeState(State.ATTACKING);
+                }
+                currentAttackTime += Time.deltaTime;
                 break;
 
 
@@ -147,7 +155,7 @@ public class FSM_SeekPlayer : MonoBehaviour
         switch (currentState)
         {
             case State.SEEKINGPLAYER:
-                blackboard.animatorController.WalkAgressiveExit();
+                //blackboard.animatorController.WalkAgressiveExit();
 
                 break;
             case State.GOTOLASTPLAYERPOSITION:
@@ -155,7 +163,13 @@ public class FSM_SeekPlayer : MonoBehaviour
 
                 break;
             case State.ATTACKING:
-                enemy.isStopped = false;
+                if(newState != State.ATTACKING)
+                {
+                    //enemy.isStopped = false;
+                    blackboard.animatorController.WalkAgressiveEnter();
+                }
+                    
+                //blackboard.animatorController.TransitionWalkCalm(true);
                 //Arm.SetActive(false);
                 break;
         }
@@ -177,11 +191,12 @@ public class FSM_SeekPlayer : MonoBehaviour
 
             
             case State.ATTACKING:
-                enemy.isStopped = true;
+                //enemy.isStopped = true;
                 //Arm.SetActive(true);
+                currentAttackTime = 0f;
                 if(Player.GetComponent<PlayerController>().m_Life > 0)
                 {
-                    Arm.GetComponent<Animation>().Play();
+                    //Arm.GetComponent<Animation>().Play();
                     blackboard.animatorController.AttackStart();
                 }
                 
@@ -260,6 +275,16 @@ public class FSM_SeekPlayer : MonoBehaviour
 
             return closest;
         
+    }
+
+    public void EnemyCanMove()
+    {
+        enemy.isStopped = false;
+    }
+
+    public void EnemyCantMove()
+    {
+        enemy.isStopped = true;
     }
 
     /*void OnDrawGizmos()
