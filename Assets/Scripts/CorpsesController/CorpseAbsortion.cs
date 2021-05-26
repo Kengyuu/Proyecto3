@@ -70,21 +70,20 @@ public class CorpseAbsortion : MonoBehaviour {
             {
                 if(Target != null)
                 {
-                    Vector3 attractorPosition = Target.position;
+                    
                     system.transform.LookAt(Target.transform.position, system.gameObject.transform.up);
                     int length = system.GetParticles (particles);
-                    
+                    //ParticleSystem.ShapeModule shape = system.shape;
+                    Vector3 attractorPosition = Target.position;
+                    //shape.length = Vector3.Distance(system.transform.position, attractorPosition);
                     //Debug.Log(attractorPosition + " " + Target.name);
                     for (int i=0; i < length; i++) 
                     {
-                        if(particles[i].remainingLifetime != 0)
-                        {
-                            Vector3 distanceParticleTarget = (attractorPosition - system.transform.TransformPoint(particles[i].position)).normalized;
-                            Debug.Log(distanceParticleTarget);
-                            //particles[i].remainingLifetime = distanceParticleTarget.magnitude / particles[i].velocity.magnitude;
-                            Vector3 particleSpeed = Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) * distanceParticleTarget / (particles[i].startLifetime);
-                            particles[i].position += particleSpeed * Time.deltaTime;
-                        }
+                        /*Vector3 distanceParticleTarget = (attractorPosition - system.transform.TransformPoint(particles[i].position)).normalized;
+                        Debug.Log(distanceParticleTarget);
+                        //particles[i].remainingLifetime = distanceParticleTarget.magnitude / particles[i].velocity.magnitude;
+                        Vector3 particleSpeed = Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) * distanceParticleTarget / (particles[i].remainingLifetime);
+                        particles[i].position += particleSpeed * Time.deltaTime;*/
                         
                         if(Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) < 0.5f)
                         {

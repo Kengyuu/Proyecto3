@@ -190,7 +190,9 @@ public class PlayerShoot : MonoBehaviour
                     if (l_CurrentDistance < m_WeakPointDetectionDistance)
                     {
                         //Debug.Log($"Weak Point a distancia adecuada: {l_CurrentDistance}");
-                        hit.collider.GetComponent<WeakPoint>().TakeDamage();
+                        WeakPoint wp = hit.collider.GetComponent<WeakPoint>();
+                        wp.Invoke("TakeDamage", m_ShootCastingTime);
+                        
                         beam.transform.LookAt(hit.point);
                         mainBeam.transform.LookAt(hit.point);
                         splashBeam.transform.LookAt(hit.point);
@@ -200,6 +202,7 @@ public class PlayerShoot : MonoBehaviour
                 case "CorpseOrb":
                     if (l_CurrentDistance < m_OrbDetectionDistance)
                     {
+                        WaitAttackOrb(hit.collider.gameObject);
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_CorpseSearcher>().alert = true;
@@ -290,6 +293,24 @@ public class PlayerShoot : MonoBehaviour
         StartCoroutine(WaitBeam());
     }
 
+    IEnumerator WaitAttackOrb(GameObject orb)
+    {
+        yield return new WaitForSeconds(m_ShootCastingTime);
+        orb.GetComponent<Orb_Blackboard>().TakeDamage(1);
+        switch(orb.tag)
+        {
+            case "CorpseOrb":
+                orb.GetComponent<FSM_CorpseSearcher>().alert = true;
+                orb.GetComponent<FSM_CorpseSearcher>().ChangeParticleColor();
+                break;
+            case "TrapOrb":
+                orb.GetComponent<FSM_TrapSearcher>().alert = true;
+                break;
+            case "AttackOrb":
+                orb.GetComponent<FSM_AttackerOrb>().alert = true;
+                break;
+        }
+    }
     IEnumerator WaitBeam()
     {
         yield return new WaitForSeconds(0.2f);

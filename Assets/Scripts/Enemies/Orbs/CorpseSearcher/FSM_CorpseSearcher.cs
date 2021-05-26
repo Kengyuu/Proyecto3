@@ -46,6 +46,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
         blackboard.SetOrbHealth(blackboard.m_maxLife);
         child.rotation = Quaternion.LookRotation(gameObject.transform.forward);
         if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
+        m_Laser.enabled = false;
         ReEnter(); 
     }
 
@@ -193,7 +194,9 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
 
             case State.ALERT:
-                Rotate();
+                //Rotate();
+                transform.LookAt(GM.GetPlayer().transform.up);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 Invoke("StayAlert", 1);
                 break;
 
@@ -201,14 +204,18 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
             case State.ATTACKINGPLAYER:
 
-                if (rotating) Rotate();
+                if (rotating)
+                {
+                    transform.LookAt(GM.GetPlayer().transform.up);
+                    transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                } //Rotate();
                 TriggerAttack();
                 if (GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_Life <= 0)
                 {
                     attacking = false;
                 }
 
-                if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance || 
+                if (/*DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance || */
                                                        !behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                 {
                     ChangeState(State.WANDERING);

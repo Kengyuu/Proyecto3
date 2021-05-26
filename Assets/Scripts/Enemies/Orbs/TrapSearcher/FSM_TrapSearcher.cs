@@ -41,6 +41,7 @@ public class FSM_TrapSearcher : MonoBehaviour
         behaviours = GetComponent<EnemyBehaviours>();
         blackboard.SetOrbHealth(3);
         child.rotation = Quaternion.LookRotation(gameObject.transform.forward);
+        m_Laser.enabled = false;
         ReEnter();
        
 

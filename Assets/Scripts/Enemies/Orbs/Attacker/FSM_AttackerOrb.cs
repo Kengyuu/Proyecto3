@@ -39,6 +39,7 @@ public class FSM_AttackerOrb : MonoBehaviour
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
         child.rotation = Quaternion.LookRotation(gameObject.transform.forward);
+        m_Laser.enabled = false;
         ReEnter();
     }
 
