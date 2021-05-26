@@ -5,6 +5,7 @@ using UnityEngine;
 public class P_AnimatorController : MonoBehaviour
 {
     Animator animator;
+    public FSM_SeekPlayer enemy;
 
     void Start()
     {
@@ -42,5 +43,13 @@ public class P_AnimatorController : MonoBehaviour
         animator.SetBool("State_Calm", factor);
     }
 
-     
+    public void EnemyCanMove()
+    {
+        enemy.enemy.isStopped = false;
+    }
+
+    public void EnemyCantMove()
+    {
+        enemy.enemy.isStopped = true;
+    }
 }
