@@ -146,7 +146,7 @@ public class FSM_SeekPlayer : MonoBehaviour
         switch (currentState)
         {
             case State.SEEKINGPLAYER:
-
+                blackboard.animatorController.WalkAgressiveExit();
 
                 break;
             case State.GOTOLASTPLAYERPOSITION:
@@ -165,6 +165,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
             case State.SEEKINGPLAYER:
                 enemy.SetDestination(Player.transform.position);
+                blackboard.animatorController.WalkAgressiveEnter();
 
                 break;
             case State.GOTOLASTPLAYERPOSITION:
@@ -180,6 +181,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 if(Player.GetComponent<PlayerController>().m_Life > 0)
                 {
                     Arm.GetComponent<Animation>().Play();
+                    blackboard.animatorController.AttackStart();
                 }
                 
                 break;
