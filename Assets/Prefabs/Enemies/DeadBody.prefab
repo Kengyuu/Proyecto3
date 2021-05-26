@@ -14849,7 +14849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a839c839e387c0349adcb5c415474112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: 0
+  spawnPosition: 1
   originalMaterial: {fileID: 2100000, guid: 96b17644ef10bed43954f25f3a4827ff, type: 2}
   transparentMaterial: {fileID: 2100000, guid: 4145fb28b1134ab45b279e5ae6382795, type: 2}
   timerInvisible: 10
@@ -19888,7 +19888,6 @@ GameObject:
   - component: {fileID: 6143146683198384182}
   - component: {fileID: 4436696677833246997}
   - component: {fileID: 7008096023409241909}
-  - component: {fileID: 4908651905851167185}
   m_Layer: 12
   m_Name: Quad
   m_TagString: Map
@@ -19959,20 +19958,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4908651905851167185
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7693011786016564099}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &8184868893674383090
 GameObject:
   m_ObjectHideFlags: 0
