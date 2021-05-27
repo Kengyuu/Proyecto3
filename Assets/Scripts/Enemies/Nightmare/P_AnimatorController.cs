@@ -52,4 +52,21 @@ public class P_AnimatorController : MonoBehaviour
     {
         enemy.enemy.isStopped = true;
     }
+    public void StartCorpseChanneling()
+    {
+        animator.SetBool("State_Canalizing", true);
+        animator.SetBool("State_Agressive", false);
+    }
+
+    public void CancelCorpseChanneling()
+    {
+        animator.SetBool("State_Canalizing", false);
+        WalkAgressiveEnter();
+    }
+
+    public void FinishCorpseChanneling()
+    {
+        animator.SetTrigger("CanalizingCompleted");
+        animator.SetBool("State_Canalizing", false);
+    }
 }

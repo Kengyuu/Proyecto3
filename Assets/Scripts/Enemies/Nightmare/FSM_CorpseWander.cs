@@ -103,6 +103,7 @@ public class FSM_CorpseWander : MonoBehaviour
                     behaviours.GrabCorpse(target, blackboard.cooldownToGrabCorpse);
                     behaviours.AddCorpseToScore();
                     M_HudController.UpdateAddCorpses(gameObject);
+                    blackboard.animatorController.FinishCorpseChanneling();
                     ChangeState(State.WANDERING);
                     break;
                 }
@@ -154,8 +155,8 @@ public class FSM_CorpseWander : MonoBehaviour
             case State.GRABBINGCORPSE:
                 enemy.isStopped = true;
                 target.tag = "PickedCorpse";
-                
-                blackboard.cooldownToGrabCorpse = 3f;
+                blackboard.animatorController.StartCorpseChanneling();
+                blackboard.cooldownToGrabCorpse = 6f;
                 target.GetComponent<CorpseAbsortion>().AbsorbParticles(blackboard.cooldownToGrabCorpse, gameObject);
                 transform.LookAt(target.transform.position, gameObject.transform.up);
                 break;

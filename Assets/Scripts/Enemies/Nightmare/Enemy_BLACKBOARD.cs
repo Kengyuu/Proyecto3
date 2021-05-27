@@ -11,7 +11,7 @@ public class Enemy_BLACKBOARD : MonoBehaviour
 
     public float closeEnoughCorpseRadius = 2f;
     public float playerDetectionRadius = 10f;
-    public float cooldownToGrabCorpse = 3f;
+    public float cooldownToGrabCorpse = 10f;
 
     public float angleDetectionPlayer = 30f;
 
