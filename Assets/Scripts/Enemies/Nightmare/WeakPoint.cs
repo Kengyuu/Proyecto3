@@ -26,7 +26,11 @@ public class WeakPoint : MonoBehaviour
 
     public void TakeDamage()
     {
-        enemy.TakeDamage(1);
-        gameObject.SetActive(false);
+        if(GM.GetEnemy().GetComponent<HFSM_StunEnemy>().currentState != HFSM_StunEnemy.State.INVOKE)
+        {
+            enemy.TakeDamage(1);
+            gameObject.SetActive(false);
+        }
+        
     }
 }

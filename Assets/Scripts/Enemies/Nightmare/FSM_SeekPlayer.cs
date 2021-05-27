@@ -26,6 +26,8 @@ public class FSM_SeekPlayer : MonoBehaviour
     public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
     public State currentState;
 
+    float currentInvokeTime = 0f;
+
     private GameManager GM;
 
     void Start()
@@ -47,13 +49,16 @@ public class FSM_SeekPlayer : MonoBehaviour
         GetComponent<EnemyPriorities>().playerDetected = false;
         target = null;
         waypointSelected = false;
+        currentInvokeTime = 0;
         this.enabled = false;
     }
 
     public void ReEnter()
     {
         this.enabled = true;
+        currentInvokeTime = 0;
         currentState = State.INITIAL;
+        
 
     }
 
@@ -77,6 +82,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 }
                 savedCorpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
                 //Debug.Log(corpse.name);
+
                 if (savedCorpse != null)
                 {
                     blackboard.lastCorpseSeen = savedCorpse;
@@ -143,8 +149,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                 }
                 currentAttackTime += Time.deltaTime;
                 break;
-
-
         }
 
 
@@ -184,12 +188,13 @@ public class FSM_SeekPlayer : MonoBehaviour
                 if(!enemy.isStopped)
                     enemy.SetDestination(Player.transform.position);
                 blackboard.animatorController.WalkAgressiveEnter();
-
+                GetComponent<HFSM_StunEnemy>().canInvoke = false;
                 break;
             case State.GOTOLASTPLAYERPOSITION:
                 lastPlayerPosition = Player.transform.position;
                 if(!enemy.isStopped)
                     enemy.SetDestination(lastPlayerPosition);
+                GetComponent<HFSM_StunEnemy>().canInvoke = false;
                 break;
 
             
@@ -202,13 +207,14 @@ public class FSM_SeekPlayer : MonoBehaviour
                     //Arm.GetComponent<Animation>().Play();
                     blackboard.animatorController.AttackStart();
                 }
-                
+                GetComponent<HFSM_StunEnemy>().canInvoke = false;
                 break;
 
             case State.WANDERING:
               //  Debug.Log("finding");
                 /*int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
                 target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];*/
+                GetComponent<HFSM_StunEnemy>().canInvoke = true;
                 //enemy.SetDestination(target.transform.position);
                 if (!waypointSelected)
                 {

@@ -16,6 +16,7 @@ public class FSM_CorpseWander : MonoBehaviour
     string enemyType;
     GameObject corpse;
 
+    float currentInvokeTime = 0f;
     public LayerMask layer;
 
     
@@ -144,15 +145,16 @@ public class FSM_CorpseWander : MonoBehaviour
                 {
                     target = behaviours.PickRandomWaypoint();
                 }
-
+                GetComponent<HFSM_StunEnemy>().canInvoke = true;
                 break;
             case State.GOINGTOCORPSE:
                 target = corpse;
                 enemy.SetDestination(target.transform.position);
-
+                GetComponent<HFSM_StunEnemy>().canInvoke = true;
                 break;
 
             case State.GRABBINGCORPSE:
+                GetComponent<HFSM_StunEnemy>().canInvoke = false;
                 enemy.isStopped = true;
                 target.tag = "PickedCorpse";
                 blackboard.animatorController.StartCorpseChanneling();

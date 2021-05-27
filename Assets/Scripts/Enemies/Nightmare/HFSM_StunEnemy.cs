@@ -6,11 +6,17 @@ using UnityEngine.AI;
 public class HFSM_StunEnemy : MonoBehaviour
 {
     public FSM_CorpseWander corpseWander;
+
+    public Enemy_BLACKBOARD blackboard;
     public FSM_SeekPlayer seekPlayer;
-    public enum State {INITIAL, SEARCHCORPSES, SEEKPLAYER, STUNNED};
+    public enum State {INITIAL, SEARCHCORPSES, SEEKPLAYER, STUNNED, INVOKE};
     public State currentState;
 
     public bool isStunned;
+    public bool isInvoking;
+    public bool canInvoke;
+
+    float currentInvokeTime;
     float currentStunTime;
     float maxStunTime;
 
@@ -18,8 +24,10 @@ public class HFSM_StunEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        blackboard = GetComponent<Enemy_BLACKBOARD>();
         currentStunTime = 0;
-        maxStunTime = GetComponent<Enemy_BLACKBOARD>().stunTime;
+        currentInvokeTime = 0f;
+        maxStunTime = blackboard.stunTime;
         corpseWander = GetComponent<FSM_CorpseWander>();
         seekPlayer = GetComponent<FSM_SeekPlayer>();
         navMesh = GetComponent<NavMeshAgent>();
@@ -51,6 +59,10 @@ public class HFSM_StunEnemy : MonoBehaviour
                 {
                     ChangeState(State.STUNNED);
                 }
+                if(isInvoking && canInvoke)
+                {
+                    ChangeState(State.INVOKE);
+                }
                 if(GetComponent<EnemyPriorities>().currState == EnemyPriorities.EnemyStates.LOOKFORPLAYER)
                 {
                     ChangeState(State.SEEKPLAYER);
@@ -61,10 +73,31 @@ public class HFSM_StunEnemy : MonoBehaviour
                 {
                     ChangeState(State.STUNNED);
                 }
+                if(isInvoking && canInvoke)
+                {
+                    ChangeState(State.INVOKE);
+                }
                 if(GetComponent<EnemyPriorities>().currState == EnemyPriorities.EnemyStates.SEARCHCORPSES)
                 {
                     ChangeState(State.SEARCHCORPSES);
                 }
+                break;
+            
+            case State.INVOKE:
+                currentInvokeTime += Time.deltaTime;
+                if(currentInvokeTime >= blackboard.invokeTime)
+                {
+                    currentInvokeTime = 0;
+                    if(GetComponent<EnemyPriorities>().currState == EnemyPriorities.EnemyStates.LOOKFORPLAYER)
+                    {
+                        ChangeState(State.SEEKPLAYER);
+                    }
+                    if(GetComponent<EnemyPriorities>().currState == EnemyPriorities.EnemyStates.SEARCHCORPSES)
+                    {
+                        ChangeState(State.SEARCHCORPSES);
+                    }
+                }
+                
                 break;
             case State.STUNNED:
                 currentStunTime += Time.deltaTime;
@@ -103,6 +136,12 @@ public class HFSM_StunEnemy : MonoBehaviour
                     GetComponent<Enemy>().SpawnWeakPoints();
                 }
                 break;
+            case State.INVOKE:
+                navMesh.isStopped = false;
+                currentInvokeTime = 0f;
+                isInvoking = false;
+                canInvoke = false;
+                break;
         }
 
         switch (newState)
@@ -121,6 +160,12 @@ public class HFSM_StunEnemy : MonoBehaviour
                 navMesh.isStopped = true;
                 currentStunTime = 0f;
                 break;
+            case State.INVOKE:
+                navMesh.isStopped = true;
+                currentInvokeTime = 0f;
+                blackboard.animatorController.StartInvoking();
+                break;
+
 
         }
 

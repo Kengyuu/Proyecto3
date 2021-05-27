@@ -13,6 +13,8 @@ public class OrbSpawner : MonoBehaviour
     public GameObject secondOrb;
     public GameObject thirdOrb;
 
+    GameManager GM;
+
     public Image second;
     public Image third;
 
@@ -21,6 +23,7 @@ public class OrbSpawner : MonoBehaviour
     private void Awake()
     {
         SelectOrbs();
+        GM = GameManager.Instance;
     }
     void Start()
     {
@@ -43,12 +46,12 @@ public class OrbSpawner : MonoBehaviour
 
         if (corpses >= 0 && corpses < 3)
         {
-            if (!CorpseOrb.activeSelf)
+            if (!CorpseOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
                 CorpseOrb.SetActive(true);
                 CorpseOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 CorpseOrb.GetComponent<NavMeshAgent>().enabled = true;
-
+                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
 
             }
             secondOrb.SetActive(false);
@@ -61,13 +64,13 @@ public class OrbSpawner : MonoBehaviour
 
         else if (corpses >= 3 && corpses < 6)
         {
-            if (!secondOrb.activeSelf)
+            if (!secondOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
                 secondOrb.SetActive(true);
                 second.gameObject.SetActive(true);
                 secondOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 secondOrb.GetComponent<NavMeshAgent>().enabled = true;
-
+                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
             }
             third.gameObject.SetActive(false);
             thirdOrb.SetActive(false);
@@ -76,13 +79,13 @@ public class OrbSpawner : MonoBehaviour
 
         if (corpses >= 6)
         {
-            if (!thirdOrb.activeSelf)
+            if (!thirdOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
                 thirdOrb.SetActive(true);
                 third.gameObject.SetActive(true);
                 thirdOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 thirdOrb.GetComponent<NavMeshAgent>().enabled = true;
-
+                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
             }
 
         }

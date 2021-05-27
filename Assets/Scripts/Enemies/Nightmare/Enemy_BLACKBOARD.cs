@@ -35,6 +35,7 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     public int playerCorpses;
     public int remainingCorpses;
 
+    public float invokeTime = 4f; 
     public float stunTime = 2.5f;
 
     private GameManager GM;

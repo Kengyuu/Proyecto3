@@ -6,6 +6,7 @@ public class P_AnimatorController : MonoBehaviour
 {
     Animator animator;
     public FSM_SeekPlayer enemy;
+    public FSM_CorpseWander enemyCorpse; 
 
     void Start()
     {
@@ -45,12 +46,27 @@ public class P_AnimatorController : MonoBehaviour
 
     public void EnemyCanMove()
     {
-        enemy.enemy.isStopped = false;
+        if(enemy.gameObject.activeSelf)
+        {
+            enemy.enemy.isStopped = false;
+        }
+        if(enemyCorpse.gameObject.activeSelf)
+        {
+            enemyCorpse.enemy.isStopped = false;
+        }
     }
 
     public void EnemyCantMove()
     {
-        enemy.enemy.isStopped = true;
+        if(enemy.gameObject.activeSelf)
+        {
+            enemy.enemy.isStopped = true;
+        }
+        if(enemyCorpse.gameObject.activeSelf)
+        {
+            enemyCorpse.enemy.isStopped = true;
+        }
+        
     }
     public void StartCorpseChanneling()
     {
@@ -68,5 +84,10 @@ public class P_AnimatorController : MonoBehaviour
     {
         animator.SetTrigger("CanalizingCompleted");
         animator.SetBool("State_Canalizing", false);
+    }
+
+    public void StartInvoking()
+    {
+        animator.SetTrigger("SpawnWatcher");
     }
 }
