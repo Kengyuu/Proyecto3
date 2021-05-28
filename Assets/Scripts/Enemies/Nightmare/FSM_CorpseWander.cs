@@ -45,6 +45,7 @@ public class FSM_CorpseWander : MonoBehaviour
         if(corpse != null)
             corpse.tag = "Corpse";
         enemy.isStopped = false;
+        blackboard.animatorController.CancelCorpseChanneling();
         this.enabled = false;
     }
 
@@ -146,6 +147,7 @@ public class FSM_CorpseWander : MonoBehaviour
                     target = behaviours.PickRandomWaypoint();
                 }
                 GetComponent<HFSM_StunEnemy>().canInvoke = true;
+                blackboard.animatorController.WalkAgressiveExit();
                 break;
             case State.GOINGTOCORPSE:
                 target = corpse;
@@ -158,7 +160,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 enemy.isStopped = true;
                 target.tag = "PickedCorpse";
                 blackboard.animatorController.StartCorpseChanneling();
-                blackboard.cooldownToGrabCorpse = 6f;
+                blackboard.cooldownToGrabCorpse = 5f;
                 target.GetComponent<CorpseAbsortion>().AbsorbParticles(blackboard.cooldownToGrabCorpse, gameObject);
                 transform.LookAt(target.transform.position, gameObject.transform.up);
                 break;

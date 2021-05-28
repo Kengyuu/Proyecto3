@@ -46,11 +46,11 @@ public class P_AnimatorController : MonoBehaviour
 
     public void EnemyCanMove()
     {
-        if(enemy.gameObject.activeSelf)
+        if(enemy.gameObject.activeSelf && enemy.enemy != null)
         {
             enemy.enemy.isStopped = false;
         }
-        if(enemyCorpse.gameObject.activeSelf)
+        if(enemyCorpse.gameObject.activeSelf && enemy.enemy != null)
         {
             enemyCorpse.enemy.isStopped = false;
         }
@@ -67,6 +67,11 @@ public class P_AnimatorController : MonoBehaviour
             enemyCorpse.enemy.isStopped = true;
         }
         
+    }
+
+    public void Stunned()
+    {
+        animator.SetTrigger("Stunned");
     }
     public void StartCorpseChanneling()
     {

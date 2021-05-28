@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7736198292369365266}
   - component: {fileID: 6697878278162077367}
   - component: {fileID: 8869649832373330557}
-  m_Layer: 0
+  - component: {fileID: 1105958652}
+  m_Layer: 7
   m_Name: Muro_V4_Roto_V
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6924196428606112680}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 238.069, y: 6.0230756, z: 95.937}
-  m_LocalScale: {x: 2.0840561, y: 2.005522, z: 1.838345}
+  m_LocalScale: {x: 1.9718933, y: 1.7207989, z: 1.2757003}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6697878278162077367
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1105958652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6924196428606112680}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.293143, y: 0.5898234, z: 2.4902358}
+  m_Center: {x: -0.014517669, y: -1.6504632e-14, z: 1.5834817}

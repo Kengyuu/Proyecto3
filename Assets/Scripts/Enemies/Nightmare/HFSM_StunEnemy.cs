@@ -159,6 +159,7 @@ public class HFSM_StunEnemy : MonoBehaviour
             case State.STUNNED:
                 navMesh.isStopped = true;
                 currentStunTime = 0f;
+                blackboard.animatorController.Stunned();
                 break;
             case State.INVOKE:
                 navMesh.isStopped = true;
