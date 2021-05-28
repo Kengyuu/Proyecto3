@@ -73,6 +73,11 @@ public class P_AnimatorController : MonoBehaviour
     {
         animator.SetTrigger("Stunned");
     }
+
+    public void Dead()
+    {
+        animator.SetTrigger("State_Dead");
+    }
     public void StartCorpseChanneling()
     {
         animator.SetBool("State_Canalizing", true);

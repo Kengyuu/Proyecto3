@@ -9,12 +9,13 @@ public class HFSM_StunEnemy : MonoBehaviour
 
     public Enemy_BLACKBOARD blackboard;
     public FSM_SeekPlayer seekPlayer;
-    public enum State {INITIAL, SEARCHCORPSES, SEEKPLAYER, STUNNED, INVOKE};
+    public enum State {INITIAL, SEARCHCORPSES, SEEKPLAYER, STUNNED, INVOKE, DEAD};
     public State currentState;
 
     public bool isStunned;
     public bool isInvoking;
     public bool canInvoke;
+    public bool isDead;
 
     float currentInvokeTime;
     float currentStunTime;
@@ -55,6 +56,10 @@ public class HFSM_StunEnemy : MonoBehaviour
                 ChangeState(State.SEARCHCORPSES);
                 break;
             case State.SEARCHCORPSES:
+                if(isDead)
+                {
+                    ChangeState(State.DEAD);
+                }
                 if(isStunned)
                 {
                     ChangeState(State.STUNNED);
@@ -69,6 +74,10 @@ public class HFSM_StunEnemy : MonoBehaviour
                 }
                 break;
             case State.SEEKPLAYER:
+                if(isDead)
+                {
+                    ChangeState(State.DEAD);
+                }
                 if(isStunned)
                 {
                     ChangeState(State.STUNNED);
@@ -84,6 +93,10 @@ public class HFSM_StunEnemy : MonoBehaviour
                 break;
             
             case State.INVOKE:
+                if(isDead)
+                {
+                    ChangeState(State.DEAD);
+                }
                 currentInvokeTime += Time.deltaTime;
                 if(currentInvokeTime >= blackboard.invokeTime)
                 {
@@ -100,6 +113,10 @@ public class HFSM_StunEnemy : MonoBehaviour
                 
                 break;
             case State.STUNNED:
+                if(isDead)
+                {
+                    ChangeState(State.DEAD);
+                }
                 currentStunTime += Time.deltaTime;
                 if(currentStunTime >= maxStunTime)
                 {
@@ -113,6 +130,9 @@ public class HFSM_StunEnemy : MonoBehaviour
                         ChangeState(State.SEARCHCORPSES);
                     }
                 }
+                break;
+            case State.DEAD:
+                Debug.Log("Jaja no hago nada equisde");
                 break;
         }
     }
@@ -166,7 +186,9 @@ public class HFSM_StunEnemy : MonoBehaviour
                 currentInvokeTime = 0f;
                 blackboard.animatorController.StartInvoking();
                 break;
-
+            case State.DEAD:
+                blackboard.animatorController.Dead();
+                break;
 
         }
 
