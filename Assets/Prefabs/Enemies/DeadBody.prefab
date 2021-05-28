@@ -14884,9 +14884,10 @@ GameObject:
   - component: {fileID: 1877690538889059015}
   - component: {fileID: 3897043697386171159}
   - component: {fileID: 409723894268808678}
+  - component: {fileID: 8465091663262643147}
   m_Layer: 6
   m_Name: Mesh
-  m_TagString: Untagged
+  m_TagString: CorpseMesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14955,6 +14956,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8465091663262643147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4744231737972619983}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.36509788, b: 0, a: 1}
+  outlineWidth: 6.53
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5857333318502393674
 GameObject:
   m_ObjectHideFlags: 0
