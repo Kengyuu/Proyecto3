@@ -164,7 +164,10 @@ public class FSM_TrapSearcher : MonoBehaviour
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 } //Rotate();
 
-                TriggerAttack();
+                if (!GM.GetPlayer().GetComponent<PlayerController>().m_PlayerStunned)
+                {
+                    TriggerAttack();
+                }
 
                 if (GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_Life <= 0)
                 {

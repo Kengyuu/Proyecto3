@@ -194,8 +194,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
 
             case State.ALERT:
-                //Rotate();
-                transform.LookAt(GM.GetPlayer().transform,transform.up);
+                Rotate();
+                //transform.LookAt(GM.GetPlayer().transform,transform.up);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 Invoke("StayAlert", 1);
                 break;
@@ -206,10 +206,15 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 
                 if (rotating)
                 {
-                    transform.LookAt(GM.GetPlayer().transform, transform.up);
+                    Rotate();
+                    //transform.LookAt(GM.GetPlayer().transform, transform.up);
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-                } //Rotate();
-                TriggerAttack();
+                } 
+                if (!GM.GetPlayer().GetComponent<PlayerController>().m_PlayerStunned)
+                {
+                    TriggerAttack();
+                }
+                
                 if (GameManager.Instance.GetPlayer().GetComponent<PlayerController>().m_Life <= 0)
                 {
                     attacking = false;
@@ -432,7 +437,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
 
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         if (!Application.isPlaying)
             return;
@@ -440,5 +445,5 @@ public class FSM_CorpseSearcher : MonoBehaviour
         // Gizmos.DrawWireSphere(transform.position, blackboard.corpseDetectionRadius);
         if (corpse != null)
             Gizmos.DrawLine(transform.position, corpse.transform.position);
-    }
+    }*/
 }
