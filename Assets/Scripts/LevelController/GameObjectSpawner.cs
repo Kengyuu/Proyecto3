@@ -38,7 +38,7 @@ public class GameObjectSpawner : MonoBehaviour
         
         if(GM.m_GamesPlayed == 1)
         {
-            spawnPosition = 11;
+            spawnPosition = 10;
             //playerSpawnRoom = 3;
             Debug.Log("Sí funciono");
         }

@@ -22,7 +22,8 @@ public class FSM_SeekPlayer : MonoBehaviour
     public float attackCooldown = 0.5f;
     float currentAttackTime = 0f;
     //Transform child;
-    public GameObject Arm;
+    public GameObject rightArm;
+    public GameObject leftArm;
     public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
     public State currentState;
 

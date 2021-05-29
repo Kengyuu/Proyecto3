@@ -280,6 +280,7 @@ public class PlayerShoot : MonoBehaviour
     private void StopAnim()
     {
         crosshairAnim.SetBool("Shot", false);
+        ResetShoot();
     }
 
     public void ResetShoot()
