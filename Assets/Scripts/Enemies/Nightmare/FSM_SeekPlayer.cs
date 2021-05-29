@@ -94,7 +94,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 {
                     waypointSelected = false;
                     GetComponent<EnemyPriorities>().playerSeen = false;
-                    //ChangeState(State.WANDERING);
+                    ChangeState(State.WANDERING);
                 }
 
                 

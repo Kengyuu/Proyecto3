@@ -168,11 +168,11 @@ public class HFSM_StunEnemy : MonoBehaviour
         {
 
             case State.SEARCHCORPSES:
-                navMesh.isStopped = false;
+                //navMesh.isStopped = false;
                 corpseWander.ReEnter();
                 break;
             case State.SEEKPLAYER:
-                navMesh.isStopped = false;
+                //navMesh.isStopped = false;
                 seekPlayer.ReEnter();
                 break;
 
