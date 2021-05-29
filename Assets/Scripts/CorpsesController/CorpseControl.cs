@@ -25,7 +25,7 @@ public class CorpseControl : MonoBehaviour
     {
         if (!hideOrb.activeSelf)
         {
-            mesh.GetComponent<MeshRenderer>().material = originalMaterial;
+            mesh.GetComponent<SkinnedMeshRenderer>().material = originalMaterial;
         }
         /*if(changeVisibility)
         {
@@ -48,7 +48,7 @@ public class CorpseControl : MonoBehaviour
     {
         if(col.CompareTag("HideOrb"))
         {
-            mesh.GetComponent<MeshRenderer>().material = transparentMaterial;
+            mesh.GetComponent<SkinnedMeshRenderer>().material = transparentMaterial;
         }
     }
 
@@ -56,7 +56,7 @@ public class CorpseControl : MonoBehaviour
     {
         if(col.CompareTag("HideOrb"))
         {
-            mesh.GetComponent<MeshRenderer>().material = originalMaterial;
+            mesh.GetComponent<SkinnedMeshRenderer>().material = originalMaterial;
         }
     }
 }
