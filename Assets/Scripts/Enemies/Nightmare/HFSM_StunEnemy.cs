@@ -148,7 +148,7 @@ public class HFSM_StunEnemy : MonoBehaviour
                 seekPlayer.Exit();
                 break;
             case State.STUNNED:
-                navMesh.isStopped = false;
+                //navMesh.isStopped = false;
                 isStunned = false;
                 currentStunTime = 0f;
                 if(GetComponent<Enemy>().GetLife() <= 0)
@@ -157,7 +157,7 @@ public class HFSM_StunEnemy : MonoBehaviour
                 }
                 break;
             case State.INVOKE:
-                navMesh.isStopped = false;
+                //navMesh.isStopped = false;
                 currentInvokeTime = 0f;
                 isInvoking = false;
                 canInvoke = false;
@@ -177,12 +177,12 @@ public class HFSM_StunEnemy : MonoBehaviour
                 break;
 
             case State.STUNNED:
-                navMesh.isStopped = true;
+                //navMesh.isStopped = true;
                 currentStunTime = 0f;
                 blackboard.animatorController.Stunned();
                 break;
             case State.INVOKE:
-                navMesh.isStopped = true;
+                //navMesh.isStopped = true;
                 currentInvokeTime = 0f;
                 blackboard.animatorController.StartInvoking();
                 break;

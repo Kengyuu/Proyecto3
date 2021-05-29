@@ -21,10 +21,12 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     public float attackCooldown = 0.5f;
     float currentAttackTime = 0f;
+    
+    float currentProvokeTime = 0f;
     //Transform child;
     public GameObject rightArm;
     public GameObject leftArm;
-    public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING};
+    public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING, PROVOKING};
     public State currentState;
 
     float currentInvokeTime = 0f;
@@ -99,7 +101,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
 
             case State.SEEKINGPLAYER:
-                if(!enemy.isStopped)
                     enemy.SetDestination(Player.transform.position);
                 //transform.LookAt(Player.transform,transform.up);
                 if (DetectionFunctions.DistanceToTarget(gameObject,Player) <= blackboard.distanceToAttack)
@@ -115,7 +116,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                 }
                 break;
             case State.GOTOLASTPLAYERPOSITION:
-                if(!enemy.isStopped)
                     enemy.SetDestination(lastPlayerPosition);
                 if (DetectionFunctions.PlayerInCone(blackboard.eyesPosition, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                 {
@@ -149,6 +149,23 @@ public class FSM_SeekPlayer : MonoBehaviour
                     ChangeState(State.ATTACKING);
                 }
                 currentAttackTime += Time.deltaTime;
+                break;
+
+            case State.PROVOKING:
+                currentInvokeTime += Time.deltaTime;
+                if(currentInvokeTime >= blackboard.invokeTime)
+                {
+                    if (DetectionFunctions.PlayerInCone(blackboard.eyesPosition, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
+                    {
+                        ChangeState(State.SEEKINGPLAYER);
+                    }
+                    if (!DetectionFunctions.PlayerInCone(blackboard.eyesPosition, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
+                    {
+                        //blackboard.animatorController.WalkAgressiveExit();
+                        ChangeState(State.GOTOLASTPLAYERPOSITION);
+                    }
+                    currentInvokeTime = 0;
+                }
                 break;
         }
 
@@ -209,6 +226,10 @@ public class FSM_SeekPlayer : MonoBehaviour
                     blackboard.animatorController.AttackStart();
                 }
                 GetComponent<HFSM_StunEnemy>().canInvoke = false;
+                break;
+
+            case State.PROVOKING:
+                currentProvokeTime = 0f;
                 break;
 
             case State.WANDERING:

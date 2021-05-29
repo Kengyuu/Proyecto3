@@ -34,6 +34,15 @@ public class P_AnimatorController : MonoBehaviour
         animator.SetBool("State_Agressive", false);
     }
 
+    public void StartStunEnemy()
+    {
+        animator.SetBool("isStunned", true);
+    }
+
+    public void EndStunEnemy()
+    {
+        animator.SetBool("isStunned", false);
+    }
     public void AttackStart()
     {
         animator.SetTrigger("StartAttack");
@@ -56,6 +65,33 @@ public class P_AnimatorController : MonoBehaviour
         }
     }
 
+    public void ActivateRightArmColliders()
+    {
+        enemy.rightArm.GetComponent<BoxCollider>().enabled = true;
+        enemy.leftArm.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    public void DeactivateRightArmColliders()
+    {
+        enemy.rightArm.GetComponent<BoxCollider>().enabled = false;
+        enemy.leftArm.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    public void ActivateLeftArmColliders()
+    {
+        enemy.rightArm.GetComponent<BoxCollider>().enabled = false;
+        enemy.leftArm.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    public void DeactivateLeftArmColliders()
+    {
+        enemy.rightArm.GetComponent<BoxCollider>().enabled = false;
+        enemy.leftArm.GetComponent<BoxCollider>().enabled = false;
+    }
+    public void DeactivateArmColliders(BoxCollider arm)
+    {
+        GetComponent<BoxCollider>().enabled = false;
+    }
     public void EnemyCantMove()
     {
         if(enemy.gameObject.activeSelf)
@@ -67,6 +103,11 @@ public class P_AnimatorController : MonoBehaviour
             enemyCorpse.enemy.isStopped = true;
         }
         
+    }
+
+    public void PlayerStunned()
+    {
+        animator.SetTrigger("PlayerStunned");
     }
 
     public void Stunned()

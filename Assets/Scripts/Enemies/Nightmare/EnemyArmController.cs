@@ -7,6 +7,8 @@ public class EnemyArmController : MonoBehaviour
 {
     // Start is called before the first frame update
     public NavMeshAgent enemyNavMesh;
+
+    public Enemy_BLACKBOARD blackboard;
     public float XForceImpulseDamage = 5f;
     public float YForceImpulseDamage = 5f;
 
@@ -25,13 +27,16 @@ public class EnemyArmController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log(name);
             //Debug.Log("hit");
             other.gameObject.GetComponent<PlayerController>().TakeDamage(1, gameObject, XForceImpulseDamage, YForceImpulseDamage);
+            //GetComponent<BoxCollider>().enabled = false;
             if(other.GetComponent<PlayerController>().m_Life <= 0)
             {
-                GetComponent<Animation>().Play("ArmAnimationPlayerStunned");
+                blackboard.animatorController.PlayerStunned();
+                //GetComponent<Animation>().Play("ArmAnimationPlayerStunned");
             }
-            StartCoroutine(WaitToGetStunned());
+            //StartCoroutine(WaitToGetStunned());
         }
     }
 
