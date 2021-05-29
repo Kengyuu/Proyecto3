@@ -31,7 +31,7 @@ public class EnemyArmController : MonoBehaviour
             //Debug.Log("hit");
             other.gameObject.GetComponent<PlayerController>().TakeDamage(1, gameObject, XForceImpulseDamage, YForceImpulseDamage);
             //GetComponent<BoxCollider>().enabled = false;
-            if(other.GetComponent<PlayerController>().m_Life <= 0)
+            if(other.GetComponent<PlayerController>().m_PlayerStunned)
             {
                 blackboard.animatorController.PlayerStunned();
                 //GetComponent<Animation>().Play("ArmAnimationPlayerStunned");
