@@ -150,7 +150,8 @@ public class FSM_TrapSearcher : MonoBehaviour
 
 
             case State.ALERT:
-                transform.LookAt(GM.GetPlayer().transform, transform.up);
+                Rotate();
+               // transform.LookAt(GM.GetPlayer().transform, transform.up);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 Invoke("StayAlert", 1);
                 break;
@@ -160,9 +161,10 @@ public class FSM_TrapSearcher : MonoBehaviour
 
                 if (rotating)
                 {
-                    transform.LookAt(GM.GetPlayer().transform, transform.up);
+                    Rotate();
+                   // transform.LookAt(GM.GetPlayer().transform, transform.up);
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-                } //Rotate();
+                } 
 
                 if (!GM.GetPlayer().GetComponent<PlayerController>().m_PlayerStunned)
                 {
