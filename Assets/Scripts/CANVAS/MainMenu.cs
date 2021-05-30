@@ -34,8 +34,8 @@ public class MainMenu : MonoBehaviour
 	public void StartGame()
 	{
 		Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
-		GM.SetGameState(GameState.GAME);
-		Initiate.Fade(GM.gameState.ToString(), Color.black, 2f);
+		GM.SetGameState(GameState.LOADING_TUTORIAL);
+		Initiate.Fade(m_GameScene, Color.black, 3f);
 	}
 
 	public void Quit()

@@ -8,7 +8,7 @@ public enum GameState
     INTRO,
     MAIN_MENU,
     GAME,
-    MODIFIERS,
+    LOADING_TUTORIAL,
     GAME_OVER,
     WIN,
     MAP,
