@@ -393,8 +393,8 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../FMOD/Fmod_FallenMask_Tardes_V1/Fmod_FallenMask_Tardes_V1.fspro
-  sourceBankPath: ..\FMOD\Fmod_FallenMask_Tardes_V1\Build
+  sourceProjectPath: FMOD/Fmod_FallenMask_Tardes_V1/Fmod_FallenMask_Tardes_V1.fspro
+  sourceBankPath: FMOD\Fmod_FallenMask_Tardes_V1\Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
@@ -413,8 +413,7 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks:
-  - Master
+  MasterBanks: []
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
