@@ -67,31 +67,18 @@ public class OutlineController : MonoBehaviour
                 return true;
             }
 
-            /*if(hit.collider.CompareTag("TrapOrb")
-                || hit.collider.CompareTag("AttackOrb")
-                || hit.collider.CompareTag("CorpseOrb")
-                || hit.collider.CompareTag("HideOrb"))
-            {
-                foreach (Transform child in hit.transform)
-                {
-                    if (child.CompareTag("OrbMesh"))
-                    {
-                        m_Outline = child.GetComponent<Outline>();
-                        m_Outline.enabled = true;
-                        if (!m_GOChecked.Contains(m_Outline)) m_GOChecked.Add(m_Outline);
-                        return true;
-                    }
-                }
-            }*/
+           
 
 
-            /*if (hit.transform.CompareTag("TrapDeactivated") && Vector3.Distance(transform.position, hit.transform.position) < m_PlayerShoot.m_TrapDetectionDistance)
+            if (hit.collider.gameObject.CompareTag("PasiveTrapBase"))
             {
+                Debug.Log("HOLA ENTRO AQUI DENTRO");
                 m_Outline = hit.transform.gameObject.GetComponent<Outline>();
                 m_Outline.enabled = true;
                 if (!m_GOChecked.Contains(m_Outline)) m_GOChecked.Add(m_Outline);
                 return true;
-            }*/
+            }
+
         }
 
 

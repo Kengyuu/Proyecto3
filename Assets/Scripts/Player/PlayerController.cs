@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
     private void StateChanged()
     {
         //Old Game State
-        //Debug.Log($"Old gamestate: {GM.oldGameState}");
+        Debug.Log($"Old gamestate: {GM.oldGameState}");
         switch (GM.oldGameState)
         {
             case GameState.MAIN_MENU:
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //New Game State
-        //Debug.Log($"New gamestate: {GM.gameState}");
+        Debug.Log($"New gamestate: {GM.gameState}");
         switch (GM.gameState)
         {
             case GameState.MAIN_MENU:

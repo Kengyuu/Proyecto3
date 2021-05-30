@@ -14850,11 +14850,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosition: 1
-  originalMaterial: {fileID: 2100000, guid: 96b17644ef10bed43954f25f3a4827ff, type: 2}
-  transparentMaterial: {fileID: 2100000, guid: 4145fb28b1134ab45b279e5ae6382795, type: 2}
+  originalMaterial_Body: {fileID: 2100000, guid: 96b17644ef10bed43954f25f3a4827ff, type: 2}
+  transparentMaterial_Body: {fileID: 2100000, guid: 929378e4031706f4b8ea70a89690a35b, type: 2}
+  originalMaterial_Mascara: {fileID: 2100000, guid: c2b65405c97885b44814e9cb0d2ed8f3, type: 2}
+  transparentMaterial_Mascara: {fileID: 2100000, guid: b6ad0611ffe1c41458bfbc6a5644a385, type: 2}
   timerInvisible: 10
   hideOrb: {fileID: 0}
-  mesh: {fileID: 8813572609683654905}
+  Mesh_Body: {fileID: 8813572609683654905}
+  Mesh_Mascara: {fileID: 3048110476556988565}
 --- !u!114 &9019008055390097599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24769,5 +24772,10 @@ Transform:
 --- !u!1 &8813572609683654905 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 836628084514286988, guid: 50ede26666b78924e82a7f85039f6a77, type: 3}
+  m_PrefabInstance: {fileID: 8200022862021027189}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3048110476556988565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6593627251039475168, guid: 50ede26666b78924e82a7f85039f6a77, type: 3}
   m_PrefabInstance: {fileID: 8200022862021027189}
   m_PrefabAsset: {fileID: 0}

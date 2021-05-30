@@ -114,6 +114,8 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Prueba: collision.gameObject.CompareTag("Enemy")
+        
         if (collision.collider.tag == "Enemy" && currentState == State.NORMALBEHAVIOUR)
         {
             trapSearch.target = blackboard.behaviours.PickRandomWaypointOrb();

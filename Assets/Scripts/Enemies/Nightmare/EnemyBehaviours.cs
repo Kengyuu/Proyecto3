@@ -175,7 +175,7 @@ public class EnemyBehaviours : MonoBehaviour
 
     public void ReturnCorpseToNormal(GameObject corpse)
     {
-        corpse.GetComponent<MeshRenderer>().material = corpse.GetComponent<CorpseControl>().originalMaterial;
+        corpse.GetComponent<MeshRenderer>().material = corpse.GetComponent<CorpseControl>().originalMaterial_Body;
         corpse.GetComponent<MeshRenderer>().enabled = true;
     }
 

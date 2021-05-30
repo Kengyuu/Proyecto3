@@ -40,6 +40,7 @@ public class FSM_CorpseWander : MonoBehaviour
         //enemy.SetDestination(target.transform.position);
     }
 
+
     public void Exit()
     {
         if(corpse != null)

@@ -66,7 +66,7 @@ public class PassiveTrap : MonoBehaviour
     public void DisableTrap()
     {
         gameObject.tag = "TrapDeactivated";
-        baseTrap.tag = "TrapDeactivated";
+        baseTrap.tag = "PasiveTrapBase";
         m_TrapActive = false;
         GetComponent<MeshRenderer>().material = transparentMaterial;
         transform.GetChild(0).GetComponent<MeshRenderer>().material = transparentMaterial;
@@ -81,7 +81,7 @@ public class PassiveTrap : MonoBehaviour
         {
             trigger.enabled = true;
             gameObject.tag = "PasiveTrap";
-            baseTrap.tag = "PasiveTrap";
+            baseTrap.tag = "Untagged";
             m_TrapActive = true;
             GetComponent<MeshRenderer>().material = originalMaterial;
             transform.GetChild(0).GetComponent<MeshRenderer>().material = originalMaterial;

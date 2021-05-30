@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1219152431}
   m_Layer: 0
   m_Name: Pinchos
-  m_TagString: Untagged
+  m_TagString: PasiveTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,12 +123,44 @@ MonoBehaviour:
   originalMaterial: {fileID: 2100000, guid: 6e065829c8af47c4baa93d41764a1295, type: 2}
   transparentMaterial: {fileID: 2100000, guid: a760e95edd9f4ca4097f945cb123fa7b, type: 2}
   anim: {fileID: 1219152428}
+  baseTrap: {fileID: 7369605390280207140}
   trigger: {fileID: 1219152427}
   m_TrapEnableCooldown: 10
   XForceImpulseDamage: 2
   YForceImpulseDamage: 8
   m_TrapActive: 1
   m_TrapCanBeEnabled: 0
+--- !u!65 &6460057059655406011
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369605390280207140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.921, y: 2.921, z: 0.1461059}
+  m_Center: {x: 0, y: 0, z: 0.07305295}
+--- !u!114 &1126159685726010837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369605390280207140}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0.9150943, b: 0.9066518, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &7676228195547977333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -188,8 +220,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pinchos_Base
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: abe50b0146e39a340a990b9b49324dd3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abe50b0146e39a340a990b9b49324dd3, type: 3}
+--- !u!1 &7369605390280207140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: abe50b0146e39a340a990b9b49324dd3, type: 3}
+  m_PrefabInstance: {fileID: 7676228195547977333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7858158626291380638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: abe50b0146e39a340a990b9b49324dd3, type: 3}

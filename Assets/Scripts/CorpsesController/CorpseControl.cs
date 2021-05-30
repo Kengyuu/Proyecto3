@@ -6,14 +6,19 @@ public class CorpseControl : MonoBehaviour
 {
     public int spawnPosition;
 
-    public Material originalMaterial;
-    public Material transparentMaterial;
+    public Material originalMaterial_Body;
+    public Material transparentMaterial_Body;
+
+    public Material originalMaterial_Mascara;
+    public Material transparentMaterial_Mascara;
 
     public float timerInvisible = 10f;
 
     public GameObject hideOrb;
 
-    public GameObject mesh;
+    public GameObject Mesh_Body;
+    public GameObject Mesh_Mascara;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +30,8 @@ public class CorpseControl : MonoBehaviour
     {
         if (!hideOrb.activeSelf)
         {
-            mesh.GetComponent<SkinnedMeshRenderer>().material = originalMaterial;
+            Mesh_Body.GetComponent<SkinnedMeshRenderer>().material = originalMaterial_Body;
+            Mesh_Mascara.GetComponent<MeshRenderer>().material = originalMaterial_Mascara;
         }
         /*if(changeVisibility)
         {
@@ -48,7 +54,8 @@ public class CorpseControl : MonoBehaviour
     {
         if(col.CompareTag("HideOrb"))
         {
-            mesh.GetComponent<SkinnedMeshRenderer>().material = transparentMaterial;
+            Mesh_Body.GetComponent<SkinnedMeshRenderer>().material = transparentMaterial_Body;
+            Mesh_Mascara.GetComponent<MeshRenderer>().material = transparentMaterial_Mascara;
         }
     }
 
@@ -56,7 +63,8 @@ public class CorpseControl : MonoBehaviour
     {
         if(col.CompareTag("HideOrb"))
         {
-            mesh.GetComponent<SkinnedMeshRenderer>().material = originalMaterial;
+            Mesh_Body.GetComponent<SkinnedMeshRenderer>().material = originalMaterial_Body;
+            Mesh_Mascara.GetComponent<MeshRenderer>().material = originalMaterial_Mascara;
         }
     }
 }
