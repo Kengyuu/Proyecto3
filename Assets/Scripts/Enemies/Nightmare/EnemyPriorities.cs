@@ -70,8 +70,8 @@ public class EnemyPriorities : MonoBehaviour
 
     public void ChangePriority()
     {
-        playerSeen = false;
-        playerDetected = false;
+        //playerSeen = false;
+        //playerDetected = false;
 
         playerCorpses = m_ScoreManager.GetPlayerCorpses();
         enemyCorpses = m_ScoreManager.GetEnemyCorpses();
