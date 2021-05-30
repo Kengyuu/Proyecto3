@@ -8,6 +8,7 @@ public class PassiveTrap : MonoBehaviour
     public Material originalMaterial;
     public Material transparentMaterial;
     public Animator anim;
+    public GameObject baseTrap;
     public BoxCollider trigger;
     public float m_TrapEnableCooldown = 10f;
     
@@ -65,6 +66,7 @@ public class PassiveTrap : MonoBehaviour
     public void DisableTrap()
     {
         gameObject.tag = "TrapDeactivated";
+        baseTrap.tag = "TrapDeactivated";
         m_TrapActive = false;
         GetComponent<MeshRenderer>().material = transparentMaterial;
         transform.GetChild(0).GetComponent<MeshRenderer>().material = transparentMaterial;
@@ -79,6 +81,7 @@ public class PassiveTrap : MonoBehaviour
         {
             trigger.enabled = true;
             gameObject.tag = "PasiveTrap";
+            baseTrap.tag = "PasiveTrap";
             m_TrapActive = true;
             GetComponent<MeshRenderer>().material = originalMaterial;
             transform.GetChild(0).GetComponent<MeshRenderer>().material = originalMaterial;

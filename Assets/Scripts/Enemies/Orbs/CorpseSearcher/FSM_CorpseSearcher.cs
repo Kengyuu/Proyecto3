@@ -223,6 +223,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance || 
                                                        !behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
                 {
+                    m_Laser.enabled = false;
                     ChangeState(State.WANDERING);
                 }
 
