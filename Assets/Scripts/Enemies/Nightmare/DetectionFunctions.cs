@@ -93,7 +93,7 @@ public class DetectionFunctions : MonoBehaviour
 			
 			
 			//Debug.Log(vectorEnemyPlayer.normalized * maxRange);
-			if (Physics.Raycast(Ray, out hit, maxRange, mask) && GameManager.Instance.GetPlayer().GetComponent<PlayerHiddenPrayer>().m_IsPlayerVisibleToEnemy)
+			if (Physics.Raycast(Ray, out hit, maxRange, mask) && GameManager.Instance.GetPlayer().GetComponent<PlayerSpecialAbilities>().m_IsPlayerVisibleToEnemy)
 			{
 				//Debug.Log(angle);
 				/*Debug.DrawRay(user.transform.position, user.transform.forward * maxRange, Color.blue);*/

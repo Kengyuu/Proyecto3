@@ -83,7 +83,8 @@ public class PlayerCamera : MonoBehaviour
         }*/
 
         //Update yaw & pitch (Camera)
-        if(GameManager.Instance.gameState != GameState.PAUSE)
+        //if(GameManager.Instance.gameState != GameState.PAUSE)
+        if(GetComponent<PlayerMovement>().m_InputSystem.Gameplay.enabled)
         {
             float l_MouseAxisX = Input.GetAxis("Mouse X");
             float l_MouseAxisY = Input.GetAxis("Mouse Y");

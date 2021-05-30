@@ -61,62 +61,127 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
+    //TESTEO DESHABILITAR ESTA FUNCION PARA NUEVO SISTEMA DE INPUTS
+
+    /*    private void StateChanged()
+        {
+            switch (GM.gameState)
+            {
+                case GameState.WIN:
+                    //Debug.Log("state WIN");
+                    //DisableInputs();
+                    m_PlayerCamera.enabled = false;
+                    m_PlayerMovement.m_InputSystem.Gameplay.Disable();
+                    break;
+
+                case GameState.GAME_OVER:
+                    //Debug.Log("state GAME OVEEEEEEEEEEEEEEEER");
+                    //DisableInputs();
+
+                    m_PlayerCamera.enabled = false;
+                    m_PlayerMovement.m_InputSystem.Gameplay.Disable();
+                    EnableDaze();
+                    Invoke("DisableDaze", 2f);
+                    break;
+
+                case GameState.GAME:
+                    //Debug.Log("state GAME");
+
+                    *//*m_Map.SetActive(false);
+                    m_PlayerMovement.m_InputSystem.Enable();*//*
+
+                    //EnableInputs();
+
+                    m_PlayerCamera.enabled = true;
+                    GM.UpdateModifiers(); //Check again to update correctly skills available
+                    m_PlayerMovement.m_InputSystem.Gameplay.Dash.Enable();
+                    m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Enable();
+                    m_PlayerMovement.m_InputSystem.Gameplay.Move.Enable();
+                    m_PlayerMovement.m_InputSystem.Gameplay.Jump.Disable();
+                    m_PlayerMovement.m_InputSystem.Gameplay.EnableTrap.Enable();
+                    m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Disable();
+                    break;
+
+                case GameState.MAP:
+                    //Debug.Log("state MAP activado / desactivado");
+                    *//*m_Map.SetActive(true);
+                    m_PlayerMovement.m_InputSystem.Disable();*//*
+                    m_PlayerMovement.m_InputSystem.Gameplay.Dash.Disable();
+                    m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Disable();
+                    m_PlayerMovement.m_InputSystem.Gameplay.Move.Disable();
+                    m_PlayerMovement.m_InputSystem.Gameplay.Jump.Disable();
+                    m_PlayerMovement.m_InputSystem.Gameplay.EnableTrap.Disable();
+                    m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Enable();
+
+                    //Disable just in case:
+                    m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
+                    break;
+            }
+        }*/
+
+
+
     private void StateChanged()
     {
-        switch (GM.gameState)
+        //Old Game State
+        //Debug.Log($"Old gamestate: {GM.oldGameState}");
+        switch (GM.oldGameState)
         {
-            case GameState.WIN:
-                //Debug.Log("state WIN");
-                //DisableInputs();
-                m_PlayerCamera.enabled = false;
+            case GameState.MAIN_MENU:
+                m_PlayerMovement.m_InputSystem.NoInputs.Disable();
+                break;
+
+            case GameState.GAME:
                 m_PlayerMovement.m_InputSystem.Gameplay.Disable();
                 break;
 
             case GameState.GAME_OVER:
-                //Debug.Log("state GAME OVEEEEEEEEEEEEEEEER");
-                //DisableInputs();
-
-                m_PlayerCamera.enabled = false;
-                m_PlayerMovement.m_InputSystem.Gameplay.Disable();
-                EnableDaze();
-                Invoke("DisableDaze", 2f);
+                m_PlayerMovement.m_InputSystem.NoInputs.Disable();
                 break;
 
-            case GameState.GAME:
-                //Debug.Log("state GAME");
-
-                /*m_Map.SetActive(false);
-                m_PlayerMovement.m_InputSystem.Enable();*/
-
-                //EnableInputs();
-
-                m_PlayerCamera.enabled = true;
-                GM.UpdateModifiers(); //Check again to update correctly skills available
-                m_PlayerMovement.m_InputSystem.Gameplay.Dash.Enable();
-                m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Enable();
-                m_PlayerMovement.m_InputSystem.Gameplay.Move.Enable();
-                m_PlayerMovement.m_InputSystem.Gameplay.Jump.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.EnableTrap.Enable();
-                m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Disable();
+            case GameState.WIN:
+                m_PlayerMovement.m_InputSystem.NoInputs.Disable();
                 break;
 
             case GameState.MAP:
-                //Debug.Log("state MAP activado / desactivado");
-                /*m_Map.SetActive(true);
-                m_PlayerMovement.m_InputSystem.Disable();*/
-                m_PlayerMovement.m_InputSystem.Gameplay.Dash.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.Move.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.Jump.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.EnableTrap.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Enable();
+                m_PlayerMovement.m_InputSystem.Minimap.Disable();
+                break;
 
-                //Disable just in case:
-                m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
+            case GameState.PAUSE:
+                m_PlayerMovement.m_InputSystem.Pause.Disable();
+                break;
+        }
+
+        //New Game State
+        //Debug.Log($"New gamestate: {GM.gameState}");
+        switch (GM.gameState)
+        {
+            case GameState.MAIN_MENU:
+                m_PlayerMovement.m_InputSystem.NoInputs.Enable();
+                break;
+
+            case GameState.GAME:
+                m_PlayerMovement.m_InputSystem.Gameplay.Enable();
+                break;
+
+            case GameState.GAME_OVER:
+                m_PlayerMovement.m_InputSystem.NoInputs.Enable();
+                break;
+
+            case GameState.WIN:
+                m_PlayerMovement.m_InputSystem.NoInputs.Enable();
+                break;
+
+            case GameState.MAP:
+                m_PlayerMovement.m_InputSystem.Minimap.Enable();
+                break;
+
+            case GameState.PAUSE:
+                m_PlayerMovement.m_InputSystem.Pause.Enable();
                 break;
         }
     }
-
 
 
     void Update()

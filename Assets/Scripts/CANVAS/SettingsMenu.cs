@@ -38,13 +38,13 @@ public class SettingsMenu : MonoBehaviour
 
     public void ChangeMusicVolume(int value)
     {
-        Debug.Log($"Entro en ChangeMusicVolume con el valor: {value}");
+        //Debug.Log($"Entro en ChangeMusicVolume con el valor: {value}");
         m_MusicSlider.value += value;
     }
 
     public void ChangeEffectVolume(int value)
     {
-        Debug.Log($"Entro en ChangeEffectVolume con el valor: {value}");
+        //Debug.Log($"Entro en ChangeEffectVolume con el valor: {value}");
         m_EffectSlider.value += value;
     }
 
@@ -57,7 +57,7 @@ public class SettingsMenu : MonoBehaviour
             {
                 m_CurrentResolution = 0;
             }
-            Debug.Log($"Current resolution index: {m_CurrentResolution}");
+            //Debug.Log($"Current resolution index: {m_CurrentResolution}");
             m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]);
         }
         else
@@ -67,7 +67,7 @@ public class SettingsMenu : MonoBehaviour
             {
                 m_CurrentResolution = m_ResolutionList.Count-1;
             }
-            Debug.Log($"Current resolution index: {m_CurrentResolution}");
+            //Debug.Log($"Current resolution index: {m_CurrentResolution}");
             m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]);
         }
     }
@@ -81,7 +81,7 @@ public class SettingsMenu : MonoBehaviour
             {
                 m_CurrentLanguage = 0;
             }
-            Debug.Log($"Current resolution index: {m_CurrentLanguage}");
+            //Debug.Log($"Current resolution index: {m_CurrentLanguage}");
             m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]);
         }
         else
@@ -91,7 +91,7 @@ public class SettingsMenu : MonoBehaviour
             {
                 m_CurrentLanguage = m_LanguageList.Count - 1;
             }
-            Debug.Log($"Current resolution index: {m_CurrentLanguage}");
+            //Debug.Log($"Current resolution index: {m_CurrentLanguage}");
             m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]);
         }
     }

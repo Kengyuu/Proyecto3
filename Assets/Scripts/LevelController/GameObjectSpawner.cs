@@ -40,7 +40,7 @@ public class GameObjectSpawner : MonoBehaviour
         {
             spawnPosition = 10;
             //playerSpawnRoom = 3;
-            Debug.Log("Sí funciono");
+            //Debug.Log("Sí funciono");
         }
         else
         {

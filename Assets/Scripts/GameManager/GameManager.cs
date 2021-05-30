@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public event MofidiersHandler OnMofidiersHandler;
     public event HealthController HealthController;
     public GameState gameState { get; private set; }
+    public GameState oldGameState { get; private set; }
 
     //[Header("Debug")]
     [SerializeField] public GameObject m_Player { get; set; }
@@ -80,11 +81,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log($"Current game state: {gameState}");
+        Debug.Log($"Current game state: {gameState}");
     }
 
     public void SetGameState(GameState state)
     {
+        oldGameState = this.gameState;
         this.gameState = state;
         OnStateChange?.Invoke();
     }

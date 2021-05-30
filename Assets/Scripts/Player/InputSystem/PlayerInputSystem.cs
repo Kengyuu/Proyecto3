@@ -500,6 +500,12 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
             ]
         },
         {
+            ""name"": ""NoInputs"",
+            ""id"": ""83c73d0b-7591-4f57-8642-a022ee38356a"",
+            ""actions"": [],
+            ""bindings"": []
+        },
+        {
             ""name"": ""Gameplay_BACKUP"",
             ""id"": ""9e41b8bc-1be3-4329-8800-658ab927966a"",
             ""actions"": [
@@ -872,6 +878,8 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_Pause = m_Pause.FindAction("Pause", throwIfNotFound: true);
+        // NoInputs
+        m_NoInputs = asset.FindActionMap("NoInputs", throwIfNotFound: true);
         // Gameplay_BACKUP
         m_Gameplay_BACKUP = asset.FindActionMap("Gameplay_BACKUP", throwIfNotFound: true);
         m_Gameplay_BACKUP_Look = m_Gameplay_BACKUP.FindAction("Look", throwIfNotFound: true);
@@ -1126,6 +1134,31 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
     }
     public PauseActions @Pause => new PauseActions(this);
 
+    // NoInputs
+    private readonly InputActionMap m_NoInputs;
+    private INoInputsActions m_NoInputsActionsCallbackInterface;
+    public struct NoInputsActions
+    {
+        private @PlayerInputSystem m_Wrapper;
+        public NoInputsActions(@PlayerInputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputActionMap Get() { return m_Wrapper.m_NoInputs; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(NoInputsActions set) { return set.Get(); }
+        public void SetCallbacks(INoInputsActions instance)
+        {
+            if (m_Wrapper.m_NoInputsActionsCallbackInterface != null)
+            {
+            }
+            m_Wrapper.m_NoInputsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+            }
+        }
+    }
+    public NoInputsActions @NoInputs => new NoInputsActions(this);
+
     // Gameplay_BACKUP
     private readonly InputActionMap m_Gameplay_BACKUP;
     private IGameplay_BACKUPActions m_Gameplay_BACKUPActionsCallbackInterface;
@@ -1261,6 +1294,9 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
     public interface IPauseActions
     {
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface INoInputsActions
+    {
     }
     public interface IGameplay_BACKUPActions
     {

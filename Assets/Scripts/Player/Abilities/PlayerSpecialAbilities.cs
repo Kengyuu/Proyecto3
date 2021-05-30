@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerHiddenPrayer : MonoBehaviour
+public class PlayerSpecialAbilities : MonoBehaviour
 {
     private PlayerMovement m_PlayerMovement;
     //private PlayerController m_PlayerController;

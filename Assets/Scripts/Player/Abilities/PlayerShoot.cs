@@ -77,12 +77,24 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {
         //if(m_PlayerCanShoot) CheckShootingCollisions();
+        TutorialCheck();
+
+
+        if (m_PlayerMovement.m_InputSystem.Gameplay.Shoot.triggered && !m_IsPlayerShooting)
+        {
+            Shoot();
+        }
+
+
+
+    }
+
+    private void TutorialCheck()
+    {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
         {
             string tag = hit.collider.transform.tag;
-           
-            //Debug.Log($"{hit.transform.name} ha sido impactado a una distancia de {l_CurrentDistance}");
             switch (tag)
             {
                 case "Corpse":
@@ -91,10 +103,10 @@ public class PlayerShoot : MonoBehaviour
                         M_HudController.triggerShot = true;
                         firstTimeCorpse = false;
                     }
-                    
+
                     break;
                 case "ActiveTrap":
-                   if (firstTimeTrap)
+                    if (firstTimeTrap)
                     {
                         M_HudController.triggerShotTrap = true;
                         firstTimeTrap = false;
@@ -109,7 +121,7 @@ public class PlayerShoot : MonoBehaviour
                     break;
 
                 case "WeakPoint":
-                   if (firstTimeShootEnemy)
+                    if (firstTimeShootEnemy)
                     {
                         M_HudController.triggerShotEnemy = true;
                         firstTimeShootEnemy = false;
@@ -123,33 +135,25 @@ public class PlayerShoot : MonoBehaviour
                         firstTimeShootEnemy = false;
                     }
                     break;
-
-               
             }
-
-        }
-        if (m_PlayerMovement.m_InputSystem.Gameplay.Shoot.triggered && !m_IsPlayerShooting)
-        {
-            StartCasting();
         }
     }
 
-    private void StartCasting()
+/*    private void StartCasting()
     {
-        m_IsPlayerShooting = true;
-        crosshairAnim.SetBool("Shot", true);
         
-
         
-       
-
         Shoot();
         //Invoke("Shoot", m_ShootCastingTime);
-    }
+    }*/
 
     private void Shoot()
     {
         //Debug.Log("PLAYER DISPARA");
+        m_IsPlayerShooting = true;
+        crosshairAnim.SetBool("Shot", true);
+        GM.PlayerNoise(m_ShootNoise);
+
 
         bool corpseHit = false;
         float distanceToObjective = 2f;
@@ -263,13 +267,14 @@ public class PlayerShoot : MonoBehaviour
         {
             chargeBeam.Play();
             handLight.Play();
-            StartCoroutine(Wait());
             Invoke("ShootBeam", m_ShootCastingTime);
             //ShootBeam(distanceToObjective);
             
         }
-        GM.PlayerNoise(m_ShootNoise);
-        
+
+        StartCoroutine(Wait());
+
+
     }
 
     IEnumerator Wait()

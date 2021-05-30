@@ -7,7 +7,7 @@ public class PlayerDash : MonoBehaviour
 {
     private PlayerMovement m_PlayerMovement;
     //private PlayerController m_PlayerController;
-    private PlayerHiddenPrayer m_PlayerHiddenPrayer;
+    private PlayerSpecialAbilities m_PlayerHiddenPrayer;
     private GameManager GM;
 
     [Header("Dash")]
@@ -33,7 +33,7 @@ public class PlayerDash : MonoBehaviour
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
         //m_PlayerController = GetComponent<PlayerController>();
-        m_PlayerHiddenPrayer = GetComponent<PlayerHiddenPrayer>();
+        m_PlayerHiddenPrayer = GetComponent<PlayerSpecialAbilities>();
         if (hud == null) hud = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (GM == null) GM = GameManager.Instance;
 

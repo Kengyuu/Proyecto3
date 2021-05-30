@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectLookedAt : MonoBehaviour
+public class OutlineController : MonoBehaviour
 {
     private Outline m_Outline;
     public float m_MaxViewDistance = 10;
     private bool m_OutlineStatus;
     //LayerMask m_OutlineMask;
 
-    private void Update()
+    private PlayerShoot m_PlayerShoot;
+
+    public List<Outline> m_GOChecked;
+
+    private void Start()
+    {
+        m_PlayerShoot = GetComponent<PlayerShoot>();
+    }
+
+
+    private void FixedUpdate()
     {
 
-        m_OutlineStatus = CheckView();
+        /*m_OutlineStatus = CheckView();
 
         if (!m_OutlineStatus)
         {
@@ -22,7 +32,9 @@ public class ObjectLookedAt : MonoBehaviour
                 m_Outline = null;
             }
             
-        }
+        }*/
+
+        CheckView();
     }
 
 
@@ -33,32 +45,70 @@ public class ObjectLookedAt : MonoBehaviour
         var cameraCenter = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, Camera.main.nearClipPlane));
         if (Physics.Raycast(cameraCenter, Camera.main.transform.forward, out hit, m_MaxViewDistance))
         {
-            if (hit.transform.CompareTag("Corpse"))
+            if (hit.transform.CompareTag("Corpse") && Vector3.Distance(transform.position, hit.transform.position) < m_PlayerShoot.m_CorpseDetectionDistance)
             {
-                Debug.Log("Veo un cuerpo");
                 foreach(Transform child in hit.transform)
                 {
                     if (child.CompareTag("CorpseMesh"))
                     {
-                        
-                        //Debug.Log($"Colision con el objeto {hit.transform.name}");
                         m_Outline = child.GetComponent<Outline>();
                         m_Outline.enabled = true;
-                        Debug.Log($"EL cuerpo tiene Mesh {m_Outline}");
+                        if(!m_GOChecked.Contains(m_Outline)) m_GOChecked.Add(m_Outline);
                         return true;
                     }
                 }
             }
 
-
-            /*if (hit.transform.CompareTag("TrapDeactivated"))
+            if (hit.collider.CompareTag("WeakPoint") && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_WeakPointDetectionDistance)
             {
-                //Debug.Log($"Colision con el objeto {hit.transform.name}");
+                m_Outline = hit.collider.gameObject.GetComponent<Outline>();
+                m_Outline.enabled = true;
+                if (!m_GOChecked.Contains(m_Outline)) m_GOChecked.Add(m_Outline);
+                return true;
+            }
+
+            /*if(hit.collider.CompareTag("TrapOrb")
+                || hit.collider.CompareTag("AttackOrb")
+                || hit.collider.CompareTag("CorpseOrb")
+                || hit.collider.CompareTag("HideOrb"))
+            {
+                foreach (Transform child in hit.transform)
+                {
+                    if (child.CompareTag("OrbMesh"))
+                    {
+                        m_Outline = child.GetComponent<Outline>();
+                        m_Outline.enabled = true;
+                        if (!m_GOChecked.Contains(m_Outline)) m_GOChecked.Add(m_Outline);
+                        return true;
+                    }
+                }
+            }*/
+
+
+            /*if (hit.transform.CompareTag("TrapDeactivated") && Vector3.Distance(transform.position, hit.transform.position) < m_PlayerShoot.m_TrapDetectionDistance)
+            {
                 m_Outline = hit.transform.gameObject.GetComponent<Outline>();
                 m_Outline.enabled = true;
+                if (!m_GOChecked.Contains(m_Outline)) m_GOChecked.Add(m_Outline);
                 return true;
             }*/
         }
+
+
+        if (m_GOChecked.Count > 0)
+        {
+            foreach(Outline obj in m_GOChecked)
+            {
+                obj.enabled = false;
+                
+            }
+            m_Outline = null;
+
+            m_GOChecked.Clear();
+        }
+
+
+
         return false;
     }
 
