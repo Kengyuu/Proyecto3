@@ -143,7 +143,7 @@ public class EnemyBehaviours : MonoBehaviour
     {
         
         //trap.SetActive(false);
-        trap.GetComponent<MeshRenderer>().material = trap.GetComponent<PassiveTrap>().transparentMaterial;
+        //trap.GetComponent<MeshRenderer>().material = trap.GetComponent<PassiveTrap>().transparentMaterial;
         trap.GetComponent<PassiveTrap>().DisableTrap();
         trap.tag = "TrapDeactivated";
     }

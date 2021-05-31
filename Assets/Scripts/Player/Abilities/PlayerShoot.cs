@@ -205,9 +205,9 @@ public class PlayerShoot : MonoBehaviour
                         WeakPoint wp = hit.collider.GetComponent<WeakPoint>();
                         wp.Invoke("TakeDamage", m_ShootCastingTime);
                         
-                        beam.transform.LookAt(hit.point);
-                        mainBeam.transform.LookAt(hit.point);
-                        splashBeam.transform.LookAt(hit.point);
+                        //beam.transform.LookAt(hit.point);
+                        //mainBeam.transform.LookAt(hit.point);
+                        //splashBeam.transform.LookAt(hit.point);
                     }
                     break;
 
@@ -219,9 +219,9 @@ public class PlayerShoot : MonoBehaviour
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_CorpseSearcher>().alert = true;
                         hit.collider.GetComponent<FSM_CorpseSearcher>().ChangeParticleColor();
-                        beam.transform.LookAt(hit.point);
-                        mainBeam.transform.LookAt(hit.point);
-                        splashBeam.transform.LookAt(hit.point);
+                        //beam.transform.LookAt(hit.point);
+                        //mainBeam.transform.LookAt(hit.point);
+                        //splashBeam.transform.LookAt(hit.point);
                     }
                     break;
 
@@ -231,9 +231,9 @@ public class PlayerShoot : MonoBehaviour
                         // hit.collider.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
-                        beam.transform.LookAt(hit.point);
-                        mainBeam.transform.LookAt(hit.point);
-                        splashBeam.transform.LookAt(hit.point);
+                        //beam.transform.LookAt(hit.point);
+                        //mainBeam.transform.LookAt(hit.point);
+                        //splashBeam.transform.LookAt(hit.point);
                     }
                     break;
 
@@ -243,9 +243,9 @@ public class PlayerShoot : MonoBehaviour
                         //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_TrapSearcher>().alert = true;
-                        beam.transform.LookAt(hit.point);
-                        mainBeam.transform.LookAt(hit.point);
-                        splashBeam.transform.LookAt(hit.point);
+                        //beam.transform.LookAt(hit.point);
+                        //mainBeam.transform.LookAt(hit.point);
+                        //splashBeam.transform.LookAt(hit.point);
                     }
 
                     break;
@@ -255,9 +255,9 @@ public class PlayerShoot : MonoBehaviour
                         //Debug.Log($"Attack Orb Hit");
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_AttackerOrb>().alert = true;
-                        beam.transform.LookAt(hit.point);
-                        mainBeam.transform.LookAt(hit.point);
-                        splashBeam.transform.LookAt(hit.point);
+                        //beam.transform.LookAt(hit.point);
+                        //mainBeam.transform.LookAt(hit.point);
+                        //splashBeam.transform.LookAt(hit.point);
                     }
                     break;
             }
