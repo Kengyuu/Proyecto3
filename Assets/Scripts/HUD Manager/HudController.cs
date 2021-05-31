@@ -324,9 +324,13 @@ public class HudController : MonoBehaviour
     {
        if (!orbSpawner.showingOrb)
         {
-            if ((playerCorpses >= 10 || enemyCorpses >= 10))
+            if (enemyCorpses >= 10)
             {
                 objectiveAnim.SetTrigger("Hunt Nightmare");
+            }
+             else if (playerCorpses >= 10)
+            {
+                objectiveAnim.SetTrigger("Kill Nightmare");
             }
             else objectiveAnim.SetTrigger("Hunt Corpse");
         }
