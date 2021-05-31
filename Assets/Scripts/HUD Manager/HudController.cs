@@ -331,8 +331,8 @@ public class HudController : MonoBehaviour
                 {
                     if (corpseSprites[i].sprite != playerCorpse && corpseSprites[i].sprite != enemyCorpse)
                     {
-                        
-                        corpseSprites[i].sprite = playerCorpse;
+
+                        corpseSprites[i].GetComponent<Animator>().SetBool("CorpseToPlayer", true);
                         break;
                     }
                 }
@@ -344,7 +344,7 @@ public class HudController : MonoBehaviour
                     if (corpseSprites[i].sprite != playerCorpse && corpseSprites[i].sprite != enemyCorpse)
                     {
                         //Debug.Log($"{corpseSprites[i].sprite} se ha comparado con {playerCorpse.name}");
-                        corpseSprites[i].sprite = enemyCorpse;
+                        corpseSprites[i].GetComponent<Animator>().SetBool("CorpseToNightmare", true);
                         break;
                     }
 
@@ -366,7 +366,7 @@ public class HudController : MonoBehaviour
                     if (corpseSprites[i].sprite == enemyCorpse)
                     {
 
-                        corpseSprites[i].sprite = neutralCorpse;
+                        corpseSprites[i].GetComponent<Animator>().SetBool("Empty", true);
                         break;
                     }
                 }
@@ -377,8 +377,8 @@ public class HudController : MonoBehaviour
                 {
                     if (corpseSprites[i].sprite == playerCorpse)
                     {
-                        
-                        corpseSprites[i].sprite = neutralCorpse;
+
+                        corpseSprites[i].GetComponent<Animator>().SetBool("Empty", true);
                         break;
                     }
 

@@ -31,6 +31,10 @@ public class PlayerSpecialAbilities : MonoBehaviour
     public TextMeshProUGUI q;
     public Image traceIcon;
 
+    [Header("Animation")]
+    public Animator chainsInvAnim;
+    public Animator chainsTraceAnim;
+
     [Header("Invisibility Materials")]
     public List<GameObject> m_Arms;
 
@@ -133,6 +137,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
                 //Debug.Log($"Habilidad 1 - Oraci�n Oculta DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
                 chainsInv.gameObject.SetActive(true);
+                chainsInvAnim.SetBool("Chain In", true);
                 q.gameObject.SetActive(false);
                 invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
                 Skill_1 = false;
@@ -142,7 +147,8 @@ public class PlayerSpecialAbilities : MonoBehaviour
                 //Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 Skill_2 = false;
                 chainsTrace.gameObject.SetActive(true);
-                invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
+                chainsTraceAnim.SetBool("Chain In", true);
+                traceIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
             }
             return;
         }
@@ -152,7 +158,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
             {
                 //Debug.Log($"Habilidad 1 - Oraci�n Oculta ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Enable();
-                chainsInv.gameObject.SetActive(false);
+                chainsInvAnim.SetBool("Chain Out", true);
                 q.gameObject.SetActive(true);
                 invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 1f);
                 Skill_1 = true;
@@ -164,8 +170,8 @@ public class PlayerSpecialAbilities : MonoBehaviour
                 {
                     //Debug.Log($"Habilidad 2 - pasiva ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = true;
-                    chainsTrace.gameObject.SetActive(false);
-                    invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 1f);
+                    chainsTraceAnim.SetBool("Chain Out", true);
+                    traceIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 1f);
                     m_Camera.cullingMask = m_EnemyTracesLayerMask;
                 }
                 return;
@@ -177,11 +183,21 @@ public class PlayerSpecialAbilities : MonoBehaviour
                     //Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = false;
                     chainsTrace.gameObject.SetActive(true);
-                    invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
+                    chainsTraceAnim.SetBool("Chain In", true);
+                    traceIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
                     m_Camera.cullingMask = m_OriginalLayerMask;
                 }
             }
 
         }
+    }
+
+    public void SetInvToFalse()
+    {
+        chainsInv.gameObject.SetActive(false);
+    }
+    public void SetTraceToFalse()
+    {
+        chainsTrace.gameObject.SetActive(false);
     }
 }
