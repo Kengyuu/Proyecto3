@@ -17,8 +17,11 @@ public class OrbSpawner : MonoBehaviour
 
     public Image second;
     public Image third;
+    HudController hud;
+    private ScoreManager m_ScoreManager;
 
     private Transform spawnPosition;
+    public bool showingOrb;
 
     private void Awake()
     {
@@ -31,9 +34,16 @@ public class OrbSpawner : MonoBehaviour
         OrbEvents.current.spawnOrb += SpawnOrbs;
         OrbEvents.current.respawnOrb += RespawnOrb;
         OrbEvents.current.ManageOrbs();
-        secondOrb.SetActive(false);
-        thirdOrb.SetActive(false);
+        if (hud == null) hud = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
+        if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        /* secondOrb.SetActive(false);
+         thirdOrb.SetActive(false);*/
 
+    }
+
+    private void Update()
+    {
+        SpawnOrbs(m_ScoreManager.GetPlayerCorpses());
     }
     private void OnDestroy()
     {
@@ -49,6 +59,7 @@ public class OrbSpawner : MonoBehaviour
             if (!CorpseOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
                 CorpseOrb.SetActive(true);
+                
                 CorpseOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 CorpseOrb.GetComponent<NavMeshAgent>().enabled = true;
                 GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
@@ -67,6 +78,7 @@ public class OrbSpawner : MonoBehaviour
             if (!secondOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
                 secondOrb.SetActive(true);
+                hud.objectiveAnim.SetTrigger(secondOrb.GetComponent<Orb_Blackboard>().triggerAnim);
                 second.gameObject.SetActive(true);
                 secondOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 secondOrb.GetComponent<NavMeshAgent>().enabled = true;
@@ -83,6 +95,7 @@ public class OrbSpawner : MonoBehaviour
             {
                 thirdOrb.SetActive(true);
                 third.gameObject.SetActive(true);
+                hud.objectiveAnim.SetTrigger(thirdOrb.GetComponent<Orb_Blackboard>().triggerAnim);
                 thirdOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 thirdOrb.GetComponent<NavMeshAgent>().enabled = true;
                 GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;

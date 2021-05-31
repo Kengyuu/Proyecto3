@@ -12,6 +12,7 @@ public class Orb_Blackboard : MonoBehaviour
     public float respawnTime;
     public NavMeshAgent navMesh;
     public Sprite icon;
+    public string triggerAnim;
     public ParticleSystem particleSystem;
     public EnemyBehaviours behaviours;
 

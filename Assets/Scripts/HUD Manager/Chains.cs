@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Chains : MonoBehaviour
 {
-    public GameObject chainsInv;
-    public GameObject chainsTrace;
+    public OrbSpawner spawner;
+    
 
-    public void SetInvToFalse()
+    public void SetToFalse()
     {
-        chainsInv.gameObject.SetActive(false);
+        Debug.Log("false");
+        spawner.showingOrb = false;
     }
-    public void SetTraceToFalse()
+
+    public void SetToTrue()
     {
-        chainsTrace.gameObject.SetActive(false);
+        Debug.Log("true");
+        spawner.showingOrb = true;
     }
+
 }

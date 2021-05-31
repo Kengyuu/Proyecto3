@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class HudController : MonoBehaviour
 {
     private GameManager GM;
+    private ScoreManager m_ScoreManager;
 
     public Image[] healthIcons;
     public Image Objective;
@@ -20,8 +21,10 @@ public class HudController : MonoBehaviour
     public Sprite enemyCorpse;
     public Sprite neutralCorpse;
 
+    public OrbSpawner orbSpawner;
+
     [Header("Animation")]
-    
+    public Animator objectiveAnim;
 
     [Header("GAME")]
     //public GameObject m_CanvasGame;
@@ -68,6 +71,7 @@ public class HudController : MonoBehaviour
     private void Awake()
     {
         totalCorpses = GameObject.FindGameObjectsWithTag("Corpse");
+        if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         /*foreach (GameObject corpse in totalCorpses)
         {
             if (corpse.activeSelf)
@@ -75,7 +79,7 @@ public class HudController : MonoBehaviour
                 activeCorpses.Add(corpse);
             }
         }*/
-        
+
     }
     private void Start()
     {
@@ -115,6 +119,7 @@ public class HudController : MonoBehaviour
         }
         if (hasMoved) cooldownRun -= Time.deltaTime;
         if (hasRun) cooldownDash -= Time.deltaTime;
+        UpdateObjective(m_ScoreManager.GetPlayerCorpses(), m_ScoreManager.GetEnemyCorpses());
         
     }
 
@@ -317,11 +322,14 @@ public class HudController : MonoBehaviour
 
     public void UpdateObjective(float playerCorpses, float enemyCorpses)
     {
-        if (playerCorpses >= 10 || enemyCorpses >= 10)
-        {
-            Objective.sprite = objectiveNightmare;
-        }
-        else Objective.sprite = objectiveCorpse;
+       
+            if ((playerCorpses >= 10 || enemyCorpses >= 10))
+            {
+                objectiveAnim.SetTrigger("Hunt Nightmare");
+            }
+            else objectiveAnim.SetTrigger("Hunt Corpse");
+        
+       
     }
 
     public void UpdateAddCorpses(GameObject type)
