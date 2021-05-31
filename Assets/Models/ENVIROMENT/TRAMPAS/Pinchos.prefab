@@ -124,6 +124,7 @@ MonoBehaviour:
   transparentMaterial: {fileID: 2100000, guid: a760e95edd9f4ca4097f945cb123fa7b, type: 2}
   anim: {fileID: 1219152428}
   baseTrap: {fileID: 7369605390280207140}
+  parentTrap: {fileID: 4141428861705570795}
   trigger: {fileID: 1219152427}
   m_TrapEnableCooldown: 10
   XForceImpulseDamage: 2
@@ -313,7 +314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 22e47aa5f06025245a200fa4a60211b1, type: 3}
       propertyPath: m_TagString
-      value: PasiveTrap
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22e47aa5f06025245a200fa4a60211b1, type: 3}

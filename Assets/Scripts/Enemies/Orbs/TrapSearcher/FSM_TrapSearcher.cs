@@ -140,7 +140,8 @@ public class FSM_TrapSearcher : MonoBehaviour
                 blackboard.cooldownToDeactivateTrap -= Time.deltaTime;
                  if (blackboard.cooldownToDeactivateTrap <= 0)
                  {
-                     behaviours.DeactivateTrap(target);
+                    target.transform.GetChild(1).gameObject.GetComponent<PassiveTrap>().DisableTrap();
+                     
                      ChangeState(State.WANDERING);
                      break;
                  }
@@ -196,6 +197,7 @@ public class FSM_TrapSearcher : MonoBehaviour
         switch (currentState)
         {
             case State.DEACTIVATINGTRAP:
+                //child.rotation = Quaternion.LookRotation(gameObject.transform.forward);
                 blackboard.navMesh.isStopped = false;
                 ReEnter();
                 break;
@@ -225,6 +227,7 @@ public class FSM_TrapSearcher : MonoBehaviour
                 break;
 
             case State.DEACTIVATINGTRAP:
+                transform.LookAt(target.transform.position, transform.up);
                 blackboard.navMesh.isStopped = true;
                 blackboard.cooldownToDeactivateTrap = 3f;
                 break;

@@ -119,7 +119,7 @@ public class HudController : MonoBehaviour
         }
         if (hasMoved) cooldownRun -= Time.deltaTime;
         if (hasRun) cooldownDash -= Time.deltaTime;
-        UpdateObjective(m_ScoreManager.GetPlayerCorpses(), m_ScoreManager.GetEnemyCorpses());
+        //UpdateObjective(m_ScoreManager.GetPlayerCorpses(), m_ScoreManager.GetEnemyCorpses());
         
     }
 
@@ -322,12 +322,15 @@ public class HudController : MonoBehaviour
 
     public void UpdateObjective(float playerCorpses, float enemyCorpses)
     {
-       
+       if (!orbSpawner.showingOrb)
+        {
             if ((playerCorpses >= 10 || enemyCorpses >= 10))
             {
                 objectiveAnim.SetTrigger("Hunt Nightmare");
             }
             else objectiveAnim.SetTrigger("Hunt Corpse");
+        }
+            
         
        
     }

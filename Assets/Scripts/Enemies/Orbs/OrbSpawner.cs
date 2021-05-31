@@ -21,7 +21,7 @@ public class OrbSpawner : MonoBehaviour
     private ScoreManager m_ScoreManager;
 
     private Transform spawnPosition;
-    public bool showingOrb;
+    public bool showingOrb = true;
 
     private void Awake()
     {
@@ -79,7 +79,10 @@ public class OrbSpawner : MonoBehaviour
             {
                 secondOrb.SetActive(true);
                 hud.objectiveAnim.SetTrigger(secondOrb.GetComponent<Orb_Blackboard>().triggerAnim);
-                second.gameObject.SetActive(true);
+                if (!showingOrb)
+                {
+                    second.gameObject.SetActive(true);
+                }
                 secondOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 secondOrb.GetComponent<NavMeshAgent>().enabled = true;
                 GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
@@ -94,8 +97,9 @@ public class OrbSpawner : MonoBehaviour
             if (!thirdOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
                 thirdOrb.SetActive(true);
-                third.gameObject.SetActive(true);
+                
                 hud.objectiveAnim.SetTrigger(thirdOrb.GetComponent<Orb_Blackboard>().triggerAnim);
+                if (!showingOrb) third.gameObject.SetActive(true);
                 thirdOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 thirdOrb.GetComponent<NavMeshAgent>().enabled = true;
                 GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;

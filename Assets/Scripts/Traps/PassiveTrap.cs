@@ -9,6 +9,7 @@ public class PassiveTrap : MonoBehaviour
     public Material transparentMaterial;
     public Animator anim;
     public GameObject baseTrap;
+    public GameObject parentTrap;
     public BoxCollider trigger;
     public float m_TrapEnableCooldown = 10f;
     
@@ -38,13 +39,12 @@ public class PassiveTrap : MonoBehaviour
                 //target.isStunned = true;
                 DisableTrap();
                 //HFSM_StunEnemy target = col.GetComponent<HFSM_StunEnemy>();
-                if (col != null)
-                {
+                
                     anim.SetBool("Active", true);
                     //target.isStunned = true;
                     col.gameObject.GetComponent<Enemy>().GetStunned();
                     Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
-                }
+                
 
             }
             if (col.gameObject.CompareTag("Player"))
@@ -53,11 +53,10 @@ public class PassiveTrap : MonoBehaviour
                 Debug.Log("Daño");
                 DisableTrap();
                 PlayerController player = col.gameObject.GetComponent<PlayerController>();
-                if (player != null)
-                {
+                
                     player.TakeDamage(3, gameObject, XForceImpulseDamage, YForceImpulseDamage);
                     Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
-                }
+                
 
             }
         }
@@ -66,7 +65,9 @@ public class PassiveTrap : MonoBehaviour
     public void DisableTrap()
     {
         gameObject.tag = "TrapDeactivated";
-        baseTrap.tag = "PasiveTrapBase";
+        baseTrap.tag = "PasiveTrapBase"; 
+        parentTrap.tag = "TrapDeactivated";
+        trigger.enabled = false;
         m_TrapActive = false;
         GetComponent<MeshRenderer>().material = transparentMaterial;
         transform.GetChild(0).GetComponent<MeshRenderer>().material = transparentMaterial;
@@ -80,7 +81,8 @@ public class PassiveTrap : MonoBehaviour
         if (m_TrapCanBeEnabled)
         {
             trigger.enabled = true;
-            gameObject.tag = "PasiveTrap";
+            gameObject.tag = "Untagged";
+            parentTrap.tag = "PasiveTrap";
             baseTrap.tag = "Untagged";
             m_TrapActive = true;
             GetComponent<MeshRenderer>().material = originalMaterial;
