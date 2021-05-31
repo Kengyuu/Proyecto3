@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 5861451363471226297}
   - component: {fileID: 7419633523534952988}
   - component: {fileID: 4689129197047746262}
+  - component: {fileID: 2832301764057442862}
   m_Layer: 0
   m_Name: Caja_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &5861451363471226297
 Transform:
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2832301764057442862
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6490775962498510595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.552373, y: 1.5523487, z: 1.5521302}
+  m_Center: {x: 0.0001758337, y: -0.00005510451, z: 0.7500545}
