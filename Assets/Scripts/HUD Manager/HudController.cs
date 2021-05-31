@@ -20,6 +20,9 @@ public class HudController : MonoBehaviour
     public Sprite enemyCorpse;
     public Sprite neutralCorpse;
 
+    [Header("Animation")]
+    
+
     [Header("GAME")]
     //public GameObject m_CanvasGame;
     public TextMeshProUGUI m_PlayerCorpses;
@@ -283,7 +286,7 @@ public class HudController : MonoBehaviour
 
     public void UpdateHealth(float health)
     {
-        switch (health)
+        /*switch (health)
         {
             case 3:
                 foreach (Image image in healthIcons)
@@ -309,7 +312,7 @@ public class HudController : MonoBehaviour
                 }
                 break;
 
-        }
+        }*/
     }
 
     public void UpdateObjective(float playerCorpses, float enemyCorpses)

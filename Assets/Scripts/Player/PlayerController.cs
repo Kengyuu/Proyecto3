@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Debug")]
     public GameObject enemyTest;
+
+   // [Header("Animation")]
+    
 
 
     //bool map_status = false;
@@ -233,6 +237,27 @@ public class PlayerController : MonoBehaviour
             //Reduce Life
             m_Life -= dmg;
 
+            switch (m_Life)
+            {
+                case 2:
+                    M_HudController.healthIcons[0].GetComponent<Animator>().SetTrigger("Break");
+                    break;
+                case 1:
+                    M_HudController.healthIcons[1].GetComponent<Animator>().SetTrigger("Break");
+                    break;
+                case 0:
+                    M_HudController.healthIcons[2].GetComponent<Animator>().SetTrigger("Break");
+                    break;
+            }
+
+            if (dmg == 3)
+            {
+                foreach (Image healthIcon in M_HudController.healthIcons)
+                {
+                    healthIcon.GetComponent<Animator>().SetTrigger("Break");
+                }
+            }
+
             if (m_Life <= 0)
             {
                 //Debug.Log($"Player a {m_Life} de vida, GetStunned()");
@@ -271,6 +296,10 @@ public class PlayerController : MonoBehaviour
         DisableDaze();
         UpdatePlayerHealth();
         m_PlayerStunned = false;
+        foreach (Image healthIcon in M_HudController.healthIcons)
+        {
+            healthIcon.GetComponent<Animator>().SetTrigger("Heal");
+        }
     }
 
     public void DisableInputs()
@@ -303,6 +332,7 @@ public class PlayerController : MonoBehaviour
     public void UpdatePlayerHealth()
     {
         m_ScoreManager.SetPlayerHP(m_Life);
+      
     }
 
     public void RemoveCorpse()
