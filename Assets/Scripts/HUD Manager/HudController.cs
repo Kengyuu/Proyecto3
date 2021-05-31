@@ -119,7 +119,7 @@ public class HudController : MonoBehaviour
         }
         if (hasMoved) cooldownRun -= Time.deltaTime;
         if (hasRun) cooldownDash -= Time.deltaTime;
-        //UpdateObjective(m_ScoreManager.GetPlayerCorpses(), m_ScoreManager.GetEnemyCorpses());
+        
         
     }
 
@@ -330,7 +330,7 @@ public class HudController : MonoBehaviour
             }
              else if (playerCorpses >= 10)
             {
-                objectiveAnim.SetTrigger("Kill Nightmare");
+                objectiveAnim.SetTrigger("Can Kill Nightmare");
             }
             else objectiveAnim.SetTrigger("Hunt Corpse");
         }
