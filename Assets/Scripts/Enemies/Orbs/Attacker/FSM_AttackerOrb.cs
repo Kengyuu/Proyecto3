@@ -209,7 +209,6 @@ public class FSM_AttackerOrb : MonoBehaviour
                 Vector3 Direction = raycastPoint.position - castPosition.position;
                 Direction.Normalize();
                 Ray Ray = new Ray(castPosition.position, Direction);
-                Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
                 RaycastHit l_RaycastHit;
 
                 if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance, mask))

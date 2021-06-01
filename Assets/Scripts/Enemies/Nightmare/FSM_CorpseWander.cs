@@ -162,7 +162,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 target.tag = "PickedCorpse";
                 blackboard.animatorController.StartCorpseChanneling();
                 blackboard.cooldownToGrabCorpse = 5f;
-                target.GetComponent<CorpseAbsortion>().AbsorbParticles(blackboard.cooldownToGrabCorpse, gameObject);
+                target.GetComponent<CorpseAbsortion>().AbsorbParticles(blackboard.cooldownToGrabCorpse, blackboard.absorbObjective);
                 transform.LookAt(target.transform.position, gameObject.transform.up);
                 break;
 
@@ -171,22 +171,4 @@ public class FSM_CorpseWander : MonoBehaviour
         currentState = newState;
         
     }
-
-    /*void OnDrawGizmos()
-    {
-        if(!Application.isPlaying)
-            return ;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, blackboard.senseRadius);
-    }*/
-
-    /*void OnDrawGizmos()
-    {
-        if(!Application.isPlaying)
-            return ;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, blackboard.corpseDetectionRadius);
-        if(corpse != null)
-            Gizmos.DrawLine(transform.position, target.transform.position);
-    }*/
 }

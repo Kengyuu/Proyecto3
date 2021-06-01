@@ -64,12 +64,12 @@ public class PlayerMap : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(m_PlayerMovement.transform.position, m_CorpseShowRadius);
-    }
+    }*/
 
     private void EnableMap()
     {

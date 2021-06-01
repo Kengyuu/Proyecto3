@@ -81,8 +81,6 @@ public class DetectionFunctions : MonoBehaviour
 		float angle =  Vector3.Angle(user.transform.forward, vectorEnemyPlayer);
 		
 		
-		//Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange,  Color.red);
-			//Debug.DrawRay(user.transform.position, user.transform.forward * maxRange, Color.blue);
 
 		if ((angle <= maxAngle || angle >= (360 - maxAngle)) && vectorEnemyPlayer.magnitude <= maxRange)
 		{
@@ -95,28 +93,10 @@ public class DetectionFunctions : MonoBehaviour
 			//Debug.Log(vectorEnemyPlayer.normalized * maxRange);
 			if (Physics.Raycast(Ray, out hit, maxRange, mask) && GameManager.Instance.GetPlayer().GetComponent<PlayerSpecialAbilities>().m_IsPlayerVisibleToEnemy)
 			{
-				//Debug.Log(angle);
-				/*Debug.DrawRay(user.transform.position, user.transform.forward * maxRange, Color.blue);*/
-				//Debug.Log("Distancia hit: " + hit.distance + " Distancia Player: " + vectorEnemyPlayer.magnitude);
-				//Debug.Log(hit.collider.transform.name);
-				/*if(Mathf.Abs(hit.distance - vectorEnemyPlayer.magnitude) < 2)
-				{
-					Debug.Log("Estoy dentro");
-				}*/
+				
 				if (hit.collider.CompareTag("Player"))
 				{
-					Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange,  Color.red);
-					//user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-					//Debug.Log(angle + " Estoy IN");
-					//Debug.Log(angle + " MaxAngle: " + maxAngle);
 					return true;
-				}
-				else
-				{
-					//Debug.Log(maxAngle + " Estoy OUT");
-					//Debug.Log(hit.collider.name);
-					Debug.DrawRay(user.transform.position, vectorEnemyPlayer.normalized * maxRange, Color.green);
-					//user.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
 				}
 			}
 			

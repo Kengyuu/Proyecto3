@@ -435,16 +435,4 @@ public class FSM_CorpseSearcher : MonoBehaviour
         anim.SetBool("AttackOrb", false);
         m_Laser.enabled = false;
     }
-
-
-
-    /*void OnDrawGizmos()
-    {
-        if (!Application.isPlaying)
-            return;
-        Gizmos.color = Color.red;
-        // Gizmos.DrawWireSphere(transform.position, blackboard.corpseDetectionRadius);
-        if (corpse != null)
-            Gizmos.DrawLine(transform.position, corpse.transform.position);
-    }*/
 }

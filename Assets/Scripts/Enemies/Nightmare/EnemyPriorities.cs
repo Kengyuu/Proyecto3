@@ -46,6 +46,22 @@ public class EnemyPriorities : MonoBehaviour
         GM.OnPlayerNoise += DetectPlayerActions;
     }
 
+    void Update()
+    {
+        if(playerSeen)
+        {
+            if(blackboard.head.weight < 0.9f)
+                blackboard.head.weight = Mathf.Lerp(blackboard.head.weight, 0.9f, 0.5f);
+        }
+        else
+        {
+            if(blackboard.head.weight > 0)
+            {
+                blackboard.head.weight = Mathf.Lerp(blackboard.head.weight, 0, 0.5f);
+            }
+        }
+    }
+
    public void DetectPlayerActions(float playerDistance)
     {
         //Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");

@@ -114,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
             //Wall Jump - doesn't work on FPS
             if (m_InputSystem.Gameplay.Jump.triggered)
             {
-                Debug.DrawRay(hit.point, hit.normal, Color.red, 1.25f);
                 m_VerticalVelocity = m_PlayerJumpForce;
                 m_Movement = Vector3.Reflect(m_Movement, hit.normal) * m_PlayerWalkSpeed;
             }

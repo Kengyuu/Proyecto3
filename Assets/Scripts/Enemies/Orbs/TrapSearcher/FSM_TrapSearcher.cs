@@ -287,7 +287,6 @@ public class FSM_TrapSearcher : MonoBehaviour
                 Vector3 Direction = raycastPoint.position - castPosition.position;
                 Direction.Normalize();
                 Ray Ray = new Ray(castPosition.position, Direction);
-                Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
                 RaycastHit l_RaycastHit;
 
                 if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance,mask))
@@ -374,16 +373,4 @@ public class FSM_TrapSearcher : MonoBehaviour
         anim.SetBool("AttackOrb", false);
         m_Laser.enabled = false;
     }
-
-
-
-
-
-    /*void OnDrawGizmos()
-    {
-        if(!Application.isPlaying)
-            return ;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, blackboard.senseRadius);
-    }*/
 }

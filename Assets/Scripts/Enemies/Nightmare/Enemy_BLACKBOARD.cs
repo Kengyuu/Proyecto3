@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class Enemy_BLACKBOARD : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Enemy_BLACKBOARD : MonoBehaviour
 
     public GameObject corpse;
     
+    public GameObject absorbObjective;
+    
 
     [Header("SeekPlayer")]
     public GameObject Player;
@@ -28,6 +31,9 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     public float distanceToAttack = 0.5f;
     public float waypointsNearPlayerRadius = 20f;
     public P_AnimatorController animatorController;
+
+    public MultiAimConstraint head;
+
     //public float senseRadius = 10f;
 
     [Header("GameState")]

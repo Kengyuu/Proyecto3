@@ -317,12 +317,4 @@ public class FSM_SeekPlayer : MonoBehaviour
     {
         enemy.isStopped = true;
     }
-
-    /*void OnDrawGizmos()
-    {
-        if(!Application.isPlaying)
-            return ;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(Player.transform.position, blackboard.waypointsNearPlayerRadius);
-    }*/
 }
