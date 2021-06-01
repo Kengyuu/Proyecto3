@@ -15,6 +15,7 @@ public class Orb_Blackboard : MonoBehaviour
     public string triggerAnim;
     public ParticleSystem particleSystem;
     public EnemyBehaviours behaviours;
+    public GameObject orbSpawner;
 
     [Header("CorpseSearcher")]
     public float closeEnoughCorpseRadius = 3;

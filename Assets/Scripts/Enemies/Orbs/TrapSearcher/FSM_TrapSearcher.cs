@@ -15,7 +15,7 @@ public class FSM_TrapSearcher : MonoBehaviour
     EnemyBehaviours behaviours;
     GameObject trap;
     public Image icon;
-
+    public float cooldown = 4;
     [Header("Attack")]
     public List<Transform> rayPoints;
     public Transform castPosition;
@@ -31,7 +31,7 @@ public class FSM_TrapSearcher : MonoBehaviour
 
     [Header("State")]
     public State currentState;
-    public enum State { INITIAL, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP, ALERT, ATTACKINGPLAYER };
+    public enum State { INITIAL,INVOKING, WANDERING, GOINGTOTRAP, DEACTIVATINGTRAP, ALERT, ATTACKINGPLAYER };
     
 
     void OnEnable()
@@ -68,10 +68,18 @@ public class FSM_TrapSearcher : MonoBehaviour
         {
 
             case State.INITIAL:
-                ChangeState(State.WANDERING);
+                ChangeState(State.INVOKING);
                 break;
 
-
+            case State.INVOKING:
+                cooldown -= Time.deltaTime;
+                if (cooldown <= 0)
+                {
+                    ChangeState(State.WANDERING);
+                    cooldown = 4;
+                }
+               
+                break;
 
             case State.WANDERING:
 
@@ -196,6 +204,10 @@ public class FSM_TrapSearcher : MonoBehaviour
         //EXIT LOGIC
         switch (currentState)
         {
+            case State.INVOKING:
+                anim.SetBool("Invoke", false);
+                blackboard.navMesh.isStopped = false;
+                break;
             case State.DEACTIVATINGTRAP:
                 //child.rotation = Quaternion.LookRotation(gameObject.transform.forward);
                 blackboard.navMesh.isStopped = false;
@@ -215,7 +227,11 @@ public class FSM_TrapSearcher : MonoBehaviour
         // Enter logic
         switch (newState)
         {
-
+            case State.INVOKING:
+                anim.SetBool("Invoke", true);
+                blackboard.navMesh.isStopped = true;
+                blackboard.navMesh.Warp(blackboard.orbSpawner.transform.position);
+                break;
             case State.WANDERING:
                 blackboard.navMesh.isStopped = false;
                 target = behaviours.PickRandomWaypointOrb();

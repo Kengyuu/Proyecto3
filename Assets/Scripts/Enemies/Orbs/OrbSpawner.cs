@@ -56,7 +56,7 @@ public class OrbSpawner : MonoBehaviour
 
         if (corpses >= 0 && corpses < 3)
         {
-            if (!CorpseOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
+            if (!CorpseOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke )
             {
                 CorpseOrb.SetActive(true);
                 
@@ -75,16 +75,20 @@ public class OrbSpawner : MonoBehaviour
 
         else if (corpses >= 3 && corpses < 6)
         {
+            
             if (!secondOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
+                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
+
                 secondOrb.SetActive(true);
                 hud.objectiveAnim.SetTrigger(secondOrb.GetComponent<Orb_Blackboard>().triggerAnim);
-                
+                if (!showingOrb)
+                {
                     second.gameObject.SetActive(true);
-                
+                }
                 secondOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 secondOrb.GetComponent<NavMeshAgent>().enabled = true;
-                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
+                
             }
             third.gameObject.SetActive(false);
             thirdOrb.SetActive(false);
@@ -98,7 +102,7 @@ public class OrbSpawner : MonoBehaviour
                 thirdOrb.SetActive(true);
                 
                 hud.objectiveAnim.SetTrigger(thirdOrb.GetComponent<Orb_Blackboard>().triggerAnim);
-                third.gameObject.SetActive(true);
+                if (!showingOrb) third.gameObject.SetActive(true);
                 thirdOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 thirdOrb.GetComponent<NavMeshAgent>().enabled = true;
                 GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
