@@ -217,7 +217,12 @@ public class FSM_AttackerOrb : MonoBehaviour
                     if (l_RaycastHit.collider.tag == "Player")
                     {
                         //Debug.Log("Hit by orb");
-                        GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(2, gameObject, blackboard.XForceImpulseDamage, blackboard.YForceImpulseDamage);
+                        if (l_RaycastHit.collider.gameObject.GetComponent<PlayerController>().m_Life >= 2)
+                        {
+                            GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(2, gameObject, blackboard.XForceImpulseDamage, blackboard.YForceImpulseDamage);
+                        }
+                        else GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(1, gameObject, blackboard.XForceImpulseDamage, blackboard.YForceImpulseDamage);
+
                         attacking = false;
                         
                     }

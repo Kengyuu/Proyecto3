@@ -245,7 +245,7 @@ public class PlayerController : MonoBehaviour
             //Reduce Life
             m_Life -= dmg;
 
-           
+            M_HudController.UpdateHealth(dmg);
 
             if (m_Life <= 0)
             {
@@ -271,7 +271,7 @@ public class PlayerController : MonoBehaviour
 
                 //Invoke("RestoreLife", m_MaxStunTime);
             }
-            switch (m_Life)
+            /*switch (m_Life)
             {
                 case 2:
                     M_HudController.healthIcons[0].GetComponent<Animator>().SetTrigger("Break");
@@ -282,15 +282,15 @@ public class PlayerController : MonoBehaviour
                 case 0:
                     M_HudController.healthIcons[2].GetComponent<Animator>().SetTrigger("Break");
                     break;
-            }
+            }*/
 
-            if (dmg == 3)
+           /* if (dmg == 3)
             {
                 foreach (Image healthIcon in M_HudController.healthIcons)
                 {
                     healthIcon.GetComponent<Animator>().SetTrigger("Break");
                 }
-            }
+            }*/
 
             UpdatePlayerHealth();
             OrbEvents.current.ManageOrbs();

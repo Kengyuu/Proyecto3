@@ -20,7 +20,7 @@ public class HudController : MonoBehaviour
     public Sprite playerCorpse;
     public Sprite enemyCorpse;
     public Sprite neutralCorpse;
-
+    public Sprite fullLife;
     public OrbSpawner orbSpawner;
 
     [Header("Animation")]
@@ -101,7 +101,7 @@ public class HudController : MonoBehaviour
         m_PlayerCorpses.text = "Player Corpses: " + scoreManager.GetPlayerCorpses().ToString("0");
         m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.GetEnemyCorpses().ToString("0");
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
-        UpdateHealth(scoreManager.GetPlayerHP());
+       // UpdateHealth(scoreManager.GetPlayerHP());
         UpdateObjective(scoreManager.GetPlayerCorpses(), scoreManager.GetEnemyCorpses());
         // m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
 
@@ -207,7 +207,7 @@ public class HudController : MonoBehaviour
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
         //m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
         GM.UpdateModifiers();
-        UpdateHealth(scoreManager.GetPlayerHP());
+        //UpdateHealth(scoreManager.GetPlayerHP());
         UpdateObjective(scoreManager.GetPlayerCorpses(), scoreManager.GetEnemyCorpses());
 
     }
@@ -289,35 +289,57 @@ public class HudController : MonoBehaviour
     }
    
 
-    public void UpdateHealth(float health)
+    public void UpdateHealth(float dmg)
     {
-        /*switch (health)
+        switch (dmg)
         {
             case 3:
                 foreach (Image image in healthIcons)
                 {
-                    image.gameObject.SetActive(true);
+                    image.gameObject.GetComponent<Animator>().SetTrigger("Break");
                 }
                 break;
             case 2:
-                healthIcons[0].gameObject.SetActive(false);
-                healthIcons[1].gameObject.SetActive(true);
-                healthIcons[2].gameObject.SetActive(true);
+                for (int i = 0; i < healthIcons.Length; i++)
+                {
+                    if (healthIcons[i].sprite == fullLife)
+                    {
+                        
+                         healthIcons[i].GetComponent<Animator>().SetTrigger("Break");
+                        if (System.Array.IndexOf(healthIcons,healthIcons[i+1]) < healthIcons.Length)
+                        {
+                            healthIcons[i + 1].GetComponent<Animator>().SetTrigger("Break");
+                        }
+                        
+
+                        //Debug.Log($"{corpseSprites[i].sprite} se ha comparado con {playerCorpse.name}");
+
+                        break;
+                    }
+
+
+                }
                 break;
             case 1:
-                healthIcons[0].gameObject.SetActive(false);
-                healthIcons[1].gameObject.SetActive(false);
-                healthIcons[2].gameObject.SetActive(true);
-                break;
-
-            case 0:
-                foreach (Image image in healthIcons)
+                for (int i = 0; i < healthIcons.Length; i++)
                 {
-                    image.gameObject.SetActive(false);
+                    if (healthIcons[i].sprite == fullLife)
+                    {
+                        
+                         healthIcons[i].GetComponent<Animator>().SetTrigger("Break");
+                        
+                        //Debug.Log($"{corpseSprites[i].sprite} se ha comparado con {playerCorpse.name}");
+
+                        break;
+                    }
+
+
                 }
                 break;
 
-        }*/
+           
+
+        }
     }
 
     public void UpdateObjective(float playerCorpses, float enemyCorpses)
