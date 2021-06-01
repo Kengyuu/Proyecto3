@@ -62,7 +62,7 @@ public class OrbSpawner : MonoBehaviour
                 
                 CorpseOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 CorpseOrb.GetComponent<NavMeshAgent>().enabled = true;
-                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
+               
 
             }
             secondOrb.SetActive(false);
