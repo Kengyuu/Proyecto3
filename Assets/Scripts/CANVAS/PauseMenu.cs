@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_PlayerMovement.m_InputSystem.Gameplay.Pause.triggered)
+        if (m_PlayerMovement.m_InputSystem.Gameplay.Pause.triggered || m_PlayerMovement.m_InputSystem.Pause.Pause.triggered)
         {
             if (m_GameIsPaused)
             {

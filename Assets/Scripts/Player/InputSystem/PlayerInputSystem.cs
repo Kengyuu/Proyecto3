@@ -382,14 +382,6 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""97250a55-eba7-49fa-979f-d08dadf390dc"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -434,28 +426,6 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Map"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""eaf84dae-f5fc-4a87-a7b8-9b2b85eefeac"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1c4a3809-cbed-40be-baf1-ff99c28983e4"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -874,7 +844,6 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
         m_Minimap = asset.FindActionMap("Minimap", throwIfNotFound: true);
         m_Minimap_Look = m_Minimap.FindAction("Look", throwIfNotFound: true);
         m_Minimap_Map = m_Minimap.FindAction("Map", throwIfNotFound: true);
-        m_Minimap_Pause = m_Minimap.FindAction("Pause", throwIfNotFound: true);
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_Pause = m_Pause.FindAction("Pause", throwIfNotFound: true);
@@ -1057,14 +1026,12 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
     private IMinimapActions m_MinimapActionsCallbackInterface;
     private readonly InputAction m_Minimap_Look;
     private readonly InputAction m_Minimap_Map;
-    private readonly InputAction m_Minimap_Pause;
     public struct MinimapActions
     {
         private @PlayerInputSystem m_Wrapper;
         public MinimapActions(@PlayerInputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Look => m_Wrapper.m_Minimap_Look;
         public InputAction @Map => m_Wrapper.m_Minimap_Map;
-        public InputAction @Pause => m_Wrapper.m_Minimap_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Minimap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1080,9 +1047,6 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @Map.started -= m_Wrapper.m_MinimapActionsCallbackInterface.OnMap;
                 @Map.performed -= m_Wrapper.m_MinimapActionsCallbackInterface.OnMap;
                 @Map.canceled -= m_Wrapper.m_MinimapActionsCallbackInterface.OnMap;
-                @Pause.started -= m_Wrapper.m_MinimapActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_MinimapActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_MinimapActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_MinimapActionsCallbackInterface = instance;
             if (instance != null)
@@ -1093,9 +1057,6 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 @Map.started += instance.OnMap;
                 @Map.performed += instance.OnMap;
                 @Map.canceled += instance.OnMap;
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1289,7 +1250,6 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
     {
         void OnLook(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
     }
     public interface IPauseActions
     {

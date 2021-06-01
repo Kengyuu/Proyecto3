@@ -47,7 +47,7 @@ public class PlayerMap : MonoBehaviour
 
     void Update()
     {
-        if (m_PlayerMovement.m_InputSystem.Gameplay.Map.triggered)
+        if (m_PlayerMovement.m_InputSystem.Gameplay.Map.triggered || m_PlayerMovement.m_InputSystem.Minimap.Map.triggered)
         {
             map_status = !map_status;
             if (map_status)

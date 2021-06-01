@@ -30,6 +30,8 @@ public class PlayerCamera : MonoBehaviour
     private float m_Yaw = 0.0f;
     private float m_Pitch = 0.0f;
 
+    private PlayerInputSystem m_PlayerInput;
+
     private void Awake()
     {
         //m_InputSystem = new PlayerInputSystem();
@@ -49,6 +51,8 @@ public class PlayerCamera : MonoBehaviour
 
         //Lock the cursor @ start
         Cursor.lockState = CursorLockMode.Locked;
+
+        m_PlayerInput = GetComponent<PlayerMovement>().m_InputSystem;
     }
 
     private void Update()
@@ -84,7 +88,7 @@ public class PlayerCamera : MonoBehaviour
 
         //Update yaw & pitch (Camera)
         //if(GameManager.Instance.gameState != GameState.PAUSE)
-        if(GetComponent<PlayerMovement>().m_InputSystem.Gameplay.enabled)
+        if(m_PlayerInput.Gameplay.enabled || m_PlayerInput.Minimap.enabled)
         {
             float l_MouseAxisX = Input.GetAxis("Mouse X");
             float l_MouseAxisY = Input.GetAxis("Mouse Y");

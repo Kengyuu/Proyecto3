@@ -269,10 +269,10 @@ public class PlayerShoot : MonoBehaviour
             handLight.Play();
             Invoke("ShootBeam", m_ShootCastingTime);
             //ShootBeam(distanceToObjective);
-            
+            StartCoroutine(Wait()); //ESTO DEBE IR FUERA!!
         }
 
-        StartCoroutine(Wait());
+        
 
 
     }

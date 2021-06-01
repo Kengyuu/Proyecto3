@@ -21,5 +21,7 @@ public class Game : MonoBehaviour
         }
         
         Cursor.lockState = CursorLockMode.Locked;
+
+        GM.SetGameState(GameState.GAME);
     }
 }

@@ -53,7 +53,8 @@ public class PlayerController : MonoBehaviour
 
         GM.OnStateChange += StateChanged;
 
-        
+
+        InitInputs();
 
         //HUD Updaters
         UpdatePlayerHealth();
@@ -124,6 +125,13 @@ public class PlayerController : MonoBehaviour
             }
         }*/
 
+    private void InitInputs()
+    {
+        m_PlayerMovement.m_InputSystem.NoInputs.Disable();
+        m_PlayerMovement.m_InputSystem.Minimap.Disable();
+        m_PlayerMovement.m_InputSystem.Pause.Disable();
+        m_PlayerMovement.m_InputSystem.Gameplay.Enable();
+    }
 
 
     private void StateChanged()
