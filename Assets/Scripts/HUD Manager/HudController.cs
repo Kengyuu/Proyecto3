@@ -178,7 +178,7 @@ public class HudController : MonoBehaviour
                 m_centerText.enabled = false;*/
                 m_CanvasGameOver.SetActive(false);
                 m_CanvasVictory.SetActive(false);
-                m_CanvasGame.SetActive(false);
+                //m_CanvasGame.SetActive(false);
                 m_CanvasPauseMenu.SetActive(false);
                 m_CanvasSettingsMenu.SetActive(false);
                 m_CanvasMinimap.SetActive(true);
@@ -186,7 +186,7 @@ public class HudController : MonoBehaviour
             case GameState.PAUSE:
                 m_CanvasGameOver.SetActive(false);
                 m_CanvasVictory.SetActive(false);
-                m_CanvasGame.SetActive(false);
+                //m_CanvasGame.SetActive(false);
                 m_CanvasPauseMenu.SetActive(true);
                 m_CanvasSettingsMenu.SetActive(false);
                 m_CanvasMinimap.SetActive(false);
@@ -296,13 +296,17 @@ public class HudController : MonoBehaviour
             case 3:
                 foreach (Image image in healthIcons)
                 {
-                    image.gameObject.GetComponent<Animator>().SetTrigger("Break");
+                    if (image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HUD Stamina Break") || image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Start"))
+                    {
+                        image.gameObject.GetComponent<Animator>().SetTrigger("Break");
+                    }
+                    
                 }
                 break;
             case 2:
                 for (int i = 0; i < healthIcons.Length; i++)
                 {
-                    if (healthIcons[i].sprite == fullLife)
+                    if (healthIcons[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HUD Stamina Heal") || healthIcons[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Start"))
                     {
                         
                          healthIcons[i].GetComponent<Animator>().SetTrigger("Break");
@@ -323,7 +327,7 @@ public class HudController : MonoBehaviour
             case 1:
                 for (int i = 0; i < healthIcons.Length; i++)
                 {
-                    if (healthIcons[i].sprite == fullLife)
+                    if (healthIcons[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HUD Stamina Heal") || healthIcons[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Start"))
                     {
                         
                          healthIcons[i].GetComponent<Animator>().SetTrigger("Break");
@@ -344,16 +348,20 @@ public class HudController : MonoBehaviour
 
     public void UpdateObjective(float playerCorpses, float enemyCorpses)
     {
-       
-            if (enemyCorpses >= 10)
-            {
-                objectiveAnim.SetTrigger("Hunt Nightmare");
-            }
-             else if (playerCorpses >= 10)
-            {
-                objectiveAnim.SetBool("Can Kill Nightmare", true);
-            }
-            else objectiveAnim.SetTrigger("Hunt Corpse");
+
+        if (enemyCorpses >= 10)
+        {
+            objectiveAnim.SetTrigger("Hunt Nightmare");
+        }
+        else if (playerCorpses >= 10)
+        {
+            objectiveAnim.SetBool("Can Kill Nightmare", true);
+        }
+        else
+        {
+            objectiveAnim.SetTrigger("Hunt Corpse");
+            objectiveAnim.SetBool("Can Kill Nightmare", false);
+        }
         
             
         
@@ -368,7 +376,7 @@ public class HudController : MonoBehaviour
             case "Player":
                 for (int i = 0; i < corpseSprites.Length; i++)
                 {
-                    if (corpseSprites[i].sprite != playerCorpse && corpseSprites[i].sprite != enemyCorpse)
+                    if ( corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Empty From Player") || corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Base"))
                     {
                         corpseSprites[i].GetComponent<Animator>().SetTrigger("CorpseToPlayer");
                         break;
@@ -377,9 +385,9 @@ public class HudController : MonoBehaviour
                 break;
 
             case "Enemy":
-                for (int i = corpseSprites.Length - 1; i > 0; i--)
+                for (int i = corpseSprites.Length - 1; i >= 0; i--)
                 {
-                    if (corpseSprites[i].sprite != playerCorpse && corpseSprites[i].sprite != enemyCorpse)
+                    if (corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Empty From Nightmare") || corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Base"))
                     {
                         //Debug.Log($"{corpseSprites[i].sprite} se ha comparado con {playerCorpse.name}");
                         corpseSprites[i].GetComponent<Animator>().SetTrigger("CorpseToNightmare");
@@ -401,7 +409,7 @@ public class HudController : MonoBehaviour
             case "Enemy":
                 for (int i = 0; i < corpseSprites.Length; i++)
                 {
-                    if (corpseSprites[i].sprite == enemyCorpse)
+                    if (corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Corpse Counter Nightmare") )
                     {
 
                         corpseSprites[i].GetComponent<Animator>().SetTrigger("Empty");
@@ -411,9 +419,9 @@ public class HudController : MonoBehaviour
                 break;
 
             case "Player":
-                for (int i = corpseSprites.Length - 1; i > 0; i--)
+                for (int i = corpseSprites.Length - 1; i >= 0; i--)
                 {
-                    if (corpseSprites[i].sprite == playerCorpse)
+                    if (corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Corpse Counter Player"))
                     {
 
                         corpseSprites[i].GetComponent<Animator>().SetTrigger("Empty");
