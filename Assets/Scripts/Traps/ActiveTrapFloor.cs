@@ -33,7 +33,8 @@ public class ActiveTrapFloor : MonoBehaviour
                 if (target != null)
                 {
                     Debug.Log("Enemigo estuneado por TRAMPA de LUZ");
-                    target.isStunned = true;
+                   // target.isStunned = true;
+                    col.gameObject.GetComponent<Enemy>().GetStunned();
                 }
                 m_DamageCooldown = m_DamageMaxCooldown;
                 m_AllowDamage = false;

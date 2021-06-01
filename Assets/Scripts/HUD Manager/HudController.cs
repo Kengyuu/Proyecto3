@@ -296,7 +296,7 @@ public class HudController : MonoBehaviour
             case 3:
                 foreach (Image image in healthIcons)
                 {
-                    if (image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HUD Stamina Break") || image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Start"))
+                    if (image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HUD Stamina Heal") || image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Start"))
                     {
                         image.gameObject.GetComponent<Animator>().SetTrigger("Break");
                     }

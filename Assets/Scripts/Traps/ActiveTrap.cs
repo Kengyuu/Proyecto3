@@ -12,16 +12,23 @@ public class ActiveTrap : MonoBehaviour
     public float m_FloorDisableTime = 5f;
     public float m_TrapEnableCooldown = 10f;
     public GameObject m_Floor;
+    public GameObject m_Floor1;
+
+    public ParticleSystem particles;
+    ParticleSystem.RotationOverLifetimeModule rotation;
 
     private void Start()
     {
         m_Floor.SetActive(false);
+        rotation = particles.rotationOverLifetime;
+        
     }
 
     public void EnableTrap()
     {
         if (m_TrapCanBeEnabled)
         {
+           
             m_TrapCanBeEnabled = false;
             Invoke("ActivateFloor", m_FloorEnableDelay);
         }
@@ -29,13 +36,19 @@ public class ActiveTrap : MonoBehaviour
 
     private void ActivateFloor()
     {
+       
+        rotation.z = 1.5f;
+        // m_Floor1.SetActive(true);
         m_Floor.SetActive(true);
         Invoke("DisableFloor", m_FloorDisableTime);
     }
 
     private void DisableFloor()
     {
+        rotation.z = 0;
+        //rotation.enabled = false;
         m_Floor.SetActive(false);
+        //m_Floor1.SetActive(false);
         Invoke("ReEnableButton", m_TrapEnableCooldown);
     }
 

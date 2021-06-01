@@ -70,9 +70,18 @@ public class OutlineController : MonoBehaviour
            
 
 
-            if (hit.collider.gameObject.CompareTag("PasiveTrapBase"))
+            if (hit.collider.gameObject.CompareTag("PasiveTrapBase") && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_TrapDetectionDistance)
             {
                 Debug.Log("HOLA ENTRO AQUI DENTRO");
+                m_Outline = hit.transform.gameObject.GetComponent<Outline>();
+                m_Outline.enabled = true;
+                if (!m_GOChecked.Contains(m_Outline)) m_GOChecked.Add(m_Outline);
+                return true;
+            }
+
+            if (hit.collider.gameObject.CompareTag("ActiveTrap") && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_ButtonDetectionDistance)
+            {
+                //Debug.Log("HOLA ENTRO AQUI DENTRO");
                 m_Outline = hit.transform.gameObject.GetComponent<Outline>();
                 m_Outline.enabled = true;
                 if (!m_GOChecked.Contains(m_Outline)) m_GOChecked.Add(m_Outline);
