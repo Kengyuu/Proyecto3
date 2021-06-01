@@ -46,6 +46,9 @@ public class PlayerShoot : MonoBehaviour
     [Header("Debug")]
     [SerializeField] bool m_IsPlayerShooting = false;
 
+    [Header("Animations")]
+    public PlayerAnimations m_PlayerAnimations;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +59,7 @@ public class PlayerShoot : MonoBehaviour
         if (GM == null) GM = GameManager.Instance;
 
         //GM.OnStateChange += StateChanged;
-
+        
 
     }
 
@@ -149,10 +152,11 @@ public class PlayerShoot : MonoBehaviour
 
     private void Shoot()
     {
-        //Debug.Log("PLAYER DISPARA");
+        Debug.Log("PLAYER DISPARA");
         m_IsPlayerShooting = true;
         crosshairAnim.SetBool("Shot", true);
         GM.PlayerNoise(m_ShootNoise);
+        //m_PlayerAnimations.m_Animator.SetTrigger("Shoot");
 
 
         bool corpseHit = false;
@@ -180,6 +184,7 @@ public class PlayerShoot : MonoBehaviour
                         m_PlayerController.AddCorpse();
                         M_HudController.UpdateAddCorpses(gameObject);
                         OrbEvents.current.ManageOrbs();
+                        m_PlayerAnimations.StartAbsorb();
                         //GM.m_GameObjectSpawner.ClearBodys(hit.collider.GetComponent<CorpseControl>().spawnPosition);
                         //m_ScoreManager.RemoveRemainingCorpse();
                     }
@@ -268,8 +273,9 @@ public class PlayerShoot : MonoBehaviour
             chargeBeam.Play();
             handLight.Play();
             Invoke("ShootBeam", m_ShootCastingTime);
+            m_PlayerAnimations.StartShoot();
             //ShootBeam(distanceToObjective);
-            StartCoroutine(Wait()); //ESTO DEBE IR FUERA!!
+            //StartCoroutine(Wait()); //ESTO DEBE IR FUERA!!
         }
 
         
@@ -291,6 +297,7 @@ public class PlayerShoot : MonoBehaviour
     public void ResetShoot()
     {
         m_IsPlayerShooting = false;
+        m_PlayerAnimations.StopAbsorb();
     }
 
     private void ShootBeam()
@@ -331,6 +338,6 @@ public class PlayerShoot : MonoBehaviour
         beam.SetActive(false);
         mainBeam.SetActive(false);
         splashBeam.SetActive(false);
-        ResetShoot();
+        //ResetShoot();
     }
 }

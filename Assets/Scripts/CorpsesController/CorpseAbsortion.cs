@@ -48,7 +48,7 @@ public class CorpseAbsortion : MonoBehaviour {
         {
             switch(Target.tag)
             {
-                case "Player":
+                /*case "Player":
                     absorberStunned = GM.GetPlayer().GetComponent<PlayerController>().m_PlayerStunned;
                     //Target.position = GM.GetPlayer().transform.position;
                     break;
@@ -63,6 +63,28 @@ public class CorpseAbsortion : MonoBehaviour {
                     break;
                 case "CorpseOrb":
                     absorberStunned = Target.GetComponent<FSM_ReturnToSafety_Corpse>().killed;
+                    break;*/
+
+                case "Player":
+                    absorberStunned = GM.GetPlayer().GetComponent<PlayerController>().m_PlayerStunned;
+                    //Target.position = GM.GetPlayer().transform.position;
+                    break;
+                case "AbsorbObjectiveEnemy":
+                    absorberStunned = GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isStunned;
+                    if (GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen || GM.GetEnemy().GetComponent<EnemyPriorities>().playerDetected)
+                    {
+                        systemActive = false;
+                        absorberStunned = true;
+                        StopAbsortion();
+                    }
+                    break;
+                case "CorpseOrb":
+                    absorberStunned = Target.GetComponent<FSM_ReturnToSafety_Corpse>().killed;
+                    if (absorberStunned)
+                    {
+                        systemActive = false;
+                        StopAbsortion();
+                    }
                     break;
             }
 
@@ -113,7 +135,7 @@ public class CorpseAbsortion : MonoBehaviour {
             case "Player":
                 system = playerSystem.GetComponent<ParticleSystem>();
                 break;
-            case "Enemy":
+            case "AbsorbObjectiveEnemy":
                 system = enemySystem.GetComponent<ParticleSystem>();
                 break;
             case "CorpseOrb":
