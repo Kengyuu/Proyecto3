@@ -99,7 +99,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
 
             case State.GRABBINGCORPSE:
-                if(behaviours.myType == EnemyBehaviours.EnemyType.MAIN) behaviours.SearchPlayer(blackboard.playerDetectionRadius, layer);
+                behaviours.SearchPlayer(blackboard.playerDetectionRadius, layer);
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                 if (blackboard.cooldownToGrabCorpse <= 0)
                 {

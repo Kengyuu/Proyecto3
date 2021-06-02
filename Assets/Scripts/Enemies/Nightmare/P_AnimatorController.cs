@@ -7,6 +7,7 @@ public class P_AnimatorController : MonoBehaviour
     Animator animator;
     public FSM_SeekPlayer enemy;
     public FSM_CorpseWander enemyCorpse; 
+    public Enemy_BLACKBOARD blackboard;
 
     void Start()
     {
@@ -108,13 +109,13 @@ public class P_AnimatorController : MonoBehaviour
     public void PlayerStunned()
     {
         animator.SetTrigger("PlayerStunned");
+        enemy.isProvoking = true;
     }
 
     public void Stunned()
     {
         animator.SetTrigger("Stunned");
     }
-
     public void Dead()
     {
         animator.SetTrigger("State_Dead");
@@ -133,12 +134,27 @@ public class P_AnimatorController : MonoBehaviour
 
     public void FinishCorpseChanneling()
     {
-        animator.SetTrigger("CanalizingCompleted");
+        animator.ResetTrigger("CanalizingCompleted");
         animator.SetBool("State_Canalizing", false);
     }
 
     public void StartInvoking()
     {
         animator.SetTrigger("SpawnWatcher");
+    }
+
+    public void FinishInvoking()
+    {
+        animator.ResetTrigger("SpawnWatcher");
+    }
+
+    public void HeadLookAtPlayer()
+    {
+        blackboard.head.weight = 0.9f;
+    }
+
+    public void HeadNotLookAtPlayer()
+    {
+        blackboard.head.weight = 0f;
     }
 }

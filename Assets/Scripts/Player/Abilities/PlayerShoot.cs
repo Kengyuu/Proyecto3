@@ -21,6 +21,8 @@ public class PlayerShoot : MonoBehaviour
     private bool m_PlayerCanShoot = true;
     public Animator crosshairAnim;
     public GameObject absorbObjective;
+
+    public Transform shootObjective;
     
     
     [Header("ShootEffects")]
@@ -176,7 +178,7 @@ public class PlayerShoot : MonoBehaviour
                         absorbSphere.Play();
                         M_HudController.hasShot = true;
                         //AQUÍ PARA LLAMAR AL SISTEMA DE PARTÍCULAS
-                        hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.5f, absorbObjective);
+                        hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.3f, absorbObjective);
                         corpseHit = true;
                         
                         //Debug.Log($"Cadáver a distancia adecuada: {l_CurrentDistance}");

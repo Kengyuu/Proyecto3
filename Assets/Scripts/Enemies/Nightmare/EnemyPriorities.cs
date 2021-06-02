@@ -55,8 +55,16 @@ public class EnemyPriorities : MonoBehaviour
     {
         if(playerSeen)
         {
-            if(blackboard.head.weight < 0.9f)
-                blackboard.head.weight = Mathf.Lerp(blackboard.head.weight, 0.9f, 0.5f);
+            if(seekPlayer.currentState == FSM_SeekPlayer.State.PROVOKING)
+            {
+                 blackboard.head.weight = 0;
+            }
+            else
+            {
+                if(blackboard.head.weight < 0.9f)
+                    blackboard.head.weight = Mathf.Lerp(blackboard.head.weight, 0.9f, 0.5f);
+            }
+            
         }
         else
         {

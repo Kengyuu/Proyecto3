@@ -67,6 +67,11 @@ public class CorpseAbsortion : MonoBehaviour {
 
                 case "Player":
                     absorberStunned = GM.GetPlayer().GetComponent<PlayerController>().m_PlayerStunned;
+                    if(absorberStunned)
+                    {
+                        systemActive = false;
+                        StopAbsortion();
+                    }
                     //Target.position = GM.GetPlayer().transform.position;
                     break;
                 case "AbsorbObjectiveEnemy":
