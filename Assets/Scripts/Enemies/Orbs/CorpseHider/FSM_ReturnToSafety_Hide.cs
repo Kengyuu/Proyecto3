@@ -90,6 +90,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
 
             case State.NORMALBEHAVIOUR:
                 corpseHide.enabled = true;
+                corpseHide.ReEnter();
                 break;
 
             case State.RETURNINGTOENEMY:

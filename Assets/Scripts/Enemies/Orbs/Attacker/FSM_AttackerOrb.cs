@@ -28,7 +28,7 @@ public class FSM_AttackerOrb : MonoBehaviour
 
     [Header("State")]
     public State currentState;
-    public enum State { INITIAL, WANDERING, ALERT ,  ATTACKINGPLAYER};
+    public enum State { INITIAL,INVOKING, WANDERING, ALERT ,  ATTACKINGPLAYER};
     
 
    
@@ -61,10 +61,18 @@ public class FSM_AttackerOrb : MonoBehaviour
         switch (currentState)
         {
             case State.INITIAL:
-                ChangeState(State.WANDERING);
+                ChangeState(State.INVOKING);
                 break;
 
+            case State.INVOKING:
+                blackboard.cooldownToReappear -= Time.deltaTime;
+                if (blackboard.cooldownToReappear <= 0)
+                {
+                    ChangeState(State.WANDERING);
+                    blackboard.cooldownToReappear = 4;
+                }
 
+                break;
             case State.WANDERING:
                 blackboard.navMesh.SetDestination(target.transform.position);
 
@@ -135,6 +143,10 @@ public class FSM_AttackerOrb : MonoBehaviour
         //EXIT LOGIC
         switch (currentState)
         {
+            case State.INVOKING:
+                anim.SetBool("Invoke", false);
+                blackboard.navMesh.isStopped = false;
+                break;
             case State.WANDERING:
                
                 break;
@@ -152,7 +164,12 @@ public class FSM_AttackerOrb : MonoBehaviour
         // Enter logic
         switch (newState)
         {
-
+            case State.INVOKING:
+                blackboard.navMesh.Warp(blackboard.orbSpawner.transform.position);
+                anim.SetBool("Invoke", true);
+                blackboard.navMesh.isStopped = true;
+                
+                break;
             case State.WANDERING:
                 blackboard.navMesh.isStopped = false;
                 target = behaviours.PickRandomWaypointOrb();

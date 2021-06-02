@@ -96,6 +96,7 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
             case State.NORMALBEHAVIOUR:
                 Debug.Log("Reenable");
                 trapSearch.enabled = true;
+                trapSearch.ReEnter();
                 break;
 
             case State.RETURNINGTOENEMY:

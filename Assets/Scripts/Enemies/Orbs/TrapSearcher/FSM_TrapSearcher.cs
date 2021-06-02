@@ -72,11 +72,11 @@ public class FSM_TrapSearcher : MonoBehaviour
                 break;
 
             case State.INVOKING:
-                cooldown -= Time.deltaTime;
-                if (cooldown <= 0)
+                blackboard.cooldownToReappear -= Time.deltaTime;
+                if (blackboard.cooldownToReappear <= 0)
                 {
                     ChangeState(State.WANDERING);
-                    cooldown = 4;
+                    blackboard.cooldownToReappear = 4;
                 }
                
                 break;

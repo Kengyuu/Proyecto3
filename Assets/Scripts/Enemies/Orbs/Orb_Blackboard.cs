@@ -16,6 +16,7 @@ public class Orb_Blackboard : MonoBehaviour
     public ParticleSystem particleSystem;
     public EnemyBehaviours behaviours;
     public GameObject orbSpawner;
+    public float cooldownToReappear = 4;
 
     [Header("CorpseSearcher")]
     public float closeEnoughCorpseRadius = 3;

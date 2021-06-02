@@ -88,6 +88,7 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
 
             case State.NORMALBEHAVIOUR:
                 Attacker.enabled = true;
+                Attacker.ReEnter();
                 break;
 
             case State.RETURNINGTOENEMY:
