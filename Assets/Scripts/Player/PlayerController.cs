@@ -180,10 +180,16 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case GameState.GAME_OVER:
+                m_PlayerMovement.m_InputSystem.Minimap.Disable();
+                m_PlayerMovement.m_InputSystem.Pause.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.Disable();
                 m_PlayerMovement.m_InputSystem.NoInputs.Enable();
                 break;
 
             case GameState.WIN:
+                m_PlayerMovement.m_InputSystem.Minimap.Disable();
+                m_PlayerMovement.m_InputSystem.Pause.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.Disable();
                 m_PlayerMovement.m_InputSystem.NoInputs.Enable();
                 break;
 
@@ -258,8 +264,9 @@ public class PlayerController : MonoBehaviour
                 //Enemigo con 10+ cuerpos -> game over
                 if (m_ScoreManager.GetEnemyCorpses() >= 10)
                 {
-                    GM.SetGameState(GameState.GAME_OVER);
-                    Cursor.lockState = CursorLockMode.None; //TBD
+                    
+                    StartCoroutine("PlayerDeath");
+                    
                     return;
                 }
                 if (m_ScoreManager.GetPlayerCorpses() > 0)
@@ -297,6 +304,14 @@ public class PlayerController : MonoBehaviour
             UpdatePlayerHealth();
             OrbEvents.current.ManageOrbs();
         }
+    }
+
+    IEnumerator PlayerDeath()
+    {
+        GM.SetGameState(GameState.GAME_OVER);
+        yield return new WaitForSeconds(5f);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None; //TBD
     }
 
     public void RestoreLife()

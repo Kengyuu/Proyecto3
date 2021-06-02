@@ -78,17 +78,19 @@ public class Enemy : Entities
     public void Die()
     {
         GetComponent<HFSM_StunEnemy>().isDead = true;
-        Cursor.lockState = CursorLockMode.None;
+        
         StartCoroutine(WaitForDead());
 
     }
 
     IEnumerator WaitForDead()
     {
-        yield return new WaitForSeconds(10f);
         GM.SetGameState(GameState.WIN);
-
+        yield return new WaitForSeconds(5f);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
     }
+
     protected override void RestoreLife()
     {
         base.RestoreLife();

@@ -10,6 +10,7 @@ public class GameEndedMenu : MonoBehaviour
     {
         Debug.Log("Reiniciado el juego");
         GameManager.Instance.SetGameState(GameState.GAME);
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -18,6 +19,7 @@ public class GameEndedMenu : MonoBehaviour
     {
         Debug.Log("Volviendo al menú principal");
         GameManager.Instance.SetGameState(GameState.MAIN_MENU);
+        Time.timeScale = 1f;
         Initiate.Fade("MAIN_MENU", Color.black, 2f);
     }
 }

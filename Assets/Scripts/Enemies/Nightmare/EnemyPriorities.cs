@@ -46,6 +46,11 @@ public class EnemyPriorities : MonoBehaviour
         GM.OnPlayerNoise += DetectPlayerActions;
     }
 
+    private void OnDestroy()
+    {
+        GM.OnPlayerNoise -= DetectPlayerActions;
+    }
+
     void Update()
     {
         if(playerSeen)
