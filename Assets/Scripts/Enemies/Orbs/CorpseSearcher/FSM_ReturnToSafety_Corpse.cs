@@ -9,17 +9,18 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
     FSM_CorpseSearcher corpseSearch;
     Orb_Blackboard blackboard;
     ScoreManager m_ScoreManager;
+    private HudController M_HudController;
 
     public bool killed = false;
 
-    public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY };
+    public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY,DEAD };
     public State currentState;
 
     void Start()
     {
         blackboard = GetComponent<Orb_Blackboard>();
         //blackboard.navMesh = GetComponent<NavMeshAgent>();
-        
+        if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
         m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         corpseSearch = GetComponent<FSM_CorpseSearcher>();
@@ -48,6 +49,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
         {
             case State.INITIAL:
                 ChangeState(State.NORMALBEHAVIOUR);
+                
                 break;
 
             case State.NORMALBEHAVIOUR:
@@ -55,12 +57,20 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 {
                     ChangeState(State.RETURNINGTOENEMY);
                 }
+                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER)
+                {
+                    ChangeState(State.DEAD);
+                }
                 break;
 
             case State.RETURNINGTOENEMY:
                 killed = false;
                 ReEnter();
-               
+                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER)
+                {
+                    ChangeState(State.DEAD);
+                }
+
                 break;
 
 
@@ -99,6 +109,9 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 Spawn();
                // gameObject.SetActive(false);
 
+                break;
+            case State.DEAD:
+                blackboard.navMesh.isStopped = true;
                 break;
 
         }

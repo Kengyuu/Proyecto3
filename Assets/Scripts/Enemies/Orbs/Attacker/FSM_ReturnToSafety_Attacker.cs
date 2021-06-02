@@ -9,7 +9,7 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
     FSM_AttackerOrb Attacker;
     Orb_Blackboard blackboard;
 
-    public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY };
+    public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY,DEAD };
     public State currentState;
 
     void Start()
@@ -52,11 +52,19 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
                 {
                     ChangeState(State.RETURNINGTOENEMY);
                 }
+                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER)
+                {
+                    ChangeState(State.DEAD);
+                }
                 break;
 
             case State.RETURNINGTOENEMY:
              
                 ReEnter();
+                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER)
+                {
+                    ChangeState(State.DEAD);
+                }
                 break;
 
 
@@ -87,6 +95,9 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
                 Spawn();
                 //gameObject.SetActive(false);
 
+                break;
+            case State.DEAD:
+                blackboard.navMesh.isStopped = true;
                 break;
 
         }

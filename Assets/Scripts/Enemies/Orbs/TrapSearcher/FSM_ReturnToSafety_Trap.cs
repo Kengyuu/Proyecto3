@@ -11,7 +11,7 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
 
     private Quaternion rotation;
 
-    public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY };
+    public enum State { INITIAL, NORMALBEHAVIOUR, RETURNINGTOENEMY,DEAD };
     public State currentState;
 
 
@@ -54,11 +54,19 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
                 {
                     ChangeState(State.RETURNINGTOENEMY);
                 }
+                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER)
+                {
+                    ChangeState(State.DEAD);
+                }
                 break;
 
             case State.RETURNINGTOENEMY:
                
                 ReEnter();
+                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER)
+                {
+                    ChangeState(State.DEAD);
+                }
                 break;
 
 
@@ -93,6 +101,9 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
             case State.RETURNINGTOENEMY:
                 Spawn();
                // gameObject.SetActive(false);
+                break;
+            case State.DEAD:
+                blackboard.navMesh.isStopped = true;
                 break;
 
         }
