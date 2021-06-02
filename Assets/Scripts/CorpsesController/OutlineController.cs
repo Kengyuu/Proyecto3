@@ -70,7 +70,8 @@ public class OutlineController : MonoBehaviour
            
 
 
-            if (hit.collider.gameObject.CompareTag("PasiveTrapBase") && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_TrapDetectionDistance)
+            if (hit.collider.gameObject.CompareTag("PasiveTrapBase") && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_TrapDetectionDistance &&
+                hit.collider.gameObject.transform.parent.transform.GetComponentInChildren<PassiveTrap>().m_TrapCanBeEnabled)
             {
                 Debug.Log("HOLA ENTRO AQUI DENTRO");
                 m_Outline = hit.transform.gameObject.GetComponent<Outline>();
@@ -79,7 +80,8 @@ public class OutlineController : MonoBehaviour
                 return true;
             }
 
-            if (hit.collider.gameObject.CompareTag("ActiveTrap") && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_ButtonDetectionDistance)
+            if (hit.collider.gameObject.CompareTag("ActiveTrap") && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_ButtonDetectionDistance &&
+                hit.collider.gameObject.GetComponent<ActiveTrap>().m_TrapCanBeEnabled)
             {
                 //Debug.Log("HOLA ENTRO AQUI DENTRO");
                 m_Outline = hit.transform.gameObject.GetComponent<Outline>();

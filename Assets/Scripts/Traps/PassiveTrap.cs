@@ -20,7 +20,7 @@ public class PassiveTrap : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool m_TrapActive = true;
-    [SerializeField] private bool m_TrapCanBeEnabled;
+    [SerializeField] public bool m_TrapCanBeEnabled;
 
     private void Start()
     {
