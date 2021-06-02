@@ -79,7 +79,11 @@ public class PlayerSpecialAbilities : MonoBehaviour
             Debug.Log("He apretado la habilidad especial 1 con la letra 'Q'.");
             m_IsPlayerVisibleToEnemy = false;
             m_AbilityOnCooldown = true;
-            m_PlayerAnimations.StartStealth();
+            if (Skill_1)
+            {
+                m_PlayerAnimations.StartStealth();
+            }
+           
 
             SwapTransparent();
             StartCoroutine(FadeTo(0.9f, 0.7f));
