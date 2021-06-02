@@ -5591,6 +5591,7 @@ MonoBehaviour:
   waypointsNearPlayer: []
   waypointSelected: 0
   attackCooldown: 0.7
+  isProvoking: 0
   rightArm: {fileID: 0}
   leftArm: {fileID: 0}
   currentState: 0
@@ -5687,15 +5688,18 @@ MonoBehaviour:
   waypointsList: {fileID: 0}
   lastCorpseSeen: {fileID: 0}
   corpse: {fileID: 0}
+  absorbObjective: {fileID: 0}
   Player: {fileID: 0}
   eyesPosition: {fileID: 164321068}
   distanceToAttack: 3
   waypointsNearPlayerRadius: 20
   animatorController: {fileID: 1527096034}
+  head: {fileID: 0}
   enemyCorpses: 0
   playerCorpses: 0
   remainingCorpses: 0
   invokeTime: 4
+  provokeTime: 4
   stunTime: 2.5
 --- !u!95 &156680758
 Animator:
@@ -5765,6 +5769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 8853487398245499590}
   enemyCorpse: {fileID: 5500087432988375301}
+  blackboard: {fileID: 0}
 --- !u!114 &1527096035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6210,7 +6215,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.9019608}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
