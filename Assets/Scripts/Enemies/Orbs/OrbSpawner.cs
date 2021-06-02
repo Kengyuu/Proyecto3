@@ -89,6 +89,10 @@ public class OrbSpawner : MonoBehaviour
                 secondOrb.GetComponent<NavMeshAgent>().enabled = true;
                 
             }
+            else
+            {
+                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = false;
+            }
             third.gameObject.SetActive(false);
             thirdOrb.SetActive(false);
         }
@@ -98,6 +102,7 @@ public class OrbSpawner : MonoBehaviour
         {
             if (!thirdOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
+                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
                 thirdOrb.SetActive(true);
                 
                 hud.objectiveAnim.SetTrigger(thirdOrb.GetComponent<Orb_Blackboard>().triggerAnim);
@@ -105,6 +110,10 @@ public class OrbSpawner : MonoBehaviour
                 thirdOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 thirdOrb.GetComponent<NavMeshAgent>().enabled = true;
                 GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
+            }
+            else
+            {
+                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = false;
             }
 
         }

@@ -25,6 +25,10 @@ public class HFSM_StunEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isInvoking = false;
+        canInvoke = false;
+        isDead = false;
+        isStunned = false;
         blackboard = GetComponent<Enemy_BLACKBOARD>();
         currentStunTime = 0;
         currentInvokeTime = 0f;
