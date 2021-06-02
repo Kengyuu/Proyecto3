@@ -58,7 +58,7 @@ public class Enemy : Entities
         base.GetStunned();
         if(m_ScoreManager.GetEnemyCorpses() > 0)
         {
-            int lostEnemyCorpses = Mathf.Max(1, Mathf.RoundToInt(m_ScoreManager.GetEnemyCorpses()/ 3));
+            int lostEnemyCorpses = 1;
             for (int i = 0; i < lostEnemyCorpses; i++)
             {
                 m_ScoreManager.RemoveEnemyCorpse();

@@ -374,7 +374,7 @@ public class HudController : MonoBehaviour
         switch (type.tag)
         {
             case "Player":
-                for (int i = 0; i < corpseSprites.Length; i++)
+                for (int i = 0; i < corpseSprites.Length - 1; i++)
                 {
                     if ( corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Empty From Player") || corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Base"))
                     {
@@ -407,7 +407,7 @@ public class HudController : MonoBehaviour
         switch (type.tag)
         {
             case "Enemy":
-                for (int i = 0; i < corpseSprites.Length; i++)
+                for (int i = 0; i < corpseSprites.Length - 1; i++)
                 {
                     if (corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Corpse Counter Nightmare") )
                     {
