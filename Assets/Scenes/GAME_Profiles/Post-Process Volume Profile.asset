@@ -55,10 +55,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1.24
+    value: 2.23
   threshold:
     overrideState: 1
-    value: 1.32
+    value: 1.9
   softKnee:
     overrideState: 0
     value: 0.5
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -137,7 +137,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: 10
+    value: 57
   tint:
     overrideState: 0
     value: 0
@@ -160,14 +160,14 @@ MonoBehaviour:
     overrideState: 1
     value: 4
   mixerRedOutRedIn:
-    overrideState: 0
-    value: 100
+    overrideState: 1
+    value: 108
   mixerRedOutGreenIn:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: -47
   mixerRedOutBlueIn:
     overrideState: 1
-    value: -15
+    value: -78
   mixerGreenOutRedIn:
     overrideState: 0
     value: 0
