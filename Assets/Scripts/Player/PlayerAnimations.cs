@@ -43,4 +43,5 @@ public class PlayerAnimations : MonoBehaviour
     {
         m_Animator.SetTrigger("Invisible");
     }
+
 }

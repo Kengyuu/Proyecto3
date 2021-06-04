@@ -74,16 +74,13 @@ public class PlayerSpecialAbilities : MonoBehaviour
         //---
 
 
-        if (m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.triggered && !m_AbilityOnCooldown)
+        if (m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.triggered && !m_AbilityOnCooldown && Skill_1)
         {
             Debug.Log("He apretado la habilidad especial 1 con la letra 'Q'.");
             m_IsPlayerVisibleToEnemy = false;
             m_AbilityOnCooldown = true;
-            if (Skill_1)
-            {
-                m_PlayerAnimations.StartStealth();
-            }
-           
+            Debug.Log("MECMECMECMECMEC");
+            m_PlayerAnimations.StartStealth();
 
             SwapTransparent();
             StartCoroutine(FadeTo(0.9f, 0.7f));
@@ -134,12 +131,11 @@ public class PlayerSpecialAbilities : MonoBehaviour
         }
     }
 
-    private void ResetAbilityAndStartCooldown()
+    public void ResetAbilityAndStartCooldown()
     {
-        Debug.Log("Empezando cooldown");
+        Debug.Log("INVISIBILIDAD TERMINADA / INTERRUMPIDA");
         m_IsPlayerVisibleToEnemy = true;
         m_SliderOnCooldown = true;
-
         StartCoroutine(FadeTo(0.0f, 0.9f));
         SwapOpaque();
         Invoke("EnableAbility", m_HiddenPrayerCooldown);

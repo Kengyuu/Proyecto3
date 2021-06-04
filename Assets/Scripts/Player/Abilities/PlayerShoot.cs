@@ -51,11 +51,15 @@ public class PlayerShoot : MonoBehaviour
     [Header("Animations")]
     public PlayerAnimations m_PlayerAnimations;
 
+    [Header("Stealth Shutdown")]
+    public PlayerSpecialAbilities m_PlayerStealth;
+
     // Start is called before the first frame update
     void Start()
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
         m_PlayerController = GetComponent<PlayerController>();
+        m_PlayerStealth = GetComponent<PlayerSpecialAbilities>();
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (GM == null) GM = GameManager.Instance;
@@ -158,6 +162,10 @@ public class PlayerShoot : MonoBehaviour
         m_IsPlayerShooting = true;
         crosshairAnim.SetBool("Shot", true);
         GM.PlayerNoise(m_ShootNoise);
+        if(!m_PlayerStealth.m_IsPlayerVisibleToEnemy)
+        {
+            m_PlayerStealth.ResetAbilityAndStartCooldown();
+        }
         //m_PlayerAnimations.m_Animator.SetTrigger("Shoot");
 
 
