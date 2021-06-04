@@ -253,7 +253,7 @@ public class PlayerController : MonoBehaviour
             //Reduce Life
             m_Life -= dmg;
 
-            M_HudController.UpdateHealth(dmg);
+            M_HudController.UpdateHealth();
 
             if (m_Life <= 0)
             {
@@ -324,7 +324,7 @@ public class PlayerController : MonoBehaviour
         m_PlayerStunned = false;
         foreach (Image healthIcon in M_HudController.healthIcons)
         {
-            healthIcon.GetComponent<Animator>().SetTrigger("Heal");
+            healthIcon.GetComponent<Animator>().SetBool("Status",true);
         }
     }
 

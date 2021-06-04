@@ -11,6 +11,7 @@ public class EnemyArmController : MonoBehaviour
     public Enemy_BLACKBOARD blackboard;
     public float XForceImpulseDamage = 5f;
     public float YForceImpulseDamage = 5f;
+    public bool canDoDamage = true; 
 
     void Start()
     {
@@ -25,20 +26,27 @@ public class EnemyArmController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log(name);
-            //Debug.Log("hit");
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(1, gameObject, XForceImpulseDamage, YForceImpulseDamage);
-            //GetComponent<BoxCollider>().enabled = false;
-            if(other.GetComponent<PlayerController>().m_PlayerStunned)
-            {
-                blackboard.animatorController.PlayerStunned();
-                //GetComponent<Animation>().Play("ArmAnimationPlayerStunned");
-            }
-            //StartCoroutine(WaitToGetStunned());
+
+            GetComponent<BoxCollider>().enabled = false;
+                Debug.Log(name);
+                //Debug.Log("hit");
+                other.gameObject.GetComponent<PlayerController>().TakeDamage(1, gameObject, XForceImpulseDamage, YForceImpulseDamage);
+                //GetComponent<BoxCollider>().enabled = false;
+                if (other.GetComponent<PlayerController>().m_PlayerStunned)
+                {
+                    blackboard.animatorController.PlayerStunned();
+                    //GetComponent<Animation>().Play("ArmAnimationPlayerStunned");
+                }
+                //StartCoroutine(WaitToGetStunned());
+            
+
         }
     }
+
+    
 
     IEnumerator WaitToGetStunned()
     {

@@ -36,17 +36,11 @@ AnimatorController:
   m_Name: Player Stamina
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Break
-    m_Type: 9
+  - m_Name: Status
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: Heal
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
@@ -69,8 +63,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Break
+  - m_ConditionMode: 2
+    m_ConditionEvent: Status
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5735158255890540573}
@@ -95,7 +89,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Heal
+    m_ConditionEvent: Status
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4561604753875413602}
@@ -146,24 +140,21 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 7891141405440371148}
-    m_Position: {x: 220, y: 70, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: -5735158255890540573}
-    m_Position: {x: 510, y: 70, z: 0}
+    m_Position: {x: 340, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4561604753875413602}
-    m_Position: {x: 390, y: 200, z: 0}
+    m_Position: {x: 340, y: 40, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 50, y: 140, z: 0}
+  m_EntryPosition: {x: 360, y: -50, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 7891141405440371148}
+  m_DefaultState: {fileID: 4561604753875413602}
 --- !u!1102 &4561604753875413602
 AnimatorState:
   serializedVersion: 6

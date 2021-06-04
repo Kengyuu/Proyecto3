@@ -10,6 +10,7 @@ public class HudController : MonoBehaviour
     private ScoreManager m_ScoreManager;
 
     public Image[] healthIcons;
+    public Image[] corpseTracker;
     public Image Objective;
     public Sprite objectiveNightmare;
     public Sprite objectiveCorpse;
@@ -287,63 +288,27 @@ public class HudController : MonoBehaviour
         yield return new WaitForSeconds(1);
         text.gameObject.SetActive(false);
     }
-   
 
-    public void UpdateHealth(float dmg)
+
+    public void UpdateHealth()
     {
-        switch (dmg)
+       
+        int m_Life = (int)GM.GetPlayer().GetComponent<PlayerController>().m_Life;
+
+        foreach (Image img in healthIcons)
         {
-            case 3:
-                foreach (Image image in healthIcons)
-                {
-                    if (image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HUD Stamina Heal") || image.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Start"))
-                    {
-                        image.gameObject.GetComponent<Animator>().SetTrigger("Break");
-                    }
-                    
-                }
-                break;
-            case 2:
-                for (int i = 0; i < healthIcons.Length; i++)
-                {
-                    if (healthIcons[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HUD Stamina Heal") || healthIcons[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Start"))
-                    {
-                        
-                         healthIcons[i].GetComponent<Animator>().SetTrigger("Break");
-                        if (System.Array.IndexOf(healthIcons,healthIcons[i+1]) < healthIcons.Length)
-                        {
-                            healthIcons[i + 1].GetComponent<Animator>().SetTrigger("Break");
-                        }
-                        
-
-                        //Debug.Log($"{corpseSprites[i].sprite} se ha comparado con {playerCorpse.name}");
-
-                        break;
-                    }
-
-
-                }
-                break;
-            case 1:
-                for (int i = 0; i < healthIcons.Length; i++)
-                {
-                    if (healthIcons[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HUD Stamina Heal") || healthIcons[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Start"))
-                    {
-                        
-                         healthIcons[i].GetComponent<Animator>().SetTrigger("Break");
-                        
-                        //Debug.Log($"{corpseSprites[i].sprite} se ha comparado con {playerCorpse.name}");
-
-                        break;
-                    }
-
-
-                }
-                break;
-
-           
-
+            Animator anim = img.GetComponent<Animator>();
+            if (m_Life > 0)
+            {
+                anim.SetBool("Status", true);
+                m_Life--;
+            }
+            else
+            {
+                 anim.SetBool("Status", false);
+            }
         }
+
     }
 
     public void UpdateObjective(float playerCorpses, float enemyCorpses)
@@ -370,35 +335,17 @@ public class HudController : MonoBehaviour
 
     public void UpdateAddCorpses(GameObject type)
     {
-
+        
         switch (type.tag)
         {
             case "Player":
-                for (int i = 0; i < corpseSprites.Length - 1; i++)
-                {
-                    if ( corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Empty From Player") || corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Base"))
-                    {
-                        corpseSprites[i].GetComponent<Animator>().SetTrigger("CorpseToPlayer");
-                        break;
-                    }
-                }
+                corpseTracker[(int)m_ScoreManager.GetPlayerCorpses()-1].GetComponent<Animator>().SetTrigger("CorpseToPlayer");
                 break;
 
             case "Enemy":
-                for (int i = corpseSprites.Length - 1; i >= 0; i--)
-                {
-                    if (corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Empty From Nightmare") || corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Base"))
-                    {
-                        //Debug.Log($"{corpseSprites[i].sprite} se ha comparado con {playerCorpse.name}");
-                        corpseSprites[i].GetComponent<Animator>().SetTrigger("CorpseToNightmare");
-                        break;
-                    }
-
-                    
-                }
+                corpseTracker[corpseTracker.Length - (int)m_ScoreManager.GetEnemyCorpses()].GetComponent<Animator>().SetTrigger("CorpseToNightmare");
                 break;
-        }
-        
+        } 
     }
 
     public void UpdateRemoveCorpses(GameObject type)
@@ -407,29 +354,11 @@ public class HudController : MonoBehaviour
         switch (type.tag)
         {
             case "Enemy":
-                for (int i = 0; i < corpseSprites.Length - 1; i++)
-                {
-                    if (corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Corpse Counter Nightmare") )
-                    {
-
-                        corpseSprites[i].GetComponent<Animator>().SetTrigger("Empty");
-                        break;
-                    }
-                }
+                corpseTracker[corpseTracker.Length - (int)m_ScoreManager.GetEnemyCorpses() - 1].GetComponent<Animator>().SetTrigger("Empty");
                 break;
 
             case "Player":
-                for (int i = corpseSprites.Length - 1; i >= 0; i--)
-                {
-                    if (corpseSprites[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Corpse Counter Player"))
-                    {
-
-                        corpseSprites[i].GetComponent<Animator>().SetTrigger("Empty");
-                        break;
-                    }
-
-
-                }
+                corpseTracker[(int)m_ScoreManager.GetPlayerCorpses()].GetComponent<Animator>().SetTrigger("Empty");
                 break;
         }
 
