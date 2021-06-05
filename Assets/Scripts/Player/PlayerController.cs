@@ -11,11 +11,13 @@ public class PlayerController : MonoBehaviour
     private Camera m_Camera;
     private GameObjectSpawner spawner;
     private GameManager GM;
+    private SoundManager SM;
     private HudController M_HudController;
 
     [Header("Player Stats")]
     public float m_Life;
     public float m_MaxLife;
+    public float m_TimeSinceLastFootstep = 3;
     //public float m_PlayerInitialCorpses;
     
     [Header("Player Damage / Stun")]
@@ -31,10 +33,17 @@ public class PlayerController : MonoBehaviour
     [Header("Debug")]
     public GameObject enemyTest;
 
-    
+    [Header("FMOD Events")]
+    public string hurtEvent;
+    public string incapacitateEvent;
+    public string healEvent;
 
-   // [Header("Animation")]
-    
+
+
+
+
+    // [Header("Animation")]
+
 
 
     //bool map_status = false;
@@ -52,10 +61,11 @@ public class PlayerController : MonoBehaviour
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (GM == null) GM = GameManager.Instance;
+        if (SM == null) SM = SoundManager.Instance;
 
         GM.OnStateChange += StateChanged;
 
-
+        
         InitInputs();
 
         //HUD Updaters
@@ -206,6 +216,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        
+        
         //Debug:
         /*if (Input.GetKeyDown(KeyCode.G))
         {
@@ -252,6 +264,11 @@ public class PlayerController : MonoBehaviour
 
             //Reduce Life
             m_Life -= dmg;
+            if (m_Life > 0)
+            {
+                SM.PlaySound(hurtEvent, transform.position);
+            }
+           
 
             M_HudController.UpdateHealth();
 
@@ -259,7 +276,7 @@ public class PlayerController : MonoBehaviour
             {
                 //Debug.Log($"Player a {m_Life} de vida, GetStunned()");
                 m_Life = 0;
-
+                SM.PlaySound(incapacitateEvent, transform.position);
 
                 //Enemigo con 10+ cuerpos -> game over
                 if (m_ScoreManager.GetEnemyCorpses() >= 10)
@@ -318,6 +335,7 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log("RestoreLife iniciado, activado inputs");
         m_Life = m_MaxLife;
+        SM.PlaySound(healEvent, transform.position);
         EnableInputs();
         DisableDaze();
         UpdatePlayerHealth();

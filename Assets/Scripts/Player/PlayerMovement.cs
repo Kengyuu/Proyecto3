@@ -5,9 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private SoundManager SM;
+
     [Header("Player movement")]
     public float m_PlayerWalkSpeed = 8f;
+    public float m_TimeSinceLastFootstep = 0.5f;
     public float m_PlayerRunSpeed = 16f;
+    public float m_TimeSinceLastFootstepRun = 0.25f;
     private bool m_RunPressed = false;
     public float m_RunNoise = 10f;
     public float m_PlayerJumpForce = 8f;
@@ -22,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_LastMovement;
     private Vector3 m_currentImpact;
 
+    [Header("FMOD Events")]
+    public string walkEvent;
+    public string runEvent;
+
     //DEBUG:
     [Header("Debug")]
     [SerializeField] private bool m_IsGrounded;
@@ -31,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         m_InputSystem = new PlayerInputSystem();
         m_CharacterController = GetComponent<CharacterController>();
         if (hud == null) hud = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
-        
+        if (SM == null) SM = SoundManager.Instance;
         //Check run button actions
         m_InputSystem.Gameplay.Run.started += ctx => RunAction();
         m_InputSystem.Gameplay.Run.canceled += ctx => RunAction();
@@ -52,8 +60,18 @@ public class PlayerMovement : MonoBehaviour
         m_Movement = Vector3.zero;
         if (m_InputSystem.Gameplay.Move.ReadValue<Vector2>().magnitude != 0)
         {
+            if (!m_RunPressed)
+            {
+                m_TimeSinceLastFootstep -= Time.deltaTime;
+                if (m_TimeSinceLastFootstep <= 0)
+                {
+                    SM.PlaySound(walkEvent, transform.position);
+                    m_TimeSinceLastFootstep = 0.5f;
+                }
+            }
            
             hud.hasMoved = true;
+
         }
         m_InputMove = m_InputSystem.Gameplay.Move.ReadValue<Vector2>();
         m_Movement = (m_InputMove.y * transform.forward) + (m_InputMove.x * transform.right);
@@ -72,6 +90,15 @@ public class PlayerMovement : MonoBehaviour
             //Player Run
             if (m_RunPressed)
             {
+                
+                    m_TimeSinceLastFootstepRun -= Time.deltaTime;
+                    if (m_TimeSinceLastFootstepRun <= 0)
+                    {
+                        SM.PlaySound(runEvent, transform.position);
+                        m_TimeSinceLastFootstepRun = 0.25f;
+                    }
+                    GameManager.Instance.PlayerNoise(m_RunNoise);
+                
                 l_PlayerCurrentSpeed = m_PlayerRunSpeed;
                 hud.hasRun = true;
             }
@@ -141,10 +168,7 @@ public class PlayerMovement : MonoBehaviour
     {
         m_RunPressed = !m_RunPressed;
 
-        if (m_RunPressed)
-        {
-            GameManager.Instance.PlayerNoise(m_RunNoise);
-        }
+        
     }
     // <- END INPUT SYSTEM HELPERS ->
 

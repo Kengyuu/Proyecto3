@@ -9,7 +9,7 @@ public class PlayerDash : MonoBehaviour
     //private PlayerController m_PlayerController;
     private PlayerSpecialAbilities m_PlayerHiddenPrayer;
     private GameManager GM;
-
+    private SoundManager SM;
     [Header("Dash")]
     public Vector3 m_DashDirection;
     public float m_DashForce = 15f;
@@ -25,6 +25,9 @@ public class PlayerDash : MonoBehaviour
     [Header("DashNoise")]
     public float m_DashNoise = 10f;
 
+    [Header("FMOD Events")]
+    public string dashEvent;
+
     [Header("Debug")]
     [SerializeField] bool m_DashOnCooldown = false;
     
@@ -36,7 +39,7 @@ public class PlayerDash : MonoBehaviour
         m_PlayerHiddenPrayer = GetComponent<PlayerSpecialAbilities>();
         if (hud == null) hud = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (GM == null) GM = GameManager.Instance;
-
+        if (SM == null) SM = SoundManager.Instance;
         //GM.OnStateChange += StateChanged;
 
         if (m_MaxDashEvasionTime > m_DashMaxCooldown) m_MaxDashEvasionTime = m_DashMaxCooldown;
@@ -83,6 +86,7 @@ public class PlayerDash : MonoBehaviour
 
     private void Dash()
     {
+        SM.PlaySound(dashEvent, transform.position);
         hud.hasDashed = true;
         if (m_PlayerHiddenPrayer.m_IsPlayerVisibleToEnemy && m_PlayerMovement.m_CharacterController.velocity.magnitude > 0.2f)
         {
