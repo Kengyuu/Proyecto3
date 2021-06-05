@@ -175,6 +175,7 @@ public class CorpseAbsortion : MonoBehaviour {
         currentAbsorbTime = 0f;
         if(Target != null && Target.CompareTag("AbsorbObjective"))
         {
+            Target.gameObject.SetActive(false);
             GameObject player = GM.GetPlayer();
             player.GetComponent<PlayerShoot>().ResetShoot();
         }

@@ -31,7 +31,7 @@ public class PlayerShoot : MonoBehaviour
     public GameObject mainBeam;
     public GameObject splashBeam;
     public ParticleSystem handLight;
-    public ParticleSystem absorbSphere;
+    public GameObject absorbParticles;
 
     [Header("Object detection distances")]
     public float m_CorpseDetectionDistance = 5f;
@@ -183,7 +183,7 @@ public class PlayerShoot : MonoBehaviour
                 case "Corpse":
                     if (l_CurrentDistance < m_CorpseDetectionDistance)
                     {
-                        absorbSphere.Play();
+                        absorbParticles.SetActive(true);
                         M_HudController.hasShot = true;
                         //AQUÍ PARA LLAMAR AL SISTEMA DE PARTÍCULAS
                         hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.3f, absorbObjective);
