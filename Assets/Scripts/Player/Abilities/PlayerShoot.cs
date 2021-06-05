@@ -225,7 +225,10 @@ public class PlayerShoot : MonoBehaviour
                         //splashBeam.transform.LookAt(hit.point);
                     }
                     break;
-
+                case "WeakPointTutorial":
+                        WeakPointsTutorial wpt = hit.collider.GetComponent<WeakPointsTutorial>();
+                        wpt.Invoke("DestroyWP", m_ShootCastingTime);
+                    break;
                 case "CorpseOrb":
                     if (l_CurrentDistance < m_OrbDetectionDistance)
                     {
