@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &1514818369868520074
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153867979559870096}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 640816c2705d23d479dbb3a296753496, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &495192000289954609
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,25 +50,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1514818369868520074
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153867979559870096}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 640816c2705d23d479dbb3a296753496, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &6809015288597327961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,15 +79,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1741079261666446480, guid: 70409be47e9e4514c9bca9dc78d456a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.06
+      value: -0.32
       objectReference: {fileID: 0}
     - target: {fileID: 1741079261666446480, guid: 70409be47e9e4514c9bca9dc78d456a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.54
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 1741079261666446480, guid: 70409be47e9e4514c9bca9dc78d456a7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.32
+      value: -1.14
       objectReference: {fileID: 0}
     - target: {fileID: 4353749580867743154, guid: 70409be47e9e4514c9bca9dc78d456a7, type: 3}
       propertyPath: m_Range
@@ -96,6 +96,18 @@ PrefabInstance:
     - target: {fileID: 4353749580867743154, guid: 70409be47e9e4514c9bca9dc78d456a7, type: 3}
       propertyPath: m_Intensity
       value: 3.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353749580867743154, guid: 70409be47e9e4514c9bca9dc78d456a7, type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353749580867743154, guid: 70409be47e9e4514c9bca9dc78d456a7, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353749580867743154, guid: 70409be47e9e4514c9bca9dc78d456a7, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6275499880383607923, guid: 70409be47e9e4514c9bca9dc78d456a7, type: 3}
       propertyPath: m_RootOrder

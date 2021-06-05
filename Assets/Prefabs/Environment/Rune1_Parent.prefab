@@ -135,11 +135,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6669920923390801670, guid: 32ec49c895d89114b8b7108da5d3fb0e, type: 3}
       propertyPath: m_Intensity
-      value: 2.42
+      value: 2.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669920923390801670, guid: 32ec49c895d89114b8b7108da5d3fb0e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6669920923390801670, guid: 32ec49c895d89114b8b7108da5d3fb0e, type: 3}
       propertyPath: m_Shadows.m_Type
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669920923390801670, guid: 32ec49c895d89114b8b7108da5d3fb0e, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32ec49c895d89114b8b7108da5d3fb0e, type: 3}
