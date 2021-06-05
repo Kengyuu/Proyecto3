@@ -51,8 +51,8 @@ public class GameObjectSpawner : MonoBehaviour
         
         playerSpawnRoom = SpawnPlayer();
         
-
-        SpawnEnemy();
+        if(GameManager.Instance.GetEnemy() != null)
+            SpawnEnemy();
 
         //Esto recoge todos los spawns posibles y crea un cadáver en unos de esos spawns. Los spawns los coge de una lista en RoomSpawner
 
