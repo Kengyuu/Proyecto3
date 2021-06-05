@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &396621539216513651
 Transform:
@@ -89,9 +89,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 396621539216513651}
     m_Modifications:
+    - target: {fileID: 1030080780190135044, guid: 1afc99eccbb3d024fa9806dce00f388b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1378640996174372648, guid: 1afc99eccbb3d024fa9806dce00f388b, type: 3}
       propertyPath: m_Name
       value: FireParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378640996174372648, guid: 1afc99eccbb3d024fa9806dce00f388b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132285555278182112, guid: 1afc99eccbb3d024fa9806dce00f388b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2566140022760264335, guid: 1afc99eccbb3d024fa9806dce00f388b, type: 3}
       propertyPath: m_RootOrder
@@ -136,6 +148,10 @@ PrefabInstance:
     - target: {fileID: 2566140022760264335, guid: 1afc99eccbb3d024fa9806dce00f388b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604488772709495198, guid: 1afc99eccbb3d024fa9806dce00f388b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1afc99eccbb3d024fa9806dce00f388b, type: 3}
