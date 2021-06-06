@@ -7,7 +7,7 @@ public class Chains : MonoBehaviour
     public OrbSpawner spawner;
     
 
-    public void SetToFalse()
+   /* public void SetToFalse()
     {
         Debug.Log("false");
         spawner.showingOrb = false;
@@ -17,6 +17,6 @@ public class Chains : MonoBehaviour
     {
         Debug.Log("true");
         spawner.showingOrb = true;
-    }
+    }*/
 
 }
