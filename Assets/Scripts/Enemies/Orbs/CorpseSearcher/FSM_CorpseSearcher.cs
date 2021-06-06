@@ -181,7 +181,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                   }
 
                  if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
-                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
+                    && GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState != FSM_SeekPlayer.State.ATTACKING)
                  {
                     
                     ChangeState(State.ATTACKINGPLAYER);
@@ -378,7 +378,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
         
 
         if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
-                   && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
+                   && GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState != FSM_SeekPlayer.State.ATTACKING)
         {
             //Debug.Log("aTTACKING");
             ChangeState(State.ATTACKINGPLAYER);

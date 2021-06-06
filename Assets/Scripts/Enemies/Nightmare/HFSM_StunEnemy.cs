@@ -12,6 +12,7 @@ public class HFSM_StunEnemy : MonoBehaviour
     public enum State {INITIAL, SEARCHCORPSES, SEEKPLAYER, STUNNED, INVOKE, DEAD, WIN};
     public State currentState;
 
+    
     public bool isStunned;
     public bool isInvoking;
     public bool canInvoke;
