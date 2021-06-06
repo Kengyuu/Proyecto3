@@ -19693,6 +19693,7 @@ GameObject:
   - component: {fileID: 7461093979012892932}
   - component: {fileID: 1106097917235439655}
   - component: {fileID: 6019681159059115527}
+  - component: {fileID: 557727165}
   m_Layer: 12
   m_Name: Quad
   m_TagString: Map
@@ -19763,6 +19764,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1818360609 &557727165
+RotationConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6343574444448875185}
+  m_Enabled: 1
+  m_Weight: 1
+  m_RotationAtRest: {x: 90, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 0, z: 0}
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 0}
+    weight: 1
 --- !u!1 &7170464752338142840
 GameObject:
   m_ObjectHideFlags: 0

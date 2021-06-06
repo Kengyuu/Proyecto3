@@ -4821,8 +4821,9 @@ GameObject:
   - component: {fileID: 488116703779227544}
   - component: {fileID: 6074330744397120056}
   - component: {fileID: 3491845616755869934}
-  - component: {fileID: 848637726}
   - component: {fileID: 848637734}
+  - component: {fileID: 848637726}
+  - component: {fileID: 7797484742705322972}
   m_Layer: 6
   m_Name: HiderOrb
   m_TagString: HideOrb
@@ -4979,6 +4980,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &848637734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488116703779227546}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.45490196, b: 0, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!95 &848637726
 Animator:
   serializedVersion: 3
@@ -4998,7 +5017,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &848637734
+--- !u!114 &7797484742705322972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -96,7 +96,7 @@ public class PlayerMap : MonoBehaviour
 
     public void UpdateMapCorpses()
     {
-        Debug.Log("He sido llamado");
+        //Debug.Log("He sido llamado");
         foreach (GameObject corpse in GameManager.Instance.GetGameObjectSpawner().deadBodys)
         {
 

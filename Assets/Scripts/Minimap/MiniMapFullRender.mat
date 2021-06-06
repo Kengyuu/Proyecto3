@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MiniMapFullRender
-  m_Shader: {fileID: 4800000, guid: 30a337dd6a3b3424e9a08148f64e0f55, type: 3}
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _DETAILSOURCE_SPECULARALPHA _ENABLETRIPLANARPROJECTION_ON _GLOSSYREFLECTIONS_OFF
     _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SOURCE_SPECULARALPHA _SPECULARHIGHLIGHTS_OFF
     _TRIPLANARSPACEPROJECTION_OBJECTSPACE _USEAOFROMMAINPROPERTIES_ON _USEEMISSIONFROMMAINPROPERTIES_ON
@@ -46,7 +46,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ba810ad16ade07a41a593b774381f6ed, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5759c4f1a1daae64a982569ee637223f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -73,7 +73,7 @@ Material:
     - _AoIntensity: 1
     - _BlendMainNormal: 0
     - _BlendmodeOverlay: 0
-    - _Brightness: 8
+    - _Brightness: 1
     - _BumpScale: 1
     - _ContrastDetailMap: 0
     - _Cull: 0

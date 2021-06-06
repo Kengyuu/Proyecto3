@@ -35,7 +35,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Pause()
     {
-        Debug.Log("entro a PAUSE");
+        //Debug.Log("entro a PAUSE");
         Time.timeScale = 0f;
         GM.SetGameState(GameState.PAUSE);
         m_GameIsPaused = true;
@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        Debug.Log("entro a RESUME");
+        //Debug.Log("entro a RESUME");
         Time.timeScale = 1f;
         GM.SetGameState(GameState.GAME);
         m_GameIsPaused = false;

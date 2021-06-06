@@ -145,12 +145,20 @@ public class PlayerController : MonoBehaviour
         m_PlayerMovement.m_InputSystem.Gameplay.Enable();
     }
 
+    private void DisableAllInputs()
+    {
+        m_PlayerMovement.m_InputSystem.NoInputs.Disable();
+        m_PlayerMovement.m_InputSystem.Minimap.Disable();
+        m_PlayerMovement.m_InputSystem.Pause.Disable();
+        m_PlayerMovement.m_InputSystem.Gameplay.Disable();
+    }
+
 
     private void StateChanged()
     {
         //Old Game State
-        Debug.Log($"Old gamestate: {GM.oldGameState}");
-        switch (GM.oldGameState)
+        //Debug.Log($"Old gamestate: {GM.oldGameState}");
+        /*switch (GM.oldGameState)
         {
             case GameState.MAIN_MENU:
                 m_PlayerMovement.m_InputSystem.NoInputs.Disable();
@@ -175,10 +183,11 @@ public class PlayerController : MonoBehaviour
             case GameState.PAUSE:
                 m_PlayerMovement.m_InputSystem.Pause.Disable();
                 break;
-        }
+        }*/
+        DisableAllInputs();
 
         //New Game State
-        Debug.Log($"New gamestate: {GM.gameState}");
+        //Debug.Log($"New gamestate: {GM.gameState}");
         switch (GM.gameState)
         {
             case GameState.MAIN_MENU:
@@ -190,16 +199,16 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case GameState.GAME_OVER:
-                m_PlayerMovement.m_InputSystem.Minimap.Disable();
+                /*m_PlayerMovement.m_InputSystem.Minimap.Disable();
                 m_PlayerMovement.m_InputSystem.Pause.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.Disable();*/
                 m_PlayerMovement.m_InputSystem.NoInputs.Enable();
                 break;
 
             case GameState.WIN:
-                m_PlayerMovement.m_InputSystem.Minimap.Disable();
+                /*m_PlayerMovement.m_InputSystem.Minimap.Disable();
                 m_PlayerMovement.m_InputSystem.Pause.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.Disable();
+                m_PlayerMovement.m_InputSystem.Gameplay.Disable();*/
                 m_PlayerMovement.m_InputSystem.NoInputs.Enable();
                 break;
 
