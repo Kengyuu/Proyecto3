@@ -15,13 +15,16 @@ public class PlayerMovement : MonoBehaviour
     public float m_TimeSinceLastFootstep = 0.5f;
     public float m_PlayerRunSpeed = 16f;
     public float m_TimeSinceLastBreath = 42f;
+    private float m_TimeSinceLastRushedBreath = 0f;
     public float m_TimeSinceLastFootstepRun = 0.25f;
     private bool m_RunPressed = false;
     public float m_RunNoise = 10f;
     public float m_PlayerJumpForce = 8f;
     public float m_Gravity = 25f;
     public float m_Mass = 1f;
+    
     private float m_VerticalVelocity;
+    
     [HideInInspector] public CharacterController m_CharacterController;
     private HudController hud;
     public PlayerInputSystem m_InputSystem;
@@ -35,9 +38,11 @@ public class PlayerMovement : MonoBehaviour
     public string walkEvent;
     public string runEvent;
     public string breathEvent;
-    
+    private string rushedBreathEvent = "event:/1 HUNTER/013_Hunter_RushedBreath";
+    //EventInstance rushedBreath;
     EventInstance breath;
-    
+    EventInstance rushedBreath;
+
 
 
     //DEBUG:
@@ -75,8 +80,9 @@ public class PlayerMovement : MonoBehaviour
             breath = SM.PlayEvent(breathEvent);
             m_TimeSinceLastBreath = 42f;
         }
+      
 
-         if (GetComponent<PlayerController>().m_PlayerStunned)
+        if (GetComponent<PlayerController>().m_PlayerStunned)
         {
             breath.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             UnityEngine.Debug.Log("STOP");
@@ -117,17 +123,31 @@ public class PlayerMovement : MonoBehaviour
             //Player Run
             if (m_RunPressed)
             {
-                
-                    m_TimeSinceLastFootstepRun -= Time.deltaTime;
-                    if (m_TimeSinceLastFootstepRun <= 0)
-                    {
-                        SM.PlaySound(runEvent, transform.position);
-                        m_TimeSinceLastFootstepRun = 0.25f;
-                    }
-                    GameManager.Instance.PlayerNoise(m_RunNoise);
-                
+                breath.setPaused(true);
+                m_TimeSinceLastRushedBreath -= Time.deltaTime;
+                if (m_TimeSinceLastRushedBreath <= 0)
+                {
+                     //stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    rushedBreath = SM.PlayEvent(rushedBreathEvent);
+                    m_TimeSinceLastRushedBreath = 3.7f;
+                }
+
+                m_TimeSinceLastFootstepRun -= Time.deltaTime;
+                if (m_TimeSinceLastFootstepRun <= 0)
+                {
+                    SM.PlaySound(runEvent, transform.position);
+                    m_TimeSinceLastFootstepRun = 0.25f;
+                }
+                GameManager.Instance.PlayerNoise(m_RunNoise);
+
                 l_PlayerCurrentSpeed = m_PlayerRunSpeed;
+
                 hud.hasRun = true;
+            }
+            else
+            {
+                rushedBreath.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                breath.setPaused(false);
             }
         }
         else
