@@ -9,7 +9,7 @@ public class TrapOrbTutorial : MonoBehaviour
     public GameObject trapTutorial;
     void Start()
     {
-        ActivateAuraParticles();
+        //ActivateAuraParticles();
     }
 
     // Update is called once per frame

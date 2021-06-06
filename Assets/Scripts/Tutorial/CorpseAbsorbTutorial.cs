@@ -11,6 +11,8 @@ public class CorpseAbsorbTutorial : MonoBehaviour
     public ParticleSystem playerSystem;
     public ParticleSystem auraSystem;
 
+    public GameObject subRoom;
+
     bool systemActive = false;
 
     float absorbDuration;
@@ -115,7 +117,13 @@ public class CorpseAbsorbTutorial : MonoBehaviour
             GameObject player = GM.GetPlayer();
             player.GetComponent<PlayerShoot>().ResetShoot();
         }
+        //wpControllerTutorial.RestartWeakPoints();
+        if(subRoom != null)
+        {
+            subRoom.SetActive(true);
+        }
         wpControllerTutorial.RestartWeakPoints();
+            
         //Target = null;
     }
 }

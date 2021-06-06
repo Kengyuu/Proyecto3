@@ -6,7 +6,10 @@ public class TutorialRoomController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject sideWall;
+
+    public GameObject subRoom;
     public GameObject corpseOrb;
+    public GameObject trapOrb;
     void Start()
     {
         
@@ -29,5 +32,6 @@ public class TutorialRoomController : MonoBehaviour
     public void StartOrbsAnimations()
     {
         corpseOrb.GetComponent<CorpseOrbTutorial>().ArsorbCorpse();
+        trapOrb.GetComponent<TrapOrbTutorial>().ActivateAuraParticles();
     }
 }
