@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using FMOD;
+using FMOD.Studio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -40,9 +42,24 @@ public class SoundManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot(path, trans);
     }
 
-    // Update is called once per frame
-    void Update()
+    public EventInstance PlayEvent(string path)
     {
-        
+        EventInstance sound = RuntimeManager.CreateInstance(path);
+        sound.start();
+        return sound;
     }
+
+    public EventInstance StopEvent(EventInstance sound)
+    {
+        sound.clearHandle();
+        sound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        return sound;
+    }
+
+
+
+
+
+
+
 }

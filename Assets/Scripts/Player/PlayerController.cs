@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public string hurtEvent;
     public string incapacitateEvent;
     public string healEvent;
+    public string deathEvent;
 
 
 
@@ -334,6 +335,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator PlayerDeath()
     {
+        SoundManager.Instance.PlaySound(deathEvent, transform.position);
         GM.SetGameState(GameState.GAME_OVER);
         yield return new WaitForSeconds(5f);
         Time.timeScale = 0f;

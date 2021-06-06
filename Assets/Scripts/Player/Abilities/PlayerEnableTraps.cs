@@ -11,6 +11,9 @@ public class PlayerEnableTraps : MonoBehaviour
     public float m_TrapDetectionDistance = 5f;
     private HudController M_HudController;
 
+    [Header("FMOD Events")]
+    public string repairEvent;
+
 
     private void Start()
     {
@@ -37,6 +40,8 @@ public class PlayerEnableTraps : MonoBehaviour
                 M_HudController.hasRepaired = true;
                 Debug.Log($"Trampa a distancia adecuada: {m_TrapDetectionDistance}");
                 hit.transform.GetComponent<PassiveTrap>().EnableTrap();
+                SoundManager.Instance.PlaySound(repairEvent, transform.position);
+
             }
         }
     }

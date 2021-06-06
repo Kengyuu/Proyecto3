@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMODUnity;
+using FMOD;
+using FMOD.Studio;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float m_PlayerWalkSpeed = 8f;
     public float m_TimeSinceLastFootstep = 0.5f;
     public float m_PlayerRunSpeed = 16f;
+    public float m_TimeSinceLastBreath = 42f;
     public float m_TimeSinceLastFootstepRun = 0.25f;
     private bool m_RunPressed = false;
     public float m_RunNoise = 10f;
@@ -27,8 +31,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_currentImpact;
 
     [Header("FMOD Events")]
+    
     public string walkEvent;
     public string runEvent;
+    public string breathEvent;
+    
+    EventInstance breath;
+    
+
 
     //DEBUG:
     [Header("Debug")]
@@ -52,14 +62,30 @@ public class PlayerMovement : MonoBehaviour
         
 
         Move();
+       
     }//End Update()
 
     private void Move()
     {
         float l_PlayerCurrentSpeed = m_PlayerWalkSpeed;
         m_Movement = Vector3.zero;
+        m_TimeSinceLastBreath -= Time.deltaTime;
+        if (m_TimeSinceLastBreath <= 0)
+        {
+            breath = SM.PlayEvent(breathEvent);
+            m_TimeSinceLastBreath = 42f;
+        }
+
+         if (GetComponent<PlayerController>().m_PlayerStunned)
+        {
+            breath.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            UnityEngine.Debug.Log("STOP");
+            m_TimeSinceLastBreath = 0;
+
+        }
         if (m_InputSystem.Gameplay.Move.ReadValue<Vector2>().magnitude != 0)
         {
+            
             if (!m_RunPressed)
             {
                 m_TimeSinceLastFootstep -= Time.deltaTime;
@@ -73,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
             hud.hasMoved = true;
 
         }
+        
         m_InputMove = m_InputSystem.Gameplay.Move.ReadValue<Vector2>();
         m_Movement = (m_InputMove.y * transform.forward) + (m_InputMove.x * transform.right);
 

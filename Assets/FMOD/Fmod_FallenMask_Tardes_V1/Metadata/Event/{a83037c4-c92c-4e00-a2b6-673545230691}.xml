@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{a83037c4-c92c-4e00-a2b6-673545230691}">
 		<property name="name">
-			<value>013_Hunter_Rushed Breath</value>
+			<value>013_Hunter_RushedBreath</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -72,6 +72,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{77114d01-6c0d-48fd-9602-b1b1d0f0b1ce}">
+		<property name="volume">
+			<value>-15</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{011a1cd9-2ea1-456c-9053-cb04b4e9d7b5}</destination>
 		</relationship>

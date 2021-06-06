@@ -136,6 +136,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1800
+--- !u!114 &-7882466147251262110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/013_Hunter_RushedBreath
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/013_Hunter_RushedBreath
+  guid: c43730a82cc9004ea2b6673545230691
+  Banks:
+  - {fileID: 8373749083416910988}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4000
 --- !u!114 &-7858011896418814416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +227,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 3291
+  Length: 700
 --- !u!114 &-7137179832288421233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,7 +549,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 42084
+  Length: 37084
 --- !u!114 &-4606674203265920656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,11 +818,11 @@ MonoBehaviour:
   Path: Assets/FMOD/Fmod_FallenMask_Tardes_V1/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637584939220557918
+  lastModified: 637586086001241810
   LoadResult: 0
   FileSizes:
-  - Name: Desktop
-    Value: 3132
+  - Name: 
+    Value: 3130
   Exists: 1
 --- !u!114 &-2088564935135053178
 MonoBehaviour:
@@ -978,13 +1001,13 @@ MonoBehaviour:
   guid: 576813104268a0439c4eb60ca2b25423
   Banks:
   - {fileID: 8373749083416910988}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 5800
+  Length: 1483
 --- !u!114 &-1034679307057143369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,7 +1151,6 @@ MonoBehaviour:
   - {fileID: -6300343638800931795}
   - {fileID: -5391442190391294680}
   - {fileID: -2007494003648705906}
-  - {fileID: 3035071406005203303}
   - {fileID: -5045321150784035792}
   - {fileID: -1558078386135970202}
   - {fileID: 126870597188577284}
@@ -1137,12 +1159,13 @@ MonoBehaviour:
   - {fileID: -6059007755617305657}
   - {fileID: -4606674203265920656}
   - {fileID: 2926794235528259246}
+  - {fileID: -7882466147251262110}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8373749083416910988}
   StringsBanks:
   - {fileID: -2738853771117036650}
-  stringsBankWriteTime: 637584939220557918
+  stringsBankWriteTime: 637586086001241810
   cacheVersion: 6
 --- !u!114 &126870597188577284
 MonoBehaviour:
@@ -1212,7 +1235,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 5487
+  Length: 650
 --- !u!114 &615044502843682612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1342,8 +1365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/1 HUNTER/013_Hunter_Rushed Breath
   guid: c43730a82cc9004ea2b6673545230691
-  Banks:
-  - {fileID: 8373749083416910988}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2186,7 +2208,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Fmod_FallenMask_Tardes_V1/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637584939220537922
+  lastModified: 637586086001211802
   LoadResult: 0
   FileSizes: []
   Exists: 1

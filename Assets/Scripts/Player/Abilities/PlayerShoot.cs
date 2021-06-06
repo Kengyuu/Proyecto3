@@ -54,6 +54,11 @@ public class PlayerShoot : MonoBehaviour
     [Header("Stealth Shutdown")]
     public PlayerSpecialAbilities m_PlayerStealth;
 
+    [Header("FMOD Events")]
+    public string chargeEvent;
+    public string shootEvent;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -298,6 +303,7 @@ public class PlayerShoot : MonoBehaviour
         {
             chargeBeam.Play();
             handLight.Play();
+            SoundManager.Instance.PlaySound(chargeEvent, transform.position);
             Invoke("ShootBeam", m_ShootCastingTime);
             m_PlayerAnimations.StartShoot();
             //ShootBeam(distanceToObjective);
@@ -338,6 +344,7 @@ public class PlayerShoot : MonoBehaviour
         beam.SetActive(true);
         mainBeam.SetActive(true);
         splashBeam.SetActive(true);
+        SoundManager.Instance.PlaySound(shootEvent, transform.position);
         StartCoroutine(WaitBeam());
     }
 

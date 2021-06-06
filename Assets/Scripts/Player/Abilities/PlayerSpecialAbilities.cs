@@ -49,6 +49,9 @@ public class PlayerSpecialAbilities : MonoBehaviour
     [Header("Animations")]
     public PlayerAnimations m_PlayerAnimations;
 
+    [Header("FMOD Events")]
+    public string cloakEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +79,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
 
         if (m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.triggered && !m_AbilityOnCooldown && Skill_1)
         {
+            SoundManager.Instance.PlaySound(cloakEvent, transform.position);
             Debug.Log("He apretado la habilidad especial 1 con la letra 'Q'.");
             m_IsPlayerVisibleToEnemy = false;
             m_AbilityOnCooldown = true;
