@@ -181,7 +181,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                   }
 
                  if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
-                    && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
+                    && GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState != FSM_SeekPlayer.State.ATTACKING)
                  {
                     
                     ChangeState(State.ATTACKINGPLAYER);
@@ -221,7 +221,9 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 }
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance || 
-                                                       !behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                                                       !behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer) || 
+                                                       GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState == FSM_SeekPlayer.State.ATTACKING
+                                                       )
                 {
                     m_Laser.enabled = false;
                     ChangeState(State.WANDERING);
@@ -378,7 +380,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
         
 
         if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
-                   && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
+                   && GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState != FSM_SeekPlayer.State.ATTACKING)
         {
             //Debug.Log("aTTACKING");
             ChangeState(State.ATTACKINGPLAYER);

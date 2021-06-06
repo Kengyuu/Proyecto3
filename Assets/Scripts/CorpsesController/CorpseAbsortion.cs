@@ -162,7 +162,8 @@ public class CorpseAbsortion : MonoBehaviour {
         {
             StopAbsortion();
             gameObject.SetActive(false);
-            GM.m_GameObjectSpawner.ClearBodys(gameObject.GetComponent<CorpseControl>().spawnPosition);
+            if(GM.m_GameObjectSpawner != null)
+                GM.m_GameObjectSpawner.ClearBodys(gameObject.GetComponent<CorpseControl>().spawnPosition);
             
         }
         

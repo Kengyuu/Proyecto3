@@ -47,7 +47,7 @@ public class WPControllerTutorial : MonoBehaviour
                     break;
             }
 
-            Invoke("RestartWeakPoints", 0.1f);
+            //Invoke("RestartWeakPoints", 0.1f);
             
         }
     }
@@ -67,7 +67,7 @@ public class WPControllerTutorial : MonoBehaviour
         tutorialRoomThree.SetActive(true);   
     }
 
-    void RestartWeakPoints()
+    public void RestartWeakPoints()
     {
         foreach(GameObject wp in weakPoints)
         {

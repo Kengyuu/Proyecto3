@@ -199,6 +199,19 @@ public class PlayerShoot : MonoBehaviour
                         //m_ScoreManager.RemoveRemainingCorpse();
                     }
                     break;
+                case "CorpseTutorial":
+                    if (l_CurrentDistance < m_CorpseDetectionDistance)
+                    {
+                        absorbParticles.SetActive(true);
+                        M_HudController.hasShot = true;
+                        //AQUÍ PARA LLAMAR AL SISTEMA DE PARTÍCULAS
+                        hit.collider.GetComponent<CorpseAbsorbTutorial>().AbsorbParticles(2.3f, absorbObjective);
+                        corpseHit = true;
+                        m_PlayerController.AddCorpse();
+                        M_HudController.UpdateAddCorpses(gameObject);
+                        m_PlayerAnimations.StartAbsorb();
+                    }
+                    break;
                 case "ActiveTrap":
                     if (l_CurrentDistance < m_ButtonDetectionDistance)
                     {

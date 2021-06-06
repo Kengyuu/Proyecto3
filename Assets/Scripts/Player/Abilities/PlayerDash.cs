@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerDash : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerDash : MonoBehaviour
     public float m_DashCooldown = 0f;
     public bool m_PlayerCanDash = true;
     private HudController hud;
+    public Image cooldownImage; 
 
     [Header("Dash Evasion")]
     public float m_MaxDashEvasionTime = 0.5f;
@@ -82,6 +84,7 @@ public class PlayerDash : MonoBehaviour
         }
         if(m_DashCooldown <= 0f)
         {
+           
             m_DashCooldown = 0f;
             ResetDash();
         }
@@ -91,6 +94,7 @@ public class PlayerDash : MonoBehaviour
     private void Dash()
     {
         SM.PlaySound(dashEvent, transform.position);
+        cooldownImage.GetComponent<Animator>().SetTrigger("Dash");
         hud.hasDashed = true;
         if (m_PlayerHiddenPrayer.m_IsPlayerVisibleToEnemy && m_PlayerMovement.m_CharacterController.velocity.magnitude > 0.2f)
         {
@@ -121,6 +125,7 @@ public class PlayerDash : MonoBehaviour
     private void ResetDash()
     {
         m_DashDirection = Vector3.zero;
+        cooldownImage.GetComponent<Animator>().SetTrigger("Revert");
         m_DashOnCooldown = false;
     }
 }
