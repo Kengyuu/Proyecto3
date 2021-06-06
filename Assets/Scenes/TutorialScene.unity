@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.14078537, g: 0.001885923, b: 0.077452265, a: 1}
+  m_IndirectSpecularColor: {r: 0.5783015, g: 0.0075955726, b: 0.3170935, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1058,7 +1058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5f829c8f201034e8c9335c1bfe5897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wpController: {fileID: 0}
+  wpController: {fileID: 468214524}
 --- !u!1 &83525293
 GameObject:
   m_ObjectHideFlags: 0
@@ -4846,7 +4846,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45029d57b532ca44dbe874998382a03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weakPoints: []
+  weakPoints:
+  - {fileID: 1392373760}
+  - {fileID: 76001556}
+  - {fileID: 2087474501}
+  wpLeft: 0
+  tutorialRoomOne: {fileID: 1511716802}
+  tutorialRoomTwo: {fileID: 1573600096}
+  tutorialRoomThree: {fileID: 1838766137}
 --- !u!114 &470570160 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7333189677209086871, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
@@ -13500,7 +13507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5f829c8f201034e8c9335c1bfe5897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wpController: {fileID: 0}
+  wpController: {fileID: 468214524}
 --- !u!1001 &1398112711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14312,8 +14319,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -176.72, y: -30, z: 26.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1493222319}
+  m_Children: []
   m_Father: {fileID: 1623754481}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14862,7 +14868,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1408170158}
+    m_TransformParent: {fileID: 1838766138}
     m_Modifications:
     - target: {fileID: 3613029629697963103, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: hideOrb
@@ -14878,19 +14884,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 26.511806
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -27.52
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 61.84321
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14906,7 +14912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14976,7 +14982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1511716803
 Transform:
   m_ObjectHideFlags: 0
@@ -15771,7 +15777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1573600097
 Transform:
   m_ObjectHideFlags: 0
@@ -19271,7 +19277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1838766138
 Transform:
   m_ObjectHideFlags: 0
@@ -19285,6 +19291,7 @@ Transform:
   m_Children:
   - {fileID: 578711811}
   - {fileID: 19065846}
+  - {fileID: 1493222319}
   m_Father: {fileID: 527942921}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21056,7 +21063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5f829c8f201034e8c9335c1bfe5897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wpController: {fileID: 0}
+  wpController: {fileID: 468214524}
 --- !u!1001 &2088622959
 PrefabInstance:
   m_ObjectHideFlags: 0

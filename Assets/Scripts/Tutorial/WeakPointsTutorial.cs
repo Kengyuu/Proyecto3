@@ -19,6 +19,8 @@ public class WeakPointsTutorial : MonoBehaviour
 
     public void DestroyWP()
     {
+        wpController.wpLeft--;
+        wpController.TutorialControl();
         gameObject.SetActive(false);
     }
 }
