@@ -5924,6 +5924,7 @@ MonoBehaviour:
   playerCorpses: 0
   enemyCorpses: 0
   remainingCorpses: 0
+  HeadLookAtMaxWeight: 0.8
 --- !u!114 &7130584290975545262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6027,7 +6028,6 @@ MonoBehaviour:
   enemy: {fileID: 8853487398245499590}
   enemyCorpse: {fileID: 5500087432988375301}
   blackboard: {fileID: 0}
-  HeadLookAtWeight: 0.8
 --- !u!114 &1527096035
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class P_AnimatorController : MonoBehaviour
     public FSM_SeekPlayer enemy;
     public FSM_CorpseWander enemyCorpse; 
     public Enemy_BLACKBOARD blackboard;
-    public float HeadLookAtWeight;
 
     void Start()
     {
@@ -159,11 +158,6 @@ public class P_AnimatorController : MonoBehaviour
     public void FinishInvoking()
     {
         animator.ResetTrigger("SpawnWatcher");
-    }
-
-    public void HeadLookAtPlayer()
-    {
-        blackboard.head.weight = HeadLookAtWeight;
     }
 
     public void HeadNotLookAtPlayer()

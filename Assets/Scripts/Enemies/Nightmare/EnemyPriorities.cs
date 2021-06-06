@@ -21,6 +21,8 @@ public class EnemyPriorities : MonoBehaviour
     public float enemyCorpses;
     public float remainingCorpses;
 
+    public float HeadLookAtMaxWeight;
+
     GameManager GM;
 
     ScoreManager m_ScoreManager;
@@ -61,8 +63,8 @@ public class EnemyPriorities : MonoBehaviour
             }
             else
             {
-                if(blackboard.head.weight < 0.9f)
-                    blackboard.head.weight = Mathf.Lerp(blackboard.head.weight, 0.9f, 0.5f);
+                if(blackboard.head.weight < HeadLookAtMaxWeight)
+                    blackboard.head.weight = Mathf.Lerp(blackboard.head.weight, HeadLookAtMaxWeight, 0.5f);
             }
             
         }
