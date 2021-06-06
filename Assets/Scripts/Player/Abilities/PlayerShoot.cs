@@ -316,12 +316,13 @@ public class PlayerShoot : MonoBehaviour
     }
     private void StopAnim()
     {
-        crosshairAnim.SetBool("Shot", false);
+        
         ResetShoot();
     }
 
     public void ResetShoot()
     {
+        crosshairAnim.SetBool("Shot", false);
         m_IsPlayerShooting = false;
         m_PlayerAnimations.StopAbsorb();
     }

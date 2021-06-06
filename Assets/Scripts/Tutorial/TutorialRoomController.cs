@@ -6,6 +6,7 @@ public class TutorialRoomController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject sideWall;
+    public GameObject corpseOrb;
     void Start()
     {
         
@@ -20,5 +21,10 @@ public class TutorialRoomController : MonoBehaviour
     public void FinishSetPositionAnimation()
     {
         sideWall.SetActive(false);
+    }
+
+    public void StartOrbsAnimations()
+    {
+
     }
 }

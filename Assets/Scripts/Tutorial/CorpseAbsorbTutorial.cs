@@ -85,6 +85,14 @@ public class CorpseAbsorbTutorial : MonoBehaviour
         currentAbsorbTime = 0f;
     }
 
+    public void AbsorbOrbParticles(GameObject target)
+    {
+        system.Play();
+        Target = target.transform;
+        systemActive = true;
+        currentAbsorbTime = 8f;
+    }
+
     IEnumerator Wait(float particleDuration)
     {
         yield return new WaitForSeconds(particleDuration);
