@@ -21,10 +21,13 @@ public class TutorialRoomController : MonoBehaviour
     public void FinishSetPositionAnimation()
     {
         sideWall.SetActive(false);
+        if(corpseOrb != null)
+            StartOrbsAnimations();
     }
+
 
     public void StartOrbsAnimations()
     {
-
+        corpseOrb.GetComponent<CorpseOrbTutorial>().ArsorbCorpse();
     }
 }
