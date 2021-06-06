@@ -126,7 +126,8 @@ public class FSM_AttackerOrb : MonoBehaviour
                 }
 
                 if (DetectionFunctions.DistanceToTarget(gameObject, GameManager.Instance.GetPlayer()) > blackboard.maxAttackDistance ||
-                                                        !behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer))
+                                                        !behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer) ||
+                                                       GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState == FSM_SeekPlayer.State.ATTACKING)
                 {
                     m_Laser.enabled = false;
                     ChangeState(State.WANDERING);
