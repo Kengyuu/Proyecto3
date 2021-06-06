@@ -291,8 +291,8 @@ public class PlayerController : MonoBehaviour
                 if (m_ScoreManager.GetEnemyCorpses() >= 10)
                 {
                     
-                    StartCoroutine("PlayerDeath");
-                    
+                    //StartCoroutine("PlayerDeath");
+                    GM.GetEnemy().GetComponent<HFSM_StunEnemy>().hasWon = true;
                     return;
                 }
                 if (m_ScoreManager.GetPlayerCorpses() > 0)

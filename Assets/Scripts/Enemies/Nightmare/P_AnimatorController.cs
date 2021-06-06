@@ -8,6 +8,7 @@ public class P_AnimatorController : MonoBehaviour
     public FSM_SeekPlayer enemy;
     public FSM_CorpseWander enemyCorpse; 
     public Enemy_BLACKBOARD blackboard;
+    public float HeadLookAtWeight;
 
     void Start()
     {
@@ -24,7 +25,7 @@ public class P_AnimatorController : MonoBehaviour
         TransitionWalkCalm(false);
         animator.SetBool("State_Agressive", true);
 
-        int random = Random.Range(0, 1);
+        int random = Random.Range(0, 2);
 
         animator.SetInteger("WalkRandom", random);
 
@@ -52,6 +53,18 @@ public class P_AnimatorController : MonoBehaviour
     public void TransitionWalkCalm(bool factor)
     {
         animator.SetBool("State_Calm", factor);
+    }
+
+    public void TransitionPesadillaWins()
+    {
+        animator.SetTrigger("State_Win");
+    }
+
+    public void PesadillaHasWon()
+    {
+        GameManager.Instance.SetGameState(GameState.GAME_OVER);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None; //TBD
     }
 
     public void EnemyCanMove()
@@ -150,7 +163,7 @@ public class P_AnimatorController : MonoBehaviour
 
     public void HeadLookAtPlayer()
     {
-        blackboard.head.weight = 0.9f;
+        blackboard.head.weight = HeadLookAtWeight;
     }
 
     public void HeadNotLookAtPlayer()

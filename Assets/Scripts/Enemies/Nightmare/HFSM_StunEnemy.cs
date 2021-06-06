@@ -9,13 +9,14 @@ public class HFSM_StunEnemy : MonoBehaviour
 
     public Enemy_BLACKBOARD blackboard;
     public FSM_SeekPlayer seekPlayer;
-    public enum State {INITIAL, SEARCHCORPSES, SEEKPLAYER, STUNNED, INVOKE, DEAD};
+    public enum State {INITIAL, SEARCHCORPSES, SEEKPLAYER, STUNNED, INVOKE, DEAD, WIN};
     public State currentState;
 
     public bool isStunned;
     public bool isInvoking;
     public bool canInvoke;
     public bool isDead;
+    public bool hasWon;
 
     float currentInvokeTime;
     float currentStunTime;
@@ -29,6 +30,7 @@ public class HFSM_StunEnemy : MonoBehaviour
         canInvoke = false;
         isDead = false;
         isStunned = false;
+        hasWon = false;
         blackboard = GetComponent<Enemy_BLACKBOARD>();
         currentStunTime = 0;
         currentInvokeTime = 0f;
@@ -64,7 +66,11 @@ public class HFSM_StunEnemy : MonoBehaviour
                 {
                     ChangeState(State.DEAD);
                 }
-                if(isStunned)
+                if (hasWon)
+                {
+                    ChangeState(State.WIN);
+                }
+                if (isStunned)
                 {
                     ChangeState(State.STUNNED);
                 }
@@ -82,7 +88,11 @@ public class HFSM_StunEnemy : MonoBehaviour
                 {
                     ChangeState(State.DEAD);
                 }
-                if(isStunned)
+                if (hasWon)
+                {
+                    ChangeState(State.WIN);
+                }
+                if (isStunned)
                 {
                     ChangeState(State.STUNNED);
                 }
@@ -100,6 +110,10 @@ public class HFSM_StunEnemy : MonoBehaviour
                 if(isDead)
                 {
                     ChangeState(State.DEAD);
+                }
+                if (hasWon)
+                {
+                    ChangeState(State.WIN);
                 }
                 currentInvokeTime += Time.deltaTime;
                 if(currentInvokeTime >= blackboard.invokeTime)
@@ -121,6 +135,10 @@ public class HFSM_StunEnemy : MonoBehaviour
                 {
                     ChangeState(State.DEAD);
                 }
+                if (hasWon)
+                {
+                    ChangeState(State.WIN);
+                }
                 currentStunTime += Time.deltaTime;
                 if(currentStunTime >= maxStunTime)
                 {
@@ -138,6 +156,11 @@ public class HFSM_StunEnemy : MonoBehaviour
             case State.DEAD:
                 Debug.Log("Jaja no hago nada equisde");
                 break;
+            case State.WIN:
+                Debug.Log("HE GANADO, PESADO");
+                break;
+
+
         }
     }
 
@@ -192,6 +215,9 @@ public class HFSM_StunEnemy : MonoBehaviour
                 break;
             case State.DEAD:
                 blackboard.animatorController.Dead();
+                break;
+            case State.WIN:
+                blackboard.animatorController.TransitionPesadillaWins();
                 break;
 
         }

@@ -5871,6 +5871,7 @@ MonoBehaviour:
   isInvoking: 0
   canInvoke: 0
   isDead: 0
+  hasWon: 0
 --- !u!114 &3612450160911970552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6026,6 +6027,7 @@ MonoBehaviour:
   enemy: {fileID: 8853487398245499590}
   enemyCorpse: {fileID: 5500087432988375301}
   blackboard: {fileID: 0}
+  HeadLookAtWeight: 0.8
 --- !u!114 &1527096035
 MonoBehaviour:
   m_ObjectHideFlags: 0
