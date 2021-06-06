@@ -42,6 +42,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
     {
         if(systemActive && currentAbsorbTime <= absorbDuration)
         {
+
             if(Target != null)
             {
                 
@@ -53,13 +54,8 @@ public class CorpseAbsorbTutorial : MonoBehaviour
                 //Debug.Log(attractorPosition + " " + Target.name);
                 for (int i=0; i < length; i++) 
                 {
-                    /*Vector3 distanceParticleTarget = (attractorPosition - system.transform.TransformPoint(particles[i].position)).normalized;
-                    Debug.Log(distanceParticleTarget);
-                    //particles[i].remainingLifetime = distanceParticleTarget.magnitude / particles[i].velocity.magnitude;
-                    Vector3 particleSpeed = Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) * distanceParticleTarget / (particles[i].remainingLifetime);
-                    particles[i].position += particleSpeed * Time.deltaTime;*/
                     
-                    if(Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) < 0.5f)
+                    if(Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) < 0.4f)
                     {
                         particles[i].position = Target.position;
                         particles[i].velocity = new Vector3(0,0,0);
@@ -71,6 +67,8 @@ public class CorpseAbsorbTutorial : MonoBehaviour
                 }
                 system.SetParticles (particles, length);
                 currentAbsorbTime += Time.deltaTime;
+                if(Target.CompareTag("Untagged"))
+                    currentAbsorbTime = 0;
             }
         }
     }
@@ -90,7 +88,8 @@ public class CorpseAbsorbTutorial : MonoBehaviour
         system.Play();
         Target = target.transform;
         systemActive = true;
-        currentAbsorbTime = 8f;
+        currentAbsorbTime = 0f;
+        absorbDuration = 1;
     }
 
     IEnumerator Wait(float particleDuration)
