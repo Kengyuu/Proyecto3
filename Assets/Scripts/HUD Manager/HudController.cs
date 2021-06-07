@@ -215,7 +215,7 @@ public class HudController : MonoBehaviour
 
     public void ManagePrompts()
     {
-        if (cooldownMovement <= 0 && !hasMoved && !CheckIfPromptActive())
+        /*if (cooldownMovement <= 0 && !hasMoved && !CheckIfPromptActive())
         {
             movementPrompt.gameObject.SetActive(true);
             StartCoroutine(SetToFalse(movementPrompt));
@@ -267,7 +267,7 @@ public class HudController : MonoBehaviour
             triggerShotTrapD = false;
             StartCoroutine(SetToFalse(trapRepairPrompt));
         }
-        if (hasRepaired) StartCoroutine(SetToFalse(trapRepairPrompt));
+        if (hasRepaired) StartCoroutine(SetToFalse(trapRepairPrompt));*/
 
     }
 
