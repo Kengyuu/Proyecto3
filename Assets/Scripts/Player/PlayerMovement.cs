@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float m_PlayerWalkSpeed = 8f;
     public float m_TimeSinceLastFootstep = 0.5f;
     public float m_PlayerRunSpeed = 16f;
-    public float m_TimeSinceLastBreath = 42f;
+    public float m_TimeSinceLastBreath = 0f;
     private float m_TimeSinceLastRushedBreath = 0f;
     public float m_TimeSinceLastFootstepRun = 0.25f;
     private bool m_RunPressed = false;
@@ -148,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rushedBreath.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 breath.setPaused(false);
+                m_TimeSinceLastRushedBreath = 0;
             }
         }
         else

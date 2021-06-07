@@ -34854,6 +34854,10 @@ PrefabInstance:
       propertyPath: frustumSettings.qualitySettings
       value: 
       objectReference: {fileID: 677608596}
+    - target: {fileID: 1181184054864032661, guid: cb180ae73c739f440bc799facfb47379, type: 3}
+      propertyPath: deathEvent
+      value: event:/1 HUNTER/007_Hunter_Defeat
+      objectReference: {fileID: 0}
     - target: {fileID: 3110595450533199083, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -34906,6 +34910,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3456542924278478864, guid: cb180ae73c739f440bc799facfb47379, type: 3}
+      propertyPath: breathEvent
+      value: event:/1 HUNTER/012_Hunter_NormalBreath
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456542924278478864, guid: cb180ae73c739f440bc799facfb47379, type: 3}
+      propertyPath: m_TimeSinceLastBreath
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3984087109883831571, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: q
       value: 
@@ -34922,6 +34934,10 @@ PrefabInstance:
       propertyPath: traceIcon
       value: 
       objectReference: {fileID: 892033442}
+    - target: {fileID: 3984087109883831571, guid: cb180ae73c739f440bc799facfb47379, type: 3}
+      propertyPath: cloakEvent
+      value: event:/1 HUNTER/011_Hunter_Cloak
+      objectReference: {fileID: 0}
     - target: {fileID: 3984087109883831571, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: chainsTrace
       value: 
@@ -34943,9 +34959,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1889122675}
     - target: {fileID: 6654022584197075666, guid: cb180ae73c739f440bc799facfb47379, type: 3}
+      propertyPath: shootEvent
+      value: event:/1 HUNTER/008_Hunter_ Beam Shot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654022584197075666, guid: cb180ae73c739f440bc799facfb47379, type: 3}
+      propertyPath: chargeEvent
+      value: event:/1 HUNTER/008_Hunter_ Beam Charge
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654022584197075666, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: crosshairAnim
       value: 
       objectReference: {fileID: 1083633888}
+    - target: {fileID: 6857373135983297485, guid: cb180ae73c739f440bc799facfb47379, type: 3}
+      propertyPath: repairEvent
+      value: event:/1 HUNTER/010_Hunter_RepairTrap
+      objectReference: {fileID: 0}
     - target: {fileID: 7106278543566383613, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: frustumSettings.baseSettings
       value: 
