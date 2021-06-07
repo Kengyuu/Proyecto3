@@ -38,7 +38,7 @@ public class Enemy : Entities
             m_Life = 0;
             
             
-            if(m_ScoreManager.GetPlayerCorpses() >= 10)
+            if(m_ScoreManager.GetPlayerCorpses() >= GM.m_CorpseObjective)
             {
                 Die();
                 //GM.SetGameState(GameState.WIN);

@@ -27,6 +27,8 @@ public class EnemyPriorities : MonoBehaviour
 
     ScoreManager m_ScoreManager;
 
+     
+
     //public delegate void Priority(EnemyStates state);
     //public event Priority changePriority;
     void Start()
@@ -116,7 +118,7 @@ public class EnemyPriorities : MonoBehaviour
         {
             if(playerCorpses < 4)
             {
-                if(enemyCorpses >= 8)
+                if(enemyCorpses >= 7)
                 {
                     currState = EnemyStates.LOOKFORPLAYER;
                 }
@@ -127,21 +129,21 @@ public class EnemyPriorities : MonoBehaviour
                 //currState = EnemyStates.LOOKFORPLAYER;
             }
 
-            if(enemyCorpses >= 4 && enemyCorpses <= 6)
+            if(enemyCorpses >= 0 && enemyCorpses <= 5)
             {
-                if(enemyCorpses < playerCorpses)
+                if(enemyCorpses < playerCorpses && playerCorpses > 3 && playerCorpses < 7)
                 {
                     currState = EnemyStates.LOOKFORPLAYER;
                 }
 
-                if(enemyCorpses > playerCorpses && (enemyCorpses - playerCorpses) <= 2)
+                /*if(enemyCorpses > playerCorpses && (enemyCorpses - playerCorpses) == 1)
                 {
                     currState = EnemyStates.LOOKFORPLAYER;
                 }
                 if(enemyCorpses == playerCorpses && enemyCorpses == 6)
                 {
                     currState = EnemyStates.LOOKFORPLAYER;
-                }
+                }*/
             }
 
             if(remainingCorpses == 0)
@@ -149,20 +151,34 @@ public class EnemyPriorities : MonoBehaviour
                 currState = EnemyStates.LOOKFORPLAYER;
             }
             
-            if(enemyCorpses >= 4 && enemyCorpses <= 6)
+            if(enemyCorpses >= 0 && enemyCorpses <= 5)
             {
-                if(playerCorpses < enemyCorpses && (enemyCorpses - playerCorpses) > 2)
+                /*if(playerCorpses < enemyCorpses && (enemyCorpses - playerCorpses) > 1)
+                {
+                    currState = EnemyStates.SEARCHCORPSES;
+                }*/
+
+                if (enemyCorpses > playerCorpses && (enemyCorpses - playerCorpses) == 1)
+                {
+                    currState = EnemyStates.LOOKFORPLAYER;
+                }
+                /*if(enemyCorpses == playerCorpses && enemyCorpses == 6)
+                {
+                    currState = EnemyStates.LOOKFORPLAYER;
+                }*/
+
+                if (playerCorpses == enemyCorpses)
                 {
                     currState = EnemyStates.SEARCHCORPSES;
                 }
 
-                if(playerCorpses == enemyCorpses && enemyCorpses != 6)
+                if (playerCorpses >= 7)
                 {
                     currState = EnemyStates.SEARCHCORPSES;
                 }
             }
 
-            if(enemyCorpses >= 7 && enemyCorpses <= 9)
+            if(enemyCorpses == 6)
             {
                 if(remainingCorpses > 0)
                 {

@@ -288,8 +288,8 @@ public class PlayerController : MonoBehaviour
                 m_Life = 0;
                 SM.PlaySound(incapacitateEvent, transform.position);
 
-                //Enemigo con 10+ cuerpos -> game over
-                if (m_ScoreManager.GetEnemyCorpses() >= 10)
+                //Enemigo con 7+ cuerpos -> game over
+                if (m_ScoreManager.GetEnemyCorpses() >= GM.m_CorpseObjective)
                 {
                     
                     //StartCoroutine("PlayerDeath");

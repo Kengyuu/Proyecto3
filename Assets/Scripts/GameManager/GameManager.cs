@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObjectSpawner m_GameObjectSpawner { get; set; }
     [SerializeField] public RoomSpawner m_WaypointsList { get; set; }
     public int m_GamesPlayed = 0;
+    public int m_CorpseObjective = 7;
 
 
     private void Awake()
