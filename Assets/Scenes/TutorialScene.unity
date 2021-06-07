@@ -33702,10 +33702,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Para destruir definitivamente la bestia, necesitas del poder de tus compa\xF1eros.
-    Salvando sus almas, s\xF3lo entonces podr\xE1s cazar a la Pesadilla. Pero procede
-    con cuidado, pues si la bestia reclama sus cuerpos, entonces ella podr\xE1 acabar
-    contigo."
+  m_text: "Para destruir definitivamente a la bestia, necesitas del poder de tus
+    compa\xF1eros. Para ello necesitar\xE1s sus almas, s\xF3lo entonces podr\xE1s
+    cazar a la Pesadilla. Pero procede con cuidado, pues si la bestia reclama sus
+    cuerpos, entonces ella podr\xE1 acabar contigo."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
   m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
@@ -35686,6 +35686,10 @@ PrefabInstance:
       propertyPath: spawner
       value: 
       objectReference: {fileID: 964265448}
+    - target: {fileID: 6181583985191065547, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7333189676901562472, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_Name
       value: CANVAS_GAME
