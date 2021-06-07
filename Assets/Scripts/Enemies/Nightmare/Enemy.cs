@@ -104,6 +104,7 @@ public class Enemy : Entities
         for (int i = 0; i < spawnQuantity; i++)
         {
             weakPoint[i].SetActive(true);
+            weakPoint[i].GetComponent<WeakPoint>().particles.SetActive(true);
         }
         RestoreLife();
     }

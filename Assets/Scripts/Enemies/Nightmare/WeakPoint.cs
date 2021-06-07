@@ -8,6 +8,7 @@ public class WeakPoint : MonoBehaviour
     [HideInInspector]public int spawnPosition;
     public Enemy enemy;
     private GameManager GM;
+    public GameObject particles;
 
 
     void Start()
@@ -30,6 +31,7 @@ public class WeakPoint : MonoBehaviour
         {
             enemy.TakeDamage(1);
             gameObject.SetActive(false);
+            particles.SetActive(false);
         }
         
     }
