@@ -16,18 +16,18 @@ public class SettingsMenu : MonoBehaviour
     public List<string> m_ResolutionList;
     public int m_CurrentResolution;
 
-    [Header("Languages")]
-    public TextMeshProUGUI m_LanguageText;
-    public List<string> m_LanguageList;
-    public int m_CurrentLanguage;
+    //[Header("Languages")]
+    //public TextMeshProUGUI m_LanguageText;
+    //public List<string> m_LanguageList;
+    //public int m_CurrentLanguage;
 
     void Start()
     {
         m_CurrentResolution = 0;
         m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]); //BORRAR AL HACER LAS OPCIONES!!!!
 
-        m_CurrentLanguage = 0;
-        m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]); //BORRAR AL HACER LAS OPCIONES!!!!
+        //m_CurrentLanguage = 0;
+        //m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]); //BORRAR AL HACER LAS OPCIONES!!!!
     }
 
     public void Apply()
@@ -72,27 +72,27 @@ public class SettingsMenu : MonoBehaviour
         }
     }
 
-    public void ChangeLanguage(int value)
-    {
-        if (value > 0)
-        {
-            m_CurrentLanguage++;
-            if (m_CurrentLanguage >= m_LanguageList.Count)
-            {
-                m_CurrentLanguage = 0;
-            }
-            //Debug.Log($"Current resolution index: {m_CurrentLanguage}");
-            m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]);
-        }
-        else
-        {
-            m_CurrentLanguage--;
-            if (m_CurrentLanguage < 0)
-            {
-                m_CurrentLanguage = m_LanguageList.Count - 1;
-            }
-            //Debug.Log($"Current resolution index: {m_CurrentLanguage}");
-            m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]);
-        }
-    }
+    //public void ChangeLanguage(int value)
+    //{
+    //    if (value > 0)
+    //    {
+    //        m_CurrentLanguage++;
+    //        if (m_CurrentLanguage >= m_LanguageList.Count)
+    //        {
+    //            m_CurrentLanguage = 0;
+    //        }
+    //        //Debug.Log($"Current resolution index: {m_CurrentLanguage}");
+    //        m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]);
+    //    }
+    //    else
+    //    {
+    //        m_CurrentLanguage--;
+    //        if (m_CurrentLanguage < 0)
+    //        {
+    //            m_CurrentLanguage = m_LanguageList.Count - 1;
+    //        }
+    //        //Debug.Log($"Current resolution index: {m_CurrentLanguage}");
+    //        m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]);
+    //    }
+    //}
 }

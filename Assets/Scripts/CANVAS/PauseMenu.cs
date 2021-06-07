@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        //Debug.Log("entro a RESUME");
+        Debug.Log("entro a RESUME");
         Time.timeScale = 1f;
         GM.SetGameState(GameState.GAME);
         m_GameIsPaused = false;

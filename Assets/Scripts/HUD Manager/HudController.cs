@@ -187,7 +187,7 @@ public class HudController : MonoBehaviour
             case GameState.PAUSE:
                 m_CanvasGameOver.SetActive(false);
                 m_CanvasVictory.SetActive(false);
-                //m_CanvasGame.SetActive(false);
+                m_CanvasGame.SetActive(false);
                 m_CanvasPauseMenu.SetActive(true);
                 m_CanvasSettingsMenu.SetActive(false);
                 m_CanvasMinimap.SetActive(false);
