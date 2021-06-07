@@ -15,6 +15,10 @@ public class WPControllerTutorial : MonoBehaviour
     public GameObject tutorialRoomTwo;
     public GameObject tutorialRoomThree;
 
+    public GameObject decalLeft;
+    public GameObject decalBottom;
+    public GameObject decalRight;
+
     void Start()
     {
         wpLeft = 3;
@@ -58,16 +62,19 @@ public class WPControllerTutorial : MonoBehaviour
     void PhaseOne()
     {
         tutorialRoomOne.SetActive(true);
+        decalLeft.SetActive(true);
     }
 
     void PhaseTwo()
     {
         tutorialRoomTwo.SetActive(true);
+        decalBottom.SetActive(true);
     }
 
     void PhaseThree()
     {
         tutorialRoomThree.SetActive(true);   
+        decalRight.SetActive(true);
     }
 
     void PhaseFour()

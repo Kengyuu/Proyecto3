@@ -12,6 +12,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
     public ParticleSystem auraSystem;
 
     public GameObject subRoom;
+    public GameObject roomDecal;
 
     bool systemActive = false;
 
@@ -121,6 +122,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
         if(subRoom != null)
         {
             subRoom.SetActive(true);
+            roomDecal.SetActive(true);
         }
         wpControllerTutorial.RestartWeakPoints();
             

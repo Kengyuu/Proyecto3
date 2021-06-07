@@ -10,6 +10,8 @@ public class TutorialRoomController : MonoBehaviour
     public GameObject subRoom;
     public GameObject corpseOrb;
     public GameObject trapOrb;
+
+    
     void Start()
     {
         
