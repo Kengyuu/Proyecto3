@@ -27,6 +27,8 @@ public class EnemyPriorities : MonoBehaviour
 
     ScoreManager m_ScoreManager;
 
+     
+
     //public delegate void Priority(EnemyStates state);
     //public event Priority changePriority;
     void Start()

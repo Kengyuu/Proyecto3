@@ -23,6 +23,9 @@ public class OrbSpawner : MonoBehaviour
     private Transform spawnPosition;
     public bool showingOrb = true;
 
+    public float firstTier = 3;
+    public float secondTier = 6;
+
     private void Awake()
     {
         SelectOrbs();
@@ -54,7 +57,7 @@ public class OrbSpawner : MonoBehaviour
     public void SpawnOrbs(float corpses)
     {
 
-        if (corpses >= 0 && corpses < 3)
+        if (corpses >= 0 && corpses < firstTier)
         {
             if (!CorpseOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke )
             {
@@ -73,7 +76,7 @@ public class OrbSpawner : MonoBehaviour
         }
 
 
-        else if (corpses >= 3 && corpses < 6)
+        else if (corpses >= firstTier && corpses < secondTier)
         {
             
             if (!secondOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
@@ -98,7 +101,7 @@ public class OrbSpawner : MonoBehaviour
         }
 
 
-        if (corpses >= 6)
+        if (corpses >= secondTier)
         {
             if (!thirdOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {

@@ -23,6 +23,8 @@ public class PlayerSpecialAbilities : MonoBehaviour
     public bool m_IsPlayerVisibleToEnemy = true;
     public bool m_AbilityOnCooldown = false;
     public bool m_SliderOnCooldown = false;
+    public float firstTier = 3;
+    public float secondTier = 6;
 
     public Image cooldownSlider;
     public Image chainsInv;
@@ -189,7 +191,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
 
         int l_Corpses = (int)m_ScoreManager.GetEnemyCorpses();
 
-        if (l_Corpses < 3)
+        if (l_Corpses < firstTier)
         {
             if (Skill_1 || m_SliderOnCooldown)
             {
@@ -211,7 +213,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
             }
             return;
         }
-        else if (l_Corpses >= 3)
+        else if (l_Corpses >= firstTier)
         {
             if (!Skill_1)
             {
@@ -223,7 +225,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
                 Skill_1 = true;
             }
 
-            if (l_Corpses >= 6)
+            if (l_Corpses >= secondTier)
             {
                 if (!Skill_2)
                 {
@@ -235,7 +237,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
                 }
                 return;
             }
-            if (l_Corpses < 6)
+            if (l_Corpses < secondTier)
             {
                 if (Skill_2)
                 {
