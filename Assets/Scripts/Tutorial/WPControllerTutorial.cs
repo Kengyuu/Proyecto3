@@ -45,6 +45,9 @@ public class WPControllerTutorial : MonoBehaviour
                     currentPhase++;
                     PhaseThree();
                     break;
+                case 3:
+                    PhaseFour();
+                    break;
             }
 
             //Invoke("RestartWeakPoints", 0.1f);
@@ -65,6 +68,11 @@ public class WPControllerTutorial : MonoBehaviour
     void PhaseThree()
     {
         tutorialRoomThree.SetActive(true);   
+    }
+
+    void PhaseFour()
+    {
+
     }
 
     public void RestartWeakPoints()

@@ -23,8 +23,9 @@ public class TutorialRoomController : MonoBehaviour
 
     public void FinishSetPositionAnimation()
     {
-        sideWall.SetActive(false);
-        if(corpseOrb != null)
+        if(sideWall != null)
+            sideWall.SetActive(false);
+        if(corpseOrb != null && trapOrb != null)
             StartOrbsAnimations();
     }
 
