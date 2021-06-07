@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TutorialSubRoomController : MonoBehaviour
+public class TutorialPromptsController : MonoBehaviour
 {
     public TextMeshProUGUI textWall;
     // Start is called before the first frame update

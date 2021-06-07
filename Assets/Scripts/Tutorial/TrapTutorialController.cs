@@ -27,6 +27,7 @@ public class TrapTutorialController : MonoBehaviour
 
     public void DeactivateTrap()
     {
-        animator.SetBool("TrapActive", true);
+        if(animator != null)
+            animator.SetBool("TrapActive", true);
     }
 }
