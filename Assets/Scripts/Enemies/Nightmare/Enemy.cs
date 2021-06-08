@@ -86,13 +86,13 @@ public class Enemy : Entities
     {
         GetComponent<HFSM_StunEnemy>().isDead = true;
         
-        StartCoroutine(WaitForDead());
+        //StartCoroutine(WaitForDead());
 
     }
 
     IEnumerator WaitForDead()
     {
-        GM.SetGameState(GameState.WIN);
+        //GM.SetGameState(GameState.WIN);
         yield return new WaitForSeconds(5f);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;

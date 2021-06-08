@@ -105,6 +105,13 @@ public class P_AnimatorController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None; //TBD
     }
 
+    public void PesadillaHasLost()
+    {
+        GameManager.Instance.SetGameState(GameState.WIN);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None; //TBD
+    }
+
     public void EnemyCanMove()
     {
         if(enemy.gameObject.activeSelf && enemy.enemy != null)

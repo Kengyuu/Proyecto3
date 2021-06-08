@@ -314,11 +314,11 @@ public class HudController : MonoBehaviour
     public void UpdateObjective(float playerCorpses, float enemyCorpses)
     {
 
-        if (enemyCorpses >= 10)
+        if (enemyCorpses >= GM.m_CorpseObjective)
         {
             objectiveAnim.SetTrigger("Hunt Nightmare");
         }
-        else if (playerCorpses >= 10)
+        else if (playerCorpses >= GM.m_CorpseObjective)
         {
             objectiveAnim.SetBool("Can Kill Nightmare", true);
         }
