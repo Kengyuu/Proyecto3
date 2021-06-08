@@ -85,7 +85,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
             Debug.Log("He apretado la habilidad especial 1 con la letra 'Q'.");
             m_IsPlayerVisibleToEnemy = false;
             m_AbilityOnCooldown = true;
-            Debug.Log("MECMECMECMECMEC");
+            
             m_PlayerAnimations.StartStealth();
 
             SwapTransparent();

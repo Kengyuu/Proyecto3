@@ -17,12 +17,16 @@ public class ActiveTrap : MonoBehaviour
     public ParticleSystem particles;
     ParticleSystem.RotationOverLifetimeModule rotation;
 
+    //test
+    public bool m_CooldownStarted;
+
     private void Start()
     {
         m_Floor.SetActive(false);
         rotation = particles.rotationOverLifetime;
         
     }
+
 
     public void EnableTrap()
     {
@@ -49,11 +53,13 @@ public class ActiveTrap : MonoBehaviour
         //rotation.enabled = false;
         m_Floor.SetActive(false);
         //m_Floor1.SetActive(false);
-        Invoke("ReEnableButton", m_TrapEnableCooldown);
+        Invoke("ReEnableButton", m_TrapEnableCooldown); //NO USAR
+        m_CooldownStarted = true;
     }
 
     private void ReEnableButton()
     {
+        m_CooldownStarted = false;
         m_TrapCanBeEnabled = true;
     }
 }

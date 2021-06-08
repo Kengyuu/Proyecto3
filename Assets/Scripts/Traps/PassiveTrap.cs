@@ -19,8 +19,11 @@ public class PassiveTrap : MonoBehaviour
     public float YForceImpulseDamage = 8f;
 
     [Header("Debug")]
-    [SerializeField] private bool m_TrapActive = true;
+    [SerializeField] public bool m_TrapActive = true;
     [SerializeField] public bool m_TrapCanBeEnabled;
+
+    //test
+    public bool m_CooldownStarted;
 
     private void Start()
     {
@@ -72,7 +75,9 @@ public class PassiveTrap : MonoBehaviour
         GetComponent<MeshRenderer>().material = transparentMaterial;
         transform.GetChild(0).GetComponent<MeshRenderer>().material = transparentMaterial;
         m_TrapCanBeEnabled = false;
+        m_CooldownStarted = true;
         Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
+        
     }
 
     public void EnableTrap()
@@ -97,7 +102,7 @@ public class PassiveTrap : MonoBehaviour
 
     public void RestoreTrapCooldown()
     {
-        
+        m_CooldownStarted = false;
         m_TrapCanBeEnabled = true;
     }
 }
