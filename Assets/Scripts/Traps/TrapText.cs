@@ -8,6 +8,14 @@ public class TrapText : MonoBehaviour
     public TextMeshProUGUI m_Text;
     public Canvas m_Canvas;
 
+    private Camera m_Camera;
+
+
+    private void Start()
+    {
+        m_Camera = Camera.main;
+    }
+
     void Update()
     {
         if (GetComponentInParent<Outline>().enabled)
@@ -17,11 +25,11 @@ public class TrapText : MonoBehaviour
             {
                 //Debug.Log("EL CANVAS ESTABA DESACTIVADO, LO ACTIVO");
                 m_Canvas.enabled = true;
+                transform.rotation = Quaternion.LookRotation(m_Camera.transform.forward, m_Camera.transform.up);
             }
-                
-                
-            Vector3 namePos = Camera.main.WorldToScreenPoint(this.transform.position);
-            m_Text.transform.position = namePos;
+
+            Quaternion newRotation = Quaternion.LookRotation(m_Camera.transform.forward, m_Camera.transform.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 7.0f);
         }
         else
         {

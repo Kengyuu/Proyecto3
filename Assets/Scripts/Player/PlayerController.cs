@@ -342,6 +342,9 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None; //TBD
     }
 
+
+    public List<ParticleSystem> m_HealingParticles;
+
     public void RestoreLife()
     {
         //Debug.Log("RestoreLife iniciado, activado inputs");
@@ -354,6 +357,11 @@ public class PlayerController : MonoBehaviour
         foreach (Image healthIcon in M_HudController.healthIcons)
         {
             healthIcon.GetComponent<Animator>().SetBool("Status",true);
+        }
+
+        foreach(ParticleSystem part in m_HealingParticles)
+        {
+            part.Play();
         }
     }
 
