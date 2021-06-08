@@ -32,9 +32,11 @@ public class PlayerShoot : MonoBehaviour
     public GameObject splashBeam;
     public ParticleSystem handLight;
     public GameObject absorbParticles;
+    public GameObject m_CurrentCorpseAbsortion;
 
     [Header("Object detection distances")]
     public float m_CorpseDetectionDistance = 5f;
+    public float m_CorpseDistanceOffset = 3f;
     public float m_ButtonDetectionDistance = 10f;
     public float m_TrapDetectionDistance = 5f;
 
@@ -91,19 +93,31 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {
         //if(m_PlayerCanShoot) CheckShootingCollisions();
-        TutorialCheck();
+        //TutorialCheck();
 
 
         if (m_PlayerMovement.m_InputSystem.Gameplay.Shoot.triggered && !m_IsPlayerShooting)
         {
-            Shoot();
+            CheckTarget();
         }
 
-
+        if (m_PlayerAnimations.m_Animator.GetBool("Absorb") && m_CurrentCorpseAbsortion != null)
+        {
+            Debug.Log("EL JUGADOR TIENE UN CADAVER CANALIZANDO");
+            if (Vector3.Distance(transform.position, m_CurrentCorpseAbsortion.transform.position) > (m_CorpseDetectionDistance + m_CorpseDistanceOffset))
+            {
+                Debug.Log("JUGADOR ALEJADO DEL CADAVER; DEBERIA PARAR LA ABSORCION!");
+                m_PlayerAnimations.m_Animator.SetBool("Absorb", false);
+                absorbParticles.SetActive(false);
+                m_CurrentCorpseAbsortion = null;
+                ResetShoot();
+            }
+            
+        }
 
     }
 
-    private void TutorialCheck()
+    /*private void TutorialCheck()
     {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
@@ -151,7 +165,7 @@ public class PlayerShoot : MonoBehaviour
                     break;
             }
         }
-    }
+    }*/
 
 /*    private void StartCasting()
     {
@@ -161,161 +175,104 @@ public class PlayerShoot : MonoBehaviour
         //Invoke("Shoot", m_ShootCastingTime);
     }*/
 
-    private void Shoot()
+    private void ShootAnimStart()
     {
         Debug.Log("PLAYER DISPARA");
         m_IsPlayerShooting = true;
-        crosshairAnim.SetBool("Shot", true);
-        GM.PlayerNoise(m_ShootNoise);
-        if(!m_PlayerStealth.m_IsPlayerVisibleToEnemy)
+        crosshairAnim.SetBool("Shot", true); 
+    }
+
+    private void CheckTarget()
+    {
+        //SHOOT CASTING TIME FLOAT ANTERIOR -> 0.46f
+        Debug.Log("Entro en CheckTarget Shoot");
+
+        if (!m_PlayerStealth.m_IsPlayerVisibleToEnemy)
         {
             m_PlayerStealth.ResetAbilityAndStartCooldown();
         }
-        //m_PlayerAnimations.m_Animator.SetTrigger("Shoot");
+        GM.PlayerNoise(m_ShootNoise);
 
-
-        bool corpseHit = false;
-        float distanceToObjective = 2f;
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
+        //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_ShootLayers))
         {
+            Debug.Log("Esto es el raycast de Shoot");
             string tag = hit.collider.transform.tag;
             float l_CurrentDistance = Vector3.Distance(hit.transform.position, transform.position);
-            distanceToObjective = Vector3.Distance(beam.transform.position, hit.point);
-            //Debug.Log($"{hit.transform.name} ha sido impactado a una distancia de {l_CurrentDistance}");
-            switch (tag)
+
+            if (tag == "Corpse" || tag == "CorpseTutorial")
             {
-                case "Corpse":
-                    if (l_CurrentDistance < m_CorpseDetectionDistance)
-                    {
-                        absorbParticles.SetActive(true);
-                        M_HudController.hasShot = true;
-                        //AQUÍ PARA LLAMAR AL SISTEMA DE PARTÍCULAS
-                        hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.3f, absorbObjective);
-                        corpseHit = true;
-                        
-                        //Debug.Log($"Cadáver a distancia adecuada: {l_CurrentDistance}");
-                        //hit.transform.gameObject.SetActive(false);
-                        m_PlayerController.AddCorpse();
-                        M_HudController.UpdateAddCorpses(gameObject);
-                        OrbEvents.current.ManageOrbs();
-                        m_PlayerAnimations.StartAbsorb();
-                        //GM.m_GameObjectSpawner.ClearBodys(hit.collider.GetComponent<CorpseControl>().spawnPosition);
-                        //m_ScoreManager.RemoveRemainingCorpse();
-                    }
-                    break;
-                case "CorpseTutorial":
-                    if (l_CurrentDistance < m_CorpseDetectionDistance)
-                    {
-                        absorbParticles.SetActive(true);
-                        M_HudController.hasShot = true;
-                        //AQUÍ PARA LLAMAR AL SISTEMA DE PARTÍCULAS
-                        hit.collider.GetComponent<CorpseAbsorbTutorial>().AbsorbParticles(2.3f, absorbObjective);
-                        corpseHit = true;
-                        m_PlayerController.AddCorpse();
-                        M_HudController.UpdateAddCorpses(gameObject);
-                        m_PlayerAnimations.StartAbsorb();
-                    }
-                    break;
-                case "ActiveTrap":
-                    if (l_CurrentDistance < m_ButtonDetectionDistance)
-                    {
-                        //Debug.Log($"Botón a distancia adecuada: {l_CurrentDistance}");
-                        hit.transform.GetComponent<ActiveTrap>().EnableTrap();
-                    }
-                    break;
-                  /*case "TrapDeactivated":
-                    if (l_CurrentDistance < m_TrapDetectionDistance)
-                    {
-                        //Debug.Log($"Trampa a distancia adecuada: {l_CurrentDistance}");
-                        hit.transform.GetComponent<PassiveTrap>().EnableTrap();
-                    }
-                    break;*/
-                case "WeakPoint":
-                    if (l_CurrentDistance < m_WeakPointDetectionDistance)
-                    {
-                        //Debug.Log($"Weak Point a distancia adecuada: {l_CurrentDistance}");
-                        WeakPoint wp = hit.collider.GetComponent<WeakPoint>();
-                        wp.Invoke("TakeDamage", m_ShootCastingTime);
-                        
-                        //beam.transform.LookAt(hit.point);
-                        //mainBeam.transform.LookAt(hit.point);
-                        //splashBeam.transform.LookAt(hit.point);
-                    }
-                    break;
-                case "WeakPointTutorial":
-                        WeakPointsTutorial wpt = hit.collider.GetComponent<WeakPointsTutorial>();
-                        wpt.Invoke("DestroyWP", m_ShootCastingTime);
-                    break;
-                case "CorpseOrb":
-                    if (l_CurrentDistance < m_OrbDetectionDistance)
-                    {
-                        WaitAttackOrb(hit.collider.gameObject);
-                        //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
-                        hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
-                        hit.collider.GetComponent<FSM_CorpseSearcher>().alert = true;
-                        hit.collider.GetComponent<FSM_CorpseSearcher>().ChangeParticleColor();
-                        //beam.transform.LookAt(hit.point);
-                        //mainBeam.transform.LookAt(hit.point);
-                        //splashBeam.transform.LookAt(hit.point);
-                    }
-                    break;
-
-                case "HideOrb":
-                    if (l_CurrentDistance < m_OrbDetectionDistance)
-                    {
-                        // hit.collider.transform.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-                        //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
-                        hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
-                        //beam.transform.LookAt(hit.point);
-                        //mainBeam.transform.LookAt(hit.point);
-                        //splashBeam.transform.LookAt(hit.point);
-                    }
-                    break;
-
-                case "TrapOrb":
-                    if (l_CurrentDistance < m_OrbDetectionDistance)
-                    {
-                        //Debug.Log($"Orb a distancia adecuada: {l_CurrentDistance}");
-                        hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
-                        hit.collider.GetComponent<FSM_TrapSearcher>().alert = true;
-                        //beam.transform.LookAt(hit.point);
-                        //mainBeam.transform.LookAt(hit.point);
-                        //splashBeam.transform.LookAt(hit.point);
-                    }
-
-                    break;
-                case "AttackOrb":
-                    if (l_CurrentDistance < m_OrbDetectionDistance)
-                    {
-                        //Debug.Log($"Attack Orb Hit");
-                        hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
-                        hit.collider.GetComponent<FSM_AttackerOrb>().alert = true;
-                        //beam.transform.LookAt(hit.point);
-                        //mainBeam.transform.LookAt(hit.point);
-                        //splashBeam.transform.LookAt(hit.point);
-                    }
-                    break;
+                CorpseAbsorb(l_CurrentDistance, hit);
+                return;
             }
-
+            else
+            {
+                Shoot(l_CurrentDistance, tag, hit);
+                return;
+            }
         }
-        if(!corpseHit)
+        /*else
         {
-            chargeBeam.Play();
-            handLight.Play();
-            SoundManager.Instance.PlaySound(chargeEvent, transform.position);
-            Invoke("ShootBeam", m_ShootCastingTime);
-            m_PlayerAnimations.StartShoot();
-            //ShootBeam(distanceToObjective);
-            //StartCoroutine(Wait()); //ESTO DEBE IR FUERA!!
-        }
+            m_IsPlayerShooting = false;
+            crosshairAnim.SetBool("Shot", false);
+        }*/
+        Shoot(0f, "", hit); //Random shoot to AIR
 
         
-
-
     }
 
-    IEnumerator Wait()
+
+    private void CorpseAbsorb(float l_CurrentDistance, RaycastHit hit)
+    {
+        Debug.Log("Inicio absorción de CUERPO");
+        ShootAnimStart();
+        /*
+         * - start animacion
+	     -> eventos de animacion (FUNCIONES)
+	    - Al final Sumar cadaver por evento
+	    - al final de animacion ResetShoot() -> supuestamente hecho
+        */
+        if (l_CurrentDistance < m_CorpseDetectionDistance)
+        {
+            absorbParticles.SetActive(true);
+            M_HudController.hasShot = true;
+            //corpseHit = true;
+            m_CurrentCorpseAbsortion = hit.transform.gameObject;
+            m_PlayerAnimations.StartAbsorb();
+            hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.3f, absorbObjective);
+        }
+    }
+
+    public void CorpseAbsorbEnd()
+    {
+        m_CurrentCorpseAbsortion = null;
+        m_PlayerController.AddCorpse();
+        M_HudController.UpdateAddCorpses(gameObject);
+        OrbEvents.current.ManageOrbs();
+        absorbParticles.SetActive(false);
+    }
+
+    private void Shoot(float l_CurrentDistance, string tag, RaycastHit hit)
+    {
+        Debug.Log("Inicio FUNCION DE DISPARO");
+        ShootAnimStart();
+        /*
+         * 	- Play animacion Beam + particulas
+	    - Introducir el Switch actual de disparo
+	    - al final de animacion ResetShoot()
+        */
+        chargeBeam.Play();
+        handLight.Play();
+        SoundManager.Instance.PlaySound(chargeEvent, transform.position);
+        //Invoke("ShootBeam", m_ShootCastingTime);
+        m_PlayerAnimations.StartShoot(l_CurrentDistance, tag, hit);
+
+        
+    }
+
+
+/*    IEnumerator Wait()
     {
         yield return new WaitForSeconds(0.4f);
         StopAnim();
@@ -324,16 +281,16 @@ public class PlayerShoot : MonoBehaviour
     {
         
         ResetShoot();
-    }
+    }*/
 
     public void ResetShoot()
     {
         crosshairAnim.SetBool("Shot", false);
         m_IsPlayerShooting = false;
-        m_PlayerAnimations.StopAbsorb();
+        //m_PlayerAnimations.StopAbsorb();
     }
 
-    private void ShootBeam()
+    public void ShootBeam(float l_CurrentDistance, string tag, RaycastHit hit)
     {
         ParticleSystem particles = beam.GetComponent<ParticleSystem>();
         ParticleSystem.ShapeModule shape = particles.shape;
@@ -346,6 +303,59 @@ public class PlayerShoot : MonoBehaviour
         splashBeam.SetActive(true);
         SoundManager.Instance.PlaySound(shootEvent, transform.position);
         StartCoroutine(WaitBeam());
+
+        switch (tag)
+        {
+            case "ActiveTrap":
+                if (l_CurrentDistance < m_ButtonDetectionDistance)
+                {
+                    hit.transform.GetComponent<ActiveTrap>().EnableTrap();
+                }
+                break;
+            case "WeakPoint":
+                if (l_CurrentDistance < m_WeakPointDetectionDistance)
+                {
+                    WeakPoint wp = hit.collider.GetComponent<WeakPoint>();
+                    wp.Invoke("TakeDamage", m_ShootCastingTime);
+                }
+                break;
+            case "WeakPointTutorial":
+                WeakPointsTutorial wpt = hit.collider.GetComponent<WeakPointsTutorial>();
+                wpt.Invoke("DestroyWP", m_ShootCastingTime);
+                break;
+            case "CorpseOrb":
+                if (l_CurrentDistance < m_OrbDetectionDistance)
+                {
+                    WaitAttackOrb(hit.collider.gameObject);
+                    hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
+                    hit.collider.GetComponent<FSM_CorpseSearcher>().alert = true;
+                    hit.collider.GetComponent<FSM_CorpseSearcher>().ChangeParticleColor();
+                }
+                break;
+
+            case "HideOrb":
+                if (l_CurrentDistance < m_OrbDetectionDistance)
+                {
+                    hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
+                }
+                break;
+
+            case "TrapOrb":
+                if (l_CurrentDistance < m_OrbDetectionDistance)
+                {
+                    hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
+                    hit.collider.GetComponent<FSM_TrapSearcher>().alert = true;
+                }
+
+                break;
+            case "AttackOrb":
+                if (l_CurrentDistance < m_OrbDetectionDistance)
+                {
+                    hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
+                    hit.collider.GetComponent<FSM_AttackerOrb>().alert = true;
+                }
+                break;
+        }
     }
 
     IEnumerator WaitAttackOrb(GameObject orb)

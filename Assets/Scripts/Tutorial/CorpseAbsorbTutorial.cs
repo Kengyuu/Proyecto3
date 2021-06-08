@@ -116,7 +116,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
         if(Target != null && Target.CompareTag("AbsorbObjective"))
         {
             GameObject player = GM.GetPlayer();
-            player.GetComponent<PlayerShoot>().ResetShoot();
+            //player.GetComponent<PlayerShoot>().ResetShoot();
         }
         //wpControllerTutorial.RestartWeakPoints();
         if(subRoom != null)

@@ -160,11 +160,17 @@ public class CorpseAbsortion : MonoBehaviour {
         yield return new WaitForSeconds(particleDuration);
         if(systemActive)
         {
+            /*if (GM.GetPlayer().GetComponent<PlayerShoot>().m_PlayerAnimations.m_Animator.GetBool("Absorb"))
+            {
+                
+            }*/
             StopAbsortion();
+
             gameObject.SetActive(false);
-            if(GM.m_GameObjectSpawner != null)
+            if (GM.m_GameObjectSpawner != null)
                 GM.m_GameObjectSpawner.ClearBodys(gameObject.GetComponent<CorpseControl>().spawnPosition);
-            
+
+
         }
         
     }
@@ -178,7 +184,7 @@ public class CorpseAbsortion : MonoBehaviour {
         {
             Target.gameObject.SetActive(false);
             GameObject player = GM.GetPlayer();
-            player.GetComponent<PlayerShoot>().ResetShoot();
+            //player.GetComponent<PlayerShoot>().ResetShoot();
         }
         //Target = null;
     }
