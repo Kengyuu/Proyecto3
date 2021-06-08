@@ -13,7 +13,7 @@ public class EnemyBehaviours : MonoBehaviour
     Enemy_BLACKBOARD blackboard;
     NavMeshAgent navMesh;
     Orb_Blackboard blackboardOrb;
-    ScoreManager m_ScoreManager;
+    public ScoreManager m_ScoreManager;
 
     GameManager GM;
 

@@ -34,7 +34,7 @@ public class TutorialRoomController : MonoBehaviour
 
     public void StartOrbsAnimations()
     {
-        corpseOrb.GetComponent<CorpseOrbTutorial>().ArsorbCorpse();
-        trapOrb.GetComponent<TrapOrbTutorial>().ActivateAuraParticles();
+        //corpseOrb.GetComponent<CorpseOrbTutorial>().ArsorbCorpse();
+        //trapOrb.GetComponent<TrapOrbTutorial>().ActivateAuraParticles();
     }
 }

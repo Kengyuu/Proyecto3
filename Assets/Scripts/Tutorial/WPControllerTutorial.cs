@@ -8,12 +8,16 @@ public class WPControllerTutorial : MonoBehaviour
     public List<GameObject> weakPoints;
     public int wpLeft;
 
-    int currentPhase;
+    public int currentPhase;
 
     public GameObject tutorialRoomOne;
 
     public GameObject tutorialRoomTwo;
     public GameObject tutorialRoomThree;
+
+    public GameObject tutorialRoomFour;
+
+    public GameObject wall;
 
     public GameObject decalLeft;
     public GameObject decalBottom;
@@ -50,6 +54,7 @@ public class WPControllerTutorial : MonoBehaviour
                     PhaseThree();
                     break;
                 case 3:
+                    currentPhase++;
                     PhaseFour();
                     break;
             }
@@ -79,7 +84,8 @@ public class WPControllerTutorial : MonoBehaviour
 
     void PhaseFour()
     {
-
+        wall.SetActive(false);
+        tutorialRoomFour.SetActive(true);
     }
 
     public void RestartWeakPoints()

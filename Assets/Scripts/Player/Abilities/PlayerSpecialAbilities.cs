@@ -145,7 +145,8 @@ public class PlayerSpecialAbilities : MonoBehaviour
         StartCoroutine(FadeTo(0.0f, 0.9f));
         SwapOpaque();
         Invoke("EnableAbility", m_HiddenPrayerCooldown);
-        Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer, false);
+        if(GM.GetEnemy() != null)
+            Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer, false);
     }
 
     IEnumerator FadeTo(float targetColor, float fadeDuration)

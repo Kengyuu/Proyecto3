@@ -124,7 +124,15 @@ public class CorpseAbsorbTutorial : MonoBehaviour
             subRoom.SetActive(true);
             roomDecal.SetActive(true);
         }
-        wpControllerTutorial.RestartWeakPoints();
+        if(wpControllerTutorial.currentPhase < 3)
+        {
+            wpControllerTutorial.RestartWeakPoints();
+        }
+        else
+        {
+            wpControllerTutorial.TutorialControl();
+        }
+        
             
         //Target = null;
     }
