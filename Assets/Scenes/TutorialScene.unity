@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.5783015, g: 0.0075955726, b: 0.3170935, a: 1}
+  m_IndirectSpecularColor: {r: 0.57880425, g: 0.0077541773, b: 0.31765577, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1880,8 +1880,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "La justicia del universo es misteriosa, pues aquel que m\xE1s poder ostente
-    en el duelo dar\xE1 a su rival m\xE1s poder.\r\n"
+  m_text: 'The justice of the universe is misterious, so whom has the most power
+    in the duel, will give its opponent powerful tools.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
   m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
@@ -6472,8 +6474,9 @@ Transform:
   - {fileID: 1398981125}
   - {fileID: 828274791}
   - {fileID: 222049631}
+  - {fileID: 499053102}
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &414482634
 MonoBehaviour:
@@ -7425,9 +7428,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Para ti, poderes con los que cambiar las tornas de la batalla. Cuando
-    la aberraci\xF3n sea m\xE1s fuerte, podr\xE1s ocultarte de sus ojos y perseguirla
-    all\xE1 donde vaya, buscando el momento perfecto para atacar"
+  m_text: For you, powers that can turn the tides of the battle. When the beast is
+    stronger, you can hide from its eyes and follow it wherever it goes, looking
+    for the right moment to attack.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
   m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
@@ -7979,7 +7982,7 @@ Transform:
   - {fileID: 614930654}
   - {fileID: 2134237287}
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &482435847
 MonoBehaviour:
@@ -8391,6 +8394,63 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &499053101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499053102}
+  - component: {fileID: 499053104}
+  - component: {fileID: 499053103}
+  m_Layer: 0
+  m_Name: RoomTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &499053102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499053101}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -10.6, y: -30, z: 19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 414482633}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &499053103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499053101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef9f33cb5e611243b915064a3c46de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &499053104
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499053101}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.205576, y: 7.1853867, z: 5.5000253}
+  m_Center: {x: 6.5896616, y: 22.430202, z: 2.2500134}
 --- !u!1 &500192047 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dc2e973477ed3647b8cdb0f47e7fb0a, type: 3}
@@ -8768,7 +8828,7 @@ Transform:
   - {fileID: 348533628}
   - {fileID: 929626160}
   m_Father: {fileID: 1511716803}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534018321 stripped
 GameObject:
@@ -9268,6 +9328,7 @@ Transform:
   - {fileID: 1070997468}
   - {fileID: 289661294}
   - {fileID: 2128562287}
+  - {fileID: 1543234707}
   m_Father: {fileID: 1838766138}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11274,6 +11335,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &730912347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 730912348}
+  - component: {fileID: 730912350}
+  - component: {fileID: 730912349}
+  m_Layer: 0
+  m_Name: RoomTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &730912348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730912347}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -28.76, y: -30, z: 60.439995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1511716803}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &730912349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730912347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef9f33cb5e611243b915064a3c46de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &730912350
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730912347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 22.23681, y: 16.56299, z: 5.5000253}
+  m_Center: {x: 6.0357885, y: -2.216259, z: 2.2500134}
 --- !u!1001 &732091383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12532,7 +12650,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 350345894041090182, guid: 06951db443d9d484db66fa29a3289638, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 350345894041090182, guid: 06951db443d9d484db66fa29a3289638, type: 3}
       propertyPath: m_LocalScale.x
@@ -12744,7 +12862,7 @@ Transform:
   m_LocalScale: {x: 4.473796, y: 4.083621, z: 1}
   m_Children: []
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &800990023
 MonoBehaviour:
@@ -17919,11 +18037,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Las almas procurar\xE1n escapar y, por ello, aquel que sea moment\xE1neamente
-    derrotado perder\xE1 parte de aquellas almas que recuperara anteriormente. Por
-    lo que has de preservar tu aguante, cazador, de los enemigos y de otros peligros
-    que permanecen en el templo, instrumentos de luz y metal, defensas que pueden
-    jugar a tu favor, o en tu contra."
+  m_text: "The souls will try to scape, and because of that, whoever gets momentarily
+    defeated will lose some of the souls captured. You have to endure, hunter, from
+    the enemies and other dangers that remain in the temple. Light and metal tools,
+    which both can play on your side\u2026 or against you."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
   m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
@@ -20063,6 +20180,7 @@ Transform:
   - {fileID: 2071161853}
   - {fileID: 1601647048}
   - {fileID: 1280404599}
+  - {fileID: 1354094990}
   m_Father: {fileID: 527942921}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21232,7 +21350,7 @@ Transform:
   m_LocalScale: {x: 4.473796, y: 4.083621, z: 1}
   m_Children: []
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!65 &1056527124
 BoxCollider:
@@ -22792,9 +22910,9 @@ Transform:
   - {fileID: 552249147}
   - {fileID: 1359351318}
   - {fileID: 849710370}
+  - {fileID: 979656925}
   - {fileID: 672763371}
   - {fileID: 231501423}
-  - {fileID: 979656925}
   - {fileID: 1634950516}
   - {fileID: 149963078}
   - {fileID: 1749461880}
@@ -22802,7 +22920,7 @@ Transform:
   - {fileID: 1185544595}
   - {fileID: 1470837020}
   m_Father: {fileID: 1511716803}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1183500753 stripped
 Transform:
@@ -22964,10 +23082,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Para la bestia, repulsivos sirvientes flotantes llamados Vig\xEDas. Cuanto
-    m\xE1s te acerques a poder destruirla, m\xE1s de estos aparecer\xE1n para interrumpir
-    tu misi\xF3n, saqueando cuerpos, atac\xE1ndote por la espalda o escondiendo a
-    tus compa\xF1eros ca\xEDdos en las sombras.\r\n"
+  m_text: 'For the beast, repulsive floating servants named Watchers. The closer
+    you are to beat the beast, more of these will appear to interrupt your mission,
+    stealing souls, attacking you, or hiding your fallen partners in the shadows.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
   m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
@@ -23788,8 +23907,9 @@ Transform:
   - {fileID: 512281968}
   - {fileID: 1011351587}
   - {fileID: 1191859711}
+  - {fileID: 1367357412}
   m_Father: {fileID: 1511716803}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1231054678
 Animator:
@@ -25270,7 +25390,7 @@ Transform:
   m_LocalScale: {x: 4.473796, y: 4.083621, z: 1}
   m_Children: []
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1352362338
 MonoBehaviour:
@@ -25329,6 +25449,63 @@ Transform:
   m_Father: {fileID: 1340123258}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1354094989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1354094990}
+  - component: {fileID: 1354094992}
+  - component: {fileID: 1354094991}
+  m_Layer: 0
+  m_Name: RoomTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1354094990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354094989}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -9.7, y: -30, z: 72.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1014400163}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1354094991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354094989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef9f33cb5e611243b915064a3c46de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1354094992
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354094989}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4742184, y: 8.160763, z: 5.5000253}
+  m_Center: {x: 7.657711, y: -2.5002165, z: 2.2500134}
 --- !u!1 &1354710971
 GameObject:
   m_ObjectHideFlags: 0
@@ -25383,6 +25560,63 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.131011, y: 4.1311383, z: 0.2935232}
   m_Center: {x: 0.004075527, y: -0.004102708, z: 0.1625746}
+--- !u!1 &1367357411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367357412}
+  - component: {fileID: 1367357414}
+  - component: {fileID: 1367357413}
+  m_Layer: 0
+  m_Name: RoomTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1367357412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367357411}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -43.43, y: -30, z: 60.439995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1231054677}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367357413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367357411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef9f33cb5e611243b915064a3c46de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1367357414
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367357411}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.635231, y: 7.3488245, z: 5.5000253}
+  m_Center: {x: 4.304489, y: -2.1468759, z: 2.2500134}
 --- !u!43 &1371945263
 Mesh:
   m_ObjectHideFlags: 0
@@ -27610,6 +27844,63 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.131011, y: 4.131138, z: 0.33074102}
   m_Center: {x: 0.004075527, y: -0.004102827, z: 0.1811835}
+--- !u!1 &1451718848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451718849}
+  - component: {fileID: 1451718851}
+  - component: {fileID: 1451718850}
+  m_Layer: 0
+  m_Name: RoomTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1451718849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451718848}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 10.3, y: -30, z: 60.439995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1838766138}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1451718850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451718848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef9f33cb5e611243b915064a3c46de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1451718851
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451718848}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 22.471048, y: 15.612703, z: 5.5000253}
+  m_Center: {x: 7.8048544, y: -2.2374086, z: 2.2500134}
 --- !u!1 &1452882560 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dc2e973477ed3647b8cdb0f47e7fb0a, type: 3}
@@ -28311,7 +28602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28453,6 +28744,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 730912348}
   - {fileID: 994623256}
   - {fileID: 1493222319}
   - {fileID: 1180295885}
@@ -28747,6 +29039,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
   m_PrefabInstance: {fileID: 1541619216}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1543234706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1543234707}
+  - component: {fileID: 1543234709}
+  - component: {fileID: 1543234708}
+  m_Layer: 0
+  m_Name: RoomTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1543234707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543234706}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 26.1, y: -30, z: 60.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 587991909}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1543234708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543234706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef9f33cb5e611243b915064a3c46de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1543234709
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543234706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.9941483, y: 7.827157, z: 5.5000253}
+  m_Center: {x: 9.300512, y: -2.5829873, z: 2.2500134}
 --- !u!1 &1544074839 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4473c9db6f4d21b4eb1b6828651674e7, type: 3}
@@ -29644,6 +29993,63 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1570594165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1570594166}
+  - component: {fileID: 1570594168}
+  - component: {fileID: 1570594167}
+  m_Layer: 0
+  m_Name: RoomTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1570594166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570594165}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -6.93, y: -30, z: 48.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1573600097}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1570594167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570594165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef9f33cb5e611243b915064a3c46de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1570594168
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570594165}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.205576, y: 50.604923, z: 5.5000253}
+  m_Center: {x: 6.5896616, y: 20.580208, z: 2.2500134}
 --- !u!1 &1573600096
 GameObject:
   m_ObjectHideFlags: 0
@@ -29678,6 +30084,7 @@ Transform:
   - {fileID: 45993807}
   - {fileID: 405999193}
   - {fileID: 299910148}
+  - {fileID: 1570594166}
   - {fileID: 1984637141}
   - {fileID: 800990022}
   - {fileID: 1352362337}
@@ -31416,7 +31823,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4473c9db6f4d21b4eb1b6828651674e7, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4473c9db6f4d21b4eb1b6828651674e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34332,6 +34739,7 @@ Transform:
   - {fileID: 578711811}
   - {fileID: 19065846}
   - {fileID: 587991909}
+  - {fileID: 1451718849}
   m_Father: {fileID: 527942921}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35998,7 +36406,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1984637142
 MonoBehaviour:
@@ -36516,10 +36924,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Para destruir definitivamente a la bestia, necesitas del poder de tus
-    compa\xF1eros. Para ello necesitar\xE1s sus almas, s\xF3lo entonces podr\xE1s
-    cazar a la Pesadilla. Pero procede con cuidado, pues si la bestia reclama sus
-    cuerpos, entonces ella podr\xE1 acabar contigo."
+  m_text: To finally destroy the beast you will need the power of your fallen partners.
+    For that, you need their souls and, just then, you can hunt the Nightmare. But
+    be careful, because, if the beast claims their souls, you could end like your
+    former partners.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
   m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
@@ -37283,7 +37691,7 @@ Transform:
   - {fileID: 1190377391}
   - {fileID: 1216154297}
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2093080612
 MonoBehaviour:
