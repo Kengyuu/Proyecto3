@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: event:/2 NIGHTMARE/016_Nightmare_Weak Point Banish
   guid: 238194ccf25ece4b938a456e046c87ba
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -105,7 +105,7 @@ MonoBehaviour:
   Path: event:/2 NIGHTMARE/014_Nightmare_Walk
   guid: 6a2dc026c0411b40a34d23ed7d6c8483
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -174,7 +174,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/002_Hunter_Run_D
   guid: 61debe4bc5695248bd26afb58f7078b1
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -220,7 +220,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/011_Hunter_Cloak
   guid: 363081f5a8e10e41afd5b2b64944e4dc
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -287,7 +287,7 @@ MonoBehaviour:
   Path: event:/5 UI/037_UI_PlayerScoreUp
   guid: e1adcb838a02bd46acf7134a8a529922
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -310,7 +310,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/004_Hunter_Hurt
   guid: 5a04c83f4cd69b41beb52a9bdbf17eca
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -356,7 +356,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/007_Hunter_Defeat
   guid: ada22cc5599a7345a2881653fa85079e
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -379,7 +379,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/005_Hunter_Incapacitate
   guid: 0282b07595c52245b041c3202eff6917
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -402,7 +402,7 @@ MonoBehaviour:
   Path: event:/3 WATCHER/023_Watcher_BeamCharge
   guid: e6562fae5523494f9574843df41ff06f
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -425,7 +425,7 @@ MonoBehaviour:
   Path: event:/4 ENVIRONMENT/030_Environment_SpikeTrapActivation
   guid: 40496be7c86f414b9615319df49c2405
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -476,7 +476,7 @@ MonoBehaviour:
   FileSizes:
   - Name: 
     Value: 3130
-  Exists: 1
+  Exists: 0
 --- !u!114 &-5405898764317221164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +515,7 @@ MonoBehaviour:
   Path: event:/3 WATCHER/026_Watcher_Disappear
   guid: b390a42fc2d3a642985d317e9653275c
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -538,7 +538,7 @@ MonoBehaviour:
   Path: event:/5 UI/039_UI_ScoreDown
   guid: d310c6e44c7a964083ae1317699887b8
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -584,7 +584,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/012_Hunter_NormalBreath
   guid: 15040b9cf7a5b64791f3e303684a100f
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -607,7 +607,7 @@ MonoBehaviour:
   Path: event:/5 UI/033_UI_Select
   guid: ef22f4220d55784296cfd7241e0d8cf5
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -630,7 +630,7 @@ MonoBehaviour:
   Path: event:/2 NIGHTMARE/020_Nightmare_Roar
   guid: 1fe32528962bd34d9ba24c658e60cf85
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -730,6 +730,27 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2300
+--- !u!114 &-3395057221302642600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637586750552026230
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 3130
+  Exists: 1
 --- !u!114 &-3372930529885174180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,7 +789,7 @@ MonoBehaviour:
   Path: event:/4 ENVIRONMENT/028_Environment_Corpse disappear
   guid: 45602f927a354647a3aac8f63612c455
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -927,7 +948,7 @@ MonoBehaviour:
   Path: event:/5 UI/041_UI_ModifierUnlocked
   guid: b9949ddd199d6a4d9bd73f7f08435911
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -996,7 +1017,7 @@ MonoBehaviour:
   Path: event:/5 UI/040_UI_ModifierLocked
   guid: d69f3a289e46c14daeef05d10dd9b98f
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1042,7 +1063,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/010_Hunter_RepairTrap
   guid: 576813104268a0439c4eb60ca2b25423
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1096,6 +1117,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 200
+--- !u!114 &-428025710691478711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637587581451774125
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-197174251943051858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1134,7 +1174,7 @@ MonoBehaviour:
   Path: event:/5 UI/036_UI_ExitMenu
   guid: 7bda95be7a4d1e4483e89671862c4ad1
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1155,8 +1195,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -5451183395670672138}
-  - {fileID: 3525406996175106224}
+  - {fileID: -3395057221302642600}
+  - {fileID: -428025710691478711}
   EditorEvents:
   - {fileID: 4834824326046257072}
   - {fileID: -6167917906311920540}
@@ -1204,10 +1244,10 @@ MonoBehaviour:
   - {fileID: 5344774923238294679}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   StringsBanks:
-  - {fileID: -5451183395670672138}
-  stringsBankWriteTime: 637587574520960471
+  - {fileID: -3395057221302642600}
+  stringsBankWriteTime: 637586750552026230
   cacheVersion: 6
 --- !u!114 &126870597188577284
 MonoBehaviour:
@@ -1224,7 +1264,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/001_Hunter_Walk_D
   guid: dc06fba587df6d418ad277f2e2147bdc
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1270,7 +1310,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/008_Hunter_ Beam Charge
   guid: a3500b2ba1ed5f4d82e2bf3ee79df992
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1316,7 +1356,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/002_Hunter_Run_H
   guid: ac5d7d4dc038c444b8eac125f79da6f7
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1403,7 +1443,7 @@ MonoBehaviour:
   Path: event:/2 NIGHTMARE/019_Nightmare_Defeat
   guid: a51cbf2bd2838d4fadae186913d8f193
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1426,7 +1466,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/006_Hunter_Heal
   guid: f926c1b444e5eb4b9fa1cd9d8743b744
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1494,7 +1534,7 @@ MonoBehaviour:
   Path: event:/2 NIGHTMARE/017_Nightmare_Weak Point Heal
   guid: 905f862f54dc494f84b946d79bd7cc43
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1517,7 +1557,7 @@ MonoBehaviour:
   Path: event:/5 UI/038_UI_NightmareScoreUp
   guid: 273e440641e9194d9acbbadae3cddf45
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1540,7 +1580,7 @@ MonoBehaviour:
   Path: event:/5 UI/035_UI_StartGame
   guid: e063f6aac5636045a3b86667ced9588a
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1563,7 +1603,7 @@ MonoBehaviour:
   Path: event:/5 UI/032_UI_ChangeSelection
   guid: 93ad0d4760e11c4ea09d7fae95bb4a0c
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1589,7 +1629,7 @@ MonoBehaviour:
   lastModified: 637587574520940469
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &3648099594800469359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1628,7 +1668,7 @@ MonoBehaviour:
   Path: event:/2 NIGHTMARE/021_Nightmare_SummonWatcher
   guid: 20645e95c89dae4b85680659373cd3e3
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1674,7 +1714,7 @@ MonoBehaviour:
   Path: event:/2 NIGHTMARE/015_Nightmare_Slash
   guid: 4d2de3680c7667488bb0b31a3613876d
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1697,7 +1737,7 @@ MonoBehaviour:
   Path: event:/4 ENVIRONMENT/031_Environment_BeamTrapActivation
   guid: 5ef8f3919459234bbb1ce68ce0733780
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -1743,7 +1783,7 @@ MonoBehaviour:
   Path: event:/4 ENVIRONMENT/029_Environment_TrapSwitchActivation
   guid: 0201e7616da5624a98bea37708fe59c2
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -1766,7 +1806,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/003_Hunter_Dash
   guid: a67943c30abe8b4e9da8a58d35d86d70
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1789,7 +1829,7 @@ MonoBehaviour:
   Path: event:/3 WATCHER/024_Watcher_BeamFire
   guid: 37ff9b316105704abc20a66070f38496
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -1812,7 +1852,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/013_Hunter_RushedBreath
   guid: c43730a82cc9004ea2b6673545230691
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1835,7 +1875,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/001_Hunter_Walk_H
   guid: 71558e42c05e5046a0670be4bbb01eb5
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1881,7 +1921,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/008_Hunter_ Beam Shot
   guid: 93bcc50f1258644e9b0de143af1d8da5
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1904,7 +1944,7 @@ MonoBehaviour:
   Path: event:/2 NIGHTMARE/018_Nightmare_Incapacitate
   guid: 31ad57eae3d36649ad323b81ee9119dc
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2038,7 +2078,7 @@ MonoBehaviour:
   Path: event:/1 HUNTER/009_Hunter_Beam Fire
   guid: 3e68858955f7344bb10c83f15293a0b8
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2130,7 +2170,7 @@ MonoBehaviour:
   Path: event:/3 WATCHER/025_Watcher_Hurt
   guid: 09e7b7ec3709e1408c97d096efc00b83
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2153,7 +2193,7 @@ MonoBehaviour:
   Path: event:/3 WATCHER/022_Watcher_Float
   guid: 6f2371bba4b6724f975777ea29595c34
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2218,7 +2258,7 @@ MonoBehaviour:
   Path: event:/4 ENVIRONMENT/027_Environment_Appear
   guid: 5b908c89dd98864cb5054395f2cd0c66
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2287,7 +2327,7 @@ MonoBehaviour:
   Path: event:/5 UI/034_UI_Pause
   guid: 6ef985e003d4394aa316b34fd33ce2b4
   Banks:
-  - {fileID: 3525406996175106224}
+  - {fileID: -428025710691478711}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
