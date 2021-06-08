@@ -182,7 +182,8 @@ public class PlayerSpecialAbilities : MonoBehaviour
         cooldownSlider.fillAmount = 1;
         m_AbilityOnCooldown = false;
         m_SliderOnCooldown = false;
-        Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer);
+        if(GM.GetEnemy() != null)
+            Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer);
     }
 
 

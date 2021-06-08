@@ -240,7 +240,10 @@ public class PlayerShoot : MonoBehaviour
             //corpseHit = true;
             m_CurrentCorpseAbsortion = hit.transform.gameObject;
             m_PlayerAnimations.StartAbsorb();
-            hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.3f, absorbObjective);
+            if(hit.collider.CompareTag("Corpse"))
+                hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.3f, absorbObjective);
+            if(hit.collider.CompareTag("CorpseTutorial"))
+                hit.collider.GetComponent<CorpseAbsorbTutorial>().AbsorbParticles(2.3f, absorbObjective);
         }
     }
 
@@ -249,7 +252,8 @@ public class PlayerShoot : MonoBehaviour
         m_CurrentCorpseAbsortion = null;
         m_PlayerController.AddCorpse();
         M_HudController.UpdateAddCorpses(gameObject);
-        OrbEvents.current.ManageOrbs();
+        if(OrbEvents.current != null)
+            OrbEvents.current.ManageOrbs();
         absorbParticles.SetActive(false);
     }
 
