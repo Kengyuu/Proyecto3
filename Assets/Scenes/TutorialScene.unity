@@ -467,8 +467,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33024223}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1665, y: 2.746, z: 63.972}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.5964999, y: 2.746, z: 65.29}
   m_LocalScale: {x: 0.89, y: 0.89, z: 0.89}
   m_Children:
   - {fileID: 231610438}
@@ -476,8 +476,8 @@ Transform:
   - {fileID: 1409003679}
   - {fileID: 178911192}
   - {fileID: 791005576735590459}
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_Father: {fileID: 675795296}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &44886718
 PrefabInstance:
@@ -685,7 +685,7 @@ Transform:
   - {fileID: 416897580}
   - {fileID: 1864585359}
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &50435784 stripped
 GameObject:
@@ -723,7 +723,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 350345894041090182, guid: 06951db443d9d484db66fa29a3289638, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 350345894041090182, guid: 06951db443d9d484db66fa29a3289638, type: 3}
       propertyPath: m_LocalScale.x
@@ -1853,7 +1853,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 365546640}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1880,8 +1880,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The justice of the universe is misterious, so whom has the most power
-    in the duel, will give its opponent powerful tools.
+  m_text: 'The justice of the universe is misterious. Whomever gets the upper hand
+    in the hunt, will give its opponent powerful tools and powers.
 
 '
   m_isRightToLeft: 0
@@ -4337,7 +4337,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 350345894041090182, guid: 06951db443d9d484db66fa29a3289638, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 350345894041090182, guid: 06951db443d9d484db66fa29a3289638, type: 3}
       propertyPath: m_LocalScale.x
@@ -5006,7 +5006,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &299910149
 MonoBehaviour:
@@ -5853,11 +5853,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2031091567}
   - {fileID: 2032528296}
   - {fileID: 104750297}
   - {fileID: 1186308849}
   - {fileID: 458839259}
   - {fileID: 842674513}
+  - {fileID: 963483794}
   m_Father: {fileID: 981426737}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6295,7 +6297,7 @@ Transform:
   - {fileID: 658898319}
   - {fileID: 1554684340}
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &409739451
 MonoBehaviour:
@@ -7401,7 +7403,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 365546640}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7428,9 +7430,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: For you, powers that can turn the tides of the battle. When the beast is
-    stronger, you can hide from its eyes and follow it wherever it goes, looking
-    for the right moment to attack.
+  m_text: "For you, powers that can turn the tides of the battle. \nWhen the beast
+    is stronger, you can hide from its eyes and follow it wherever it goes, looking
+    for the right moment to attack. \nIf the hunt is not in your favor, your hunter
+    vision will allow you to follow the trail of your enemies."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
   m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
@@ -10726,11 +10729,13 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 33024224}
+  - {fileID: 1491992460}
   - {fileID: 1337818527}
   - {fileID: 959145133}
   - {fileID: 485689051}
-  - {fileID: 1491992460}
   - {fileID: 1655410225}
+  - {fileID: 1445632502}
   m_Father: {fileID: 527942921}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12844,7 +12849,7 @@ GameObject:
   - component: {fileID: 800990024}
   - component: {fileID: 800990023}
   m_Layer: 0
-  m_Name: TriggerPromptInicial
+  m_Name: TriggerPromptInicialSala2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12858,11 +12863,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800990021}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6, y: -28.123276, z: 49.57}
+  m_LocalPosition: {x: -3.03, y: -28.123276, z: 50.54}
   m_LocalScale: {x: 4.473796, y: 4.083621, z: 1}
   m_Children: []
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &800990023
 MonoBehaviour:
@@ -12888,8 +12893,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8252383, y: 0.2481585, z: 3.4629238}
-  m_Center: {x: 0.10962237, y: -0.37592074, z: -1.4315269}
+  m_Size: {x: 1.6891575, y: 0.3407417, z: 5.9219246}
+  m_Center: {x: 0.2976218, y: -0.32962897, z: -1.1905842}
 --- !u!1001 &811820474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18010,7 +18015,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 365546640}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18038,9 +18043,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "The souls will try to scape, and because of that, whoever gets momentarily
-    defeated will lose some of the souls captured. You have to endure, hunter, from
-    the enemies and other dangers that remain in the temple. Light and metal tools,
-    which both can play on your side\u2026 or against you."
+    defeated will lose some of the souls captured. \nYou need to endure, Hunter,
+    from the enemies and other dangers that remain in the temple. Light and metal
+    tools, which both can play on your side\u2026 or against you."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
   m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
@@ -18546,7 +18551,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876126484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.43, y: 0, z: 1.3180008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 468214523}
@@ -19445,7 +19450,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 350345894041090182, guid: 06951db443d9d484db66fa29a3289638, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 350345894041090182, guid: 06951db443d9d484db66fa29a3289638, type: 3}
       propertyPath: m_LocalScale.x
@@ -19513,6 +19518,140 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06951db443d9d484db66fa29a3289638, type: 3}
+--- !u!1 &963483793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 963483794}
+  - component: {fileID: 963483796}
+  - component: {fileID: 963483795}
+  m_Layer: 0
+  m_Name: Prompt_Ending
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &963483794
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963483793}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 365546640}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 12, y: -298}
+  m_SizeDelta: {x: 1250, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &963483795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963483793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Fall.
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
+  m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &963483796
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963483793}
+  m_CullTransparentMesh: 1
 --- !u!1 &963688598 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4473c9db6f4d21b4eb1b6828651674e7, type: 3}
@@ -20164,7 +20303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1014400163
 Transform:
   m_ObjectHideFlags: 0
@@ -20181,6 +20320,7 @@ Transform:
   - {fileID: 1601647048}
   - {fileID: 1280404599}
   - {fileID: 1354094990}
+  - {fileID: 1614366996}
   m_Father: {fileID: 527942921}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23055,7 +23195,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 365546640}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -23082,9 +23222,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'For the beast, repulsive floating servants named Watchers. The closer
-    you are to beat the beast, more of these will appear to interrupt your mission,
-    stealing souls, attacking you, or hiding your fallen partners in the shadows.
+  m_text: 'For the beast, repulsive floating servants, the Watchers. The closer you
+    are to victory, more of these creatures will appear to interrupt your mission,
+    stealing souls, attacking you, or hiding your fallen brothers in the shadows.
 
 '
   m_isRightToLeft: 0
@@ -27821,6 +27961,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dc2e973477ed3647b8cdb0f47e7fb0a, type: 3}
+--- !u!1 &1445632501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1445632502}
+  - component: {fileID: 1445632504}
+  - component: {fileID: 1445632503}
+  m_Layer: 0
+  m_Name: TriggerPrompt_Intro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1445632502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445632501}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.03, y: 1.8767242, z: 64.92}
+  m_LocalScale: {x: 4.4737997, y: 4.08362, z: 1}
+  m_Children: []
+  m_Father: {fileID: 675795296}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1445632503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445632501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf129777b27f6247b338d7978c28bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textWall: {fileID: 2031091565}
+--- !u!65 &1445632504
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445632501}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6891578, y: 0.34074172, z: 4.9644623}
+  m_Center: {x: 0.2976218, y: -0.32962897, z: -0.711853}
 --- !u!1 &1448706448 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dc2e973477ed3647b8cdb0f47e7fb0a, type: 3}
@@ -28219,7 +28417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6612761961898420467, guid: f3370289be3658a48b9f1ad3050f9a7f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28575,7 +28773,7 @@ Transform:
   - {fileID: 688941044}
   - {fileID: 483768292}
   m_Father: {fileID: 675795296}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1493222318
 PrefabInstance:
@@ -30023,7 +30221,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1570594167
 MonoBehaviour:
@@ -30080,13 +30278,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 220637314}
+  - {fileID: 800990022}
   - {fileID: 604992907}
   - {fileID: 45993807}
   - {fileID: 405999193}
   - {fileID: 299910148}
   - {fileID: 1570594166}
   - {fileID: 1984637141}
-  - {fileID: 800990022}
   - {fileID: 1352362337}
   - {fileID: 1056527123}
   - {fileID: 482435846}
@@ -30761,6 +30959,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4473c9db6f4d21b4eb1b6828651674e7, type: 3}
+--- !u!1 &1614366995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1614366996}
+  - component: {fileID: 1614366998}
+  - component: {fileID: 1614366997}
+  m_Layer: 0
+  m_Name: TriggerPrompt_End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1614366996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614366995}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.03, y: -28.03, z: 77.28}
+  m_LocalScale: {x: 4.4737997, y: 4.08362, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1014400163}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1614366997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614366995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf129777b27f6247b338d7978c28bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textWall: {fileID: 963483795}
+--- !u!65 &1614366998
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614366995}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6891578, y: 0.4725466, z: 3.9621658}
+  m_Center: {x: 0.2976218, y: -0.26372656, z: 0.5431862}
 --- !u!43 &1617456386
 Mesh:
   m_ObjectHideFlags: 0
@@ -31263,7 +31519,7 @@ Transform:
   - {fileID: 1656208293}
   - {fileID: 1709345509}
   m_Father: {fileID: 675795296}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1655905001
 GameObject:
@@ -36406,7 +36662,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1573600097}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1984637142
 MonoBehaviour:
@@ -36806,6 +37062,144 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dc2e973477ed3647b8cdb0f47e7fb0a, type: 3}
+--- !u!1 &2031091564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2031091567}
+  - component: {fileID: 2031091566}
+  - component: {fileID: 2031091565}
+  m_Layer: 0
+  m_Name: Prompt_Introduction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2031091565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031091564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Valiant Hunter, chosen by the Gods, you will now face the great darkness.
+    The haunter of dreams, the ancient one, the grim soul eater, the Nightmare.
+
+    Let
+    the hunt begin and bring peace to the cosmos.'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
+  m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2031091566
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031091564}
+  m_CullTransparentMesh: 1
+--- !u!224 &2031091567
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031091564}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 365546640}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 12, y: -298}
+  m_SizeDelta: {x: 1250, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2032321506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36897,7 +37291,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 365546640}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -36924,10 +37318,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: To finally destroy the beast you will need the power of your fallen partners.
-    For that, you need their souls and, just then, you can hunt the Nightmare. But
-    be careful, because, if the beast claims their souls, you could end like your
-    former partners.
+  m_text: "You will need the power of the fallen hunters to finally destroy the beast.
+    Absorb their souls to get their strenght so, just then, you can defeat the Nightmare.
+    \nBut be careful, if the beast claims their souls first, you might end up sharing
+    the fate of your brothers."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
   m_sharedMaterial: {fileID: -8297812842350542312, guid: d08265d01790e7d48bc2f493183276b0, type: 2}
@@ -38423,7 +38817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3456542924278478863, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.62
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3456542924278478863, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38431,23 +38825,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3456542924278478863, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 56.94
+      value: 56.31
       objectReference: {fileID: 0}
     - target: {fileID: 3456542924278478863, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99777484
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3456542924278478863, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3456542924278478863, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.06667336
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3456542924278478863, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3456542924278478863, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -38455,7 +38849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3456542924278478863, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -7.646
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3456542924278478863, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
