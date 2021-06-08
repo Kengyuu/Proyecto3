@@ -42,9 +42,11 @@ public class SoundManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot(path, trans);
     }
 
-    public EventInstance PlayEvent(string path)
+    public EventInstance PlayEvent(string path,Vector3 trans)
     {
         EventInstance sound = RuntimeManager.CreateInstance(path);
+        sound.set3DAttributes(RuntimeUtils.To3DAttributes(trans));
+        
         sound.start();
         return sound;
     }

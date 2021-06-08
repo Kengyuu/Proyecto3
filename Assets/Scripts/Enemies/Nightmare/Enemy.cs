@@ -16,6 +16,10 @@ public class Enemy : Entities
     private HudController M_HudController;
     GameManager GM;
 
+    [Header("FMOD Events")]
+    public string restoreLifeEvent;
+    public string stunnedEvent;
+
     void Start()
     {
         blackboard = GetComponent<Enemy_BLACKBOARD>();
@@ -52,11 +56,14 @@ public class Enemy : Entities
         }
     }
 
+   
+
     public override void GetStunned()
     {
         
         base.GetStunned();
-        if(m_ScoreManager.GetEnemyCorpses() > 0)
+        SoundManager.Instance.PlayEvent(stunnedEvent, transform.position);
+        if (m_ScoreManager.GetEnemyCorpses() > 0)
         {
             int lostEnemyCorpses = 1;
             for (int i = 0; i < lostEnemyCorpses; i++)
@@ -94,6 +101,7 @@ public class Enemy : Entities
     protected override void RestoreLife()
     {
         base.RestoreLife();
+        SoundManager.Instance.PlayEvent(restoreLifeEvent, transform.position);
         m_Life = maxLife;
     }
 

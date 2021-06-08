@@ -10,6 +10,8 @@ public class WeakPoint : MonoBehaviour
     private GameManager GM;
     public GameObject particles;
 
+    [Header("FMOD Events")]
+    public string banishEvent;
 
     void Start()
     {
@@ -29,6 +31,7 @@ public class WeakPoint : MonoBehaviour
     {
         if(GM.GetEnemy().GetComponent<HFSM_StunEnemy>().currentState != HFSM_StunEnemy.State.INVOKE)
         {
+            SoundManager.Instance.PlaySound(banishEvent, transform.position);
             enemy.TakeDamage(1);
             gameObject.SetActive(false);
             particles.SetActive(false);

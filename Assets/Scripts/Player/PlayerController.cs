@@ -274,19 +274,22 @@ public class PlayerController : MonoBehaviour
 
             //Reduce Life
             m_Life -= dmg;
+            M_HudController.UpdateHealth();
             if (m_Life > 0)
             {
                 SM.PlaySound(hurtEvent, transform.position);
             }
            
 
-            M_HudController.UpdateHealth();
+            
 
-            if (m_Life <= 0)
+            else if (m_Life <= 0)
             {
                 //Debug.Log($"Player a {m_Life} de vida, GetStunned()");
                 m_Life = 0;
-                SM.PlaySound(incapacitateEvent, transform.position);
+               
+
+               
 
                 //Enemigo con 7+ cuerpos -> game over
                 if (m_ScoreManager.GetEnemyCorpses() >= GM.m_CorpseObjective)
@@ -294,8 +297,11 @@ public class PlayerController : MonoBehaviour
                     
                     //StartCoroutine("PlayerDeath");
                     GM.GetEnemy().GetComponent<HFSM_StunEnemy>().hasWon = true;
+                    SoundManager.Instance.PlaySound(deathEvent, transform.position);
                     return;
                 }
+                else SM.PlaySound(incapacitateEvent, transform.position);
+
                 if (m_ScoreManager.GetPlayerCorpses() > 0)
                 {
                     RemoveCorpse();
@@ -335,7 +341,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator PlayerDeath()
     {
-        SoundManager.Instance.PlaySound(deathEvent, transform.position);
+        
         GM.SetGameState(GameState.GAME_OVER);
         yield return new WaitForSeconds(5f);
         Time.timeScale = 0f;

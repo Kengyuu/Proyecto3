@@ -9,6 +9,14 @@ public class P_AnimatorController : MonoBehaviour
     public FSM_CorpseWander enemyCorpse; 
     public Enemy_BLACKBOARD blackboard;
 
+    [Header("FMOD Events")]
+    public string stepEvent;
+    public string slashEvent;
+    public string deathEvent;
+    public string roarEvent;
+    public string summonEvent;
+
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -18,6 +26,31 @@ public class P_AnimatorController : MonoBehaviour
     void Update()
     {
 
+    }
+    public void PlayStepSound()
+    {
+       
+        SoundManager.Instance.PlayEvent(stepEvent,transform.position);
+    }
+    public void PlaySlashSound()
+    {
+        
+        SoundManager.Instance.PlaySound(slashEvent, transform.position);
+    }
+    public void PlayDeathSound()
+    {
+
+        SoundManager.Instance.PlaySound(deathEvent, transform.position);
+    }
+    public void PlayRoarSound()
+    {
+
+        SoundManager.Instance.PlaySound(roarEvent, transform.position);
+    }
+    public void PlaySummonSound()
+    {
+
+        SoundManager.Instance.PlaySound(summonEvent, transform.position);
     }
     public void WalkAgressiveEnter()
     {
