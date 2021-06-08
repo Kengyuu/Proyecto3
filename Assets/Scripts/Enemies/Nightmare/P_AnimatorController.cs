@@ -60,7 +60,6 @@ public class P_AnimatorController : MonoBehaviour
         int random = Random.Range(0, 2);
 
         animator.SetInteger("WalkRandom", random);
-
     }
     public void WalkAgressiveExit()
     {
@@ -80,6 +79,13 @@ public class P_AnimatorController : MonoBehaviour
     public void AttackStart()
     {
         animator.SetTrigger("StartAttack");
+    }
+
+    public void DecideComboAttack()
+    {
+        int random = Random.Range(0, 2);
+        animator.SetInteger("ComboPhase", random);
+        
     }
 
     public void TransitionWalkCalm(bool factor)
@@ -109,6 +115,7 @@ public class P_AnimatorController : MonoBehaviour
         {
             enemyCorpse.enemy.isStopped = false;
         }
+        enemy.isAttacking = false;
     }
 
     public void ActivateRightArmColliders()

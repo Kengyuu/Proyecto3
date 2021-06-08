@@ -24,6 +24,8 @@ public class FSM_SeekPlayer : MonoBehaviour
     
     float currentProvokeTime = 0f;
     public bool isProvoking = false;
+    public bool isAttacking = false;
+    int currentComboAttack = 0;
     //Transform child;
     public GameObject rightArm;
     public GameObject leftArm;
@@ -138,26 +140,35 @@ public class FSM_SeekPlayer : MonoBehaviour
                
             case State.ATTACKING:
 
-                transform.LookAt(Player.transform,transform.up);
+                //transform.LookAt(Player.transform,transform.up);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 if(isProvoking)
                 {
                     ChangeState(State.PROVOKING);
                 }
-                if (DetectionFunctions.DistanceToTarget(gameObject, Player) > blackboard.distanceToAttack)
-                {
-                    ChangeState(State.SEEKINGPLAYER);
-                }
+                
+                
                 if(currentAttackTime >= attackCooldown)
                 {
-                    ChangeState(State.ATTACKING);
+                    if(isAttacking == false)
+                    {
+                        if (DetectionFunctions.DistanceToTarget(gameObject, Player) > blackboard.distanceToAttack)
+                        {
+                            ChangeState(State.SEEKINGPLAYER);
+                        }
+                        else
+                        {
+                            ChangeState(State.ATTACKING);
+                        }
+                    }
+                    
                 }
                 currentAttackTime += Time.deltaTime;
                 break;
 
             case State.PROVOKING:
-                currentInvokeTime += Time.deltaTime;
-                if(currentInvokeTime >= blackboard.invokeTime)
+                currentProvokeTime += Time.deltaTime;
+                if(currentProvokeTime >= blackboard.provokeTime)
                 {
                     if (DetectionFunctions.PlayerInCone(blackboard.eyesPosition, Player, blackboard.angleDetectionPlayer, blackboard.playerDetectionRadius, layer))
                     {
@@ -167,7 +178,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                     {
                         ChangeState(State.GOTOLASTPLAYERPOSITION);
                     }
-                    currentInvokeTime = 0;
+                    currentProvokeTime = 0;
                 }
                 break;
         }
@@ -190,10 +201,15 @@ public class FSM_SeekPlayer : MonoBehaviour
 
                 break;
             case State.ATTACKING:
-                if(newState != State.ATTACKING)
+                if(newState != State.ATTACKING && newState != State.PROVOKING)
                 {
-                    enemy.isStopped = false;
+                    //enemy.isStopped = false;
                     blackboard.animatorController.WalkAgressiveEnter();
+                    isAttacking = false;
+                }
+                if(newState == State.ATTACKING)
+                {
+                    blackboard.animatorController.DecideComboAttack();
                 }
                     
                 //blackboard.animatorController.TransitionWalkCalm(true);
@@ -224,9 +240,11 @@ public class FSM_SeekPlayer : MonoBehaviour
 
             
             case State.ATTACKING:
-                enemy.isStopped = true;
+                //enemy.isStopped = true;
+                transform.LookAt(Player.transform,transform.up);
                 //Arm.SetActive(true);
                 currentAttackTime = 0f;
+                isAttacking = true;
                 if(Player.GetComponent<PlayerController>().m_Life > 0)
                 {
                     //Arm.GetComponent<Animation>().Play();
