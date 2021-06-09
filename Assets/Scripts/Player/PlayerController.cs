@@ -292,12 +292,11 @@ public class PlayerController : MonoBehaviour
                
 
                 //Enemigo con 7+ cuerpos -> game over
-                if (m_ScoreManager.GetEnemyCorpses() >= GM.m_CorpseObjective)
+                if (m_ScoreManager.GetEnemyCorpses() >= GM.m_CorpseObjective && obj.CompareTag("EnemyArm"))
                 {
-                    
-                    //StartCoroutine("PlayerDeath");
                     GM.GetEnemy().GetComponent<HFSM_StunEnemy>().hasWon = true;
                     SoundManager.Instance.PlaySound(deathEvent, transform.position);
+                    StartCoroutine("PlayerDeath");
                     return;
                 }
                 else SM.PlaySound(incapacitateEvent, transform.position);

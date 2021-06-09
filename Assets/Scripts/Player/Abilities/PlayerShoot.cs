@@ -201,7 +201,7 @@ public class PlayerShoot : MonoBehaviour
             string tag = hit.collider.transform.tag;
             float l_CurrentDistance = Vector3.Distance(hit.transform.position, transform.position);
 
-            if (tag == "Corpse" || tag == "CorpseTutorial")
+            if ((tag == "Corpse" || tag == "CorpseTutorial") && l_CurrentDistance < m_CorpseDetectionDistance)
             {
                 CorpseAbsorb(l_CurrentDistance, hit);
                 return;
@@ -212,11 +212,12 @@ public class PlayerShoot : MonoBehaviour
                 return;
             }
         }
-        /*else
+        else
         {
-            m_IsPlayerShooting = false;
-            crosshairAnim.SetBool("Shot", false);
-        }*/
+            //ResetShoot();
+            /*m_IsPlayerShooting = false;
+            crosshairAnim.SetBool("Shot", false);*/
+        }
         Shoot(0f, "", hit); //Random shoot to AIR
 
         
