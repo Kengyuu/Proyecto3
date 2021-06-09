@@ -23,8 +23,8 @@ public class SettingsMenu : MonoBehaviour
 
     void Start()
     {
-        m_CurrentResolution = 0;
-        m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]); //BORRAR AL HACER LAS OPCIONES!!!!
+        //m_CurrentResolution = 0;
+        //m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]); //BORRAR AL HACER LAS OPCIONES!!!!
 
         //m_CurrentLanguage = 0;
         //m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]); //BORRAR AL HACER LAS OPCIONES!!!!
