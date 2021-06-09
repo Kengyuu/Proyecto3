@@ -6,9 +6,13 @@ public class MainMenu : MonoBehaviour
 {
 	GameManager GM;
 
-	public string m_GameScene;
+	public string m_SlidesScene;
 
 	public Animator m_MaskAnimator;
+
+	public GameObject m_MainMenu;
+	public GameObject m_HuntChoice;
+
 
 
 	void Awake()
@@ -20,6 +24,10 @@ public class MainMenu : MonoBehaviour
 		GM.m_Enemy = null;
 		GM.m_GameObjectSpawner = null;
 		GM.m_WaypointsList = null;
+
+
+		//FOR DEBUG - BORRAR LUEGO
+		//GM.SetGameState(GameState.MAIN_MENU);
 
 	}
 
@@ -39,15 +47,34 @@ public class MainMenu : MonoBehaviour
 	public void StartGame()
 	{
 		m_MaskAnimator.SetTrigger("Hunt Button Press");
-		Invoke("Game", 4f);
+		Invoke("ShowTutorial", 4f);
 	}
 
-	private void Game()
+	private void ShowTutorial()
     {
-		Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
-		GM.SetGameState(GameState.LOADING_TUTORIAL);
-		Initiate.Fade(m_GameScene, Color.black, 3f);
+		m_MainMenu.SetActive(false);
+		m_HuntChoice.SetActive(true);
 	}
+
+	public void PlayGame()
+    {
+		//Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
+		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
+		GM.SetGameState(GameState.GAME);
+		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
+		Initiate.Fade(m_SlidesScene, Color.black, 3f);
+	}
+
+	public void PlayTutorial()
+	{
+		//Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
+		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
+		GM.SetGameState(GameState.TUTORIAL);
+		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
+		Initiate.Fade(m_SlidesScene, Color.black, 3f);
+	}
+
+
 
 	public void Quit()
 	{
@@ -67,12 +94,5 @@ public class MainMenu : MonoBehaviour
 		m_MaskAnimator.SetBool("On Hunt Button", false);
 		Debug.Log("Raton fuera");
     }
-
-
-    private void Update()
-    {
-		Debug.Log($"Bool On Hunt Button: {m_MaskAnimator.GetBool("On Hunt Button")} ");
-	}
-
 
 }
