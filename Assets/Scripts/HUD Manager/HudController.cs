@@ -206,7 +206,8 @@ public class HudController : MonoBehaviour
         m_PlayerCorpses.text = "Player Corpses: " + scoreManager.GetPlayerCorpses().ToString("0");
         m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.GetEnemyCorpses().ToString("0");
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
-        GM.GetEnemy().GetComponent<EnemyPriorities>().ChangePriority();
+        if(GM.GetEnemy() != null)
+            GM.GetEnemy().GetComponent<EnemyPriorities>().ChangePriority();
         //m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
         GM.UpdateModifiers();
         //UpdateHealth(scoreManager.GetPlayerHP());

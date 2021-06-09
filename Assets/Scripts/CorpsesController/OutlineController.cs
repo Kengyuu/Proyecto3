@@ -45,7 +45,7 @@ public class OutlineController : MonoBehaviour
         var cameraCenter = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, Camera.main.nearClipPlane));
         if (Physics.Raycast(cameraCenter, Camera.main.transform.forward, out hit, m_MaxViewDistance))
         {
-            if (hit.transform.CompareTag("Corpse") && Vector3.Distance(transform.position, hit.transform.position) < m_PlayerShoot.m_CorpseDetectionDistance)
+            if ((hit.transform.CompareTag("Corpse") || hit.transform.CompareTag("CorpseTutorial")) && Vector3.Distance(transform.position, hit.transform.position) < m_PlayerShoot.m_CorpseDetectionDistance)
             {
                 foreach(Transform child in hit.transform)
                 {
@@ -59,7 +59,7 @@ public class OutlineController : MonoBehaviour
                 }
             }
 
-            if (hit.collider.CompareTag("WeakPoint") && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_WeakPointDetectionDistance)
+            if ((hit.collider.CompareTag("WeakPoint") || hit.collider.CompareTag("WeakPointTutorial")) && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_WeakPointDetectionDistance)
             {
                 m_Outline = hit.collider.gameObject.GetComponent<Outline>();
                 m_Outline.enabled = true;
