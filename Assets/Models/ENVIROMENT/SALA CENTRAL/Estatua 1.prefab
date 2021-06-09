@@ -89,6 +89,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 396621539216513651}
     m_Modifications:
+    - target: {fileID: 3083948442548889249, guid: 10e5fcb94ec48a14fa0466aa2dc7185b, type: 3}
+      propertyPath: LightsModule.range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3083948442548889249, guid: 10e5fcb94ec48a14fa0466aa2dc7185b, type: 3}
+      propertyPath: LightsModule.intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5159011663431105093, guid: 10e5fcb94ec48a14fa0466aa2dc7185b, type: 3}
       propertyPath: m_Name
       value: StauteFireParticles
