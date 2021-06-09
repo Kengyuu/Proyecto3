@@ -106,6 +106,8 @@ public class PlayerShoot : MonoBehaviour
             Debug.Log("EL JUGADOR TIENE UN CADAVER CANALIZANDO");
             if (Vector3.Distance(transform.position, m_CurrentCorpseAbsortion.transform.position) > (m_CorpseDetectionDistance + m_CorpseDistanceOffset))
             {
+                m_CurrentCorpseAbsortion.GetComponent<CorpseAbsortion>().systemActive = false;
+                m_CurrentCorpseAbsortion.GetComponent<CorpseAbsortion>().StopAbsortion();
                 Debug.Log("JUGADOR ALEJADO DEL CADAVER; DEBERIA PARAR LA ABSORCION!");
                 m_PlayerAnimations.m_Animator.SetBool("Absorb", false);
                 absorbParticles.SetActive(false);

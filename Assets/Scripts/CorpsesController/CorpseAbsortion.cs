@@ -11,7 +11,7 @@ public class CorpseAbsortion : MonoBehaviour {
     public ParticleSystem orbSystem; 
     public ParticleSystem auraSystem;
     //public ParticleSystem lightAuraSystem;
-    bool systemActive = false;
+    public bool systemActive = false;
 
     float absorbDuration;
     float currentAbsorbTime = 0f;
@@ -172,6 +172,12 @@ public class CorpseAbsortion : MonoBehaviour {
 
 
         }
+        else
+        {
+            system.Clear();
+            system.Stop();
+            currentAbsorbTime = 0f;
+        }
         
     }
     public void StopAbsortion()
@@ -180,12 +186,14 @@ public class CorpseAbsortion : MonoBehaviour {
         system.Clear();
         system.Stop();
         currentAbsorbTime = 0f;
-        if(Target != null && Target.CompareTag("AbsorbObjective"))
+        if(Target != null)
+            Target = null;
+        /*if(Target != null && Target.CompareTag("AbsorbObjective"))
         {
             Target.gameObject.SetActive(false);
-            GameObject player = GM.GetPlayer();
+            //GameObject player = GM.GetPlayer();
             //player.GetComponent<PlayerShoot>().ResetShoot();
-        }
+        }*/
         //Target = null;
     }
 }

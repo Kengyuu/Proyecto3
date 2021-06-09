@@ -427,6 +427,11 @@ public class PlayerController : MonoBehaviour
     public void GetStunned()
     {
         m_PlayerStunned = true;
+        if(GetComponent<PlayerShoot>().m_CurrentCorpseAbsortion != null)
+        {
+            GetComponent<PlayerShoot>().m_CurrentCorpseAbsortion.GetComponent<CorpseAbsortion>().systemActive = false;
+            GetComponent<PlayerShoot>().m_CurrentCorpseAbsortion.GetComponent<CorpseAbsortion>().StopAbsortion();
+        }
         DisableInputs();
         EnableDaze();
         Invoke("RestoreLife", m_MaxStunTime);
