@@ -11,6 +11,8 @@ public class ActivateTrailTutorial : MonoBehaviour
     public GameObject trapTrail;
 
     public HudController hudController;
+
+    public GameObject promptStartRoomTwo;
     public GameObject enemy;
     void Start()
     {
@@ -38,5 +40,7 @@ public class ActivateTrailTutorial : MonoBehaviour
             }
             
         }
+        promptStartRoomTwo.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

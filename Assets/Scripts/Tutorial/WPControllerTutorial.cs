@@ -16,6 +16,7 @@ public class WPControllerTutorial : MonoBehaviour
     public GameObject tutorialRoomThree;
 
     public GameObject tutorialRoomFour;
+    public GameObject textCenter;
 
     public GameObject wall;
 
@@ -86,6 +87,7 @@ public class WPControllerTutorial : MonoBehaviour
     {
         wall.SetActive(false);
         tutorialRoomFour.SetActive(true);
+        textCenter.SetActive(false);
     }
 
     public void RestartWeakPoints()
