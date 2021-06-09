@@ -30,7 +30,7 @@ public class P_AnimatorController : MonoBehaviour
     public void PlayStepSound()
     {
        
-        SoundManager.Instance.PlayEvent(stepEvent,transform.position);
+        SoundManager.Instance.PlayEvent(stepEvent,transform);
     }
     public void PlaySlashSound()
     {

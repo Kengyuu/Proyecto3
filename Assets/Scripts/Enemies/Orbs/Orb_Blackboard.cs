@@ -38,6 +38,11 @@ public class Orb_Blackboard : MonoBehaviour
     public float YForceImpulseDamage = 5f;
     public float angleDetectionPlayer = 90;
 
+
+    [Header("FMOD Events")]
+    public string hurtEvent;
+    public string disappearEvent;
+
     private void Start()
     {
         behaviours = GetComponent<EnemyBehaviours>();
@@ -45,6 +50,11 @@ public class Orb_Blackboard : MonoBehaviour
     public void TakeDamage(int damage)
     {
         m_Life -= damage;
+        if (m_Life <= 0)
+        {
+            SoundManager.Instance.PlaySound(disappearEvent, transform.position);
+        }
+        else SoundManager.Instance.PlaySound(hurtEvent, transform.position);
         OrbAuraLight();
     }
 

@@ -17,6 +17,10 @@ public class ActiveTrap : MonoBehaviour
     public ParticleSystem particles;
     ParticleSystem.RotationOverLifetimeModule rotation;
 
+    [Header("FMOD Events")]
+
+    public string activateTrapEvent;
+
     //test
     public bool m_CooldownStarted;
 
@@ -40,7 +44,7 @@ public class ActiveTrap : MonoBehaviour
 
     private void ActivateFloor()
     {
-       
+        SoundManager.Instance.PlayEvent(activateTrapEvent, transform);
         rotation.z = 1.5f;
         // m_Floor1.SetActive(true);
         m_Floor.SetActive(true);

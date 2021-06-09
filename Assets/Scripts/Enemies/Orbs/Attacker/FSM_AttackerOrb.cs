@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using FMODUnity;
+using FMOD;
+using FMOD.Studio;
 public class FSM_AttackerOrb : MonoBehaviour
 {
 
@@ -15,6 +17,7 @@ public class FSM_AttackerOrb : MonoBehaviour
     bool attacking = false;
     bool rotating = true;
     public Image icon;
+    public float floatSoundCooldown = 0f;
 
     [Header("Target")]
     public GameObject target;
@@ -25,6 +28,12 @@ public class FSM_AttackerOrb : MonoBehaviour
 
     GameManager GM;
     public ParticleSystem particles;
+
+    [Header("FMOD Events")]
+    public string floatstringEvent;
+    public string beamChargeEvent;
+    public string beamShootEvent;
+    EventInstance floatEvent;
 
     [Header("State")]
     public State currentState;
@@ -75,7 +84,13 @@ public class FSM_AttackerOrb : MonoBehaviour
                 break;
             case State.WANDERING:
                 blackboard.navMesh.SetDestination(target.transform.position);
+                floatSoundCooldown -= Time.deltaTime;
+                if (floatSoundCooldown <= 0)
+                {
+                    floatEvent = SoundManager.Instance.PlayEvent(floatstringEvent, transform);
 
+                    floatSoundCooldown = 11f;
+                }
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                 {
                     ChangeState(State.WANDERING);
@@ -176,11 +191,15 @@ public class FSM_AttackerOrb : MonoBehaviour
                 target = behaviours.PickRandomWaypointOrb();
                 break;
             case State.ATTACKINGPLAYER:
+                floatEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                floatSoundCooldown = 0f;
                 blackboard.navMesh.isStopped = true;
                 anim.SetBool("AttackOrb", true);
                 break;
 
             case State.ALERT:
+                floatEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                floatSoundCooldown = 0f;
                 blackboard.navMesh.isStopped = true;
                 break;
         }
@@ -191,6 +210,14 @@ public class FSM_AttackerOrb : MonoBehaviour
 
     //ATTACK FUNCTIONS
 
+    public void StartChargeSound()
+    {
+        SoundManager.Instance.PlayEvent(beamChargeEvent, transform);
+    }
+    public void StartShootSound()
+    {
+        SoundManager.Instance.PlayEvent(beamShootEvent, transform);
+    }
     public void ChangeParticleColor()
     {
         if (blackboard.GetOrbHealth() == 3)

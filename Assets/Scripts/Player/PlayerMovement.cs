@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         m_TimeSinceLastBreath -= Time.deltaTime;
         if (m_TimeSinceLastBreath <= 0)
         {
-            breath = SM.PlayEvent(breathEvent,transform.position);
+            breath = SM.PlayEvent(breathEvent,transform);
             m_TimeSinceLastBreath = 42f;
         }
       
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
                 if (m_TimeSinceLastRushedBreath <= 0)
                 {
                      //stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-                    rushedBreath = SM.PlayEvent(rushedBreathEvent,transform.position);
+                    rushedBreath = SM.PlayEvent(rushedBreathEvent,transform);
                     m_TimeSinceLastRushedBreath = 3.7f;
                 }
 

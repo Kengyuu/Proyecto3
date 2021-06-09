@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using FMODUnity;
+using FMOD;
+using FMOD.Studio;
+
 
 public class FSM_TrapSearcher : MonoBehaviour
 {
@@ -16,6 +20,7 @@ public class FSM_TrapSearcher : MonoBehaviour
     GameObject trap;
     public Image icon;
     public float cooldown = 4;
+    public float floatSoundCooldown = 0f;
     [Header("Attack")]
     public List<Transform> rayPoints;
     public Transform castPosition;
@@ -25,9 +30,17 @@ public class FSM_TrapSearcher : MonoBehaviour
     bool rotating = true;
     public bool alert = false;
 
+
+
     GameManager GM;
 
     public ParticleSystem particles;
+
+    [Header("FMOD Events")]
+    public string floatstringEvent;
+    public string beamChargeEvent;
+    public string beamShootEvent;
+    EventInstance floatEvent;
 
     [Header("State")]
     public State currentState;
@@ -82,7 +95,13 @@ public class FSM_TrapSearcher : MonoBehaviour
                 break;
 
             case State.WANDERING:
+                floatSoundCooldown -= Time.deltaTime;
+                if (floatSoundCooldown <= 0)
+                {
+                    floatEvent = SoundManager.Instance.PlayEvent(floatstringEvent, transform);
 
+                    floatSoundCooldown = 11f;
+                }
                 trap = behaviours.SearchObject("PasiveTrap", blackboard.trapDetectionRadius);
                 blackboard.navMesh.SetDestination(target.transform.position);
                 
@@ -118,7 +137,13 @@ public class FSM_TrapSearcher : MonoBehaviour
 
 
             case State.GOINGTOTRAP:
-               
+                floatSoundCooldown -= Time.deltaTime;
+                if (floatSoundCooldown <= 0)
+                {
+                    floatEvent = SoundManager.Instance.PlayEvent(floatstringEvent, transform);
+
+                    floatSoundCooldown = 11f;
+                }
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughTrapRadius)
                 {
                     ChangeState(State.DEACTIVATINGTRAP);
@@ -244,16 +269,22 @@ public class FSM_TrapSearcher : MonoBehaviour
                 break;
 
             case State.DEACTIVATINGTRAP:
+                floatEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                floatSoundCooldown = 0f;
                 transform.LookAt(target.transform.position, transform.up);
                 blackboard.navMesh.isStopped = true;
                 blackboard.cooldownToDeactivateTrap = 3f;
                 break;
 
             case State.ATTACKINGPLAYER:
+                floatEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                floatSoundCooldown = 0f;
                 blackboard.navMesh.isStopped = true;
                 anim.SetBool("AttackOrb", true);
                 break;
             case State.ALERT:
+                floatEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                floatSoundCooldown = 0f;
                 blackboard.navMesh.isStopped = true;
                 break;
 
@@ -268,6 +299,14 @@ public class FSM_TrapSearcher : MonoBehaviour
 
     //ATTACK FUNCTIONS
 
+    public void StartChargeSound()
+    {
+        SoundManager.Instance.PlayEvent(beamChargeEvent, transform);
+    }
+    public void StartShootSound()
+    {
+        SoundManager.Instance.PlayEvent(beamShootEvent, transform);
+    }
     public void ChangeParticleColor()
     {
         if (blackboard.GetOrbHealth() == 3)
@@ -308,10 +347,10 @@ public class FSM_TrapSearcher : MonoBehaviour
 
                 if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance,mask))
                 {
-                    Debug.Log(l_RaycastHit.collider.tag);
+                    
                     if (l_RaycastHit.collider.tag == "Player")
                     {
-                        Debug.Log("Hit by orb");
+                        
                         GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(1, gameObject, blackboard.XForceImpulseDamage, blackboard.YForceImpulseDamage);
                         attacking = false;
 

@@ -22,6 +22,10 @@ public class PassiveTrap : MonoBehaviour
     [SerializeField] public bool m_TrapActive = true;
     [SerializeField] public bool m_TrapCanBeEnabled;
 
+    [Header("FMOD Events")]
+
+    public string activateSpikeEvent;
+
     //test
     public bool m_CooldownStarted;
 
@@ -38,6 +42,7 @@ public class PassiveTrap : MonoBehaviour
         {
             if (col.gameObject.CompareTag("Enemy"))
             {
+                
                 trigger.enabled = false;
                 //target.isStunned = true;
                 DisableTrap();
@@ -52,6 +57,7 @@ public class PassiveTrap : MonoBehaviour
             }
             if (col.gameObject.CompareTag("Player"))
             {
+                
                 trigger.enabled = false;
                 Debug.Log("Daño");
                 DisableTrap();
@@ -64,7 +70,11 @@ public class PassiveTrap : MonoBehaviour
             }
         }
     }
-
+    public void PlayActivateSound()
+    {
+        SoundManager.Instance.PlaySound(activateSpikeEvent, transform.position);
+    }
+ 
     public void DisableTrap()
     {
         gameObject.tag = "TrapDeactivated";

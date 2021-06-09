@@ -23,7 +23,11 @@ public class GameObjectSpawner : MonoBehaviour
     private ScoreManager m_ScoreManager;
 
     private GameManager GM;
-    
+
+    [Header("FMOD Events")]
+
+    public string corpseApeearEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -205,6 +209,7 @@ public class GameObjectSpawner : MonoBehaviour
                 
                 spawnersUsed.Add(spawnPosition);
                 deadBodys[spawnPosition].SetActive(true);
+                SoundManager.Instance.PlayEvent(corpseApeearEvent, deadBodys[spawnPosition].transform);
                 
                 currentBodysSpawned++;
             }

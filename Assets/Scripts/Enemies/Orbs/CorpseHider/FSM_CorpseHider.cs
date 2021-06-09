@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using FMODUnity;
+using FMOD;
+using FMOD.Studio;
 
 public class FSM_CorpseHider : MonoBehaviour
 {
@@ -12,6 +15,12 @@ public class FSM_CorpseHider : MonoBehaviour
     EnemyBehaviours behaviours;
     public Image icon;
     public Animator anim;
+    public float floatSoundCooldown = 0f;
+
+    [Header("FMOD Events")]
+    public string floatstringEvent;
+    EventInstance floatEvent;
+
     [Header("State")]
     public State currentState;
     public enum State { INITIAL, INVOKING, WANDERING, RETURNINGTOENEMY };
@@ -60,6 +69,13 @@ public class FSM_CorpseHider : MonoBehaviour
                 break;
 
             case State.WANDERING:
+                floatSoundCooldown -= Time.deltaTime;
+                if (floatSoundCooldown <= 0)
+                {
+                    floatEvent = SoundManager.Instance.PlayEvent(floatstringEvent, transform);
+
+                    floatSoundCooldown = 11f;
+                }
                 blackboard.navMesh.SetDestination(target.transform.position);
                 if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.navMesh.stoppingDistance)
                 {

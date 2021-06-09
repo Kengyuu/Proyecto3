@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using FMODUnity;
+using FMOD;
+using FMOD.Studio;
+
 
 public class FSM_CorpseSearcher : MonoBehaviour
 {
@@ -13,6 +17,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     public Transform child;
     public LayerMask mask;
     public Image icon;
+    public float floatSoundCooldown = 0f;
 
     [Header("Attack")]
     public List<Transform> rayPoints;
@@ -30,6 +35,12 @@ public class FSM_CorpseSearcher : MonoBehaviour
     private HudController M_HudController;
 
     private Orb_Blackboard blackboard;
+
+    [Header("FMOD Events")]
+    public string floatstringEvent;
+    public string beamChargeEvent;
+    public string beamShootEvent;
+    EventInstance floatEvent;
 
     [Header("State")]
     public State currentState;
@@ -81,10 +92,20 @@ public class FSM_CorpseSearcher : MonoBehaviour
             case State.WANDERING:
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
                 blackboard.navMesh.SetDestination(target.transform.position);
+                floatSoundCooldown -= Time.deltaTime;
+                if (floatSoundCooldown <= 0)
+                {
+                    floatEvent = SoundManager.Instance.PlayEvent(floatstringEvent, transform);
+                    
+                    floatSoundCooldown = 11f;
+                }
+               
 
                 if (alert)
                 {
+                    
                     ChangeState(State.ALERT);
+                    
                     break;
                 }
 
@@ -109,7 +130,9 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer) 
                     && !GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen)
                 {
+                    
                     ChangeState(State.ATTACKINGPLAYER);
+                    
                     break;
                 }
 
@@ -122,9 +145,15 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
 
             case State.GOINGTOCORPSE:
-
+                floatSoundCooldown -= Time.deltaTime;
+                if (floatSoundCooldown <= 0)
+                {
+                    floatEvent = SoundManager.Instance.PlayEvent(floatstringEvent, transform);
+                    floatSoundCooldown = 11f;
+                }
                 if (alert)
                 {
+                    
                     ChangeState(State.ALERT);
                     break;
                 }
@@ -140,6 +169,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 {
                     if (DetectionFunctions.DistanceToTarget(gameObject, target) <= blackboard.closeEnoughCorpseRadius)
                     {
+                        
                         ChangeState(State.GRABBINGCORPSE);
                         break;
                     }
@@ -151,7 +181,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
 
             case State.GRABBINGCORPSE:
-
+                
                 blackboard.cooldownToGrabCorpse -= Time.deltaTime;
                  if (blackboard.cooldownToGrabCorpse <= 0)
                  {
@@ -168,9 +198,16 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
 
             case State.RETURNINGTOENEMY:
-
+                floatSoundCooldown -= Time.deltaTime;
+                if (floatSoundCooldown <= 0)
+                {
+                    floatEvent = SoundManager.Instance.PlayEvent(floatstringEvent, transform);
+                    
+                    floatSoundCooldown = 11f;
+                }
                 if (alert)
                 {
+                    
                     ChangeState(State.ALERT);
                 }
 
@@ -285,6 +322,8 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 break;
 
             case State.GRABBINGCORPSE:
+                floatEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                floatSoundCooldown = 0f;
                 blackboard.navMesh.isStopped = true;
                 blackboard.cooldownToGrabCorpse = 3f;
                 if (target.tag == "Corpse")
@@ -298,10 +337,14 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 blackboard.lastCorpseSeen = corpse;
                 break;
             case State.ATTACKINGPLAYER:
+                floatEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                floatSoundCooldown = 0f;
                 blackboard.navMesh.isStopped = true;
                 anim.SetBool("AttackOrb", true);
                 break;
             case State.ALERT:
+                floatEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                floatSoundCooldown = 0f;
                 blackboard.navMesh.isStopped = true;
                 break;
 
@@ -313,6 +356,14 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     //ATTACK FUNCTIONS
 
+    public void StartChargeSound()
+    {
+        SoundManager.Instance.PlayEvent(beamChargeEvent, transform);
+    }
+    public void StartShootSound()
+    {
+        SoundManager.Instance.PlayEvent(beamShootEvent, transform);
+    }
     public void ChangeParticleColor()
     {
         if (blackboard.GetOrbHealth() == 3)

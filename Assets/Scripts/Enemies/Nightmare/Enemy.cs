@@ -62,7 +62,7 @@ public class Enemy : Entities
     {
         
         base.GetStunned();
-        SoundManager.Instance.PlayEvent(stunnedEvent, transform.position);
+        SoundManager.Instance.PlayEvent(stunnedEvent, transform);
         if (m_ScoreManager.GetEnemyCorpses() > 0)
         {
             int lostEnemyCorpses = 1;
@@ -101,7 +101,7 @@ public class Enemy : Entities
     protected override void RestoreLife()
     {
         base.RestoreLife();
-        if (m_Life <= 0) SoundManager.Instance.PlayEvent(restoreLifeEvent, transform.position);
+        if (m_Life <= 0) SoundManager.Instance.PlayEvent(restoreLifeEvent, transform);
         m_Life = maxLife;
     }
 
