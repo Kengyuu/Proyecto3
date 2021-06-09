@@ -27,9 +27,9 @@ public class Enemy : Entities
         if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         GM = GameManager.Instance;
         maxLife = 3;
-        
-        SpawnWeakPoints();
         m_Life = maxLife;
+        SpawnWeakPoints();
+        
     }
 
     public override void TakeDamage(int dmg)
@@ -101,7 +101,7 @@ public class Enemy : Entities
     protected override void RestoreLife()
     {
         base.RestoreLife();
-        SoundManager.Instance.PlayEvent(restoreLifeEvent, transform.position);
+        if (m_Life <= 0) SoundManager.Instance.PlayEvent(restoreLifeEvent, transform.position);
         m_Life = maxLife;
     }
 

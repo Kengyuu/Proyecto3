@@ -13,6 +13,9 @@ public class OrbSpawner : MonoBehaviour
     public GameObject secondOrb;
     public GameObject thirdOrb;
 
+    [Header("FMOD Events")]
+    public string spawnWatcherEvent;
+
     GameManager GM;
 
     public Image second;
@@ -90,6 +93,7 @@ public class OrbSpawner : MonoBehaviour
                 
                 secondOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 secondOrb.GetComponent<NavMeshAgent>().enabled = true;
+                SoundManager.Instance.PlaySound(spawnWatcherEvent, GM.GetPlayer().transform.position);
                 
             }
             else
@@ -113,6 +117,7 @@ public class OrbSpawner : MonoBehaviour
                 thirdOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 thirdOrb.GetComponent<NavMeshAgent>().enabled = true;
                 GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
+                SoundManager.Instance.PlaySound(spawnWatcherEvent, GM.GetPlayer().transform.position);
             }
             else
             {
