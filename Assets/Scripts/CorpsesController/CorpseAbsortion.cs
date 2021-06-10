@@ -88,10 +88,7 @@ public class CorpseAbsortion : MonoBehaviour {
                 if(Target != null)
                 {
                     ParticlesEmission(system);
-                    if(!Target.CompareTag("AbsorbObjective"))
-                    {
-                        ParticlesEmission(subSystem);
-                    }
+                    ParticlesEmission(subSystem);
                 }
             }
             else

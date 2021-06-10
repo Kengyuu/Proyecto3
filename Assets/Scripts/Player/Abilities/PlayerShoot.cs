@@ -262,7 +262,7 @@ public class PlayerShoot : MonoBehaviour
 
             if (l_CurrentDistance < m_CorpseDetectionDistance)
             {
-                //absorbParticles.SetActive(true);
+                absorbParticles.SetActive(true);
                 M_HudController.hasShot = true;
                 //corpseHit = true;
                 m_CurrentCorpseAbsortion = hit.transform.gameObject;
