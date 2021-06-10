@@ -109,10 +109,12 @@ public class EnemyPriorities : MonoBehaviour
     {
         /*playerSeen = false;
         playerDetected = false;*/
-
-        playerCorpses = m_ScoreManager.GetPlayerCorpses();
-        enemyCorpses = m_ScoreManager.GetEnemyCorpses();
-        remainingCorpses = m_ScoreManager.GetRemainingCorpses();
+        if(m_ScoreManager != null)
+        {
+            playerCorpses = m_ScoreManager.GetPlayerCorpses();
+            enemyCorpses = m_ScoreManager.GetEnemyCorpses();
+            remainingCorpses = m_ScoreManager.GetRemainingCorpses();
+        }
         
         if(playerSeen || playerDetected )
         {
@@ -200,8 +202,12 @@ public class EnemyPriorities : MonoBehaviour
         switch(currState)
         {
             case EnemyStates.SEARCHCORPSES:
-                seekPlayer.Exit();
-                searchCorpse.ReEnter();
+                if(seekPlayer != null)
+                {
+                    seekPlayer.Exit();
+                    searchCorpse.ReEnter();
+                }
+                
                 //GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
                 break;
             case EnemyStates.LOOKFORPLAYER:
