@@ -86,13 +86,13 @@ public class MainMenu : MonoBehaviour
     {
 		m_MaskAnimator.SetBool("On Hunt Button", true);
 		
-		Debug.Log("Raton encima");
+		//Debug.Log("Raton encima");
     }
 
     public void MouseExitHunt()
     {
 		m_MaskAnimator.SetBool("On Hunt Button", false);
-		Debug.Log("Raton fuera");
+		//Debug.Log("Raton fuera");
     }
 
 }

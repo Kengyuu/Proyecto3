@@ -14,7 +14,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
     public GameObject subRoom;
     public GameObject roomDecal;
 
-    bool systemActive = false;
+    public bool systemActive = false;
 
     float absorbDuration;
     float currentAbsorbTime = 0f;

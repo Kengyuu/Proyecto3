@@ -18,6 +18,7 @@ public class GameEndedMenu : MonoBehaviour
     public void ReturnToMainMenu()
     {
         Debug.Log("Volviendo al menú principal");
+        PauseMenu.m_GameIsPaused = false;
         GameManager.Instance.SetGameState(GameState.MAIN_MENU);
         Time.timeScale = 1f;
         Initiate.Fade("MAIN_MENU", Color.black, 2f);

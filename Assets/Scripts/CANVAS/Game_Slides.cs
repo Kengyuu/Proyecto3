@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Game_Slides : MonoBehaviour
 {
@@ -19,7 +20,6 @@ public class Game_Slides : MonoBehaviour
 	{
 		GM = GameManager.Instance;
 		GM.OnStateChange += HandleOnStateChange;
-
 	}
 
 	private void OnDestroy()
@@ -46,7 +46,21 @@ public class Game_Slides : MonoBehaviour
 		}
 
 		StartBlinking();
+		
+	}
 
+	private void StartBlinking()
+	{
+		StopCoroutine("FadeTo");
+		switch (Mathf.RoundToInt(m_PressAnyButton.color.a).ToString())
+		{
+			case "0":
+				StartCoroutine(FadeTo(1.0f, 1.5f));
+				break;
+			case "1":
+				StartCoroutine(FadeTo(0.0f, 1.1f));
+				break;
+		}
 	}
 
 	IEnumerator FadeTo(float aValue, float aTime)
@@ -62,20 +76,6 @@ public class Game_Slides : MonoBehaviour
 		StartBlinking();
 	}
 
-	private void StartBlinking()
-    {
-		StopCoroutine("FadeTo");
-		switch (Mathf.RoundToInt( m_PressAnyButton.color.a ).ToString())
-		{
-			case "0":
-				StartCoroutine(FadeTo(1.0f, 1.5f));
-				break;
-			case "1":
-				StartCoroutine(FadeTo(0.0f, 1.1f));
-				break;
-
-		}	
-	}
 
     private void Update()
     {
@@ -84,15 +84,49 @@ public class Game_Slides : MonoBehaviour
 			switch (GM.gameState)
 			{
 				case GameState.TUTORIAL:
+					//StartCoroutine(LoadAsyncOperation(m_TutorialScene));
 					Invoke("LoadTutorial", 1f);
 					break;
 
 				case GameState.GAME:
+					//StartCoroutine(LoadAsyncOperation(m_GameScene));
 					Invoke("LoadGame", 1f);
 					break;
 			}
 		}
     }
+
+	IEnumerator LoadAsyncOperation(string scene)
+    {
+		//Async scene load
+		int y = SceneManager.GetActiveScene().buildIndex;
+		SceneManager.UnloadSceneAsync(y);
+
+		AsyncOperation level = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+
+		while (level.progress < 1)
+		{
+			yield return new WaitForEndOfFrame();
+		}
+		Debug.Log($"Loading Level { scene }");
+
+		/*switch (GM.gameState)
+		{
+			case GameState.TUTORIAL:
+				
+				
+				break;
+
+			case GameState.GAME:
+				AsyncOperation l_GameLevel = SceneManager.LoadSceneAsync(m_GameScene, LoadSceneMode.Additive);
+                while (!l_GameLevel.isDone)
+                {
+                    yield return null;
+                }
+				Debug.Log($"Loading Level { m_GameScene }");
+				break;
+		}*/
+	}
 
 
 	public void HandleOnStateChange()

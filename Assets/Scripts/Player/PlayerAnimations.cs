@@ -11,39 +11,28 @@ public class PlayerAnimations : MonoBehaviour
     private PlayerShoot m_PlayerShoot;
     private PlayerSpecialAbilities m_PlayerAbility;
 
-
-    private string m_ShootTarget;
-    private float m_CurrentDistance;
-    private RaycastHit m_hit;
-
     private void Start()
     {
         m_PlayerShoot = GameManager.Instance.GetPlayer().GetComponent<PlayerShoot>();
         m_PlayerAbility = GameManager.Instance.GetPlayer().GetComponent<PlayerSpecialAbilities>();
     }
 
-    public void StartShoot(float l_CurrentDistance, string tag, RaycastHit hit)
+    public void StartShoot()
     {
         m_Animator.SetTrigger("Shoot");
-        m_ShootTarget = tag;
-        m_CurrentDistance = l_CurrentDistance;
-        m_hit = hit;
     }
 
 
 
     public void ShootBeam()
     {
-        m_PlayerShoot.ShootBeam(m_CurrentDistance, m_ShootTarget, m_hit);
+        m_PlayerShoot.ShootBeam();
 
     }
 
     public void ResetShoot()
     {
-        Debug.Log("Llamo al resetshoot");
-        /*m_ShootTarget = "";
-        m_CurrentDistance = 0f;
-        hit =;*/
+        //Debug.Log("Llamo al resetshoot");
         m_PlayerShoot.ResetShoot();
     }
 
