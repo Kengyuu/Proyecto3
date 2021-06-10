@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 1, g: 0.45490196, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 0.62
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -30124,7 +30124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 1, g: 0.45490196, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 0.83
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -43642,7 +43642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 1, g: 0.45490196, b: 0, a: 1}
-  outlineWidth: 3
+  outlineWidth: 1.03
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -45136,14 +45136,6 @@ MonoBehaviour:
   m_PlayerCorpses: {fileID: 2501205093359503693}
   m_EnemyCorpses: {fileID: 2501205092794351305}
   m_RemainingCorpses: {fileID: 2501205092985053339}
-  promptList: []
-  movementPrompt: {fileID: 0}
-  runPrompt: {fileID: 0}
-  dashPrompt: {fileID: 0}
-  shootCorpsePrompt: {fileID: 0}
-  shootTrapPrompt: {fileID: 0}
-  shootEnemyPrompt: {fileID: 0}
-  trapRepairPrompt: {fileID: 0}
   hasMoved: 0
   hasRun: 0
   hasDashed: 0
@@ -45160,6 +45152,9 @@ MonoBehaviour:
   m_CanvasPauseMenu: {fileID: 0}
   m_CanvasSettingsMenu: {fileID: 0}
   m_CanvasMinimap: {fileID: 0}
+  nightmareScoreUpEvent: 
+  playerScoreUpEvent: 
+  scoreDownEvent: 
 --- !u!1001 &3320436003399963397
 PrefabInstance:
   m_ObjectHideFlags: 0

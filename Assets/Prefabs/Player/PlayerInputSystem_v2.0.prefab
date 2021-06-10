@@ -29883,6 +29883,7 @@ MonoBehaviour:
   incapacitateEvent: event:/1 HUNTER/005_Hunter_Incapacitate
   healEvent: event:/1 HUNTER/006_Hunter_Heal
   deathEvent: event:/1 HUNTER/007_Hunter_Defeat
+  pauseSoundEvent: event:/5 UI/034_UI_Pause
   m_HealingParticles:
   - {fileID: 3437335098582993794}
   - {fileID: 7320419892449409983}
@@ -29931,6 +29932,8 @@ MonoBehaviour:
   Skill_2: 0
   m_PlayerAnimations: {fileID: 382016680678554699}
   cloakEvent: event:/1 HUNTER/011_Hunter_Cloak
+  unlockedModifierEvent: event:/5 UI/041_UI_ModifierUnlocked
+  lockedModifierEvent: event:/5 UI/040_UI_ModifierLocked
 --- !u!114 &3456542924278478857
 MonoBehaviour:
   m_ObjectHideFlags: 0
