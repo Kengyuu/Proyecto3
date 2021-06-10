@@ -16,6 +16,8 @@ public class SettingsMenu : MonoBehaviour
     public List<string> m_ResolutionList;
     public int m_CurrentResolution;
 
+   
+
     //[Header("Languages")]
     //public TextMeshProUGUI m_LanguageText;
     //public List<string> m_LanguageList;

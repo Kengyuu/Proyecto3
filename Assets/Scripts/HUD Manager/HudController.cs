@@ -34,7 +34,7 @@ public class HudController : MonoBehaviour
     public TextMeshProUGUI m_RemainingCorpses;
     //public TextMeshProUGUI m_PlayerHP;
 
-    [Header("Prompts")]
+    /*[Header("Prompts")]
     public TextMeshProUGUI[] promptList;
     public TextMeshProUGUI movementPrompt;
     public TextMeshProUGUI runPrompt;
@@ -42,7 +42,7 @@ public class HudController : MonoBehaviour
     public TextMeshProUGUI shootCorpsePrompt;
     public TextMeshProUGUI shootTrapPrompt;
     public TextMeshProUGUI shootEnemyPrompt;
-    public TextMeshProUGUI trapRepairPrompt;
+    public TextMeshProUGUI trapRepairPrompt;*/
     
     public bool hasMoved = false;
     public bool hasRun = false;
@@ -67,6 +67,12 @@ public class HudController : MonoBehaviour
     public GameObject m_CanvasPauseMenu;
     public GameObject m_CanvasSettingsMenu;
     public GameObject m_CanvasMinimap;
+
+
+    [Header("FMOD Events")]
+    public string nightmareScoreUpEvent;
+    public string playerScoreUpEvent;
+    public string scoreDownEvent;
 
 
     private void Awake()
@@ -273,7 +279,7 @@ public class HudController : MonoBehaviour
 
     }
 
-    public bool CheckIfPromptActive()
+    /*public bool CheckIfPromptActive()
     {
         foreach (TextMeshProUGUI text in promptList)
         {
@@ -283,7 +289,7 @@ public class HudController : MonoBehaviour
             }
         }
         return false;
-    }
+    }*/
 
     IEnumerator SetToFalse(TextMeshProUGUI text)
     {
@@ -342,10 +348,12 @@ public class HudController : MonoBehaviour
         {
             case "Player":
                 corpseTracker[(int)m_ScoreManager.GetPlayerCorpses()-1].GetComponent<Animator>().SetTrigger("CorpseToPlayer");
+                SoundManager.Instance.PlayEvent(playerScoreUpEvent, GM.GetPlayer().transform);
                 break;
 
             case "Enemy":
                 corpseTracker[corpseTracker.Length - (int)m_ScoreManager.GetEnemyCorpses()].GetComponent<Animator>().SetTrigger("CorpseToNightmare");
+                SoundManager.Instance.PlayEvent(nightmareScoreUpEvent,GM.GetPlayer().transform);
                 break;
         } 
     }
@@ -357,10 +365,12 @@ public class HudController : MonoBehaviour
         {
             case "Enemy":
                 corpseTracker[corpseTracker.Length - (int)m_ScoreManager.GetEnemyCorpses() - 1].GetComponent<Animator>().SetTrigger("Empty");
+                SoundManager.Instance.PlayEvent(scoreDownEvent, GM.GetPlayer().transform);
                 break;
 
             case "Player":
                 corpseTracker[(int)m_ScoreManager.GetPlayerCorpses()].GetComponent<Animator>().SetTrigger("Empty");
+                SoundManager.Instance.PlayEvent(scoreDownEvent, GM.GetPlayer().transform);
                 break;
         }
 

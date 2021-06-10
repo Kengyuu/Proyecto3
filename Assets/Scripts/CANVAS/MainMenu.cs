@@ -13,7 +13,11 @@ public class MainMenu : MonoBehaviour
 	public GameObject m_MainMenu;
 	public GameObject m_HuntChoice;
 
-
+	[Header("FMOD Events")]
+	public string hoverSoundEvent;
+	public string clickSoundEvent;
+	public string startSoundEvent;
+	public string exitSoundEvent;
 
 	void Awake()
 	{
@@ -47,6 +51,7 @@ public class MainMenu : MonoBehaviour
 	public void StartGame()
 	{
 		m_MaskAnimator.SetTrigger("Hunt Button Press");
+		SoundManager.Instance.PlaySound(startSoundEvent, transform.position);
 		Invoke("ShowTutorial", 4f);
 	}
 
@@ -58,6 +63,7 @@ public class MainMenu : MonoBehaviour
 
 	public void PlayGame()
     {
+		
 		//Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
 		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
 		GM.SetGameState(GameState.GAME);
@@ -79,13 +85,14 @@ public class MainMenu : MonoBehaviour
 	public void Quit()
 	{
 		Debug.Log("Cerrando el juego");
+		SoundManager.Instance.PlaySound(exitSoundEvent, transform.position);
 		Application.Quit();
 	}
 
     public void MouseHoverHunt()
     {
 		m_MaskAnimator.SetBool("On Hunt Button", true);
-		
+		SoundManager.Instance.PlaySound(hoverSoundEvent, transform.position);
 		//Debug.Log("Raton encima");
     }
 
@@ -94,5 +101,20 @@ public class MainMenu : MonoBehaviour
 		m_MaskAnimator.SetBool("On Hunt Button", false);
 		//Debug.Log("Raton fuera");
     }
+
+	public void MouseHoverSound()
+    {
+		//Vector3 cuac = Camera.main.ScreenToWorldPoint(transform.position);
+		SoundManager.Instance.PlaySound(hoverSoundEvent, transform.position);
+	}
+
+	public void MouseClickSound()
+	{
+		SoundManager.Instance.PlaySound(clickSoundEvent, transform.position);
+	}
+	public void ExitSound()
+	{
+		SoundManager.Instance.PlaySound(exitSoundEvent, transform.position);
+	}
 
 }

@@ -53,6 +53,8 @@ public class PlayerSpecialAbilities : MonoBehaviour
 
     [Header("FMOD Events")]
     public string cloakEvent;
+    public string unlockedModifierEvent;
+    public string lockedModifierEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -202,6 +204,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
                 chainsInv.gameObject.SetActive(true);
                 chainsInvAnim.SetBool("Chain In", true);
                 q.gameObject.SetActive(false);
+                SoundManager.Instance.PlayEvent(unlockedModifierEvent, transform);
                 invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
                 Skill_1 = false;
             }
@@ -211,6 +214,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
                 Skill_2 = false;
                 chainsTrace.gameObject.SetActive(true);
                 chainsTraceAnim.SetBool("Chain In", true);
+                SoundManager.Instance.PlayEvent(lockedModifierEvent, transform);
                 traceIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
             }
             return;
@@ -223,6 +227,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Enable();
                 chainsInvAnim.SetBool("Chain Out", true);
                 q.gameObject.SetActive(true);
+                SoundManager.Instance.PlayEvent(unlockedModifierEvent, transform);
                 invIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 1f);
                 Skill_1 = true;
             }
@@ -234,6 +239,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
                     //Debug.Log($"Habilidad 2 - pasiva ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = true;
                     chainsTraceAnim.SetBool("Chain Out", true);
+                    SoundManager.Instance.PlayEvent(unlockedModifierEvent, transform);
                     traceIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 1f);
                     m_Camera.cullingMask = m_EnemyTracesLayerMask;
                 }
@@ -247,6 +253,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
                     Skill_2 = false;
                     chainsTrace.gameObject.SetActive(true);
                     chainsTraceAnim.SetBool("Chain In", true);
+                    SoundManager.Instance.PlayEvent(lockedModifierEvent, transform);
                     traceIcon.color = new Color(invIcon.color.r, invIcon.color.g, invIcon.color.b, 0.3f);
                     m_Camera.cullingMask = m_OriginalLayerMask;
                 }

@@ -16,6 +16,7 @@ public class GameObjectSpawner : MonoBehaviour
     int playerSpawnRoom = 5;
     int enemySpawnRoom = 5;
     int currentBodysSpawned = 0;
+    bool firstTime = true;
     List <string> roomTags = new List<string>();
 
     List<int> spawnersUsed = new List<int>();
@@ -209,12 +210,23 @@ public class GameObjectSpawner : MonoBehaviour
                 
                 spawnersUsed.Add(spawnPosition);
                 deadBodys[spawnPosition].SetActive(true);
-                SoundManager.Instance.PlayEvent(corpseApeearEvent, deadBodys[spawnPosition].transform);
+                if (!firstTime)
+                {
+                    SoundManager.Instance.PlayEvent(corpseApeearEvent, deadBodys[spawnPosition].transform);
+                    Debug.Log("ChainSound");
+                }
+                Invoke("FirstTimeFalse", 2);
                 
                 currentBodysSpawned++;
             }
         }
+
+        
         
 
+    }
+    public void FirstTimeFalse()
+    {
+        firstTime = false;
     }
 }

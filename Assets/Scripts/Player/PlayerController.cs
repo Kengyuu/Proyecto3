@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public string incapacitateEvent;
     public string healEvent;
     public string deathEvent;
+    public string pauseSoundEvent;
 
 
 
@@ -214,10 +215,12 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case GameState.MAP:
+               
                 m_PlayerMovement.m_InputSystem.Minimap.Enable();
                 break;
 
             case GameState.PAUSE:
+                SoundManager.Instance.PlaySound(pauseSoundEvent, transform.position);
                 m_PlayerMovement.m_InputSystem.Pause.Enable();
                 break;
         }

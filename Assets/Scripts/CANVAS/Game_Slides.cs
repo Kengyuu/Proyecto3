@@ -16,6 +16,10 @@ public class Game_Slides : MonoBehaviour
 
 	public TextMeshProUGUI m_PressAnyButton;
 
+	[Header("FMOD Events")]
+	public string hoverSoundEvent;
+	public string clickSoundEvent;
+
 	void Awake()
 	{
 		GM = GameManager.Instance;
@@ -85,11 +89,13 @@ public class Game_Slides : MonoBehaviour
 			{
 				case GameState.TUTORIAL:
 					//StartCoroutine(LoadAsyncOperation(m_TutorialScene));
+					MouseClickSound();
 					Invoke("LoadTutorial", 1f);
 					break;
 
 				case GameState.GAME:
 					//StartCoroutine(LoadAsyncOperation(m_GameScene));
+					MouseClickSound();
 					Invoke("LoadGame", 1f);
 					break;
 			}
@@ -144,5 +150,16 @@ public class Game_Slides : MonoBehaviour
 	{
 		GM.SetGameState(GameState.TUTORIAL);
 		Initiate.Fade(m_TutorialScene, Color.black, 5f);
+	}
+
+	public void MouseHoverSound()
+	{
+		//Vector3 cuac = Camera.main.ScreenToWorldPoint(transform.position);
+		SoundManager.Instance.PlaySound(hoverSoundEvent, transform.position);
+	}
+
+	public void MouseClickSound()
+	{
+		SoundManager.Instance.PlaySound(clickSoundEvent, transform.position);
 	}
 }

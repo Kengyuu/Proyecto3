@@ -15,6 +15,9 @@ public class PlayerMap : MonoBehaviour
     [Header("Debug")]
     [SerializeField] bool map_status = false;
 
+    [Header("FMOD Events")]
+    public string mapSoundEvent;
+
     void Start()
     {
         GM = GameManager.Instance;
@@ -53,11 +56,14 @@ public class PlayerMap : MonoBehaviour
             if (map_status)
             {
                 UpdateMapCorpses();
+                SoundManager.Instance.PlaySound(mapSoundEvent, transform.position);
                 GM.SetGameState(GameState.MAP);
                 //m_Map.SetActive(true);
             }
             else
+
             {
+                SoundManager.Instance.PlaySound(mapSoundEvent, transform.position);
                 GM.SetGameState(GameState.GAME);
                 //m_Map.SetActive(false);
             }

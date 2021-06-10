@@ -20,10 +20,11 @@ public class FSM_CorpseWander : MonoBehaviour
     public LayerMask layer;
 
     
+
     //float closeEnoughTarget;
 
-   
- 
+
+
     public enum State {INITIAL, WANDERING, GOINGTOCORPSE, GRABBINGCORPSE};
     public State currentState;
 
@@ -106,6 +107,7 @@ public class FSM_CorpseWander : MonoBehaviour
                     behaviours.GrabCorpse(target, blackboard.cooldownToGrabCorpse);
                     behaviours.AddCorpseToScore();
                     M_HudController.UpdateAddCorpses(gameObject);
+                    
                     blackboard.animatorController.FinishCorpseChanneling();
                     ChangeState(State.WANDERING);
                     break;

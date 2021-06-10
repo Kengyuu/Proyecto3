@@ -9,6 +9,10 @@ public class PauseMenu : MonoBehaviour
     private PlayerMovement m_PlayerMovement;
 
     public static bool m_GameIsPaused;
+    [Header("FMOD Events")]
+    public string hoverSoundEvent;
+    public string clickSoundEvent;
+    public string exitSoundEvent;
 
     void Start()
     {
@@ -56,5 +60,19 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Saliendo del juego");
         Application.Quit();
+    }
+    public void MouseHoverSound()
+    {
+        //Vector3 cuac = Camera.main.ScreenToWorldPoint(transform.position);
+        SoundManager.Instance.PlaySound(hoverSoundEvent, transform.position);
+    }
+
+    public void MouseClickSound()
+    {
+        SoundManager.Instance.PlaySound(clickSoundEvent, transform.position);
+    }
+    public void MouseExitSound()
+    {
+        SoundManager.Instance.PlaySound(exitSoundEvent, transform.position);
     }
 }

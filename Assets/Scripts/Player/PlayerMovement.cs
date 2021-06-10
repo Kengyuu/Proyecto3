@@ -85,14 +85,14 @@ public class PlayerMovement : MonoBehaviour
         if (GetComponent<PlayerController>().m_PlayerStunned)
         {
             breath.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            UnityEngine.Debug.Log("STOP");
+            //UnityEngine.Debug.Log("STOP");
             m_TimeSinceLastBreath = 0;
 
         }
         if (m_InputSystem.Gameplay.Move.ReadValue<Vector2>().magnitude != 0)
         {
             
-            if (!m_RunPressed)
+            if (!m_RunPressed && m_IsGrounded)
             {
                 m_TimeSinceLastFootstep -= Time.deltaTime;
                 if (m_TimeSinceLastFootstep <= 0)

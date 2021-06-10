@@ -60,6 +60,8 @@ public class PlayerShoot : MonoBehaviour
     public string chargeEvent;
     public string shootEvent;
 
+   
+   
 
     // Start is called before the first frame update
     void Start()
@@ -280,6 +282,7 @@ public class PlayerShoot : MonoBehaviour
         m_CurrentCorpseAbsortion = null;
         m_PlayerController.AddCorpse();
         M_HudController.UpdateAddCorpses(gameObject);
+        
         if(OrbEvents.current != null)
             OrbEvents.current.ManageOrbs();
         absorbParticles.SetActive(false);
