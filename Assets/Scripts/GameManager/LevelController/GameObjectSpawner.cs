@@ -213,7 +213,7 @@ public class GameObjectSpawner : MonoBehaviour
                 if (!firstTime)
                 {
                     SoundManager.Instance.PlayEvent(corpseApeearEvent, deadBodys[spawnPosition].transform);
-                    Debug.Log("ChainSound");
+                    //Debug.Log("ChainSound");
                 }
                 Invoke("FirstTimeFalse", 2);
                 

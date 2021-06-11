@@ -114,13 +114,16 @@ public class P_AnimatorController : MonoBehaviour
 
     public void EnemyCanMove()
     {
+        Debug.Log("Enemycanmove");
         if(enemy.gameObject.activeSelf && enemy.enemy != null)
         {
             enemy.enemy.isStopped = false;
+            enemy.enemy.speed = 6;
         }
         if(enemyCorpse.gameObject.activeSelf && enemy.enemy != null)
         {
             enemyCorpse.enemy.isStopped = false;
+            enemy.enemy.speed = 6;
         }
         enemy.isAttacking = false;
     }
@@ -157,10 +160,13 @@ public class P_AnimatorController : MonoBehaviour
         if(enemy.gameObject.activeSelf)
         {
             enemy.enemy.isStopped = true;
+            enemy.enemy.speed = 0;
         }
         if(enemyCorpse.gameObject.activeSelf)
         {
             enemyCorpse.enemy.isStopped = true;
+            enemy.enemy.speed = 0;
+
         }
         
     }
@@ -193,7 +199,7 @@ public class P_AnimatorController : MonoBehaviour
 
     public void FinishCorpseChanneling()
     {
-        animator.ResetTrigger("CanalizingCompleted");
+        animator.SetTrigger("CanalizingCompleted");
         animator.SetBool("State_Canalizing", false);
     }
 

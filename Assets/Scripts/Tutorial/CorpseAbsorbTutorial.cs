@@ -53,6 +53,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
             {
                 ParticlesEmission(system);
                 ParticlesEmission(subSystem);
+                currentAbsorbTime += Time.deltaTime;
             }
         }
     }
@@ -92,7 +93,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
             //Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
         }
         system.SetParticles(particles, length);
-        currentAbsorbTime += Time.deltaTime;
+       
         if(Target.CompareTag("Untagged"))
             currentAbsorbTime = 0;
     }

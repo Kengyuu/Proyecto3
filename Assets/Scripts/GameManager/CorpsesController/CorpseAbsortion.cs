@@ -89,6 +89,7 @@ public class CorpseAbsortion : MonoBehaviour {
                 {
                     ParticlesEmission(system);
                     ParticlesEmission(subSystem);
+                    currentAbsorbTime += Time.deltaTime;
                 }
             }
             else
@@ -181,7 +182,7 @@ public class CorpseAbsortion : MonoBehaviour {
             //Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
         }
         partSystem.SetParticles (particles, length);
-        currentAbsorbTime += Time.deltaTime;
+       
     }
 
     /*void ParticlesEnemies()

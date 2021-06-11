@@ -31,13 +31,14 @@ public class EnemyArmController : MonoBehaviour
         {
 
             GetComponent<BoxCollider>().enabled = false;
-                Debug.Log(name);
+               // Debug.Log(name);
                 //Debug.Log("hit");
                 other.gameObject.GetComponent<PlayerController>().TakeDamage(1, gameObject, XForceImpulseDamage, YForceImpulseDamage);
                 //GetComponent<BoxCollider>().enabled = false;
                 if (other.GetComponent<PlayerController>().m_PlayerStunned)
                 {
                     blackboard.animatorController.PlayerStunned();
+                Debug.Log("Stunned");
                     //GetComponent<Animation>().Play("ArmAnimationPlayerStunned");
                 }
                 //StartCoroutine(WaitToGetStunned());

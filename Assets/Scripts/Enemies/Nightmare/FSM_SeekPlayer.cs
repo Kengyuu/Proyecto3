@@ -179,8 +179,10 @@ public class FSM_SeekPlayer : MonoBehaviour
                     {
                         ChangeState(State.GOTOLASTPLAYERPOSITION);
                     }
+                    
                     currentProvokeTime = 0;
                 }
+                isProvoking = false;
                 break;
         }
 

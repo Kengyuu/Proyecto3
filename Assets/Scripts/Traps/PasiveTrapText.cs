@@ -58,7 +58,7 @@ public class PasiveTrapText : MonoBehaviour
 
         if (m_Controller.m_CooldownStarted && !m_CooldownActive)
         {
-            Debug.Log("ENTRO AQUI");
+           // Debug.Log("ENTRO AQUI");
             m_CooldownActive = true;
             m_Cooldown.fillAmount = 1f;
             m_Cooldown.enabled = true;

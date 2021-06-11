@@ -13,6 +13,8 @@ public class OrbSpawner : MonoBehaviour
     public GameObject secondOrb;
     public GameObject thirdOrb;
 
+    public HFSM_StunEnemy enemy;
+
     [Header("FMOD Events")]
     public string spawnWatcherEvent;
 
@@ -50,6 +52,7 @@ public class OrbSpawner : MonoBehaviour
     private void Update()
     {
         SpawnOrbs(m_ScoreManager.GetPlayerCorpses());
+        Debug.Log(enemy.isInvoking);
     }
     private void OnDestroy()
     {
@@ -84,8 +87,8 @@ public class OrbSpawner : MonoBehaviour
             
             if (!secondOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
-                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
-                Debug.Log("fallo aqui");
+                //GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
+                enemy.isInvoking = true;
 
                 secondOrb.SetActive(true);
                 hud.objectiveAnim.SetTrigger(secondOrb.GetComponent<Orb_Blackboard>().triggerAnim);
@@ -99,7 +102,8 @@ public class OrbSpawner : MonoBehaviour
             }
             else
             {
-                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = false;
+                //GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = false;
+                //enemy.isInvoking = false;
             }
             third.gameObject.SetActive(false);
             thirdOrb.SetActive(false);

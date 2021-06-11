@@ -218,7 +218,7 @@ public class PlayerShoot : MonoBehaviour
 
             if ((tag == "Corpse" || tag == "CorpseTutorial") && l_CurrentDistance < m_CorpseDetectionDistance)
             {
-                Debug.Log("DETECTO UN CADAVER");
+               // Debug.Log("DETECTO UN CADAVER");
                 CorpseAbsorb();
                 return;
             }
@@ -246,7 +246,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void CorpseAbsorb()
     {
-        Debug.Log("Inicio absorción de CUERPO");
+       // Debug.Log("Inicio absorción de CUERPO");
         ShootAnimStart();
         /*
          * - start animacion
