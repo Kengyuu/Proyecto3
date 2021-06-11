@@ -73,8 +73,8 @@ public class CorpseAbsortion : MonoBehaviour {
                         StopAbsortion();
                     }
                     break;
-                case "CorpseOrb":
-                    absorberStunned = Target.GetComponent<FSM_ReturnToSafety_Corpse>().killed;
+                case "AbsorbObjectiveWatcher":
+                    absorberStunned = Target.parent.GetComponent<FSM_ReturnToSafety_Corpse>().killed;
                     if (absorberStunned)
                     {
                         systemActive = false;
@@ -104,12 +104,13 @@ public class CorpseAbsortion : MonoBehaviour {
         {
             case "AbsorbObjective":
                 system = playerSystem.GetComponent<ParticleSystem>();
+                subSystem = playerSubSystem.GetComponent<ParticleSystem>();
                 break;
             case "AbsorbObjectiveEnemy":
                 system = enemySystem.GetComponent<ParticleSystem>();
                 subSystem = enemySubSystem.GetComponent<ParticleSystem>();
                 break;
-            case "CorpseOrb":
+            case "AbsorbObjectiveWatcher":
                 system = orbSystem.GetComponent<ParticleSystem>();
                 subSystem = orbSubSystem.GetComponent<ParticleSystem>();
                 break;
@@ -155,7 +156,7 @@ public class CorpseAbsortion : MonoBehaviour {
 
     void ParticlesEmission(ParticleSystem partSystem)
     {
-        partSystem.transform.LookAt(Target.transform.position, system.gameObject.transform.up);
+        partSystem.transform.LookAt(Target.transform.position, partSystem.gameObject.transform.up);
         int length = partSystem.GetParticles (particles);
         //ParticleSystem.ShapeModule shape = system.shape;
         Vector3 attractorPosition = Target.position;
@@ -172,7 +173,7 @@ public class CorpseAbsortion : MonoBehaviour {
             if(Vector3.Distance(partSystem.transform.TransformPoint(particles[i].position), attractorPosition) < 0.5f)
             {
                 particles[i].position = Target.position;
-                particles[i].velocity = new Vector3(0,0,0);
+                //particles[i].velocity = new Vector3(0,0,0);
                 //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                 particles[i].remainingLifetime =  0;
                 //particles[i].position = Target.position;
@@ -217,7 +218,7 @@ public class CorpseAbsortion : MonoBehaviour {
 
     IEnumerator Wait(float particleDuration)
     {
-        yield return new WaitForSeconds(particleDuration);
+        yield return new WaitForSeconds(4);
         if(systemActive)
         {
             /*if (GM.GetPlayer().GetComponent<PlayerShoot>().m_PlayerAnimations.m_Animator.GetBool("Absorb"))

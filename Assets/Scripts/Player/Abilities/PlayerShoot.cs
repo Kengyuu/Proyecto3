@@ -19,6 +19,8 @@ public class PlayerShoot : MonoBehaviour
     public float m_ShootCastingTime = 2f;
     public float m_MaxShootDistance = 100f;
     private bool m_PlayerCanShoot = true;
+
+    public float absorbDuration = 2.5f;
     public Animator crosshairAnim;
     public GameObject absorbObjective;
 
@@ -268,9 +270,9 @@ public class PlayerShoot : MonoBehaviour
                 m_CurrentCorpseAbsortion = hit.transform.gameObject;
                 m_PlayerAnimations.StartAbsorb();
                 if (hit.collider.CompareTag("Corpse"))
-                    hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(2.3f, absorbObjective);
+                    hit.collider.GetComponent<CorpseAbsortion>().AbsorbParticles(absorbDuration, absorbObjective);
                 if (hit.collider.CompareTag("CorpseTutorial"))
-                    hit.collider.GetComponent<CorpseAbsorbTutorial>().AbsorbParticles(2.3f, absorbObjective);
+                    hit.collider.GetComponent<CorpseAbsorbTutorial>().AbsorbParticles(absorbDuration, absorbObjective);
             }
         }
 

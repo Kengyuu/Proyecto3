@@ -167,6 +167,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
 
             case State.PROVOKING:
+                transform.LookAt(Player.transform,transform.up);
                 currentProvokeTime += Time.deltaTime;
                 if(currentProvokeTime >= blackboard.provokeTime)
                 {

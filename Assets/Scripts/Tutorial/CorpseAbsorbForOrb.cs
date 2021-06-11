@@ -8,7 +8,9 @@ public class CorpseAbsorbForOrb : MonoBehaviour
 
 	public ParticleSystem system;
 
-    public ParticleSystem playerSystem;
+    public ParticleSystem subSystem;
+    public ParticleSystem orbSystem;
+    public ParticleSystem orbSubSystem;
     public ParticleSystem auraSystem;
 
     public float absorbDuration = 2f;
@@ -25,7 +27,10 @@ public class CorpseAbsorbForOrb : MonoBehaviour
 		}
         //lightAuraSystem.Play();
         auraSystem.Play();
+        system = orbSystem.GetComponent<ParticleSystem>();
+        subSystem = orbSubSystem.GetComponent<ParticleSystem>();
         system.Play();
+        subSystem.Play();
         //StartCoroutine(Wait(absorbDuration));
         //Target = null;
     }
@@ -37,30 +42,8 @@ public class CorpseAbsorbForOrb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Target != null)
-        {
-            system.transform.LookAt(Target.transform.position, system.gameObject.transform.up);
-            int length = system.GetParticles (particles);
-            //ParticleSystem.ShapeModule shape = system.shape;
-            Vector3 attractorPosition = Target.position;
-            //shape.length = Vector3.Distance(system.transform.position, attractorPosition);
-            //Debug.Log(attractorPosition + " " + Target.name);
-            for (int i=0; i < length; i++) 
-            {
-                
-                if(Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) < 0.4f)
-                {
-                    particles[i].position = Target.position;
-                    particles[i].velocity = new Vector3(0,0,0);
-                    //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
-                    particles[i].remainingLifetime =  0;
-                    //particles[i].position = Target.position;
-                }
-                //Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
-            }
-            system.SetParticles (particles, length);
-            //currentAbsorbTime += Time.deltaTime;
-        }
+        ParticlesEmission(system);
+        ParticlesEmission(subSystem);
     }
 
     /*public void AbsorbParticles(float particleDuration, GameObject target)
@@ -80,6 +63,29 @@ public class CorpseAbsorbForOrb : MonoBehaviour
         absorbDuration = 1;
     }*/
 
+    void ParticlesEmission(ParticleSystem partSystem)
+    {
+        partSystem.transform.LookAt(Target.transform.position, partSystem.gameObject.transform.up);
+        int length = partSystem.GetParticles (particles);
+        //ParticleSystem.ShapeModule shape = system.shape;
+        Vector3 attractorPosition = Target.position;
+        //shape.length = Vector3.Distance(system.transform.position, attractorPosition);
+        //Debug.Log(attractorPosition + " " + Target.name);
+        for (int i=0; i < length; i++) 
+        {
+            
+            if(Vector3.Distance(partSystem.transform.TransformPoint(particles[i].position), attractorPosition) < 0.4f)
+            {
+                particles[i].position = Target.position;
+                particles[i].velocity = new Vector3(0,0,0);
+                //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
+                particles[i].remainingLifetime =  0;
+                //particles[i].position = Target.position;
+            }
+            //Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
+        }
+        partSystem.SetParticles (particles, length);
+    }
     IEnumerator Wait(float particleDuration)
     {
         yield return new WaitForSeconds(particleDuration);

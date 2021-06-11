@@ -14,6 +14,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     [Header("Parameters")]
     public GameObject target;
     public GameObject corpse;
+    public GameObject absorbParticles;
     public Transform child;
     public LayerMask mask;
     public Image icon;
@@ -66,12 +67,14 @@ public class FSM_CorpseSearcher : MonoBehaviour
         blackboard.navMesh.isStopped = false;
         if(corpse != null)
             corpse.tag = "Corpse";
+        absorbParticles.SetActive(false);
         this.enabled = false;
     }
 
     public void ReEnter()
     {
         this.enabled = true;
+        absorbParticles.SetActive(false);
         currentState = State.INITIAL;
 
     }
@@ -287,6 +290,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 target.tag = "Corpse";
                 blackboard.orbCorpseStored = corpse;
                 blackboard.navMesh.isStopped = false;
+                absorbParticles.SetActive(false);
                 break;
             case State.RETURNINGTOENEMY:
                 if ((blackboard.orbCorpseStored != null) && newState != State.ATTACKINGPLAYER)
@@ -323,6 +327,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
             case State.GRABBINGCORPSE:
                 floatEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                absorbParticles.SetActive(true);
                 floatSoundCooldown = 0f;
                 blackboard.navMesh.isStopped = true;
                 blackboard.cooldownToGrabCorpse = 3f;
@@ -330,7 +335,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 {
                     target.tag = "PickedCorpse";
                 }
-                target.GetComponent<CorpseAbsortion>().AbsorbParticles(blackboard.cooldownToGrabCorpse, gameObject);
+                target.GetComponent<CorpseAbsortion>().AbsorbParticles(blackboard.cooldownToGrabCorpse, absorbParticles);
                 break;
 
             case State.RETURNINGTOENEMY:

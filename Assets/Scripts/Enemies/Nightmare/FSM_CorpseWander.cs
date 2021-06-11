@@ -10,6 +10,7 @@ public class FSM_CorpseWander : MonoBehaviour
     [Header("AI")]
     public NavMeshAgent enemy;
     public GameObject target;
+    public GameObject absorbParticles;
     private Enemy_BLACKBOARD blackboard;
     private HudController M_HudController;
     EnemyBehaviours behaviours;
@@ -36,6 +37,7 @@ public class FSM_CorpseWander : MonoBehaviour
         blackboard = GetComponent<Enemy_BLACKBOARD>();
         behaviours = GetComponent<EnemyBehaviours>();
         enemyType = transform.tag;
+        absorbParticles.SetActive(false);
         if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         //target = behaviours.PickRandomWaypoint();
         //enemy.SetDestination(target.transform.position);
@@ -47,14 +49,17 @@ public class FSM_CorpseWander : MonoBehaviour
         if(corpse != null)
             corpse.tag = "Corpse";
         enemy.isStopped = false;
+        absorbParticles.SetActive(false);
         blackboard.animatorController.CancelCorpseChanneling();
         this.enabled = false;
+        
     }
 
     public void ReEnter()
     {
         this.enabled = true;
         currentState = State.INITIAL;
+        absorbParticles.SetActive(false);
     }
 
     // Update is called once per frame
@@ -127,7 +132,7 @@ public class FSM_CorpseWander : MonoBehaviour
                 break;
             case State.GRABBINGCORPSE:
                 target.tag = "Corpse";
-                
+                absorbParticles.SetActive(false);
                 corpse = null;
                 enemy.isStopped = false;
                 break;
@@ -160,6 +165,7 @@ public class FSM_CorpseWander : MonoBehaviour
 
             case State.GRABBINGCORPSE:
                 GetComponent<HFSM_StunEnemy>().canInvoke = false;
+                absorbParticles.SetActive(true);
                 enemy.isStopped = true;
                 target.tag = "PickedCorpse";
                 blackboard.animatorController.StartCorpseChanneling();

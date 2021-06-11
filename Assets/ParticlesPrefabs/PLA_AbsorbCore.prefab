@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5711484151174329045}
   m_Layer: 3
-  m_Name: AbsorbCore_Player
+  m_Name: PLA_AbsorbCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5437,7 +5437,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10
     size3D: 0
     rotation3D: 0
     gravityModifier:
