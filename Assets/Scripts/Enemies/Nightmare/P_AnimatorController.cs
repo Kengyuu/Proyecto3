@@ -200,6 +200,7 @@ public class P_AnimatorController : MonoBehaviour
     public void StartInvoking()
     {
         animator.SetTrigger("SpawnWatcher");
+        Debug.Log("La vida es una mierda");
     }
 
     public void FinishInvoking()

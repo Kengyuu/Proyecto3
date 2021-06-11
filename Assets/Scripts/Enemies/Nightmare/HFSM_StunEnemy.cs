@@ -12,7 +12,7 @@ public class HFSM_StunEnemy : MonoBehaviour
     public enum State {INITIAL, SEARCHCORPSES, SEEKPLAYER, STUNNED, INVOKE, DEAD, WIN};
     public State currentState;
 
-    
+    private ScoreManager m_ScoreManager;
     public bool isStunned;
     public bool isInvoking;
     public bool canInvoke;
@@ -63,6 +63,7 @@ public class HFSM_StunEnemy : MonoBehaviour
                 ChangeState(State.SEARCHCORPSES);
                 break;
             case State.SEARCHCORPSES:
+
                 if(isDead)
                 {
                     ChangeState(State.DEAD);
@@ -210,7 +211,7 @@ public class HFSM_StunEnemy : MonoBehaviour
                 blackboard.animatorController.Stunned();
                 break;
             case State.INVOKE:
-                //navMesh.isStopped = true;
+                navMesh.isStopped = true;
                 currentInvokeTime = 0f;
                 blackboard.animatorController.StartInvoking();
                 break;

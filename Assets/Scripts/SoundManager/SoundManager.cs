@@ -40,7 +40,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySound(string path, Vector3 trans)
     {
         FMODUnity.RuntimeManager.PlayOneShot(path, trans);
-        UnityEngine.Debug.Log("Sound");
+        //UnityEngine.Debug.Log("Sound");
     }
 
     public EventInstance PlayEvent(string path,Transform trans)

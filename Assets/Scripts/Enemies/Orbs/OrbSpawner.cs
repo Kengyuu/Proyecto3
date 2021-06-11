@@ -85,6 +85,7 @@ public class OrbSpawner : MonoBehaviour
             if (!secondOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
                 GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
+                Debug.Log("fallo aqui");
 
                 secondOrb.SetActive(true);
                 hud.objectiveAnim.SetTrigger(secondOrb.GetComponent<Orb_Blackboard>().triggerAnim);
@@ -109,7 +110,6 @@ public class OrbSpawner : MonoBehaviour
         {
             if (!thirdOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
-                GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
                 thirdOrb.SetActive(true);
                 
                 hud.objectiveAnim.SetTrigger(thirdOrb.GetComponent<Orb_Blackboard>().triggerAnim);
