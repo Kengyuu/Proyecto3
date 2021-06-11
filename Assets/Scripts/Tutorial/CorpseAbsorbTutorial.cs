@@ -28,12 +28,12 @@ public class CorpseAbsorbTutorial : MonoBehaviour
 
     void OnEnable()
     {
-        if (system == null)
+        /*if (system == null)
 			system = GetComponent<ParticleSystem>();
 
 		if (system == null){
 			this.enabled = false;
-		}
+		}*/
         //lightAuraSystem.Play();
         auraSystem.Play();
         Target = null;
@@ -100,6 +100,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
     public void AbsorbOrbParticles(GameObject target)
     {
         system.Play();
+        subSystem.Play();
         Target = target.transform;
         systemActive = true;
         currentAbsorbTime = 0f;
@@ -123,6 +124,8 @@ public class CorpseAbsorbTutorial : MonoBehaviour
         systemActive = false;
         system.Clear();
         system.Stop();
+        subSystem.Clear();
+        subSystem.Stop();
         currentAbsorbTime = 0f;
         if(Target != null && Target.CompareTag("AbsorbObjective"))
         {

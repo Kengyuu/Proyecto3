@@ -116,7 +116,7 @@ public class GameObjectSpawner : MonoBehaviour
     {
         // No queremos jugador que el jugador spawnee en la sala central. Por tanto mientras la sala random sea 5 (sala central)
         // seguirá generando números. 
-        if(GM.m_GamesPlayed == 1)
+        if(GM.m_GamesPlayed == 0)
         {
             playerSpawnRoom = 3;
         }

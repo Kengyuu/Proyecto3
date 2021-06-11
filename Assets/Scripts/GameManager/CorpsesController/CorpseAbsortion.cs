@@ -170,7 +170,7 @@ public class CorpseAbsortion : MonoBehaviour {
             Vector3 particleSpeed = Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) * distanceParticleTarget / (particles[i].remainingLifetime);
             particles[i].position += particleSpeed * Time.deltaTime;*/
             
-            if(Vector3.Distance(partSystem.transform.TransformPoint(particles[i].position), attractorPosition) < 0.5f)
+            if(Vector3.Distance(partSystem.transform.TransformPoint(particles[i].position), attractorPosition) < 0.3f)
             {
                 particles[i].position = Target.position;
                 //particles[i].velocity = new Vector3(0,0,0);
