@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3896901964018958560}
   - component: {fileID: 3896901964018958567}
   m_Layer: 0
-  m_Name: AbsorbParticlesEnemy
+  m_Name: AbsorbParticlesEnemyFinished
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.96
+      scalar: 6
       minScalar: 20
       maxCurve:
         serializedVersion: 2
@@ -5047,7 +5047,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.9
+      scalar: 6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -6244,8 +6244,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.9738407, b: 0.7311321, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 0, g: 0, b: 0, a: 0}
+        key1: {r: 0, g: 0, b: 0, a: 1}
         key2: {r: 1, g: 0, b: 0.054250717, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -6253,7 +6253,7 @@ ParticleSystem:
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 26021
+        ctime1: 65535
         ctime2: 35852
         ctime3: 0
         ctime4: 0

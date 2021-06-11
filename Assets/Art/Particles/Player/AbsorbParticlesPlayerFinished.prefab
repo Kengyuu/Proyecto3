@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2217484711788561163}
   - component: {fileID: 2217484711788561160}
   m_Layer: 0
-  m_Name: AbsorbParticlesPlayer
+  m_Name: AbsorbParticlesPlayerFinished
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 4.26
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.32
+      scalar: 6
       minScalar: 20
       maxCurve:
         serializedVersion: 2
@@ -286,7 +286,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 0.14
-      minScalar: 0.46
+      minScalar: 0.31
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5038,7 +5038,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 6.45
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5207,8 +5207,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.35
-      minScalar: 0.54
+      scalar: 0.09
+      minScalar: 0.31
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5523,7 +5523,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 150
+    maxNumParticles: 100
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -5788,7 +5788,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 17.39
+      scalar: 15
       minScalar: 20
       maxCurve:
         serializedVersion: 2
