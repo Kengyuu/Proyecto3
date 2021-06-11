@@ -218,7 +218,7 @@ public class CorpseAbsortion : MonoBehaviour {
 
     IEnumerator Wait(float particleDuration)
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(particleDuration);
         if(systemActive)
         {
             /*if (GM.GetPlayer().GetComponent<PlayerShoot>().m_PlayerAnimations.m_Animator.GetBool("Absorb"))
