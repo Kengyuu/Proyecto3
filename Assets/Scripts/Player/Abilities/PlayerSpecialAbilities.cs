@@ -144,6 +144,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
         Debug.Log("INVISIBILIDAD TERMINADA / INTERRUMPIDA");
         m_IsPlayerVisibleToEnemy = true;
         m_SliderOnCooldown = true;
+        SoundManager.Instance.PlaySound(cloakEvent, transform.position);
         StartCoroutine(FadeTo(0.0f, 0.9f));
         SwapOpaque();
         Invoke("EnableAbility", m_HiddenPrayerCooldown);
@@ -184,6 +185,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
         cooldownSlider.fillAmount = 1;
         m_AbilityOnCooldown = false;
         m_SliderOnCooldown = false;
+
         if(GM.GetEnemy() != null)
             Physics.IgnoreLayerCollision(this.gameObject.layer, GM.GetEnemy().layer);
     }
