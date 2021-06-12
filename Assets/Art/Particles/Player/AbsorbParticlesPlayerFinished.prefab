@@ -601,7 +601,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 90
+    maxNumParticles: 360
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -747,7 +747,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.15
+      value: 0.09
       mode: 0
       spread: 0
       speed:
@@ -866,7 +866,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 90
       minScalar: 20
       maxCurve:
         serializedVersion: 2
@@ -983,21 +983,30 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
-          inSlope: 0.822043
-          outSlope: 0.822043
+          value: 0
+          inSlope: 9.577926
+          outSlope: 9.577926
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0.18715082
+          outWeight: 0.41818208
+        - serializedVersion: 3
+          time: 0.117115125
+          value: 1
+          inSlope: 0.10045079
+          outSlope: 0.10045079
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.17347124
         - serializedVersion: 3
           time: 1
           value: 0.061535716
-          inSlope: -0.87203187
-          outSlope: -0.87203187
+          inSlope: -1.0045421
+          outSlope: -1.0045421
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.14114124
+          inWeight: 0.1734691
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -5207,8 +5216,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.09
-      minScalar: 0.31
+      scalar: 0.05
+      minScalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5523,7 +5532,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 100
+    maxNumParticles: 200
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -5669,7 +5678,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.28
+      value: 0.17
       mode: 0
       spread: 0
       speed:
@@ -5788,7 +5797,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 20
       minScalar: 20
       maxCurve:
         serializedVersion: 2

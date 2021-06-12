@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7
+      scalar: 0.78
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4814,7 +4814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7314041922611678777}
   m_Layer: 3
-  m_Name: WAT_AbsorbParticles
+  m_Name: WAT_AbsorbCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5121,8 +5121,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.19
-      minScalar: 0.13
+      scalar: 0.22
+      minScalar: 0.16
       maxCurve:
         serializedVersion: 2
         m_Curve:
