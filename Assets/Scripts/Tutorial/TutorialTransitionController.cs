@@ -25,7 +25,8 @@ public class TutorialTransitionController : MonoBehaviour
 
     void LoadLevel()
     {
-        Initiate.Fade("Game", Color.black, 2);
+        GameManager.Instance.SetGameState(GameState.GAME);
+        Initiate.Fade("GAME_SLIDES", Color.black, 1f);
         //SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
     }
 }

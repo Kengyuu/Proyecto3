@@ -52,7 +52,6 @@ public class OrbSpawner : MonoBehaviour
     private void Update()
     {
         SpawnOrbs(m_ScoreManager.GetPlayerCorpses());
-        Debug.Log(enemy.isInvoking);
     }
     private void OnDestroy()
     {

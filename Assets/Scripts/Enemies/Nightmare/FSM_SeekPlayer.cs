@@ -145,6 +145,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 if(isProvoking)
                 {
                     ChangeState(State.PROVOKING);
+                    Debug.Log("Lo provoco yo");
                 }
                 
                 
@@ -152,14 +153,15 @@ public class FSM_SeekPlayer : MonoBehaviour
                 {
                     if(isAttacking == false)
                     {
-                        if (DetectionFunctions.DistanceToTarget(gameObject, Player) > blackboard.distanceToAttack)
+                        if(GetComponent<EnemyPriorities>().playerSeen)
                         {
-                            ChangeState(State.SEEKINGPLAYER);
+                            if (DetectionFunctions.DistanceToTarget(gameObject, Player) > blackboard.distanceToAttack)
+                                ChangeState(State.SEEKINGPLAYER);
+                            else
+                                ChangeState(State.ATTACKING);
                         }
                         else
-                        {
-                            ChangeState(State.ATTACKING);
-                        }
+                            ChangeState(State.GOTOLASTPLAYERPOSITION);
                     }
                     
                 }

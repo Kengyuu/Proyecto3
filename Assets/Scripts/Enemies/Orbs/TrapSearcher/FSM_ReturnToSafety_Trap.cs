@@ -105,6 +105,7 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
                 break;
             case State.DEAD:
                 blackboard.navMesh.isStopped = true;
+                trapSearch.Exit();
                 break;
 
         }

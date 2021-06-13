@@ -84,6 +84,7 @@ public class P_AnimatorController : MonoBehaviour
     public void DecideComboAttack()
     {
         int random = Random.Range(0, 2);
+        
         animator.SetInteger("ComboPhase", random);
         
     }
@@ -114,7 +115,7 @@ public class P_AnimatorController : MonoBehaviour
 
     public void EnemyCanMove()
     {
-        Debug.Log("Enemycanmove");
+        //Debug.Log("Enemycanmove");
         if(enemy.gameObject.activeSelf && enemy.enemy != null)
         {
             enemy.enemy.isStopped = false;
@@ -175,6 +176,7 @@ public class P_AnimatorController : MonoBehaviour
     {
         animator.SetTrigger("PlayerStunned");
         enemy.isProvoking = true;
+        enemy.isAttacking = false;
     }
 
     public void Stunned()

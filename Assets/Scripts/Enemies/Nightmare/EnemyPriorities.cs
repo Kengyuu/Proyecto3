@@ -115,8 +115,8 @@ public class EnemyPriorities : MonoBehaviour
             enemyCorpses = m_ScoreManager.GetEnemyCorpses();
             remainingCorpses = m_ScoreManager.GetRemainingCorpses();
         }
-        
-        if(playerSeen || playerDetected )
+        EnemyStates prevState = currState;
+        if((playerSeen || playerDetected) )
         {
             currState = EnemyStates.LOOKFORPLAYER;
         }
@@ -134,56 +134,62 @@ public class EnemyPriorities : MonoBehaviour
                 }
                 //currState = EnemyStates.LOOKFORPLAYER;
             }
-
-            if(enemyCorpses >= 0 && enemyCorpses <= 5)
+            else
             {
-                if(enemyCorpses < playerCorpses && playerCorpses > 3 && playerCorpses < 7)
+                if(enemyCorpses >= 7)
                 {
                     currState = EnemyStates.LOOKFORPLAYER;
                 }
 
-                /*if(enemyCorpses > playerCorpses && (enemyCorpses - playerCorpses) == 1)
+                if(enemyCorpses >= 0 && enemyCorpses <= 5)
                 {
-                    currState = EnemyStates.LOOKFORPLAYER;
+                    if(enemyCorpses < playerCorpses && playerCorpses < 7)
+                    {
+                        currState = EnemyStates.LOOKFORPLAYER;
+                    }
+
+                    /*if(enemyCorpses > playerCorpses && (enemyCorpses - playerCorpses) == 1)
+                    {
+                        currState = EnemyStates.LOOKFORPLAYER;
+                    }
+                    if(enemyCorpses == playerCorpses && enemyCorpses == 6)
+                    {
+                        currState = EnemyStates.LOOKFORPLAYER;
+                    }*/
                 }
-                if(enemyCorpses == playerCorpses && enemyCorpses == 6)
+
+                
+                
+                if(enemyCorpses >= 0 && enemyCorpses <= 5)
                 {
-                    currState = EnemyStates.LOOKFORPLAYER;
-                }*/
+                    /*if(playerCorpses < enemyCorpses && (enemyCorpses - playerCorpses) > 1)
+                    {
+                        currState = EnemyStates.SEARCHCORPSES;
+                    }*/
+
+                    if (enemyCorpses > playerCorpses)
+                    {
+                        currState = EnemyStates.SEARCHCORPSES;
+                    }
+                    /*if(enemyCorpses == playerCorpses && enemyCorpses == 6)
+                    {
+                        currState = EnemyStates.LOOKFORPLAYER;
+                    }*/
+
+                    if (playerCorpses == enemyCorpses)
+                    {
+                        currState = EnemyStates.SEARCHCORPSES;
+                    }
+
+                    if (playerCorpses >= 7)
+                    {
+                        currState = EnemyStates.SEARCHCORPSES;
+                    }
+                }
+
             }
 
-            if(remainingCorpses == 0)
-            {
-                currState = EnemyStates.LOOKFORPLAYER;
-            }
             
-            if(enemyCorpses >= 0 && enemyCorpses <= 5)
-            {
-                /*if(playerCorpses < enemyCorpses && (enemyCorpses - playerCorpses) > 1)
-                {
-                    currState = EnemyStates.SEARCHCORPSES;
-                }*/
-
-                if (enemyCorpses > playerCorpses && (enemyCorpses - playerCorpses) == 1)
-                {
-                    currState = EnemyStates.LOOKFORPLAYER;
-                }
-                /*if(enemyCorpses == playerCorpses && enemyCorpses == 6)
-                {
-                    currState = EnemyStates.LOOKFORPLAYER;
-                }*/
-
-                if (playerCorpses == enemyCorpses)
-                {
-                    currState = EnemyStates.SEARCHCORPSES;
-                }
-
-                if (playerCorpses >= 7)
-                {
-                    currState = EnemyStates.SEARCHCORPSES;
-                }
-            }
-
             if(enemyCorpses == 6)
             {
                 if(remainingCorpses > 0)
@@ -191,10 +197,16 @@ public class EnemyPriorities : MonoBehaviour
                     currState = EnemyStates.SEARCHCORPSES;
                 }
             }
+
+            if(remainingCorpses == 0)
+            {
+                currState = EnemyStates.LOOKFORPLAYER;
+            }
         }
 
         //changePriority.Invoke(currState);
-        ActivateFSM();
+        if(currState != prevState)
+            ActivateFSM();
     }
 
     public void ActivateFSM()

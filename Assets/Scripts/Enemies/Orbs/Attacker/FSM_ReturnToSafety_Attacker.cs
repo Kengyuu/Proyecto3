@@ -99,6 +99,7 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
                 break;
             case State.DEAD:
                 blackboard.navMesh.isStopped = true;
+                Attacker.Exit();
                 break;
 
         }

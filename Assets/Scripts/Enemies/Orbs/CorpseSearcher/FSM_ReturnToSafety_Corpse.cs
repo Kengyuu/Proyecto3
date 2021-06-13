@@ -112,6 +112,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 break;
             case State.DEAD:
                 blackboard.navMesh.isStopped = true;
+                corpseSearch.Exit();
                 break;
 
         }

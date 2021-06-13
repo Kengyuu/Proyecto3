@@ -99,6 +99,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
                 break;
             case State.DEAD:
                 blackboard.navMesh.isStopped = true;
+                corpseHide.Exit();
                 break;
 
         }

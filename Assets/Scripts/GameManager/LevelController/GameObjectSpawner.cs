@@ -43,7 +43,7 @@ public class GameObjectSpawner : MonoBehaviour
         
         if(GM.m_GamesPlayed == 1)
         {
-            spawnPosition = 10;
+            spawnPosition = 7;
             //playerSpawnRoom = 3;
             //Debug.Log("Sí funciono");
         }
@@ -116,9 +116,9 @@ public class GameObjectSpawner : MonoBehaviour
     {
         // No queremos jugador que el jugador spawnee en la sala central. Por tanto mientras la sala random sea 5 (sala central)
         // seguirá generando números. 
-        if(GM.m_GamesPlayed == 0)
+        if(GM.m_GamesPlayed == 1)
         {
-            playerSpawnRoom = 3;
+            playerSpawnRoom = 2;
         }
         else
         {
@@ -134,7 +134,8 @@ public class GameObjectSpawner : MonoBehaviour
                 // Instantiate(player, roomsController.rooms[i].transform.position, Quaternion.identity);
                 GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().m_CharacterController.enabled = false;
                 GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().transform.position = roomsController.rooms[i].transform.position;
-                GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().transform.rotation = roomsController.rooms[i].transform.rotation;
+                //GameManager.Instance.GetPlayer().transform.SetPositionAndRotation(roomsController.rooms[i].transform.position, roomsController.rooms[i].transform.rotation);
+                Debug.Log(GameManager.Instance.GetPlayer().transform.rotation);
                 GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().m_CharacterController.enabled = true;
             }
         }

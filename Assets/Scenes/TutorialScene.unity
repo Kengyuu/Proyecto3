@@ -7901,7 +7901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &414482633
 Transform:
   m_ObjectHideFlags: 0
@@ -9450,6 +9450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Muro_V3_Arriba_3
       objectReference: {fileID: 0}
+    - target: {fileID: 7701429080284014537, guid: 699e4ba8aba0e8e43b3e0a9f09b4b3c0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 699e4ba8aba0e8e43b3e0a9f09b4b3c0, type: 3}
 --- !u!4 &475026030 stripped
@@ -9643,7 +9647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &482435846
 Transform:
   m_ObjectHideFlags: 0
@@ -10248,6 +10252,10 @@ PrefabInstance:
     - target: {fileID: 190195248275205137, guid: b088548fc00005d4ab0aa11e98130e32, type: 3}
       propertyPath: m_Name
       value: Muro_V3_Arriba_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 190195248275205137, guid: b088548fc00005d4ab0aa11e98130e32, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 713931860213331627, guid: b088548fc00005d4ab0aa11e98130e32, type: 3}
       propertyPath: m_RootOrder
@@ -34695,7 +34703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1573600097
 Transform:
   m_ObjectHideFlags: 0

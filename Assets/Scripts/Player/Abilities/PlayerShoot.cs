@@ -107,7 +107,7 @@ public class PlayerShoot : MonoBehaviour
 
         if (m_PlayerAnimations.m_Animator.GetBool("Absorb") && m_CurrentCorpseAbsortion != null)
         {
-            Debug.Log("EL JUGADOR TIENE UN CADAVER CANALIZANDO");
+            //Debug.Log("EL JUGADOR TIENE UN CADAVER CANALIZANDO");
             if (Vector3.Distance(transform.position, m_CurrentCorpseAbsortion.transform.position) > (m_CorpseDetectionDistance + m_CorpseDistanceOffset))
             {
                 if (m_CurrentCorpseAbsortion.CompareTag("Corpse"))
