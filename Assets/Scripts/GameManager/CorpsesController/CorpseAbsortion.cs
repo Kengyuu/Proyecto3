@@ -13,6 +13,7 @@ public class CorpseAbsortion : MonoBehaviour {
     public ParticleSystem orbSystem; 
     public ParticleSystem orbSubSystem; 
     public ParticleSystem auraSystem;
+    public GameObject disappearParticles;
     //public ParticleSystem lightAuraSystem;
     public bool systemActive = false;
 
@@ -171,10 +172,10 @@ public class CorpseAbsortion : MonoBehaviour {
             Vector3 particleSpeed = Vector3.Distance(system.transform.TransformPoint(particles[i].position), attractorPosition) * distanceParticleTarget / (particles[i].remainingLifetime);
             particles[i].position += particleSpeed * Time.deltaTime;*/
             
-            if(Vector3.Distance(partSystem.transform.TransformPoint(particles[i].position), attractorPosition) < 0.3f)
+            if(Vector3.Distance(partSystem.transform.TransformPoint(particles[i].position), attractorPosition) < 0.5f)
             {
                 particles[i].position = Target.position;
-                //particles[i].velocity = new Vector3(0,0,0);
+                particles[i].velocity = new Vector3(0,0,0);
                 //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                 particles[i].remainingLifetime =  0;
                 //particles[i].position = Target.position;
@@ -231,7 +232,7 @@ public class CorpseAbsortion : MonoBehaviour {
             gameObject.SetActive(false);
             if (GM.m_GameObjectSpawner != null)
                 GM.m_GameObjectSpawner.ClearBodys(gameObject.GetComponent<CorpseControl>().spawnPosition);
-
+            Instantiate(disappearParticles, system.transform.position, Quaternion.identity);
 
         }
         else

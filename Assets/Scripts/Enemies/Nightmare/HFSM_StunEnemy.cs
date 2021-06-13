@@ -145,14 +145,15 @@ public class HFSM_StunEnemy : MonoBehaviour
                 if(currentStunTime >= maxStunTime)
                 {
                     currentStunTime = 0;
-                    if(GetComponent<EnemyPriorities>().currState == EnemyPriorities.EnemyStates.LOOKFORPLAYER)
+                    /*if(GetComponent<EnemyPriorities>().currState == EnemyPriorities.EnemyStates.LOOKFORPLAYER)
                     {
                         ChangeState(State.SEEKPLAYER);
                     }
                     if(GetComponent<EnemyPriorities>().currState == EnemyPriorities.EnemyStates.SEARCHCORPSES)
                     {
                         ChangeState(State.SEARCHCORPSES);
-                    }
+                    }*/
+                    GetComponent<EnemyPriorities>().ChangePriority();
                 }
                 break;
             case State.DEAD:
@@ -184,6 +185,7 @@ public class HFSM_StunEnemy : MonoBehaviour
                 {
                     GetComponent<Enemy>().SpawnWeakPoints();
                 }
+                //GetComponent<EnemyPriorities>().ChangePriority();
                 break;
             case State.INVOKE:
                 //navMesh.isStopped = false;

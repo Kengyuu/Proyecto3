@@ -432,10 +432,10 @@ MonoBehaviour:
   originalMaterial: {fileID: 2100000, guid: d6622f90c95b75f4ebb74df158c4f235, type: 2}
   transparentMaterial: {fileID: 2100000, guid: a760e95edd9f4ca4097f945cb123fa7b, type: 2}
   m_TrapCanBeEnabled: 1
-  m_FloorEnableDelay: 1
+  m_FloorEnableDelay: 0.5
   m_FloorDisableTime: 2
-  m_TrapEnableCooldown: 10
-  m_Floor: {fileID: 114186648535276141}
+  m_TrapEnableCooldown: 5
+  m_Floor: {fileID: 7089161004632484276}
   m_Floor1: {fileID: 6291499373379921266}
   particles: {fileID: 6291499372950713078}
   activateTrapEvent: event:/4 ENVIRONMENT/031_Environment_BeamTrapActivation
@@ -491,7 +491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &114186648535276140
 Transform:
   m_ObjectHideFlags: 0
@@ -521,7 +521,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114186648535276141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -586,6 +586,37 @@ CapsuleCollider:
   m_Height: 2.75
   m_Direction: 1
   m_Center: {x: -0.0000037550926, y: -0.00000011920929, z: -0.0000019967556}
+--- !u!136 &5828624509847631233
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089161005361717212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 3.0537891
+  m_Height: 6.6679544
+  m_Direction: 1
+  m_Center: {x: -0.3928256, y: -1.7053026e-13, z: 2.0709658}
+--- !u!114 &413102837627691297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7089161005361717212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee64d5bd92d91846a632e51d4506b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XForceImpulseDamage: 0.5
+  YForceImpulseDamage: 0.5
+  m_DamageCooldown: 0
+  m_DamageMaxCooldown: 1.5
+  m_AllowDamage: 1
 --- !u!1001 &2179577226984459708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -596,6 +627,10 @@ PrefabInstance:
     - target: {fileID: 8961789076795237384, guid: fb0449e21607b6643a8545814ce9784f, type: 3}
       propertyPath: m_Name
       value: ActiveTrapParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961789076795237384, guid: fb0449e21607b6643a8545814ce9784f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8961789076795237385, guid: fb0449e21607b6643a8545814ce9784f, type: 3}
       propertyPath: m_RootOrder
@@ -649,11 +684,29 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8961789078749205091, guid: fb0449e21607b6643a8545814ce9784f, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961789078749205091, guid: fb0449e21607b6643a8545814ce9784f, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb0449e21607b6643a8545814ce9784f, type: 3}
 --- !u!4 &7089161004632484277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8961789076795237385, guid: fb0449e21607b6643a8545814ce9784f, type: 3}
+  m_PrefabInstance: {fileID: 2179577226984459708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7089161004632484276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8961789076795237384, guid: fb0449e21607b6643a8545814ce9784f, type: 3}
+  m_PrefabInstance: {fileID: 2179577226984459708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7089161005361717212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8961789078749205088, guid: fb0449e21607b6643a8545814ce9784f, type: 3}
   m_PrefabInstance: {fileID: 2179577226984459708}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8024687094081619231

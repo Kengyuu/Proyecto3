@@ -36,7 +36,6 @@ public class ActiveTrap : MonoBehaviour
     {
         if (m_TrapCanBeEnabled)
         {
-           
             m_TrapCanBeEnabled = false;
             Invoke("ActivateFloor", m_FloorEnableDelay);
         }
@@ -48,6 +47,7 @@ public class ActiveTrap : MonoBehaviour
         rotation.z = 1.5f;
         // m_Floor1.SetActive(true);
         m_Floor.SetActive(true);
+        Debug.Log(m_Floor.name);
         Invoke("DisableFloor", m_FloorDisableTime);
     }
 

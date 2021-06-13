@@ -13,7 +13,7 @@ public class Orb_Blackboard : MonoBehaviour
     public NavMeshAgent navMesh;
     public Sprite icon;
     public string triggerAnim;
-    public ParticleSystem particleSystem;
+    public ParticleSystem partSystem;
     public EnemyBehaviours behaviours;
     public GameObject orbSpawner;
     public float cooldownToReappear = 4;
@@ -72,10 +72,10 @@ public class Orb_Blackboard : MonoBehaviour
 
     public void OrbAuraLight()
     {
-        ParticleSystem.ColorOverLifetimeModule colf = particleSystem.colorOverLifetime;
-        ParticleSystem.MainModule main = particleSystem.main;
+        ParticleSystem.MainModule main = partSystem.main;
 
-        colf.color = new Color(main.startColor.color.r, main.startColor.color.g, main.startColor.color.b, (GetOrbHealth()/m_maxLife) * 0.7f );
+        //colf.color = new Color(main.startColor.color.r, main.startColor.color.g, main.startColor.color.b, (GetOrbHealth()/m_maxLife) * 0.7f );
+        main.maxParticles =  (int)Mathf.Round(GetOrbHealth()/m_maxLife) * main.maxParticles;
     }
 }
 

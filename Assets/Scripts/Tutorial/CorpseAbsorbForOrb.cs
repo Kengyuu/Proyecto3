@@ -13,6 +13,7 @@ public class CorpseAbsorbForOrb : MonoBehaviour
     public ParticleSystem orbSubSystem;
     public ParticleSystem auraSystem;
 
+    public GameObject disappearParticles;
     public float absorbDuration = 2f;
     float currentAbsorbTime = 0f;
 	private static ParticleSystem.Particle[] particles = new ParticleSystem.Particle[100];
@@ -90,6 +91,7 @@ public class CorpseAbsorbForOrb : MonoBehaviour
     {
         yield return new WaitForSeconds(particleDuration);
         StopAbsortion();
+        Instantiate(disappearParticles, system.transform.position, Quaternion.identity);
         gameObject.SetActive(false);
         
     }

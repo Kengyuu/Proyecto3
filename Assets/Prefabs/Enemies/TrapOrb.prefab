@@ -24474,7 +24474,7 @@ MonoBehaviour:
   navMesh: {fileID: 5541253848015285192}
   icon: {fileID: 21300000, guid: 4393a6aa71ca41543bd21052e67be99d, type: 3}
   triggerAnim: Spawn Explorer
-  particleSystem: {fileID: 6606285896184586993}
+  partSystem: {fileID: 445891728}
   behaviours: {fileID: 0}
   orbSpawner: {fileID: 0}
   cooldownToReappear: 4
@@ -24491,6 +24491,8 @@ MonoBehaviour:
   XForceImpulseDamage: 5
   YForceImpulseDamage: 5
   angleDetectionPlayer: 45
+  hurtEvent: 
+  disappearEvent: 
 --- !u!114 &5541253848015285193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24510,6 +24512,7 @@ MonoBehaviour:
     m_Bits: 392
   icon: {fileID: 0}
   cooldown: 4
+  floatSoundCooldown: 0
   rayPoints:
   - {fileID: 4989643642013243129}
   - {fileID: 4989643642520968715}
@@ -24521,6 +24524,9 @@ MonoBehaviour:
   anim: {fileID: 5541253848015285195}
   alert: 0
   particles: {fileID: 0}
+  floatstringEvent: 
+  beamChargeEvent: 
+  beamShootEvent: 
   currentState: 0
 --- !u!114 &4989643641727213334
 MonoBehaviour:
@@ -24584,6 +24590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myType: 0
+  m_ScoreManager: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 392

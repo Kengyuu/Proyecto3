@@ -12,6 +12,7 @@ public class OrbSpawner : MonoBehaviour
     public GameObject CorpseOrb;
     public GameObject secondOrb;
     public GameObject thirdOrb;
+    public GameObject spawnParticles;
 
     public HFSM_StunEnemy enemy;
 
@@ -70,7 +71,7 @@ public class OrbSpawner : MonoBehaviour
                 
                 CorpseOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 CorpseOrb.GetComponent<NavMeshAgent>().enabled = true;
-               
+                
 
             }
             secondOrb.SetActive(false);
@@ -96,6 +97,7 @@ public class OrbSpawner : MonoBehaviour
                 
                 secondOrb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
                 secondOrb.GetComponent<NavMeshAgent>().enabled = true;
+                Instantiate(spawnParticles, spawnPosition.position, Quaternion.identity);
                 SoundManager.Instance.PlaySound(spawnWatcherEvent, GM.GetPlayer().transform.position);
                 
             }

@@ -13,6 +13,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
 
     public ParticleSystem playerSubSystem;
     public ParticleSystem auraSystem;
+    public GameObject disappearParticles;
 
     public GameObject subRoom;
     public GameObject roomDecal;
@@ -114,6 +115,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
         if(systemActive)
         {
             StopAbsortion();
+            Instantiate(disappearParticles, system.transform.position, Quaternion.identity);
             gameObject.SetActive(false);
             
         }
