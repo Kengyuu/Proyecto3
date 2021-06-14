@@ -880,6 +880,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Estatua 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2096710299556433599, guid: fb95a008cae698a47981634c7c258606, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     - target: {fileID: 7430743380769262671, guid: fb95a008cae698a47981634c7c258606, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.4102103
@@ -3541,6 +3545,10 @@ PrefabInstance:
     - target: {fileID: 1065881539288793289, guid: fb95a008cae698a47981634c7c258606, type: 3}
       propertyPath: m_Name
       value: Estatua 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2096710299556433599, guid: fb95a008cae698a47981634c7c258606, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     - target: {fileID: 7430743380769262671, guid: fb95a008cae698a47981634c7c258606, type: 3}
       propertyPath: m_LocalScale.x
@@ -7004,6 +7012,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Estatua 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6899643922564547991, guid: dd706addf2151d445ba1cac6a1c55d36, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     - target: {fileID: 7662843147343334089, guid: dd706addf2151d445ba1cac6a1c55d36, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.4102103
@@ -7894,7 +7906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &414482633
 Transform:
   m_ObjectHideFlags: 0
@@ -9801,6 +9813,10 @@ PrefabInstance:
     - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
       propertyPath: m_Name
       value: G_Lights_Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
@@ -13839,6 +13855,10 @@ PrefabInstance:
     - target: {fileID: 1065881539288793289, guid: fb95a008cae698a47981634c7c258606, type: 3}
       propertyPath: m_Name
       value: Estatua 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2096710299556433599, guid: fb95a008cae698a47981634c7c258606, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     - target: {fileID: 7430743380769262671, guid: fb95a008cae698a47981634c7c258606, type: 3}
       propertyPath: m_LocalScale.x
@@ -21316,6 +21336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Estatua 3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6899643922564547991, guid: dd706addf2151d445ba1cac6a1c55d36, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     - target: {fileID: 7662843147343334089, guid: dd706addf2151d445ba1cac6a1c55d36, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.4102103
@@ -24930,6 +24954,10 @@ PrefabInstance:
       propertyPath: LightsModule.intensityCurve.scalar
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5883341727393262743, guid: c5a829db7db0a2d498805bfff3e50e9d, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     - target: {fileID: 7149314747695103815, guid: c5a829db7db0a2d498805bfff3e50e9d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -25356,6 +25384,10 @@ PrefabInstance:
     - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
       propertyPath: m_Name
       value: G_Lights_Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
@@ -27669,7 +27701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1231054677
 Transform:
   m_ObjectHideFlags: 0
@@ -28474,6 +28506,10 @@ PrefabInstance:
     - target: {fileID: 5503124855500218618, guid: dd706addf2151d445ba1cac6a1c55d36, type: 3}
       propertyPath: m_Name
       value: Estatua 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6899643922564547991, guid: dd706addf2151d445ba1cac6a1c55d36, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     - target: {fileID: 7662843147343334089, guid: dd706addf2151d445ba1cac6a1c55d36, type: 3}
       propertyPath: m_LocalScale.x
@@ -29808,6 +29844,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511716803}
     m_Modifications:
+    - target: {fileID: 722293463984736201, guid: 9b88808e81a59fd41be55973de7c81e1, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     - target: {fileID: 5118920037435273907, guid: 9b88808e81a59fd41be55973de7c81e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.4102103
@@ -36364,6 +36404,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
 --- !u!1001 &1669647226
@@ -39904,6 +39948,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 578711811}
     m_Modifications:
+    - target: {fileID: 722293463984736201, guid: 9b88808e81a59fd41be55973de7c81e1, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     - target: {fileID: 5118920037435273907, guid: 9b88808e81a59fd41be55973de7c81e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.4102103
@@ -40094,6 +40142,10 @@ PrefabInstance:
     - target: {fileID: 4391514466350837875, guid: c5a829db7db0a2d498805bfff3e50e9d, type: 3}
       propertyPath: LightsModule.intensityCurve.scalar
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883341727393262743, guid: c5a829db7db0a2d498805bfff3e50e9d, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     - target: {fileID: 7149314747695103815, guid: c5a829db7db0a2d498805bfff3e50e9d, type: 3}
       propertyPath: m_RootOrder
@@ -41841,6 +41893,10 @@ PrefabInstance:
     - target: {fileID: 4391514466350837875, guid: c5a829db7db0a2d498805bfff3e50e9d, type: 3}
       propertyPath: LightsModule.intensityCurve.scalar
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883341727393262743, guid: c5a829db7db0a2d498805bfff3e50e9d, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     - target: {fileID: 7149314747695103815, guid: c5a829db7db0a2d498805bfff3e50e9d, type: 3}
       propertyPath: m_RootOrder
@@ -43922,6 +43978,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
 --- !u!224 &2036037444 stripped
@@ -45386,6 +45446,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 414482633}
     m_Modifications:
+    - target: {fileID: 722293463984736201, guid: 9b88808e81a59fd41be55973de7c81e1, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     - target: {fileID: 5118920037435273907, guid: 9b88808e81a59fd41be55973de7c81e1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5405927
