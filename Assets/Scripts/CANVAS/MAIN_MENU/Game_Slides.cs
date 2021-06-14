@@ -42,7 +42,9 @@ public class Game_Slides : MonoBehaviour
 		m_GameSlide_2.SetActive(false);
 		m_GameSlide_3.SetActive(false);
 
-		
+		Cursor.lockState = CursorLockMode.None;
+
+
 		//DEBUG GAME STATE - BORRAR AL TERMINAR!
 		//GM.SetGameState(GameState.GAME);
 		Debug.Log($"Current GAMESTATE en GAME_SLIDES: {GM.gameState}");
