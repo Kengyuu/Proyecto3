@@ -12,6 +12,7 @@ public class P_AnimatorController : MonoBehaviour
     [Header("FMOD Events")]
     public string stepEvent;
     public string slashEvent;
+    public string roarAttackEvent;
     public string deathEvent;
     public string roarEvent;
     public string summonEvent;
@@ -36,6 +37,12 @@ public class P_AnimatorController : MonoBehaviour
     {
         
         SoundManager.Instance.PlaySound(slashEvent, transform.position);
+    }
+
+    public void PlayroarAttackSound()
+    {
+
+        SoundManager.Instance.PlayEvent(roarAttackEvent, transform);
     }
     public void PlayDeathSound()
     {
