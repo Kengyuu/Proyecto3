@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TutorialTransitionController : MonoBehaviour
 {
+     public TutorialMusic music;
+    public WPControllerTutorial blackholeEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,12 @@ public class TutorialTransitionController : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if(col.CompareTag("Player"))
+        {
+            music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            blackholeEffect.black.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             Invoke("LoadLevel", 1f);
+        }
+            
     }
 
     void LoadLevel()

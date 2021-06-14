@@ -16,6 +16,7 @@ public class P_AnimatorController : MonoBehaviour
     public string deathEvent;
     public string roarEvent;
     public string summonEvent;
+    public string absorbEvent;
 
 
     void Start()
@@ -32,6 +33,11 @@ public class P_AnimatorController : MonoBehaviour
     {
        
         SoundManager.Instance.PlayEvent(stepEvent,transform);
+    }
+    public void PlayAbsorbSound()
+    {
+
+        SoundManager.Instance.PlayEvent(absorbEvent, transform);
     }
     public void PlaySlashSound()
     {

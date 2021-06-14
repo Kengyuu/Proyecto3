@@ -41,6 +41,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
     public string floatstringEvent;
     public string beamChargeEvent;
     public string beamShootEvent;
+    public string absorbEvent;
     EventInstance floatEvent;
 
     [Header("State")]
@@ -329,6 +330,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 floatEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 absorbParticles.SetActive(true);
                 floatSoundCooldown = 0f;
+                SoundManager.Instance.PlayEvent(absorbEvent, transform);
                 blackboard.navMesh.isStopped = true;
                 blackboard.cooldownToGrabCorpse = 3f;
                 if (target.tag == "Corpse")

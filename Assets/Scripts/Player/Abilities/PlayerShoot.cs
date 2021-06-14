@@ -61,9 +61,10 @@ public class PlayerShoot : MonoBehaviour
     [Header("FMOD Events")]
     public string chargeEvent;
     public string shootEvent;
+    public string absorbEvent;
 
-   
-   
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -248,6 +249,7 @@ public class PlayerShoot : MonoBehaviour
     {
        // Debug.Log("Inicio absorción de CUERPO");
         ShootAnimStart();
+        SoundManager.Instance.PlayEvent(absorbEvent, transform);
         /*
          * - start animacion
 	     -> eventos de animacion (FUNCIONES)

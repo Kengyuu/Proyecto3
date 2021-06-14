@@ -36720,6 +36720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af0f2af4d07f1442960164e7ea3f1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music: {fileID: 1506940727}
+  blackholeEffect: {fileID: 468214524}
 --- !u!65 &1697533260
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47144,6 +47146,10 @@ PrefabInstance:
       propertyPath: spawner
       value: 
       objectReference: {fileID: 964265448}
+    - target: {fileID: 1081930041, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1125473118, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_Layer
       value: 5

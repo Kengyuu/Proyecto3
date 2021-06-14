@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD;
+using FMOD.Studio;
 
 public class WPControllerTutorial : MonoBehaviour
 {
@@ -24,6 +27,11 @@ public class WPControllerTutorial : MonoBehaviour
     public GameObject decalLeft;
     public GameObject decalBottom;
     public GameObject decalRight;
+
+    [Header("FMOD Events")]
+
+    private string blackHoleEvent = "event:/4 ENVIRONMENT/WormHole";
+    public EventInstance black;
 
     void Start()
     {
@@ -90,6 +98,7 @@ public class WPControllerTutorial : MonoBehaviour
         tutorialRoomFour.SetActive(true);
         textCenter.SetActive(false);
         blackHole.SetActive(true);
+        black = SoundManager.Instance.PlayEvent(blackHoleEvent, transform);
     }
 
     public void RestartWeakPoints()

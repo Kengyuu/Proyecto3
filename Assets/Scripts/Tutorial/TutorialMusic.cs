@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD;
+using FMOD.Studio;
 
 public class TutorialMusic : MonoBehaviour
 {
     [Header("FMOD Events")]
     public string tutorialEvent;
+    public EventInstance music;
 
 
     void Start()
     {
-        SoundManager.Instance.PlaySound(tutorialEvent, transform.position);
+        music = SoundManager.Instance.PlayEvent(tutorialEvent, transform);
     }
 }
