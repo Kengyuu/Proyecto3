@@ -23,15 +23,16 @@ public class TutorialTransitionController : MonoBehaviour
     {
         if(col.CompareTag("Player"))
         {
-            music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            blackholeEffect.black.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            Invoke("LoadLevel", 1f);
+           
+            Invoke("LoadLevel", 1.5f);
         }
             
     }
 
     void LoadLevel()
     {
+        music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        blackholeEffect.black.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         GameManager.Instance.SetGameState(GameState.GAME);
         Initiate.Fade("GAME_SLIDES", Color.black, 1f);
         //SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);

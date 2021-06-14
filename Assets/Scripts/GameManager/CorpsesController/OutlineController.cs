@@ -59,7 +59,7 @@ public class OutlineController : MonoBehaviour
                 }
             }
 
-            if ((hit.collider.CompareTag("WeakPoint") || hit.collider.CompareTag("WeakPointTutorial")) && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_WeakPointDetectionDistance)
+            if ((hit.collider.CompareTag("WeakPoint") && Vector3.Distance(transform.position, hit.collider.transform.position) < m_PlayerShoot.m_WeakPointDetectionDistance))
             {
                 m_Outline = hit.collider.gameObject.GetComponent<Outline>();
                 m_Outline.enabled = true;

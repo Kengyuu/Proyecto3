@@ -5,7 +5,7 @@
 			<value>WormHole</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{a1c9d3da-7da7-476b-9abd-6fb58d43128b}</destination>
@@ -113,6 +113,7 @@
 	<object class="MixerBusEffectChain" id="{c645accc-ec02-41f2-9f50-2aeeba942efb}">
 		<relationship name="effects">
 			<destination>{1d323e29-9ca7-42ee-adad-648fa7d07d3a}</destination>
+			<destination>{0958f252-49d1-4ebf-80ff-1bf36a29eeac}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{941acb86-d5fb-4ab1-bb53-a0873408f88e}" />
@@ -124,5 +125,13 @@
 	</object>
 	<object class="MixerBusPanner" id="{55677e7f-962f-4f34-8305-bd6949182ff5}" />
 	<object class="MixerBusFader" id="{1d323e29-9ca7-42ee-adad-648fa7d07d3a}" />
+	<object class="SpatialiserEffect" id="{0958f252-49d1-4ebf-80ff-1bf36a29eeac}">
+		<property name="maximumDistance">
+			<value>900</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{1e3a5148-f896-4806-ad13-5b3c24d3ed1c}" />
 </objects>
