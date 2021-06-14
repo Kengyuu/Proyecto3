@@ -28,6 +28,8 @@ public class WPControllerTutorial : MonoBehaviour
     public GameObject decalBottom;
     public GameObject decalRight;
 
+
+
     [Header("FMOD Events")]
 
     private string blackHoleEvent = "event:/4 ENVIRONMENT/WormHole";
@@ -98,7 +100,7 @@ public class WPControllerTutorial : MonoBehaviour
         tutorialRoomFour.SetActive(true);
         textCenter.SetActive(false);
         blackHole.SetActive(true);
-        black = SoundManager.Instance.PlayEvent(blackHoleEvent, transform);
+        black = SoundManager.Instance.PlayEvent(blackHoleEvent, blackHole.transform);
     }
 
     public void RestartWeakPoints()

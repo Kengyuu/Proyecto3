@@ -1479,7 +1479,6 @@ GameObject:
   - component: {fileID: 76001561}
   - component: {fileID: 76001560}
   - component: {fileID: 76001559}
-  - component: {fileID: 76001558}
   - component: {fileID: 76001562}
   m_Layer: 6
   m_Name: WeakPoint
@@ -1503,24 +1502,6 @@ Transform:
   m_Father: {fileID: 468214523}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -52.383, y: -103.739, z: -72.846}
---- !u!114 &76001558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 76001556}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 0.45490196, b: 0, a: 1}
-  outlineWidth: 0.62
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!135 &76001559
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -30930,7 +30911,6 @@ GameObject:
   - component: {fileID: 1392373765}
   - component: {fileID: 1392373764}
   - component: {fileID: 1392373763}
-  - component: {fileID: 1392373762}
   - component: {fileID: 1392373766}
   m_Layer: 6
   m_Name: WeakPoint
@@ -30954,24 +30934,6 @@ Transform:
   m_Father: {fileID: 468214523}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -52.383, y: -103.739, z: -72.846}
---- !u!114 &1392373762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392373760}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 0.45490196, b: 0, a: 1}
-  outlineWidth: 0.83
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!135 &1392373763
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -44699,7 +44661,6 @@ GameObject:
   - component: {fileID: 2087474506}
   - component: {fileID: 2087474505}
   - component: {fileID: 2087474504}
-  - component: {fileID: 2087474503}
   - component: {fileID: 2087474507}
   m_Layer: 6
   m_Name: WeakPoint
@@ -44723,24 +44684,6 @@ Transform:
   m_Father: {fileID: 468214523}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -52.383, y: -103.739, z: -72.846}
---- !u!114 &2087474503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087474501}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 0.45490196, b: 0, a: 1}
-  outlineWidth: 1.03
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!135 &2087474504
 SphereCollider:
   m_ObjectHideFlags: 0
