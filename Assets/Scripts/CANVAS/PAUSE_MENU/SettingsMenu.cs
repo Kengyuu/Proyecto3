@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
+using FMOD;
+using FMOD.Studio;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -16,7 +19,12 @@ public class SettingsMenu : MonoBehaviour
     public List<string> m_ResolutionList;
     public int m_CurrentResolution;
 
-   
+
+    [Header("FMOD")]
+    private VCA VcaControllerMusic;
+    public string Vca_Music;
+
+    [SerializeField] private float vcaVolume;
 
     //[Header("Languages")]
     //public TextMeshProUGUI m_LanguageText;
@@ -25,6 +33,11 @@ public class SettingsMenu : MonoBehaviour
 
     void Start()
     {
+        //FMOD VOLUME:
+        VcaControllerMusic = RuntimeManager.GetVCA("vca:/" + Vca_Music);
+
+
+
         //m_CurrentResolution = 0;
         //m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]); //BORRAR AL HACER LAS OPCIONES!!!!
 
@@ -32,9 +45,15 @@ public class SettingsMenu : MonoBehaviour
         //m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]); //BORRAR AL HACER LAS OPCIONES!!!!
     }
 
+    private void Update()
+    {
+        VcaControllerMusic.getVolume(out vcaVolume);
+
+    }
+
     public void Apply()
     {
-        Debug.Log("Aplicando cambios en las opciones del juego");
+        UnityEngine.Debug.Log("Aplicando cambios en las opciones del juego");
     }
 
 
@@ -42,6 +61,7 @@ public class SettingsMenu : MonoBehaviour
     {
         //Debug.Log($"Entro en ChangeMusicVolume con el valor: {value}");
         m_MusicSlider.value += value;
+        VcaControllerMusic.setVolume((float)m_MusicSlider.value);
     }
 
     public void ChangeEffectVolume(int value)
@@ -52,10 +72,10 @@ public class SettingsMenu : MonoBehaviour
 
     public void ChangeResolution(int value)
     {
-        if(value > 0)
+        if (value > 0)
         {
             m_CurrentResolution++;
-            if(m_CurrentResolution >= m_ResolutionList.Count)
+            if (m_CurrentResolution >= m_ResolutionList.Count)
             {
                 m_CurrentResolution = 0;
             }
@@ -67,7 +87,7 @@ public class SettingsMenu : MonoBehaviour
             m_CurrentResolution--;
             if (m_CurrentResolution < 0)
             {
-                m_CurrentResolution = m_ResolutionList.Count-1;
+                m_CurrentResolution = m_ResolutionList.Count - 1;
             }
             //Debug.Log($"Current resolution index: {m_CurrentResolution}");
             m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]);
