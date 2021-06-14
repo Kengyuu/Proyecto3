@@ -2236,6 +2236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: G_Lights_Parent
       objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
 --- !u!1 &104750296
@@ -2875,6 +2879,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: G_Lights_Parent
       objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
 --- !u!1 &144290037
@@ -3245,6 +3253,10 @@ PrefabInstance:
     - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
       propertyPath: m_Name
       value: G_Lights_Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
@@ -10880,6 +10892,10 @@ PrefabInstance:
     - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
       propertyPath: m_Name
       value: G_Lights_Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
@@ -23051,6 +23067,7 @@ GameObject:
   - component: {fileID: 1011351587}
   - component: {fileID: 1011351588}
   - component: {fileID: 1011351589}
+  - component: {fileID: 1011351590}
   m_Layer: 0
   m_Name: TriggerPrompt
   m_TagString: Untagged
@@ -23098,6 +23115,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textWall: {fileID: 2032528297}
+--- !u!114 &1011351590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011351586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46a33188ca3e8341ac1d16ee228a937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wpControllerTutorial: {fileID: 468214524}
 --- !u!224 &1012143513 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7333189678121459691, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
@@ -27074,6 +27104,10 @@ PrefabInstance:
     - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
       propertyPath: m_Name
       value: G_Lights_Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
@@ -32680,6 +32714,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: G_Lights_Parent
       objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
 --- !u!1 &1468211862
@@ -32737,6 +32775,7 @@ GameObject:
   - component: {fileID: 1469815236}
   - component: {fileID: 1469815238}
   - component: {fileID: 1469815237}
+  - component: {fileID: 1469815239}
   m_Layer: 0
   m_Name: TriggerPropmt
   m_TagString: Untagged
@@ -32784,6 +32823,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8252383, y: 0.2481585, z: 3.4629238}
   m_Center: {x: 0.10962237, y: -0.37592074, z: -1.4315269}
+--- !u!114 &1469815239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469815235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46a33188ca3e8341ac1d16ee228a937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wpControllerTutorial: {fileID: 468214524}
 --- !u!1001 &1469975141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42526,8 +42578,9 @@ GameObject:
   - component: {fileID: 1972087084}
   - component: {fileID: 1972087086}
   - component: {fileID: 1972087085}
+  - component: {fileID: 1972087087}
   m_Layer: 0
-  m_Name: TriggerPropmt (1)
+  m_Name: TriggerPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42573,6 +42626,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8625103, y: 0.2481585, z: 4.54138}
   m_Center: {x: 0.045834307, y: -0.37592074, z: -0.8922988}
+--- !u!114 &1972087087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972087083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46a33188ca3e8341ac1d16ee228a937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wpControllerTutorial: {fileID: 468214524}
 --- !u!1001 &1980779274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43176,6 +43242,10 @@ PrefabInstance:
     - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
       propertyPath: m_Name
       value: G_Lights_Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
@@ -45327,6 +45397,10 @@ PrefabInstance:
     - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
       propertyPath: m_Name
       value: G_Lights_Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189550337049959075, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
+      propertyPath: m_TagString
+      value: Light_Deactivate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b33a55b8b4f5964581420a5ca176d81, type: 3}
