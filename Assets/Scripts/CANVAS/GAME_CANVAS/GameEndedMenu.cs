@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameEndedMenu : MonoBehaviour
 {
+
     public void RestartGame()
     {
         Debug.Log("Reiniciado el juego");

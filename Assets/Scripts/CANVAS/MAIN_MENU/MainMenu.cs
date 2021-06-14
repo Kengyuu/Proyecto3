@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using FMODUnity;
+using FMOD;
+using FMOD.Studio;
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,11 +16,14 @@ public class MainMenu : MonoBehaviour
 	public GameObject m_MainMenu;
 	public GameObject m_HuntChoice;
 
+	public MainMenuMusic music;
+
 	[Header("FMOD Events")]
 	public string hoverSoundEvent;
 	public string clickSoundEvent;
 	public string startSoundEvent;
 	public string exitSoundEvent;
+	
 
 	void Awake()
 	{
@@ -63,9 +69,10 @@ public class MainMenu : MonoBehaviour
 
 	public void PlayGame()
     {
-		
+
 		//Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
 		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
+		music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		GM.SetGameState(GameState.GAME);
 		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
 		Initiate.Fade(m_SlidesScene, Color.black, 3f);
@@ -75,7 +82,9 @@ public class MainMenu : MonoBehaviour
 	{
 		//Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
 		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
+		music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		GM.SetGameState(GameState.TUTORIAL);
+		
 		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
 		Initiate.Fade(m_SlidesScene, Color.black, 3f);
 	}
@@ -84,7 +93,7 @@ public class MainMenu : MonoBehaviour
 
 	public void Quit()
 	{
-		Debug.Log("Cerrando el juego");
+		//Debug.Log("Cerrando el juego");
 		SoundManager.Instance.PlaySound(exitSoundEvent, transform.position);
 		Application.Quit();
 	}

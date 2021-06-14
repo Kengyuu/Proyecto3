@@ -20,4 +20,8 @@ public class ForgeEffects : MonoBehaviour
     {
         if (other.gameObject.tag == "Player") lava.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
+    private void OnDestroy()
+    {
+        lava.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
 }

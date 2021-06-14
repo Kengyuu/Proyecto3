@@ -20,4 +20,9 @@ public class GardenEffects : MonoBehaviour
     {
         if (other.gameObject.tag == "Player") crickets.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
+
+    private void OnDestroy()
+    {
+        crickets.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
 }
