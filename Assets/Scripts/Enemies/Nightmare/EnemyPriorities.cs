@@ -205,7 +205,7 @@ public class EnemyPriorities : MonoBehaviour
         }
 
         //changePriority.Invoke(currState);
-        if(currState != prevState)
+        if(currState != prevState || playerSeen || playerDetected)
             ActivateFSM();
     }
 
