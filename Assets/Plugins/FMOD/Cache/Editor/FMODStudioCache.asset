@@ -21,6 +21,119 @@ MonoBehaviour:
   - Name: 
     Value: 3656
   Exists: 1
+--- !u!114 &-8806879836033919772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/5 UI/040_UI_ModifierLocked
+  m_EditorClassIdentifier: 
+  Path: event:/5 UI/040_UI_ModifierLocked
+  guid: d69f3a289e46c14daeef05d10dd9b98f
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2100
+--- !u!114 &-8476205158762202473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/WormHole
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/WormHole
+  guid: d9ff3361bf5f714da69ee0e36ad06d83
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 900
+  Length: 57694
+--- !u!114 &-8257629880107475958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3 WATCHER/Watcher_Absorb
+  m_EditorClassIdentifier: 
+  Path: event:/3 WATCHER/Watcher_Absorb
+  guid: 2009bed38e035f4ebdc3b42dea9a7b18
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5900
+--- !u!114 &-8246307086741015267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/028_Environment_Corpse disappear
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/028_Environment_Corpse disappear
+  guid: 45602f927a354647a3aac8f63612c455
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2300
+--- !u!114 &-8243757370175696202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637592723936769082
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 3656
+  Exists: 1
 --- !u!114 &-8122353167265847783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +179,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 27208
+--- !u!114 &-7887859590257504584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/005_Hunter_Incapacitate
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/005_Hunter_Incapacitate
+  guid: 0282b07595c52245b041c3202eff6917
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1082
 --- !u!114 &-7884589698479468384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +225,98 @@ MonoBehaviour:
   MinDistance: 9
   MaxDistance: 25
   Length: 1200
+--- !u!114 &-7809480536287437095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3 WATCHER/024_Watcher_BeamFire
+  m_EditorClassIdentifier: 
+  Path: event:/3 WATCHER/024_Watcher_BeamFire
+  guid: 37ff9b316105704abc20a66070f38496
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 9
+  MaxDistance: 25
+  Length: 1099
+--- !u!114 &-7631263773607041277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3 WATCHER/026_Watcher_Disappear
+  m_EditorClassIdentifier: 
+  Path: event:/3 WATCHER/026_Watcher_Disappear
+  guid: b390a42fc2d3a642985d317e9653275c
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2600
+--- !u!114 &-7501402973901704420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/001_Hunter_Walk_D
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/001_Hunter_Walk_D
+  guid: dc06fba587df6d418ad277f2e2147bdc
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 444
+--- !u!114 &-7447972389251626859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/5 UI/035_UI_StartGame
+  m_EditorClassIdentifier: 
+  Path: event:/5 UI/035_UI_StartGame
+  guid: e063f6aac5636045a3b86667ced9588a
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 610
 --- !u!114 &-7373560259787487938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +340,52 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1800
+--- !u!114 &-7363747775624024743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/5 UI/033_UI_Select
+  m_EditorClassIdentifier: 
+  Path: event:/5 UI/033_UI_Select
+  guid: ef22f4220d55784296cfd7241e0d8cf5
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 84
+--- !u!114 &-7320409175274091774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2 NIGHTMARE/017_Nightmare_Weak Point Heal
+  m_EditorClassIdentifier: 
+  Path: event:/2 NIGHTMARE/017_Nightmare_Weak Point Heal
+  guid: 905f862f54dc494f84b946d79bd7cc43
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 9
+  MaxDistance: 25
+  Length: 3500
 --- !u!114 &-7112962190423182881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +430,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 444
+--- !u!114 &-7074810272921759852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/013_Hunter_RushedBreath
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/013_Hunter_RushedBreath
+  guid: c43730a82cc9004ea2b6673545230691
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3600
 --- !u!114 &-6998121179404394343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +476,98 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1483
+--- !u!114 &-6994562068585562003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3 WATCHER/025_Watcher_Hurt
+  m_EditorClassIdentifier: 
+  Path: event:/3 WATCHER/025_Watcher_Hurt
+  guid: 09e7b7ec3709e1408c97d096efc00b83
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1200
+--- !u!114 &-6951828776045352923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/002_Hunter_Run_H
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/002_Hunter_Run_H
+  guid: ac5d7d4dc038c444b8eac125f79da6f7
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 200
+--- !u!114 &-6743604754332894998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/006_Hunter_Heal
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/006_Hunter_Heal
+  guid: f926c1b444e5eb4b9fa1cd9d8743b744
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1410
+--- !u!114 &-6539206766939656599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/003_Hunter_Dash
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/003_Hunter_Dash
+  guid: a67943c30abe8b4e9da8a58d35d86d70
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 869
 --- !u!114 &-6522557504646463579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +591,48 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 200
+--- !u!114 &-6463919587514305288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/Crickets
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/Crickets
+  guid: 00fd9d693177dc478bcd04f7e1c3abb0
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 27208
+--- !u!114 &-6238788743958635670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637592798990376491
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-6232903239075100117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +656,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 820
+--- !u!114 &-5811691396580026765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/CHASE_MUSIC
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/CHASE_MUSIC
+  guid: 5681880f0c123d4f832c56a1a2bb8de8
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 200933
 --- !u!114 &-5774624738131233700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +702,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1436
+--- !u!114 &-5564910919512938542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3 WATCHER/022_Watcher_Float
+  m_EditorClassIdentifier: 
+  Path: event:/3 WATCHER/022_Watcher_Float
+  guid: 6f2371bba4b6724f975777ea29595c34
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 9
+  MaxDistance: 25
+  Length: 10659
 --- !u!114 &-5564424669637325073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +788,52 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-4977020044045987230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/009_Hunter_Beam Fire
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/009_Hunter_Beam Fire
+  guid: 3e68858955f7344bb10c83f15293a0b8
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3765
+--- !u!114 &-4929612036692459597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2 NIGHTMARE/021_Nightmare_SummonWatcher
+  m_EditorClassIdentifier: 
+  Path: event:/2 NIGHTMARE/021_Nightmare_SummonWatcher
+  guid: 20645e95c89dae4b85680659373cd3e3
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3000
 --- !u!114 &-4697676071656032463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +878,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 40524
+--- !u!114 &-4643472442270582827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/5 UI/032_UI_ChangeSelection
+  m_EditorClassIdentifier: 
+  Path: event:/5 UI/032_UI_ChangeSelection
+  guid: 93ad0d4760e11c4ea09d7fae95bb4a0c
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 563
 --- !u!114 &-4527817613961361662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +920,75 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-4368644088170303343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/030_Environment_SpikeTrapActivation
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/030_Environment_SpikeTrapActivation
+  guid: 40496be7c86f414b9615319df49c2405
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1483
+--- !u!114 &-4130202224955637684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3 WATCHER/023_Watcher_BeamCharge
+  m_EditorClassIdentifier: 
+  Path: event:/3 WATCHER/023_Watcher_BeamCharge
+  guid: e6562fae5523494f9574843df41ff06f
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 9
+  MaxDistance: 25
+  Length: 1200
+--- !u!114 &-4105296924434168793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/012_Hunter_NormalBreath
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/012_Hunter_NormalBreath
+  guid: 15040b9cf7a5b64791f3e303684a100f
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 37084
 --- !u!114 &-3944040710348255330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +1012,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2736
+--- !u!114 &-3617088556887981773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/Absorb
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/Absorb
+  guid: b0a6535d8c1bf0479b710b50d59d0dc2
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4059
 --- !u!114 &-3499266613362413445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +1080,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5900
+--- !u!114 &-3156030696648391829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2 NIGHTMARE/019_Nightmare_Defeat
+  m_EditorClassIdentifier: 
+  Path: event:/2 NIGHTMARE/019_Nightmare_Defeat
+  guid: a51cbf2bd2838d4fadae186913d8f193
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5558
 --- !u!114 &-2872172294258607501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +1172,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1121
+--- !u!114 &-1998030435101672674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/5 UI/041_UI_ModifierUnlocked
+  m_EditorClassIdentifier: 
+  Path: event:/5 UI/041_UI_ModifierUnlocked
+  guid: b9949ddd199d6a4d9bd73f7f08435911
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1150
 --- !u!114 &-1661759814571234138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,6 +1241,29 @@ MonoBehaviour:
   MinDistance: 9
   MaxDistance: 25
   Length: 1099
+--- !u!114 &-1522993358363583766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2 NIGHTMARE/015_Nightmare_Slash
+  m_EditorClassIdentifier: 
+  Path: event:/2 NIGHTMARE/015_Nightmare_Slash
+  guid: 4d2de3680c7667488bb0b31a3613876d
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 880
 --- !u!114 &-1493622303705982140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,6 +1287,52 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1410
+--- !u!114 &-1124873006856466849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/001_Hunter_Walk_H
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/001_Hunter_Walk_H
+  guid: 71558e42c05e5046a0670be4bbb01eb5
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 200
+--- !u!114 &-987769166858028536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2 NIGHTMARE/014_Nightmare_Walk
+  m_EditorClassIdentifier: 
+  Path: event:/2 NIGHTMARE/014_Nightmare_Walk
+  guid: 6a2dc026c0411b40a34d23ed7d6c8483
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 9
+  MaxDistance: 25
+  Length: 860
 --- !u!114 &-888464075285295646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,6 +1356,29 @@ MonoBehaviour:
   MinDistance: 9
   MaxDistance: 25
   Length: 2489
+--- !u!114 &-720364590764191265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/007_Hunter_Defeat
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/007_Hunter_Defeat
+  guid: ada22cc5599a7345a2881653fa85079e
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2768
 --- !u!114 &-4901531312454227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,70 +1415,70 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 3012581398631862485}
-  - {fileID: -4527817613961361662}
+  - {fileID: -8243757370175696202}
+  - {fileID: -6238788743958635670}
   EditorEvents:
-  - {fileID: 2397891329933924193}
-  - {fileID: -2862688464383886857}
-  - {fileID: 5356948505134760720}
-  - {fileID: 12481434093094410}
-  - {fileID: -3944040710348255330}
-  - {fileID: 2257571326021152151}
-  - {fileID: 3889509714144041736}
-  - {fileID: -3499266613362413445}
-  - {fileID: 6292429520138084932}
-  - {fileID: 7939636706886240262}
-  - {fileID: -888464075285295646}
-  - {fileID: 6512845872834303565}
-  - {fileID: -1610221066638689808}
-  - {fileID: -2319853600247071166}
-  - {fileID: 5818750443630094252}
-  - {fileID: 9116752841636346917}
-  - {fileID: 6060872076634649499}
-  - {fileID: 5869658773491549481}
-  - {fileID: 7424774020627786309}
-  - {fileID: -6998121179404394343}
-  - {fileID: 7587886769962446453}
-  - {fileID: -5497997248862756591}
-  - {fileID: 68603066660395020}
-  - {fileID: -1661759814571234138}
-  - {fileID: 8386672769370144602}
-  - {fileID: -6232903239075100117}
-  - {fileID: 8034897983968956243}
-  - {fileID: -6522557504646463579}
-  - {fileID: 5970951726625668195}
-  - {fileID: 7907003490036227262}
-  - {fileID: 7250328673803484265}
-  - {fileID: -5774624738131233700}
-  - {fileID: 3450212818233204094}
-  - {fileID: 6177800271931344035}
-  - {fileID: 2781229337386218230}
-  - {fileID: 7322683178927482850}
-  - {fileID: 6476870426755808413}
-  - {fileID: 4240035201672890248}
-  - {fileID: -4901531312454227}
-  - {fileID: 7037560476073239516}
-  - {fileID: -8122353167265847783}
-  - {fileID: 1742780470871073438}
-  - {fileID: 1192326709573672555}
-  - {fileID: -7109282513430237625}
-  - {fileID: 3588763969044157234}
-  - {fileID: -7373560259787487938}
-  - {fileID: -7884589698479468384}
-  - {fileID: 440162964386140388}
-  - {fileID: -1493622303705982140}
-  - {fileID: 7598520671370509390}
-  - {fileID: 8823435529663604225}
-  - {fileID: 939626366843059650}
-  - {fileID: -2872172294258607501}
-  - {fileID: 3160072658632380427}
-  - {fileID: 5055735407383795080}
+  - {fileID: -6463919587514305288}
+  - {fileID: 4027452025474651822}
+  - {fileID: -7887859590257504584}
+  - {fileID: -6994562068585562003}
+  - {fileID: 134449026532784245}
+  - {fileID: -4105296924434168793}
+  - {fileID: 8601104491369282580}
+  - {fileID: -8257629880107475958}
+  - {fileID: -4929612036692459597}
+  - {fileID: 7089818599395250744}
+  - {fileID: 4679573126074291438}
+  - {fileID: 3916288664446559265}
+  - {fileID: 3206043089002933461}
+  - {fileID: 3857511614080432387}
+  - {fileID: 8565535407403309979}
+  - {fileID: -7809480536287437095}
+  - {fileID: 1891606945849536699}
+  - {fileID: -4977020044045987230}
+  - {fileID: -4368644088170303343}
+  - {fileID: -8246307086741015267}
+  - {fileID: 5577082991209088663}
+  - {fileID: -1522993358363583766}
+  - {fileID: -5811691396580026765}
+  - {fileID: 4558420547802695023}
+  - {fileID: 4238784223182109165}
+  - {fileID: 7283644907528250056}
+  - {fileID: 7803972200386297019}
+  - {fileID: 7343384815519622553}
+  - {fileID: -987769166858028536}
+  - {fileID: 181203253648708106}
+  - {fileID: -5564910919512938542}
+  - {fileID: -1124873006856466849}
+  - {fileID: 6763555706069521753}
+  - {fileID: -7320409175274091774}
+  - {fileID: -4643472442270582827}
+  - {fileID: 4767722593215649161}
+  - {fileID: 7271045903444425884}
+  - {fileID: 7963893313755919859}
+  - {fileID: -3156030696648391829}
+  - {fileID: -6539206766939656599}
+  - {fileID: -6951828776045352923}
+  - {fileID: -720364590764191265}
+  - {fileID: -3617088556887981773}
+  - {fileID: -7631263773607041277}
+  - {fileID: -1998030435101672674}
+  - {fileID: -7074810272921759852}
+  - {fileID: 1682005363266979094}
+  - {fileID: -8806879836033919772}
+  - {fileID: -8476205158762202473}
+  - {fileID: -7501402973901704420}
+  - {fileID: -7447972389251626859}
+  - {fileID: 6186391004528030328}
+  - {fileID: -4130202224955637684}
+  - {fileID: -7363747775624024743}
+  - {fileID: -6743604754332894998}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -4527817613961361662}
+  - {fileID: -6238788743958635670}
   StringsBanks:
-  - {fileID: 3012581398631862485}
-  stringsBankWriteTime: 637592959074171939
+  - {fileID: -8243757370175696202}
+  stringsBankWriteTime: 637592723936769082
   cacheVersion: 6
 --- !u!114 &12481434093094410
 MonoBehaviour:
@@ -750,6 +1526,52 @@ MonoBehaviour:
   MinDistance: 9
   MaxDistance: 25
   Length: 5120
+--- !u!114 &134449026532784245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/Lava
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/Lava
+  guid: 13454e83c1fd9b4fa37df62aeda7c9e9
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 40524
+--- !u!114 &181203253648708106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/5 UI/034_UI_Pause
+  m_EditorClassIdentifier: 
+  Path: event:/5 UI/034_UI_Pause
+  guid: 6ef985e003d4394aa316b34fd33ce2b4
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 820
 --- !u!114 &440162964386140388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,6 +1660,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2100
+--- !u!114 &1682005363266979094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/5 UI/039_UI_ScoreDown
+  m_EditorClassIdentifier: 
+  Path: event:/5 UI/039_UI_ScoreDown
+  guid: d310c6e44c7a964083ae1317699887b8
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
 --- !u!114 &1742780470871073438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,6 +1706,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &1891606945849536699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2 NIGHTMARE/Nightmare_Attack_Roar
+  m_EditorClassIdentifier: 
+  Path: event:/2 NIGHTMARE/Nightmare_Attack_Roar
+  guid: 396e047411bce04b8899819708edd50b
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1121
 --- !u!114 &2210417636103969056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,6 +1863,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4059
+--- !u!114 &3206043089002933461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/MAIN_MENU
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/MAIN_MENU
+  guid: 298b369d00dcd84180c5b666f733ca32
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 894525
 --- !u!114 &3450212818233204094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,6 +1932,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 610
+--- !u!114 &3857511614080432387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2 NIGHTMARE/018_Nightmare_Incapacitate
+  m_EditorClassIdentifier: 
+  Path: event:/2 NIGHTMARE/018_Nightmare_Incapacitate
+  guid: 31ad57eae3d36649ad323b81ee9119dc
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 9
+  MaxDistance: 25
+  Length: 2489
 --- !u!114 &3889509714144041736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,6 +1978,75 @@ MonoBehaviour:
   MinDistance: 9
   MaxDistance: 25
   Length: 1768
+--- !u!114 &3916288664446559265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/5 UI/038_UI_NightmareScoreUp
+  m_EditorClassIdentifier: 
+  Path: event:/5 UI/038_UI_NightmareScoreUp
+  guid: 273e440641e9194d9acbbadae3cddf45
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 10000
+  Length: 1650
+--- !u!114 &4027452025474651822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/029_Environment_TrapSwitchActivation
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/029_Environment_TrapSwitchActivation
+  guid: 0201e7616da5624a98bea37708fe59c2
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 9
+  MaxDistance: 25
+  Length: 2969
+--- !u!114 &4238784223182109165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/004_Hunter_Hurt
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/004_Hunter_Hurt
+  guid: 5a04c83f4cd69b41beb52a9bdbf17eca
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 670
 --- !u!114 &4240035201672890248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,6 +2108,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &4558420547802695023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/010_Hunter_RepairTrap
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/010_Hunter_RepairTrap
+  guid: 576813104268a0439c4eb60ca2b25423
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1483
 --- !u!114 &4616169002854184711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,6 +2153,52 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6294
+--- !u!114 &4679573126074291438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/TUTORIAL
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/TUTORIAL
+  guid: 259b45fc30c809489958120bb41d7c9f
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3600169
+--- !u!114 &4767722593215649161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/008_Hunter_ Beam Shot
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/008_Hunter_ Beam Shot
+  guid: 93bcc50f1258644e9b0de143af1d8da5
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1436
 --- !u!114 &5055735407383795080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,6 +2245,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1200
+--- !u!114 &5577082991209088663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2 NIGHTMARE/Nightmare_Absorb
+  m_EditorClassIdentifier: 
+  Path: event:/2 NIGHTMARE/Nightmare_Absorb
+  guid: 4d0247835d753347aaf8b5bb0c54cb0d
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6294
 --- !u!114 &5818750443630094252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1327,6 +2402,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 650
+--- !u!114 &6186391004528030328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/5 UI/037_UI_PlayerScoreUp
+  m_EditorClassIdentifier: 
+  Path: event:/5 UI/037_UI_PlayerScoreUp
+  guid: e1adcb838a02bd46acf7134a8a529922
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1800
 --- !u!114 &6292429520138084932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1396,6 +2494,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2459
+--- !u!114 &6763555706069521753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/5 UI/036_UI_ExitMenu
+  m_EditorClassIdentifier: 
+  Path: event:/5 UI/036_UI_ExitMenu
+  guid: 7bda95be7a4d1e4483e89671862c4ad1
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1721
 --- !u!114 &7037560476073239516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1441,6 +2562,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4059
+--- !u!114 &7089818599395250744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2 NIGHTMARE/016_Nightmare_Weak Point Banish
+  m_EditorClassIdentifier: 
+  Path: event:/2 NIGHTMARE/016_Nightmare_Weak Point Banish
+  guid: 238194ccf25ece4b938a456e046c87ba
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 9
+  MaxDistance: 25
+  Length: 1768
 --- !u!114 &7250328673803484265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1464,6 +2608,52 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 563
+--- !u!114 &7271045903444425884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/REGULAR_MUSIC
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/REGULAR_MUSIC
+  guid: a129f6c8f1935842a9531b1ff9f93bd0
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1121227
+--- !u!114 &7283644907528250056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/027_Environment_Appear
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/027_Environment_Appear
+  guid: 5b908c89dd98864cb5054395f2cd0c66
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 9
+  MaxDistance: 30
+  Length: 1483
 --- !u!114 &7322683178927482850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1508,6 +2698,29 @@ MonoBehaviour:
   - Name: 
     Value: 3656
   Exists: 0
+--- !u!114 &7343384815519622553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/002_Hunter_Run_D
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/002_Hunter_Run_D
+  guid: 61debe4bc5695248bd26afb58f7078b1
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 122
 --- !u!114 &7365276920132784446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1596,6 +2809,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 27208
+--- !u!114 &7803972200386297019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/031_Environment_BeamTrapActivation
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/031_Environment_BeamTrapActivation
+  guid: 5ef8f3919459234bbb1ce68ce0733780
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 9
+  MaxDistance: 25
+  Length: 5120
 --- !u!114 &7907003490036227262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1642,6 +2878,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 894525
+--- !u!114 &7963893313755919859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/008_Hunter_ Beam Charge
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/008_Hunter_ Beam Charge
+  guid: a3500b2ba1ed5f4d82e2bf3ee79df992
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 650
 --- !u!114 &8034897983968956243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1709,6 +2968,29 @@ MonoBehaviour:
   MinDistance: 9
   MaxDistance: 25
   Length: 860
+--- !u!114 &8565535407403309979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/1 HUNTER/011_Hunter_Cloak
+  m_EditorClassIdentifier: 
+  Path: event:/1 HUNTER/011_Hunter_Cloak
+  guid: 363081f5a8e10e41afd5b2b64944e4dc
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2459
 --- !u!114 &8568018557455828049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,6 +3013,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 27208
+--- !u!114 &8601104491369282580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2 NIGHTMARE/020_Nightmare_Roar
+  m_EditorClassIdentifier: 
+  Path: event:/2 NIGHTMARE/020_Nightmare_Roar
+  guid: 1fe32528962bd34d9ba24c658e60cf85
+  Banks:
+  - {fileID: -6238788743958635670}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2736
 --- !u!114 &8823435529663604225
 MonoBehaviour:
   m_ObjectHideFlags: 0
