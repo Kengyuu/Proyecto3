@@ -127,10 +127,10 @@ public class FSM_SeekPlayer : MonoBehaviour
 
                 if (enemy.remainingDistance < 1.1f)
                 {
+                    ReEnter();
                     GetComponent<EnemyPriorities>().playerSeen = false;
                     GetComponent<EnemyPriorities>().playerDetected = false;
                     GetComponent<EnemyPriorities>().ChangePriority();
-                
                 }
 
 
