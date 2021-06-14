@@ -18,6 +18,9 @@ public class Game_Slides : MonoBehaviour
 
 
 	public TextMeshProUGUI m_PressAnyButton;
+	public TextMeshProUGUI m_PressStartButton;
+	public TextMeshProUGUI m_SkipSlide_1_Button;
+	public TextMeshProUGUI m_SkipSlide_2_Button;
 
 	[Header("FMOD Events")]
 	public string hoverSoundEvent;
@@ -60,35 +63,38 @@ public class Game_Slides : MonoBehaviour
 				break;
 		}
 
-		StartBlinking();
+		StartBlinking(m_PressAnyButton);
+		StartBlinking(m_PressStartButton);
+		StartBlinking(m_SkipSlide_1_Button);
+		StartBlinking(m_SkipSlide_2_Button);
 		
 	}
 
-	private void StartBlinking()
+	private void StartBlinking(TextMeshProUGUI button)
 	{
 		StopCoroutine("FadeTo");
-		switch (Mathf.RoundToInt(m_PressAnyButton.color.a).ToString())
+		switch (Mathf.RoundToInt(button.color.a).ToString())
 		{
 			case "0":
-				StartCoroutine(FadeTo(1.0f, 1.5f));
+				StartCoroutine(FadeTo(1.0f, 1.5f, button));
 				break;
 			case "1":
-				StartCoroutine(FadeTo(0.0f, 1.1f));
+				StartCoroutine(FadeTo(0.0f, 1.1f, button));
 				break;
 		}
 	}
 
-	IEnumerator FadeTo(float aValue, float aTime)
+	IEnumerator FadeTo(float aValue, float aTime, TextMeshProUGUI button)
 	{
-		float alpha = m_PressAnyButton.color.a;
+		float alpha = button.color.a;
 		for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
 		{
 			float newAlpha = Mathf.Lerp(alpha, aValue, t);
 			Color newColor = new Color(1, 1, 1, newAlpha);
-			m_PressAnyButton.color = newColor;
+			button.color = newColor;
 			yield return null;
 		}
-		StartBlinking();
+		StartBlinking(button);
 	}
 
 
