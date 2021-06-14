@@ -5144,6 +5144,7 @@ MonoBehaviour:
   playerSystem: {fileID: 177671320}
   playerSubSystem: {fileID: 325501939}
   auraSystem: {fileID: 1245622408}
+  disappearParticles: {fileID: 3944687769469970207, guid: 0a031ddb48bc4734ca5392519e8b5746, type: 3}
   subRoom: {fileID: 587991908}
   roomDecal: {fileID: 267328679}
   systemActive: 0
@@ -9382,6 +9383,7 @@ MonoBehaviour:
   orbSystem: {fileID: 1558083071}
   orbSubSystem: {fileID: 1558083070}
   auraSystem: {fileID: 1506626063}
+  disappearParticles: {fileID: 0}
   absorbDuration: 2
 --- !u!1001 &475026029
 PrefabInstance:
@@ -11421,6 +11423,7 @@ MonoBehaviour:
   playerSystem: {fileID: 661859702}
   playerSubSystem: {fileID: 1752245847}
   auraSystem: {fileID: 1196600193}
+  disappearParticles: {fileID: 3944687769469970207, guid: 0a031ddb48bc4734ca5392519e8b5746, type: 3}
   subRoom: {fileID: 414482632}
   roomDecal: {fileID: 220637309}
   systemActive: 0
@@ -22512,6 +22515,7 @@ MonoBehaviour:
   CorpseOrb: {fileID: 0}
   secondOrb: {fileID: 0}
   thirdOrb: {fileID: 0}
+  spawnParticles: {fileID: 0}
   enemy: {fileID: 0}
   spawnWatcherEvent: 
   second: {fileID: 470570160}
