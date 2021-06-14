@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class TutorialPromptsController : MonoBehaviour
 {
     public TextMeshProUGUI textWall;
-    // Start is called before the first frame update
-    public  
     void Start()
     {
         
@@ -23,7 +21,10 @@ public class TutorialPromptsController : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if(col.CompareTag("Player"))
+        {
             textWall.gameObject.SetActive(true);
+        }
+            
     }
 
     void OnTriggerExit(Collider col)

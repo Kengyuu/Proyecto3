@@ -100,6 +100,11 @@ public class WPControllerTutorial : MonoBehaviour
         tutorialRoomFour.SetActive(true);
         textCenter.SetActive(false);
         blackHole.SetActive(true);
+        GameObject[] lights = GameObject.FindGameObjectsWithTag("Light_Deactivate");
+        foreach (GameObject g in lights)
+        {
+            g.SetActive(false);
+        }
         black = SoundManager.Instance.PlayEvent(blackHoleEvent, blackHole.transform);
     }
 
