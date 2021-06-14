@@ -36,6 +36,8 @@ public class PlayerShoot : MonoBehaviour
     public GameObject absorbParticles;
     public GameObject m_CurrentCorpseAbsortion;
 
+    public GameObject shootCollisionParticles;
+
     [Header("Object detection distances")]
     public float m_CorpseDetectionDistance = 5f;
     public float m_CorpseDistanceOffset = 3f;
@@ -357,6 +359,7 @@ public class PlayerShoot : MonoBehaviour
                     if (l_CurrentDistance < m_ButtonDetectionDistance)
                     {
                         hit.transform.GetComponent<ActiveTrap>().EnableTrap();
+                        Instantiate(shootCollisionParticles, hit.point, Quaternion.identity);
                     }
                     break;
                 case "WeakPoint":
@@ -364,6 +367,7 @@ public class PlayerShoot : MonoBehaviour
                     {
                         WeakPoint wp = hit.collider.GetComponent<WeakPoint>();
                         wp.Invoke("TakeDamage", m_ShootCastingTime);
+                        Instantiate(shootCollisionParticles, hit.point, Quaternion.identity);
                     }
                     break;
                 case "WeakPointTutorial":
@@ -372,6 +376,7 @@ public class PlayerShoot : MonoBehaviour
                     {
                         WeakPointsTutorial wpt = hit.collider.GetComponent<WeakPointsTutorial>();
                         wpt.Invoke("DestroyWP", m_ShootCastingTime);
+                        Instantiate(shootCollisionParticles, hit.point, Quaternion.identity);
                     }
                     break;
                 case "CorpseOrb":
@@ -381,6 +386,7 @@ public class PlayerShoot : MonoBehaviour
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_CorpseSearcher>().alert = true;
                         hit.collider.GetComponent<FSM_CorpseSearcher>().ChangeParticleColor();
+                        Instantiate(shootCollisionParticles, hit.point, Quaternion.identity);
                     }
                     break;
 
@@ -388,6 +394,7 @@ public class PlayerShoot : MonoBehaviour
                     if (l_CurrentDistance < m_OrbDetectionDistance)
                     {
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
+                        Instantiate(shootCollisionParticles, hit.point, Quaternion.identity);
                     }
                     break;
 
@@ -396,6 +403,7 @@ public class PlayerShoot : MonoBehaviour
                     {
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_TrapSearcher>().alert = true;
+                        Instantiate(shootCollisionParticles, hit.point, Quaternion.identity);
                     }
 
                     break;
@@ -404,6 +412,13 @@ public class PlayerShoot : MonoBehaviour
                     {
                         hit.collider.GetComponent<Orb_Blackboard>().TakeDamage(1);
                         hit.collider.GetComponent<FSM_AttackerOrb>().alert = true;
+                        Instantiate(shootCollisionParticles, hit.point, Quaternion.identity);
+                    }
+                    break;
+                default:
+                    if(l_CurrentDistance < 10f)
+                    {
+                        Instantiate(shootCollisionParticles, hit.point, Quaternion.identity);
                     }
                     break;
             }

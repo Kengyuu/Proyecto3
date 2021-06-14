@@ -54,49 +54,57 @@ public class CorpseAbsortion : MonoBehaviour {
 		
 		if(systemActive && currentAbsorbTime <= absorbDuration)
         {
-            switch(Target.tag)
+            if(Target != null)
             {
-                case "AbsorbObjective":
-                    absorberStunned = GM.GetPlayer().GetComponent<PlayerController>().m_PlayerStunned;
-                    if(absorberStunned)
-                    {
-                        systemActive = false;
-                        StopAbsortion();
-                    }
-                    //Target.position = GM.GetPlayer().transform.position;
-                    break;
-                case "AbsorbObjectiveEnemy":
-                    absorberStunned = GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isStunned;
-                    if (GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen || GM.GetEnemy().GetComponent<EnemyPriorities>().playerDetected)
-                    {
-                        systemActive = false;
-                        absorberStunned = true;
-                        StopAbsortion();
-                    }
-                    break;
-                case "AbsorbObjectiveWatcher":
-                    absorberStunned = Target.parent.GetComponent<FSM_ReturnToSafety_Corpse>().killed;
-                    if (absorberStunned)
-                    {
-                        systemActive = false;
-                        StopAbsortion();
-                    }
-                    break;
-            }
-
-            if(!absorberStunned)
-            {
-                if(Target != null)
+                switch(Target.tag)
                 {
-                    ParticlesEmission(system);
-                    ParticlesEmission(subSystem);
-                    currentAbsorbTime += Time.deltaTime;
+                    case "AbsorbObjective":
+                        absorberStunned = GM.GetPlayer().GetComponent<PlayerController>().m_PlayerStunned;
+                        if(absorberStunned)
+                        {
+                            systemActive = false;
+                            StopAbsortion();
+                        }
+                        //Target.position = GM.GetPlayer().transform.position;
+                        break;
+                    case "AbsorbObjectiveEnemy":
+                        absorberStunned = GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isStunned;
+                        if (GM.GetEnemy().GetComponent<EnemyPriorities>().playerSeen || GM.GetEnemy().GetComponent<EnemyPriorities>().playerDetected)
+                        {
+                            systemActive = false;
+                            absorberStunned = true;
+                            StopAbsortion();
+                        }
+                        break;
+                    case "AbsorbObjectiveWatcher":
+                        absorberStunned = Target.parent.GetComponent<FSM_ReturnToSafety_Corpse>().killed;
+                        if (absorberStunned)
+                        {
+                            systemActive = false;
+                            StopAbsortion();
+                        }
+                        break;
+                }
+
+                if(!absorberStunned)
+                {
+                    if(Target != null)
+                    {
+                        ParticlesEmission(system);
+                        ParticlesEmission(subSystem);
+                        currentAbsorbTime += Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    StopAbsortion();
                 }
             }
             else
             {
-                StopAbsortion();
+                systemActive = false;
             }
+            
         }
 	}
 
