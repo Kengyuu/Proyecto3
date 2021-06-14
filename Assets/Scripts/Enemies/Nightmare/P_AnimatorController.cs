@@ -9,6 +9,8 @@ public class P_AnimatorController : MonoBehaviour
     public FSM_CorpseWander enemyCorpse; 
     public Enemy_BLACKBOARD blackboard;
 
+    public GameMusic music;
+
     [Header("FMOD Events")]
     public string stepEvent;
     public string slashEvent;
@@ -114,6 +116,9 @@ public class P_AnimatorController : MonoBehaviour
 
     public void PesadillaHasWon()
     {
+        music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        music.chase.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+       
         GameManager.Instance.SetGameState(GameState.GAME_OVER);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None; //TBD
@@ -121,6 +126,8 @@ public class P_AnimatorController : MonoBehaviour
 
     public void PesadillaHasLost()
     {
+        music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        music.chase.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         GameManager.Instance.SetGameState(GameState.WIN);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None; //TBD

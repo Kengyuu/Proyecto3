@@ -55,7 +55,12 @@ public class Orb_Blackboard : MonoBehaviour
             SoundManager.Instance.PlaySound(disappearEvent, transform.position);
         }
         else SoundManager.Instance.PlaySound(hurtEvent, transform.position);
-        OrbAuraLight();
+        if (gameObject.tag != "HideOrb")
+        {
+            OrbAuraLight();
+        }
+            
+       
     }
 
 
@@ -67,7 +72,11 @@ public class Orb_Blackboard : MonoBehaviour
     public void SetOrbHealth(int health)
     {
         m_Life = health;
-        OrbAuraLight();
+        if (gameObject.tag != "HideOrb")
+        {
+            OrbAuraLight();
+        }
+        
     }
 
     public void OrbAuraLight()
