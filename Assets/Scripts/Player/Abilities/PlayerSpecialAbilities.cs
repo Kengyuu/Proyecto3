@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerSpecialAbilities : MonoBehaviour
 {
@@ -44,6 +46,10 @@ public class PlayerSpecialAbilities : MonoBehaviour
     public Material m_TransparentArmMaterial;
     public Material m_TransparentBraceletMaterial;
 
+    [Header("Post-processing")]
+    public PostProcessVolume m_PostProVolume;
+    public float m_FadeSpeed;
+
     [Header("Debug")]
     [SerializeField] bool Skill_1 = false;
     [SerializeField] bool Skill_2 = false;
@@ -61,6 +67,8 @@ public class PlayerSpecialAbilities : MonoBehaviour
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
         //m_PlayerController = GetComponent<PlayerController>();
+
+        m_PostProVolume.weight = 0f;
 
         m_Camera = Camera.main;
 
@@ -87,7 +95,10 @@ public class PlayerSpecialAbilities : MonoBehaviour
             Debug.Log("He apretado la habilidad especial 1 con la letra 'Q'.");
             m_IsPlayerVisibleToEnemy = false;
             m_AbilityOnCooldown = true;
-            
+
+            //POSTPRO:
+            StartCoroutine(FadePostProTo(1f, m_FadeSpeed));
+
             m_PlayerAnimations.StartStealth();
 
             SwapTransparent();
@@ -102,6 +113,17 @@ public class PlayerSpecialAbilities : MonoBehaviour
         {
             cooldownSlider.fillAmount += 1 / m_HiddenPrayerCooldown * Time.deltaTime;
             
+        }
+    }
+
+
+    IEnumerator FadePostProTo(float aValue, float aTime)
+    {
+        float alpha = m_PostProVolume.weight;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+        {
+            m_PostProVolume.weight = Mathf.Lerp(m_PostProVolume.weight, aValue, t);
+            yield return null;
         }
     }
 
@@ -144,6 +166,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
         Debug.Log("INVISIBILIDAD TERMINADA / INTERRUMPIDA");
         m_IsPlayerVisibleToEnemy = true;
         m_SliderOnCooldown = true;
+        StartCoroutine(FadePostProTo(0f, m_FadeSpeed));
         SoundManager.Instance.PlaySound(cloakEvent, transform.position);
         StartCoroutine(FadeTo(0.0f, 0.9f));
         SwapOpaque();
