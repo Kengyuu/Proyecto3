@@ -12,6 +12,9 @@ public class Game_Slides : MonoBehaviour
 
 	public GameObject m_TutorialSlidesCanvas;
 	public GameObject m_GameSlidesCanvas;
+	public GameObject m_GameSlide_1;
+	public GameObject m_GameSlide_2;
+	public GameObject m_GameSlide_3;
 
 
 	public TextMeshProUGUI m_PressAnyButton;
@@ -35,10 +38,16 @@ public class Game_Slides : MonoBehaviour
 	{
 		m_TutorialSlidesCanvas.SetActive(false);
 		m_GameSlidesCanvas.SetActive(false);
+		m_GameSlide_1.SetActive(true);
+		m_GameSlide_2.SetActive(false);
+		m_GameSlide_3.SetActive(false);
 
+		
+		//DEBUG GAME STATE - BORRAR AL TERMINAR!
+		GM.SetGameState(GameState.GAME);
 		Debug.Log($"Current GAMESTATE en GAME_SLIDES: {GM.gameState}");
 
-        switch (GM.gameState)
+		switch (GM.gameState)
         {
 			case GameState.GAME:
 				m_GameSlidesCanvas.SetActive(true);
@@ -83,7 +92,7 @@ public class Game_Slides : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown && m_TutorialSlidesCanvas.activeSelf)
         {
 			switch (GM.gameState)
 			{
@@ -101,6 +110,24 @@ public class Game_Slides : MonoBehaviour
 			}
 		}
     }
+
+	public void StartGameButton()
+    {
+		switch (GM.gameState)
+		{
+			case GameState.TUTORIAL:
+				//StartCoroutine(LoadAsyncOperation(m_TutorialScene));
+				MouseClickSound();
+				Invoke("LoadTutorial", 1f);
+				break;
+
+			case GameState.GAME:
+				//StartCoroutine(LoadAsyncOperation(m_GameScene));
+				MouseClickSound();
+				Invoke("LoadGame", 1f);
+				break;
+		}
+	}
 
 	IEnumerator LoadAsyncOperation(string scene)
     {
