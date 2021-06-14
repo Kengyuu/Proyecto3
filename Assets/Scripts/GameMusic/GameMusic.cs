@@ -10,8 +10,8 @@ public class GameMusic : MonoBehaviour
 {
     private GameManager GM;
     public HFSM_StunEnemy enemy;
-    EventInstance music;
-    EventInstance chase;
+    public EventInstance music;
+    public EventInstance chase;
 
     public float cooldownRegularMusic = 0;
     public float cooldownChaseMusic = 0;

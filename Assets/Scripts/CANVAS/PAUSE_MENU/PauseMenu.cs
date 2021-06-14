@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -14,10 +15,19 @@ public class PauseMenu : MonoBehaviour
     public string clickSoundEvent;
     public string exitSoundEvent;
 
+    public TutorialMusic musicTutorial;
+    public GameMusic musicGame;
+
+    Scene currentScene;
+    string sceneName;
+
     void Start()
     {
         GM = GameManager.Instance;
         m_PlayerMovement = GM.GetPlayer().GetComponent<PlayerMovement>();
+        currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
+        Debug.Log(sceneName);
 
     }
 
@@ -55,6 +65,22 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void ReturnToMainMenu()
+    {
+        Debug.Log("Paro musica");
+        if (sceneName == "TutorialScene")
+        {
+            Debug.Log("Paro musica");
+            musicTutorial.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+        else if (sceneName == "Game") 
+        {
+           musicGame.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+           musicGame.chase.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+        }
+    }
+
 
     public void QuitGame()
     {
@@ -73,6 +99,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void MouseExitSound()
     {
+        
         SoundManager.Instance.PlaySound(exitSoundEvent, transform.position);
     }
 }
