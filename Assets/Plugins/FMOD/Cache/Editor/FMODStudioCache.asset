@@ -683,7 +683,7 @@ MonoBehaviour:
   - {fileID: 4366749514177800542}
   StringsBanks:
   - {fileID: 7325336606402947729}
-  stringsBankWriteTime: 637592655959278565
+  stringsBankWriteTime: 637592785292896767
   cacheVersion: 6
 --- !u!114 &12481434093094410
 MonoBehaviour:
@@ -1062,7 +1062,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637592655959248562
+  lastModified: 637592785292866758
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1124,11 +1124,11 @@ MonoBehaviour:
   Banks:
   - {fileID: 4366749514177800542}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
+  MinDistance: 1
+  MaxDistance: 900
   Length: 57694
 --- !u!114 &5356948505134760720
 MonoBehaviour:
@@ -1462,7 +1462,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637592655959278565
+  lastModified: 637592785292896767
   LoadResult: 0
   FileSizes:
   - Name: 

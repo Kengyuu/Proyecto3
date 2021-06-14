@@ -95,7 +95,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
 
 
             Invoke("ResetAbilityAndStartCooldown", m_InvisibilityMaxTime);
-            cooldownSlider.fillAmount = 0;
+            cooldownSlider.fillAmount = 0.22f;
         }
 
         if (m_SliderOnCooldown)
