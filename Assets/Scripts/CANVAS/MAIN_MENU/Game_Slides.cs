@@ -44,7 +44,7 @@ public class Game_Slides : MonoBehaviour
 
 		
 		//DEBUG GAME STATE - BORRAR AL TERMINAR!
-		GM.SetGameState(GameState.GAME);
+		//GM.SetGameState(GameState.GAME);
 		Debug.Log($"Current GAMESTATE en GAME_SLIDES: {GM.gameState}");
 
 		switch (GM.gameState)
