@@ -23,8 +23,11 @@ public class SettingsMenu : MonoBehaviour
     [Header("FMOD")]
     private VCA VcaControllerMusic;
     public string Vca_Music;
+    private VCA VcaControllerSFX;
+    public string Vca_SFX;
 
     [SerializeField] private float vcaVolume;
+    [SerializeField] private float vcaVolumeSFX;
 
     //[Header("Languages")]
     //public TextMeshProUGUI m_LanguageText;
@@ -35,7 +38,11 @@ public class SettingsMenu : MonoBehaviour
     {
         //FMOD VOLUME:
         VcaControllerMusic = RuntimeManager.GetVCA("vca:/" + Vca_Music);
+        VcaControllerMusic.setVolume(m_MusicSlider.value);
 
+        VcaControllerSFX = RuntimeManager.GetVCA("vca:/" + Vca_SFX);
+        VcaControllerSFX.setVolume(m_EffectSlider.value);
+        //m_MusicSlider.value = vcaVolume;
 
 
         //m_CurrentResolution = 0;
@@ -47,8 +54,8 @@ public class SettingsMenu : MonoBehaviour
 
     private void Update()
     {
-        VcaControllerMusic.getVolume(out vcaVolume);
-
+       /* VcaControllerMusic.getVolume(out vcaVolume);
+        UnityEngine.Debug.Log((float)VcaControllerMusic.getVolume(out vcaVolume));*/
     }
 
     public void Apply()
@@ -68,6 +75,7 @@ public class SettingsMenu : MonoBehaviour
     {
         //Debug.Log($"Entro en ChangeEffectVolume con el valor: {value}");
         m_EffectSlider.value += value;
+        VcaControllerSFX.setVolume((float)m_EffectSlider.value);
     }
 
     public void ChangeResolution(int value)
