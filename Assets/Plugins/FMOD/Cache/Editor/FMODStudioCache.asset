@@ -112,6 +112,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1800
+--- !u!114 &-7121629469075189923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/PlatformTutorial
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/PlatformTutorial
+  guid: 2464388d2f2a6b4fb9e42f0c35fd95e4
+  Banks:
+  - {fileID: -6255739868201589582}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2292
 --- !u!114 &-7112962190423182881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +240,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637593485482097495
+  lastModified: 637593587428181017
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -702,7 +725,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637593485482117499
+  lastModified: 637593587428280964
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -802,12 +825,14 @@ MonoBehaviour:
   - {fileID: -2872172294258607501}
   - {fileID: 3160072658632380427}
   - {fileID: 5055735407383795080}
+  - {fileID: 5300730937157104077}
+  - {fileID: -7121629469075189923}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6255739868201589582}
   StringsBanks:
   - {fileID: -648328913144625985}
-  stringsBankWriteTime: 637593485482117499
+  stringsBankWriteTime: 637593587428280964
   cacheVersion: 6
 --- !u!114 &12481434093094410
 MonoBehaviour:
@@ -1296,6 +1321,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 900
   Length: 57694
+--- !u!114 &5300730937157104077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/Fire
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/Fire
+  guid: 17209ce8811fe941ac6bb69902ac912a
+  Banks:
+  - {fileID: -6255739868201589582}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 11576
 --- !u!114 &5356948505134760720
 MonoBehaviour:
   m_ObjectHideFlags: 0
