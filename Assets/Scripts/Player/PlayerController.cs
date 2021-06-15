@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Helpers")]
     public ScoreManager m_ScoreManager;
+    public GameMusic music;
 
     [Header("Map")]
     public GameObject m_Map;
@@ -187,7 +188,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator PlayerDeath()
     {
-        
+        music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        music.chase.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         GM.SetGameState(GameState.GAME_OVER);
         yield return new WaitForSeconds(5f);
         Time.timeScale = 0f;

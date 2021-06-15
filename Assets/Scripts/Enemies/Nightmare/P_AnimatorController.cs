@@ -111,8 +111,7 @@ public class P_AnimatorController : MonoBehaviour
 
     public void PesadillaHasWon()
     {
-        music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        music.chase.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+       
        
         GameManager.Instance.SetGameState(GameState.GAME_OVER);
         Time.timeScale = 0f;
