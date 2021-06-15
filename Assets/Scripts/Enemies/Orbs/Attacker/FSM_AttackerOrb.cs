@@ -258,6 +258,10 @@ public class FSM_AttackerOrb : MonoBehaviour
 
                 if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance, mask))
                 {
+                    if(raycastPoint.CompareTag("MainRaycastOrbRay"))
+                    {
+                        Instantiate(blackboard.rayCollisionParticles, l_RaycastHit.point, Quaternion.identity);
+                    }
                     //Debug.Log(l_RaycastHit.collider.tag);
                     if (l_RaycastHit.collider.tag == "Player")
                     {

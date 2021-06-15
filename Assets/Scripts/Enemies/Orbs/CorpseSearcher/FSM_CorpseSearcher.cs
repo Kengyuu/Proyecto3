@@ -413,6 +413,10 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
                 if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance,mask))
                 {
+                    if(raycastPoint.CompareTag("MainRaycastOrbRay"))
+                    {
+                        Instantiate(blackboard.rayCollisionParticles, l_RaycastHit.point, Quaternion.identity);
+                    }
                     if (l_RaycastHit.collider.tag == "Player")
                     {
                         GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(1, gameObject, blackboard.XForceImpulseDamage,
@@ -424,7 +428,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
                 }
             }
-
+            
             m_Laser.SetPosition(1, new Vector3(0.0f, 0.0f, blackboard.maxAttackDistance));
 
 

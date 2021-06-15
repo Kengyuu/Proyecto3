@@ -9707,6 +9707,7 @@ MonoBehaviour:
   XForceImpulseDamage: 5
   YForceImpulseDamage: 5
   angleDetectionPlayer: 90
+  rayCollisionParticles: {fileID: 8961789076795237384, guid: f7cc615cf6c33e844987b1e0f5a6d0d4, type: 3}
   hurtEvent: 
   disappearEvent: 
 --- !u!114 &7698182053305232884
@@ -9744,6 +9745,7 @@ MonoBehaviour:
   floatstringEvent: 
   beamChargeEvent: 
   beamShootEvent: 
+  absorbEvent: 
   currentState: 0
 --- !u!114 &6929348180036365335
 MonoBehaviour:

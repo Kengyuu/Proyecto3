@@ -38,7 +38,7 @@ public class Orb_Blackboard : MonoBehaviour
     public float YForceImpulseDamage = 5f;
     public float angleDetectionPlayer = 90;
 
-
+    public GameObject rayCollisionParticles;
     [Header("FMOD Events")]
     public string hurtEvent;
     public string disappearEvent;

@@ -347,7 +347,10 @@ public class FSM_TrapSearcher : MonoBehaviour
 
                 if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance,mask))
                 {
-                    
+                    if(raycastPoint.CompareTag("MainRaycastOrbRay"))
+                    {
+                        Instantiate(blackboard.rayCollisionParticles, l_RaycastHit.point, Quaternion.identity);
+                    }
                     if (l_RaycastHit.collider.tag == "Player")
                     {
                         

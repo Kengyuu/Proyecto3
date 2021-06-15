@@ -5850,6 +5850,7 @@ MonoBehaviour:
   attackCooldown: 0.7
   isProvoking: 0
   isAttacking: 0
+  stunnnedAbsorbParticles: {fileID: 2278850033004879534, guid: f3078898cca69304ca83af47a5cb392d, type: 3}
   rightArm: {fileID: 8135756307939716289}
   leftArm: {fileID: 940298902872316354}
   currentState: 0
@@ -6040,11 +6041,14 @@ MonoBehaviour:
   enemy: {fileID: 8853487398245499590}
   enemyCorpse: {fileID: 5500087432988375301}
   blackboard: {fileID: 0}
+  music: {fileID: 0}
   stepEvent: event:/2 NIGHTMARE/014_Nightmare_Walk
   slashEvent: event:/2 NIGHTMARE/015_Nightmare_Slash
+  roarAttackEvent: 
   deathEvent: event:/2 NIGHTMARE/019_Nightmare_Defeat
   roarEvent: event:/2 NIGHTMARE/020_Nightmare_Roar
   summonEvent: event:/2 NIGHTMARE/021_Nightmare_SummonWatcher
+  absorbEvent: 
 --- !u!114 &1527096035
 MonoBehaviour:
   m_ObjectHideFlags: 0

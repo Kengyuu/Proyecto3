@@ -25,6 +25,8 @@ public class FSM_SeekPlayer : MonoBehaviour
     float currentProvokeTime = 0f;
     public bool isProvoking = false;
     public bool isAttacking = false;
+
+    public GameObject stunnnedAbsorbParticles;
     int currentComboAttack = 0;
     //Transform child;
     public GameObject rightArm;
@@ -260,6 +262,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
             case State.PROVOKING:
                 currentProvokeTime = 0f;
+                Instantiate(stunnnedAbsorbParticles, GM.GetPlayer().GetComponent<PlayerShoot>().absorbObjective.transform.position, Quaternion.identity);
                 break;
 
             case State.WANDERING:

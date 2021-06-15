@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public float m_MaxStunTime;
     public bool m_PlayerStunned = false;
 
+    
+
     [Header("Helpers")]
     public ScoreManager m_ScoreManager;
 
@@ -302,7 +304,11 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine("PlayerDeath");
                     return;
                 }
-                else SM.PlaySound(incapacitateEvent, transform.position);
+                else
+                {
+                    SM.PlaySound(incapacitateEvent, transform.position);
+                }
+                 
 
                 if (m_ScoreManager.GetPlayerCorpses() > 0)
                 {
