@@ -33,6 +33,7 @@ public class WPControllerTutorial : MonoBehaviour
     [Header("FMOD Events")]
 
     private string blackHoleEvent = "event:/4 ENVIRONMENT/WormHole";
+    public string platformEvent;
     public EventInstance black;
 
     void Start()
@@ -74,6 +75,11 @@ public class WPControllerTutorial : MonoBehaviour
             //Invoke("RestartWeakPoints", 0.1f);
             
         }
+    }
+
+    public void PlatformEffectSound(GameObject platform)
+    {
+        SoundManager.Instance.PlayEvent(platformEvent, transform);
     }
 
     void PhaseOne()
