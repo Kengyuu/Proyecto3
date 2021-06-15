@@ -228,11 +228,13 @@ public class HudController : MonoBehaviour
             case "Player":
                 corpseTracker[(int)m_ScoreManager.GetPlayerCorpses()-1].GetComponent<Animator>().SetTrigger("CorpseToPlayer");
                 SoundManager.Instance.PlayEvent(playerScoreUpEvent, GM.GetPlayer().transform);
+                corpseTracker[(int)m_ScoreManager.GetPlayerCorpses()-1].GetComponentInChildren<ParticleSystem>().Play();
                 break;
 
             case "Enemy":
                 corpseTracker[corpseTracker.Length - (int)m_ScoreManager.GetEnemyCorpses()].GetComponent<Animator>().SetTrigger("CorpseToNightmare");
                 SoundManager.Instance.PlayEvent(nightmareScoreUpEvent,GM.GetPlayer().transform);
+                corpseTracker[corpseTracker.Length - (int)m_ScoreManager.GetEnemyCorpses()].GetComponentInChildren<ParticleSystem>().Play();
                 break;
         } 
     }

@@ -50,7 +50,10 @@ public class OrbSpawner : MonoBehaviour
 
     private void Update()
     {
-        SpawnOrbs(m_ScoreManager.GetPlayerCorpses());
+        if(GM.gameState != GameState.WIN && GM.gameState != GameState.GAME_OVER)
+            SpawnOrbs(m_ScoreManager.GetPlayerCorpses());
+        else
+            DeactivateOrbs();
     }
     private void OnDestroy()
     {
@@ -145,5 +148,10 @@ public class OrbSpawner : MonoBehaviour
         third.sprite = thirdOrb.GetComponent<Orb_Blackboard>().icon;
     } 
 
-    
+    public void DeactivateOrbs()
+    {
+        CorpseOrb.SetActive(false);
+        secondOrb.SetActive(false);
+        thirdOrb.SetActive(false);
+    }
 }

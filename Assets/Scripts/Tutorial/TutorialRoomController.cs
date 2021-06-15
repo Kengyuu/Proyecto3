@@ -19,7 +19,6 @@ public class TutorialRoomController : MonoBehaviour
     [Header("FMOD Events")]
 
     public string platformEvent;
-
     public void PlatformEffectSound()
     {
         SoundManager.Instance.PlayEvent(platformEvent, trigger.transform);
