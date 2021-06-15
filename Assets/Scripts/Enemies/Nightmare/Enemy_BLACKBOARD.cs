@@ -16,7 +16,6 @@ public class Enemy_BLACKBOARD : MonoBehaviour
 
     public float angleDetectionPlayer = 30f;
 
-    //public float detectionSensingRadius = 10f;
     public GameObject waypointsList;
     public GameObject lastCorpseSeen;
 
@@ -34,8 +33,6 @@ public class Enemy_BLACKBOARD : MonoBehaviour
 
     public MultiAimConstraint head;
 
-    //public float senseRadius = 10f;
-
     [Header("GameState")]
     public int enemyCorpses;
     public int playerCorpses;
@@ -47,8 +44,6 @@ public class Enemy_BLACKBOARD : MonoBehaviour
 
     private GameManager GM;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         GM = GameManager.Instance;

@@ -8,7 +8,7 @@ public class ActiveTrapFloor : MonoBehaviour
     public float XForceImpulseDamage = 0.5f;
     public float YForceImpulseDamage = 0.5f;
 
-    //test
+    
     public float m_DamageCooldown = 0f;
     public float m_DamageMaxCooldown = 1f;
     [SerializeField] private bool m_AllowDamage = true;
@@ -32,8 +32,6 @@ public class ActiveTrapFloor : MonoBehaviour
                 HFSM_StunEnemy target = col.GetComponent<HFSM_StunEnemy>();
                 if (target != null)
                 {
-                    //Debug.Log("Enemigo estuneado por TRAMPA de LUZ");
-                   // target.isStunned = true;
                     col.gameObject.GetComponent<Enemy>().GetStunned();
                 }
                 m_DamageCooldown = m_DamageMaxCooldown;
@@ -44,7 +42,6 @@ public class ActiveTrapFloor : MonoBehaviour
                 PlayerController player = col.GetComponent<PlayerController>();
                 if (player != null)
                 {
-                   // Debug.Log("Player recibe daño de trampa de LUZ");
                     player.TakeDamage(3, gameObject, XForceImpulseDamage, YForceImpulseDamage);
                 }
                 m_DamageCooldown = m_DamageMaxCooldown;
@@ -52,7 +49,6 @@ public class ActiveTrapFloor : MonoBehaviour
             }
             if (col.CompareTag("CorpseOrb"))
             {
-                //Debug.Log("Orbe estuneado por TRAMPA de LUZ");
                 Orb_Blackboard target = col.GetComponent<Orb_Blackboard>();
                 if (target != null)
                 {
@@ -67,7 +63,6 @@ public class ActiveTrapFloor : MonoBehaviour
                 Orb_Blackboard target = col.GetComponent<Orb_Blackboard>();
                 if (target != null)
                 {
-                    Debug.Log("Orbe estuneado por TRAMPA de LUZ");
                     target.TakeDamage(3);
                 }
                 m_DamageCooldown = m_DamageMaxCooldown;
@@ -78,7 +73,6 @@ public class ActiveTrapFloor : MonoBehaviour
                 Orb_Blackboard target = col.GetComponent<Orb_Blackboard>();
                 if (target != null)
                 {
-                    Debug.Log("Orbe estuneado por TRAMPA de LUZ");
                     target.TakeDamage(3);
                 }
                 m_DamageCooldown = m_DamageMaxCooldown;
@@ -89,7 +83,6 @@ public class ActiveTrapFloor : MonoBehaviour
                 Orb_Blackboard target = col.GetComponent<Orb_Blackboard>();
                 if (target != null)
                 {
-                    Debug.Log("Orbe estuneado por TRAMPA de LUZ");
                     target.TakeDamage(3);
                 }
                 m_DamageCooldown = m_DamageMaxCooldown;

@@ -82,8 +82,6 @@ public class Orb_Blackboard : MonoBehaviour
     public void OrbAuraLight()
     {
         ParticleSystem.MainModule main = partSystem.main;
-
-        //colf.color = new Color(main.startColor.color.r, main.startColor.color.g, main.startColor.color.b, (GetOrbHealth()/m_maxLife) * 0.7f );
         main.maxParticles =  (int)Mathf.Round(GetOrbHealth()/m_maxLife) * main.maxParticles;
     }
 }

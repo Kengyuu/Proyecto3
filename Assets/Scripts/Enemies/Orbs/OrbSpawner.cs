@@ -45,8 +45,6 @@ public class OrbSpawner : MonoBehaviour
         OrbEvents.current.ManageOrbs();
         if (hud == null) hud = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-        /* secondOrb.SetActive(false);
-         thirdOrb.SetActive(false);*/
 
     }
 
@@ -87,7 +85,6 @@ public class OrbSpawner : MonoBehaviour
             
             if (!secondOrb.activeSelf && GM.GetEnemy().GetComponent<HFSM_StunEnemy>().canInvoke)
             {
-                //GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = true;
                 enemy.isInvoking = true;
 
                 secondOrb.SetActive(true);
@@ -100,11 +97,6 @@ public class OrbSpawner : MonoBehaviour
                 Instantiate(spawnParticles, spawnPosition.position, Quaternion.identity);
                 SoundManager.Instance.PlaySound(spawnWatcherEvent, GM.GetPlayer().transform.position);
                 
-            }
-            else
-            {
-                //GM.GetEnemy().GetComponent<HFSM_StunEnemy>().isInvoking = false;
-                //enemy.isInvoking = false;
             }
             third.gameObject.SetActive(false);
             thirdOrb.SetActive(false);

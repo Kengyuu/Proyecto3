@@ -11,7 +11,6 @@ public class TutorialMusic : MonoBehaviour
     public string tutorialEvent;
     public EventInstance music;
 
-
     void Start()
     {
         music = SoundManager.Instance.PlayEvent(tutorialEvent, transform);

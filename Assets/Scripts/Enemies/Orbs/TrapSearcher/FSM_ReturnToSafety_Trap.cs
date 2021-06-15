@@ -17,7 +17,6 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
 
     void Start()
     {
-        //blackboard.navMesh = GetComponent<NavMeshAgent>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
 
@@ -94,14 +93,12 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
         {
 
             case State.NORMALBEHAVIOUR:
-                Debug.Log("Reenable");
                 trapSearch.enabled = true;
                 trapSearch.ReEnter();
                 break;
 
             case State.RETURNINGTOENEMY:
                 Spawn();
-               // gameObject.SetActive(false);
                 break;
             case State.DEAD:
                 blackboard.navMesh.isStopped = true;
@@ -118,7 +115,6 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
     {
         trapSearch.m_Laser.enabled = false;
         blackboard.SetOrbHealth(blackboard.m_maxLife);
-        //trapSearch.ChangeParticleColor();
         OrbEvents.current.RespawnOrbs(gameObject);
         blackboard.navMesh.isStopped = false;
        
@@ -127,7 +123,6 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Prueba: collision.gameObject.CompareTag("Enemy")
         
         if (collision.collider.tag == "Enemy" && currentState == State.NORMALBEHAVIOUR)
         {

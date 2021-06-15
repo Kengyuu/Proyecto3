@@ -26,7 +26,7 @@ public class PassiveTrap : MonoBehaviour
 
     public string activateSpikeEvent;
 
-    //test
+    
     public bool m_CooldownStarted;
 
     private void Start()
@@ -44,27 +44,21 @@ public class PassiveTrap : MonoBehaviour
             {
                 
                 trigger.enabled = false;
-                //target.isStunned = true;
                 DisableTrap();
-                //HFSM_StunEnemy target = col.GetComponent<HFSM_StunEnemy>();
                 
-                    anim.SetBool("Active", true);
-                    //target.isStunned = true;
-                    col.gameObject.GetComponent<Enemy>().GetStunned();
-                    Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
-                
-
+                anim.SetBool("Active", true);
+                col.gameObject.GetComponent<Enemy>().GetStunned();
+                Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
             }
             if (col.gameObject.CompareTag("Player"))
             {
                 
                 trigger.enabled = false;
-                Debug.Log("Daño");
                 DisableTrap();
                 PlayerController player = col.gameObject.GetComponent<PlayerController>();
                 
-                    player.TakeDamage(3, gameObject, XForceImpulseDamage, YForceImpulseDamage);
-                    Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
+                player.TakeDamage(3, gameObject, XForceImpulseDamage, YForceImpulseDamage);
+                Invoke("RestoreTrapCooldown", m_TrapEnableCooldown);
                 
 
             }
@@ -92,7 +86,6 @@ public class PassiveTrap : MonoBehaviour
 
     public void EnableTrap()
     {
-        Debug.Log("Reenabling");
         if (m_TrapCanBeEnabled)
         {
             trigger.enabled = true;
@@ -102,7 +95,6 @@ public class PassiveTrap : MonoBehaviour
             m_TrapActive = true;
             GetComponent<MeshRenderer>().material = originalMaterial;
             transform.GetChild(0).GetComponent<MeshRenderer>().material = originalMaterial;
-            // gameObject.tag = "PasiveTrap";
         }
     }
     public void SetAnimToFalse()

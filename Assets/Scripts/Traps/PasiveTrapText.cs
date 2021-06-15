@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PasiveTrapText : MonoBehaviour
 {
-    //public TextMeshProUGUI m_Text;
     public Canvas m_Canvas;
 
     public TextMeshProUGUI m_Text;
@@ -37,12 +36,9 @@ public class PasiveTrapText : MonoBehaviour
 
         float l_Distance = Vector3.Distance(transform.position, m_Player.gameObject.transform.position);
         if (m_Controller.m_TrapCanBeEnabled && l_Distance < (m_Player.m_TrapDetectionDistance + m_DistanceOffset))
-        //if (GetComponentInParent<Outline>().enabled)
         {
-            //Debug.Log("OutLine ENABLED");
             if (!m_Text.enabled)
             {
-                //Debug.Log("EL CANVAS ESTABA DESACTIVADO, LO ACTIVO");
                 m_Text.enabled = true;
             }
 
@@ -50,7 +46,6 @@ public class PasiveTrapText : MonoBehaviour
         }
         else
         {
-            //Debug.Log("OutLine DISABLED");
             m_Text.enabled = false;
         }
 
@@ -58,7 +53,6 @@ public class PasiveTrapText : MonoBehaviour
 
         if (m_Controller.m_CooldownStarted && !m_CooldownActive)
         {
-           // Debug.Log("ENTRO AQUI");
             m_CooldownActive = true;
             m_Cooldown.fillAmount = 1f;
             m_Cooldown.enabled = true;

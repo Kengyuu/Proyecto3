@@ -4,19 +4,8 @@ using UnityEngine;
 
 public class TrapOrbTutorial : MonoBehaviour
 {
-    // Start is called before the first frame update
     public ParticleSystem auraParticlesDisableTrap;
     public GameObject trapTutorial;
-    void Start()
-    {
-        //ActivateAuraParticles();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ActivateAuraParticles()
     {

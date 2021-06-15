@@ -28,21 +28,10 @@ public class HudController : MonoBehaviour
     public Animator objectiveAnim;
 
     [Header("GAME")]
-    //public GameObject m_CanvasGame;
+    
     public TextMeshProUGUI m_PlayerCorpses;
     public TextMeshProUGUI m_EnemyCorpses;
     public TextMeshProUGUI m_RemainingCorpses;
-    //public TextMeshProUGUI m_PlayerHP;
-
-    /*[Header("Prompts")]
-    public TextMeshProUGUI[] promptList;
-    public TextMeshProUGUI movementPrompt;
-    public TextMeshProUGUI runPrompt;
-    public TextMeshProUGUI dashPrompt;
-    public TextMeshProUGUI shootCorpsePrompt;
-    public TextMeshProUGUI shootTrapPrompt;
-    public TextMeshProUGUI shootEnemyPrompt;
-    public TextMeshProUGUI trapRepairPrompt;*/
     
     public bool hasMoved = false;
     public bool hasRun = false;
@@ -79,13 +68,6 @@ public class HudController : MonoBehaviour
     {
         totalCorpses = GameObject.FindGameObjectsWithTag("Corpse");
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
-        /*foreach (GameObject corpse in totalCorpses)
-        {
-            if (corpse.activeSelf)
-            {
-                activeCorpses.Add(corpse);
-            }
-        }*/
 
     }
     private void Start()
@@ -99,27 +81,19 @@ public class HudController : MonoBehaviour
 
         GM.OnStateChange += StateChanged;
 
-        //m_CanvasGame.SetActive(true);
-
         ScoreManager scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
 
-
-        //START DE HUD
         m_PlayerCorpses.text = "Player Corpses: " + scoreManager.GetPlayerCorpses().ToString("0");
         m_EnemyCorpses.text = "Enemy Corpses: " + scoreManager.GetEnemyCorpses().ToString("0");
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
-       // UpdateHealth(scoreManager.GetPlayerHP());
         UpdateObjective(scoreManager.GetPlayerCorpses(), scoreManager.GetEnemyCorpses());
-        // m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
-
-
         m_CanvasGame.SetActive(true);
 
     }
 
     private void Update()
     {
-        ManagePrompts();
+     
         if (!hasMoved)
         {
             cooldownMovement -= Time.deltaTime;
@@ -136,10 +110,6 @@ public class HudController : MonoBehaviour
         switch (GM.gameState)
         {
             case GameState.WIN:
-                /*m_CanvasGame.SetActive(false);
-                m_CanvasEnd.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-                m_centerText.text = "EL JUGADOR HA GANADO!";*/
                 m_CanvasGameOver.SetActive(false);
                 m_CanvasVictory.SetActive(true);
                 m_CanvasGame.SetActive(false);
@@ -148,10 +118,6 @@ public class HudController : MonoBehaviour
                 m_CanvasMinimap.SetActive(false);
                 break;
             case GameState.GAME_OVER:
-                /*m_CanvasGame.SetActive(false);
-                m_CanvasEnd.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-                m_centerText.text = "EL ENEMIGO HA GANADO!";*/
                 m_CanvasGameOver.SetActive(true);
                 m_CanvasVictory.SetActive(false);
                 m_CanvasGame.SetActive(false);
@@ -160,13 +126,6 @@ public class HudController : MonoBehaviour
                 m_CanvasMinimap.SetActive(false);
                 break;
             case GameState.GAME:
-                /*m_centerText.text = "";
-                m_PlayerCorpses.enabled = true;
-                m_EnemyCorpses.enabled = true;
-                m_RemainingCorpses.enabled = true;
-                m_PlayerHP.enabled = true;
-                m_centerText.enabled = true;*/
-                //m_CanvasGame.SetActive(true); //REWORK AQUI
                 m_CanvasGameOver.SetActive(false);
                 m_CanvasVictory.SetActive(false);
                 m_CanvasGame.SetActive(true);
@@ -176,16 +135,8 @@ public class HudController : MonoBehaviour
 
                 break;
             case GameState.MAP:
-                //m_CanvasGame.SetActive(false); //REWORK AQUI
-                /*m_centerText.text = "";
-                m_PlayerCorpses.enabled = false;
-                m_EnemyCorpses.enabled = false;
-                m_RemainingCorpses.enabled = false;
-                m_PlayerHP.enabled = false;
-                m_centerText.enabled = false;*/
                 m_CanvasGameOver.SetActive(false);
                 m_CanvasVictory.SetActive(false);
-                //m_CanvasGame.SetActive(false);
                 m_CanvasPauseMenu.SetActive(false);
                 m_CanvasSettingsMenu.SetActive(false);
                 m_CanvasMinimap.SetActive(true);
@@ -214,82 +165,10 @@ public class HudController : MonoBehaviour
         m_RemainingCorpses.text = "Remaining Corpses: " + scoreManager.GetRemainingCorpses().ToString("0");
         if(GM.GetEnemy() != null)
             GM.GetEnemy().GetComponent<EnemyPriorities>().ChangePriority();
-        //m_PlayerHP.text = "PlayerHP: " + scoreManager.GetPlayerHP().ToString("0") + " / 3";
         GM.UpdateModifiers();
-        //UpdateHealth(scoreManager.GetPlayerHP());
         UpdateObjective(scoreManager.GetPlayerCorpses(), scoreManager.GetEnemyCorpses());
 
     }
-
-    public void ManagePrompts()
-    {
-        /*if (cooldownMovement <= 0 && !hasMoved && !CheckIfPromptActive())
-        {
-            movementPrompt.gameObject.SetActive(true);
-            StartCoroutine(SetToFalse(movementPrompt));
-
-        }
-        if (hasMoved) StartCoroutine(SetToFalse(movementPrompt));
-
-        if (cooldownRun <= 0 && !hasRun && !CheckIfPromptActive())
-        {
-            runPrompt.gameObject.SetActive(true);
-            StartCoroutine(SetToFalse(runPrompt));
-        }
-        if (hasRun) StartCoroutine(SetToFalse(runPrompt));
-
-        if (cooldownDash <= 0 && !hasDashed && !CheckIfPromptActive())
-        {
-            dashPrompt.gameObject.SetActive(true);
-            StartCoroutine(SetToFalse(dashPrompt));
-        }
-        if (hasDashed) StartCoroutine(SetToFalse(dashPrompt));
-
-        if (triggerShot && !CheckIfPromptActive())
-        {
-            shootCorpsePrompt.gameObject.SetActive(true);
-            triggerShot = false;
-            StartCoroutine(SetToFalse(shootCorpsePrompt));
-        }
-        if (hasShot)StartCoroutine(SetToFalse(shootCorpsePrompt));
-
-        if (triggerShotTrap && !CheckIfPromptActive())
-        {
-            shootTrapPrompt.gameObject.SetActive(true);
-            triggerShotTrap = false;
-            StartCoroutine(SetToFalse(shootTrapPrompt));
-        }
-        if (hasShot) StartCoroutine(SetToFalse(shootTrapPrompt));
-
-        if (triggerShotEnemy && !CheckIfPromptActive())
-        {
-            shootEnemyPrompt.gameObject.SetActive(true);
-            triggerShotEnemy = false;
-            StartCoroutine(SetToFalse(shootEnemyPrompt));
-        }
-        if (hasShot) StartCoroutine(SetToFalse(shootEnemyPrompt));
-
-        if (triggerShotTrapD && !CheckIfPromptActive())
-        {
-            trapRepairPrompt.gameObject.SetActive(true);
-            triggerShotTrapD = false;
-            StartCoroutine(SetToFalse(trapRepairPrompt));
-        }
-        if (hasRepaired) StartCoroutine(SetToFalse(trapRepairPrompt));*/
-
-    }
-
-    /*public bool CheckIfPromptActive()
-    {
-        foreach (TextMeshProUGUI text in promptList)
-        {
-            if (text.gameObject.activeSelf)
-            {
-                return true;
-            }
-        }
-        return false;
-    }*/
 
     IEnumerator SetToFalse(TextMeshProUGUI text)
     {

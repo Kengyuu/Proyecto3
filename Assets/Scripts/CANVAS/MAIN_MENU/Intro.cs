@@ -10,8 +10,6 @@ public class Intro : MonoBehaviour
 	{
 		GM = GameManager.Instance;
 		GM.OnStateChange += HandleOnStateChange;
-		//Debug.Log("Current game state when Awakes: " + GM.gameState);
-		
 	}
 
 	private void OnDestroy()
@@ -21,7 +19,6 @@ public class Intro : MonoBehaviour
 
 	void Start()
 	{
-		//Debug.Log("Current game state when Starts: " + GM.gameState);
 		GM.SetGameState(GameState.MAIN_MENU);
 	}
 
@@ -29,15 +26,13 @@ public class Intro : MonoBehaviour
 
 	public void HandleOnStateChange()
 	{
-		//Debug.Log("Handling state change to: " + GM.gameState);
 		GM.OnStateChange -= HandleOnStateChange;
 		Invoke("LoadLevel", 3f);
 	}
 
 	public void LoadLevel()
 	{
-		//Debug.Log("Invoking LoadLevel");
-		//Application.LoadLevel("MAIN_MENU");
+
 		Initiate.Fade(m_NextScene, Color.black, 1f);
 	}
 }

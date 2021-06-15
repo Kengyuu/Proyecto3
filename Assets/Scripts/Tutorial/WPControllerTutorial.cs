@@ -7,7 +7,7 @@ using FMOD.Studio;
 
 public class WPControllerTutorial : MonoBehaviour
 {
-    // Start is called before the first frame update
+   
     public List<GameObject> weakPoints;
     public int wpLeft;
 
@@ -42,12 +42,6 @@ public class WPControllerTutorial : MonoBehaviour
         currentPhase = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void TutorialControl()
     {
         if(wpLeft <= 0)
@@ -71,9 +65,7 @@ public class WPControllerTutorial : MonoBehaviour
                     PhaseFour();
                     break;
             }
-
-            //Invoke("RestartWeakPoints", 0.1f);
-            
+  
         }
     }
 

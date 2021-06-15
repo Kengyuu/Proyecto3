@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float m_Life;
     public float m_MaxLife;
     public float m_TimeSinceLastFootstep = 3;
-    //public float m_PlayerInitialCorpses;
+    
     
     [Header("Player Damage / Stun")]
     public float m_MaxStunTime;
@@ -42,18 +42,6 @@ public class PlayerController : MonoBehaviour
     public string deathEvent;
     public string pauseSoundEvent;
 
-
-
-
-
-    // [Header("Animation")]
-
-
-
-    //bool map_status = false;
-
-
-
     private void Start()
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
@@ -72,7 +60,6 @@ public class PlayerController : MonoBehaviour
         
         InitInputs();
 
-        //HUD Updaters
         UpdatePlayerHealth();
     }
 
@@ -83,63 +70,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-    //TESTEO DESHABILITAR ESTA FUNCION PARA NUEVO SISTEMA DE INPUTS
-
-    /*    private void StateChanged()
-        {
-            switch (GM.gameState)
-            {
-                case GameState.WIN:
-                    //Debug.Log("state WIN");
-                    //DisableInputs();
-                    m_PlayerCamera.enabled = false;
-                    m_PlayerMovement.m_InputSystem.Gameplay.Disable();
-                    break;
-
-                case GameState.GAME_OVER:
-                    //Debug.Log("state GAME OVEEEEEEEEEEEEEEEER");
-                    //DisableInputs();
-
-                    m_PlayerCamera.enabled = false;
-                    m_PlayerMovement.m_InputSystem.Gameplay.Disable();
-                    EnableDaze();
-                    Invoke("DisableDaze", 2f);
-                    break;
-
-                case GameState.GAME:
-                    //Debug.Log("state GAME");
-
-                    *//*m_Map.SetActive(false);
-                    m_PlayerMovement.m_InputSystem.Enable();*//*
-
-                    //EnableInputs();
-
-                    m_PlayerCamera.enabled = true;
-                    GM.UpdateModifiers(); //Check again to update correctly skills available
-                    m_PlayerMovement.m_InputSystem.Gameplay.Dash.Enable();
-                    m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Enable();
-                    m_PlayerMovement.m_InputSystem.Gameplay.Move.Enable();
-                    m_PlayerMovement.m_InputSystem.Gameplay.Jump.Disable();
-                    m_PlayerMovement.m_InputSystem.Gameplay.EnableTrap.Enable();
-                    m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Disable();
-                    break;
-
-                case GameState.MAP:
-                    //Debug.Log("state MAP activado / desactivado");
-                    *//*m_Map.SetActive(true);
-                    m_PlayerMovement.m_InputSystem.Disable();*//*
-                    m_PlayerMovement.m_InputSystem.Gameplay.Dash.Disable();
-                    m_PlayerMovement.m_InputSystem.Gameplay.Shoot.Disable();
-                    m_PlayerMovement.m_InputSystem.Gameplay.Move.Disable();
-                    m_PlayerMovement.m_InputSystem.Gameplay.Jump.Disable();
-                    m_PlayerMovement.m_InputSystem.Gameplay.EnableTrap.Disable();
-                    m_PlayerMovement.m_InputSystem.Gameplay.MouseScroll.Enable();
-
-                    //Disable just in case:
-                    m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
-                    break;
-            }
-        }*/
+   
 
     private void InitInputs()
     {
@@ -160,38 +91,9 @@ public class PlayerController : MonoBehaviour
 
     private void StateChanged()
     {
-        //Old Game State
-        //Debug.Log($"Old gamestate: {GM.oldGameState}");
-        /*switch (GM.oldGameState)
-        {
-            case GameState.MAIN_MENU:
-                m_PlayerMovement.m_InputSystem.NoInputs.Disable();
-                break;
-
-            case GameState.GAME:
-                m_PlayerMovement.m_InputSystem.Gameplay.Disable();
-                break;
-
-            case GameState.GAME_OVER:
-                m_PlayerMovement.m_InputSystem.NoInputs.Disable();
-                break;
-
-            case GameState.WIN:
-                m_PlayerMovement.m_InputSystem.NoInputs.Disable();
-                break;
-
-            case GameState.MAP:
-                m_PlayerMovement.m_InputSystem.Minimap.Disable();
-                break;
-
-            case GameState.PAUSE:
-                m_PlayerMovement.m_InputSystem.Pause.Disable();
-                break;
-        }*/
+       
         DisableAllInputs();
-
-        //New Game State
-        //Debug.Log($"New gamestate: {GM.gameState}");
+        
         switch (GM.gameState)
         {
             case GameState.MAIN_MENU:
@@ -202,22 +104,15 @@ public class PlayerController : MonoBehaviour
                 m_PlayerMovement.m_InputSystem.Gameplay.Enable();
                 break;
 
-            case GameState.GAME_OVER:
-                /*m_PlayerMovement.m_InputSystem.Minimap.Disable();
-                m_PlayerMovement.m_InputSystem.Pause.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.Disable();*/
+            case GameState.GAME_OVER: 
                 m_PlayerMovement.m_InputSystem.NoInputs.Enable();
                 break;
 
             case GameState.WIN:
-                /*m_PlayerMovement.m_InputSystem.Minimap.Disable();
-                m_PlayerMovement.m_InputSystem.Pause.Disable();
-                m_PlayerMovement.m_InputSystem.Gameplay.Disable();*/
                 m_PlayerMovement.m_InputSystem.NoInputs.Enable();
                 break;
 
             case GameState.MAP:
-               
                 m_PlayerMovement.m_InputSystem.Minimap.Enable();
                 break;
 
@@ -231,44 +126,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
-        
-        //Debug:
-        /*if (Input.GetKeyDown(KeyCode.G))
-        {
-            TakeDamage(1, enemyTest);
-        }*/
-        /*if (Input.GetKeyDown(KeyCode.M))
-        {
-            map_status = !map_status;
-            if (map_status)
-            {
-                GM.SetGameState(GameState.MAP);
-            }
-            else
-            {
-                GM.SetGameState(GameState.GAME);
-            }
-        }
-        
-        */
-
         if (Input.GetKeyDown(KeyCode.L))
         {
             RemoveCorpse();
         }
-        
-        //--
+
     }
-
-
-
 
     public void TakeDamage(int dmg, GameObject obj, float XForce, float YForce)
     {
         if (!m_PlayerDash.m_DashEvadeAttacks && !m_PlayerStunned)
         {
-            //Receive impact from the enemy
             Vector3 l_Direction = (transform.position - obj.transform.position).normalized;
             if (XForce != 0)
             {
@@ -277,7 +145,6 @@ public class PlayerController : MonoBehaviour
 
             m_PlayerMovement.AddForceY(YForce);
 
-            //Reduce Life
             m_Life -= dmg;
             M_HudController.UpdateHealth();
             if (m_Life > 0)
@@ -289,14 +156,9 @@ public class PlayerController : MonoBehaviour
             
 
             else if (m_Life <= 0)
-            {
-                //Debug.Log($"Player a {m_Life} de vida, GetStunned()");
+            { 
                 m_Life = 0;
-               
-
-               
-
-                //Enemigo con 7+ cuerpos -> game over
+  
                 if (m_ScoreManager.GetEnemyCorpses() >= GM.m_CorpseObjective && obj.CompareTag("EnemyArm"))
                 {
                     GM.GetEnemy().GetComponent<HFSM_StunEnemy>().hasWon = true;
@@ -316,32 +178,8 @@ public class PlayerController : MonoBehaviour
                     
                     
                 }
-                GetStunned();
-                
-
-                //Invoke("RestoreLife", m_MaxStunTime);
-            }
-            /*switch (m_Life)
-            {
-                case 2:
-                    M_HudController.healthIcons[0].GetComponent<Animator>().SetTrigger("Break");
-                    break;
-                case 1:
-                    M_HudController.healthIcons[1].GetComponent<Animator>().SetTrigger("Break");
-                    break;
-                case 0:
-                    M_HudController.healthIcons[2].GetComponent<Animator>().SetTrigger("Break");
-                    break;
-            }*/
-
-           /* if (dmg == 3)
-            {
-                foreach (Image healthIcon in M_HudController.healthIcons)
-                {
-                    healthIcon.GetComponent<Animator>().SetTrigger("Break");
-                }
-            }*/
-
+                GetStunned();       
+            }  
             UpdatePlayerHealth();
             OrbEvents.current.ManageOrbs();
         }
@@ -361,7 +199,7 @@ public class PlayerController : MonoBehaviour
 
     public void RestoreLife()
     {
-        //Debug.Log("RestoreLife iniciado, activado inputs");
+       
         m_Life = m_MaxLife;
         SM.PlaySound(healEvent, transform.position);
         EnableInputs();
@@ -400,12 +238,6 @@ public class PlayerController : MonoBehaviour
     {
         m_Camera.GetComponent<CameraDaze>().enabled = false;
     }
-
-    
-
-
-
-    // Score Manager Stuff
     public void UpdatePlayerHealth()
     {
         m_ScoreManager.SetPlayerHP(m_Life);
@@ -416,11 +248,6 @@ public class PlayerController : MonoBehaviour
     {
         if (m_ScoreManager.GetPlayerCorpses() > 0)
         {
-            /*int lostPlayerCorpses = Mathf.Max(1, Mathf.RoundToInt(m_ScoreManager.GetPlayerCorpses()/ 3));
-            for (int i = 0; i < lostPlayerCorpses; i++)
-            {
-                m_ScoreManager.RemovePlayerCorpse();
-            }*/
             m_ScoreManager.RemovePlayerCorpse();
             M_HudController.UpdateRemoveCorpses(gameObject);
             GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1, gameObject);

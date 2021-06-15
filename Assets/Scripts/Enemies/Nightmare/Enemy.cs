@@ -29,12 +29,10 @@ public class Enemy : Entities
         maxLife = 3;
         m_Life = maxLife;
         SpawnWeakPoints();
-        
     }
 
     public override void TakeDamage(int dmg)
     {
-        
         m_Life -= dmg;
         
         if(m_Life <= 0)
@@ -45,8 +43,6 @@ public class Enemy : Entities
             if(m_ScoreManager.GetPlayerCorpses() >= GM.m_CorpseObjective)
             {
                 Die();
-                //GM.SetGameState(GameState.WIN);
-                //Cursor.lockState = CursorLockMode.None; //TBD
                 return;
             }
             else
@@ -59,8 +55,7 @@ public class Enemy : Entities
    
 
     public override void GetStunned()
-    {
-        
+    { 
         base.GetStunned();
         SoundManager.Instance.PlayEvent(stunnedEvent, transform);
         if (m_ScoreManager.GetEnemyCorpses() > 0)
@@ -71,11 +66,6 @@ public class Enemy : Entities
                 m_ScoreManager.RemoveEnemyCorpse();
                 M_HudController.UpdateRemoveCorpses(gameObject);
             }
-            
-           
-            
-            //Debug.Log(m_ScoreManager.GetRemainingCorpses());
-            //Debug.Log(lostEnemyCorpses);
             GM.GetGameObjectSpawner().SpawnBodys(lostEnemyCorpses,gameObject);
         }
         GetComponent<HFSM_StunEnemy>().isStunned = true;
@@ -85,14 +75,10 @@ public class Enemy : Entities
     public void Die()
     {
         GetComponent<HFSM_StunEnemy>().isDead = true;
-        
-        //StartCoroutine(WaitForDead());
-
     }
 
     IEnumerator WaitForDead()
     {
-        //GM.SetGameState(GameState.WIN);
         yield return new WaitForSeconds(5f);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
@@ -119,7 +105,6 @@ public class Enemy : Entities
 
     public override int GetLife()
     {
-        //Debug.Log(m_Life + " fui llamado");
         return m_Life;
     }
 }

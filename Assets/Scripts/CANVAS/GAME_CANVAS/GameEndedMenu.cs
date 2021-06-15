@@ -9,7 +9,6 @@ public class GameEndedMenu : MonoBehaviour
 
     public void RestartGame()
     {
-        Debug.Log("Reiniciado el juego");
         GameManager.Instance.SetGameState(GameState.GAME);
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -18,7 +17,6 @@ public class GameEndedMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        Debug.Log("Volviendo al menú principal");
         PauseMenu.m_GameIsPaused = false;
         GameManager.Instance.SetGameState(GameState.MAIN_MENU);
         Time.timeScale = 1f;

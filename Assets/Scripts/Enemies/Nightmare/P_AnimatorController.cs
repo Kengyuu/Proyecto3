@@ -26,11 +26,6 @@ public class P_AnimatorController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void PlayStepSound()
     {
        
@@ -135,7 +130,6 @@ public class P_AnimatorController : MonoBehaviour
 
     public void EnemyCanMove()
     {
-        //Debug.Log("Enemycanmove");
         if(enemy.gameObject.activeSelf && enemy.enemy != null)
         {
             enemy.enemy.isStopped = false;
@@ -228,7 +222,6 @@ public class P_AnimatorController : MonoBehaviour
     public void StartInvoking()
     {
         animator.SetTrigger("SpawnWatcher");
-        Debug.Log("La vida es una mierda");
     }
 
     public void FinishInvoking()

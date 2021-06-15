@@ -21,7 +21,7 @@ public class ActiveTrap : MonoBehaviour
 
     public string activateTrapEvent;
 
-    //test
+    
     public bool m_CooldownStarted;
 
     private void Start()
@@ -45,19 +45,15 @@ public class ActiveTrap : MonoBehaviour
     {
         SoundManager.Instance.PlayEvent(activateTrapEvent, transform);
         rotation.z = 1.5f;
-        // m_Floor1.SetActive(true);
         m_Floor.SetActive(true);
-        Debug.Log(m_Floor.name);
         Invoke("DisableFloor", m_FloorDisableTime);
     }
 
     private void DisableFloor()
     {
         rotation.z = 0;
-        //rotation.enabled = false;
         m_Floor.SetActive(false);
-        //m_Floor1.SetActive(false);
-        Invoke("ReEnableButton", m_TrapEnableCooldown); //NO USAR
+        Invoke("ReEnableButton", m_TrapEnableCooldown); 
         m_CooldownStarted = true;
     }
 

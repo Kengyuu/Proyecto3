@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class TrapTutorialController : MonoBehaviour
 {
-    // Start is called before the first frame update
     Animator animator;
     public GameObject trapOrb;
     void Start()
     {
         animator = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ActivateTrap()
     {
         if(animator != null)

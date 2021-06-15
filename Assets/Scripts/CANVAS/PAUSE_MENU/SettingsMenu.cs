@@ -29,51 +29,24 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private float vcaVolume;
     [SerializeField] private float vcaVolumeSFX;
 
-    //[Header("Languages")]
-    //public TextMeshProUGUI m_LanguageText;
-    //public List<string> m_LanguageList;
-    //public int m_CurrentLanguage;
-
     void Start()
     {
-        //FMOD VOLUME:
         VcaControllerMusic = RuntimeManager.GetVCA("vca:/" + Vca_Music);
         VcaControllerMusic.setVolume(m_MusicSlider.value);
 
         VcaControllerSFX = RuntimeManager.GetVCA("vca:/" + Vca_SFX);
         VcaControllerSFX.setVolume(m_EffectSlider.value);
-        //m_MusicSlider.value = vcaVolume;
-
-
-        //m_CurrentResolution = 0;
-        //m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]); //BORRAR AL HACER LAS OPCIONES!!!!
-
-        //m_CurrentLanguage = 0;
-        //m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]); //BORRAR AL HACER LAS OPCIONES!!!!
-    }
-
-    private void Update()
-    {
-       /* VcaControllerMusic.getVolume(out vcaVolume);
-        UnityEngine.Debug.Log((float)VcaControllerMusic.getVolume(out vcaVolume));*/
-    }
-
-    public void Apply()
-    {
-        UnityEngine.Debug.Log("Aplicando cambios en las opciones del juego");
     }
 
 
     public void ChangeMusicVolume(int value)
     {
-        //Debug.Log($"Entro en ChangeMusicVolume con el valor: {value}");
         m_MusicSlider.value += value;
         VcaControllerMusic.setVolume((float)m_MusicSlider.value);
     }
 
     public void ChangeEffectVolume(int value)
     {
-        //Debug.Log($"Entro en ChangeEffectVolume con el valor: {value}");
         m_EffectSlider.value += value;
         VcaControllerSFX.setVolume((float)m_EffectSlider.value);
     }
@@ -87,7 +60,6 @@ public class SettingsMenu : MonoBehaviour
             {
                 m_CurrentResolution = 0;
             }
-            //Debug.Log($"Current resolution index: {m_CurrentResolution}");
             m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]);
         }
         else
@@ -97,32 +69,8 @@ public class SettingsMenu : MonoBehaviour
             {
                 m_CurrentResolution = m_ResolutionList.Count - 1;
             }
-            //Debug.Log($"Current resolution index: {m_CurrentResolution}");
             m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]);
         }
     }
 
-    //public void ChangeLanguage(int value)
-    //{
-    //    if (value > 0)
-    //    {
-    //        m_CurrentLanguage++;
-    //        if (m_CurrentLanguage >= m_LanguageList.Count)
-    //        {
-    //            m_CurrentLanguage = 0;
-    //        }
-    //        //Debug.Log($"Current resolution index: {m_CurrentLanguage}");
-    //        m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]);
-    //    }
-    //    else
-    //    {
-    //        m_CurrentLanguage--;
-    //        if (m_CurrentLanguage < 0)
-    //        {
-    //            m_CurrentLanguage = m_LanguageList.Count - 1;
-    //        }
-    //        //Debug.Log($"Current resolution index: {m_CurrentLanguage}");
-    //        m_LanguageText.SetText(m_LanguageList[m_CurrentLanguage]);
-    //    }
-    //}
 }

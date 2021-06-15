@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class PlayerDash : MonoBehaviour
 {
     private PlayerMovement m_PlayerMovement;
-    //private PlayerController m_PlayerController;
     private PlayerSpecialAbilities m_PlayerHiddenPrayer;
     private GameManager GM;
     private SoundManager SM;
@@ -37,29 +36,13 @@ public class PlayerDash : MonoBehaviour
     private void Start()
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
-        //m_PlayerController = GetComponent<PlayerController>();
         m_PlayerHiddenPrayer = GetComponent<PlayerSpecialAbilities>();
         if (hud == null) hud = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (GM == null) GM = GameManager.Instance;
         if (SM == null) SM = SoundManager.Instance;
-        //GM.OnStateChange += StateChanged;
 
         if (m_MaxDashEvasionTime > m_DashMaxCooldown) m_MaxDashEvasionTime = m_DashMaxCooldown;
     }
-
-
-    /*private void StateChanged()
-    {
-        switch (GM.gameState)
-        {
-            case GameState.MAP:
-                m_PlayerCanDash = false;
-                break;
-            case GameState.GAME:
-                m_PlayerCanDash = true;
-                break;
-        }
-    }*/
 
     private void Update()
     {
@@ -100,13 +83,10 @@ public class PlayerDash : MonoBehaviour
         {
             GM.PlayerNoise(m_DashNoise);
         }
-            
-            
 
         m_DashOnCooldown = true;
         m_DashCooldown = m_DashMaxCooldown;
         m_DashEvadeAttacks = true;
-        //Invoke("ResetDash", m_DashMaxCooldown);
         m_DashDirection = m_PlayerMovement.m_InputSystem.Gameplay.Move.ReadValue<Vector2>();
         if(m_DashDirection.magnitude == 0)
         {

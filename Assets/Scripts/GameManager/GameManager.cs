@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     public GameState gameState { get; private set; }
     public GameState oldGameState { get; private set; }
 
-    //[Header("Debug")]
     [SerializeField] public GameObject m_Player { get; set; }
     [SerializeField] public GameObject m_Enemy { get; set; }
     [SerializeField] public GameObjectSpawner m_GameObjectSpawner { get; set; }
@@ -54,21 +53,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        //m_Player = GameObject.FindGameObjectWithTag("Player");
-        //m_Enemy = GameObject.FindGameObjectWithTag("Enemy");
-        //m_GameObjectSpawner = GameObject.FindObjectOfType<GameObjectSpawner>();
-        //m_WaypointsList = GameObject.FindObjectOfType<RoomSpawner>();
-
-        //SetGameState(GameState.GAME);
-    }
-
-    private void Start()
-    {
-        /*m_Player = GameObject.FindGameObjectWithTag("Player");
-        m_Enemy = GameObject.FindGameObjectWithTag("Enemy");
-        m_GameObjectSpawner = GameObject.FindObjectOfType<GameObjectSpawner>();
-        m_WaypointsList = GameObject.FindObjectOfType<RoomSpawner>();*/
     }
 
     public static GameManager Instance
@@ -78,11 +62,6 @@ public class GameManager : MonoBehaviour
             if (instance == null) instance = new GameManager();
             return instance;
         }
-    }
-
-    private void Update()
-    {
-        //Debug.Log($"Current game state: {gameState}");
     }
 
     public void SetGameState(GameState state)

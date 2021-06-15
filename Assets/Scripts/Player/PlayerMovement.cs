@@ -39,13 +39,9 @@ public class PlayerMovement : MonoBehaviour
     public string runEvent;
     public string breathEvent;
     private string rushedBreathEvent = "event:/1 HUNTER/013_Hunter_RushedBreath";
-    //EventInstance rushedBreath;
     EventInstance breath;
     EventInstance rushedBreath;
 
-
-
-    //DEBUG:
     [Header("Debug")]
     [SerializeField] private bool m_IsGrounded;
 
@@ -55,20 +51,15 @@ public class PlayerMovement : MonoBehaviour
         m_CharacterController = GetComponent<CharacterController>();
         if (hud == null) hud = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (SM == null) SM = SoundManager.Instance;
-        //Check run button actions
         m_InputSystem.Gameplay.Run.started += ctx => RunAction();
         m_InputSystem.Gameplay.Run.canceled += ctx => RunAction();
     }
 
     private void Update()
     {
-        //Ground debug
         m_IsGrounded = m_CharacterController.isGrounded;
-        
-
         Move();
-       
-    }//End Update()
+    }
 
     private void Move()
     {
@@ -85,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
         if (GetComponent<PlayerController>().m_PlayerStunned)
         {
             breath.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            //UnityEngine.Debug.Log("STOP");
             m_TimeSinceLastBreath = 0;
 
         }
@@ -127,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
                 m_TimeSinceLastRushedBreath -= Time.deltaTime;
                 if (m_TimeSinceLastRushedBreath <= 0)
                 {
-                     //stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     rushedBreath = SM.PlayEvent(rushedBreathEvent,transform);
                     m_TimeSinceLastRushedBreath = 3.7f;
                 }
@@ -155,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         {
             m_VerticalVelocity -= m_Gravity * Time.deltaTime;
             
-            m_Movement = m_LastMovement; //This makes player move while jumping to the last vector known (locks player movement input)
+            m_Movement = m_LastMovement; 
         }
 
         m_Movement.y = 0;
@@ -163,8 +152,6 @@ public class PlayerMovement : MonoBehaviour
         m_Movement *= l_PlayerCurrentSpeed;
         m_Movement.y = m_VerticalVelocity;
 
-
-        //If we have any force, add it to the current movement vector
         if(m_currentImpact.magnitude > 0.2f)
         {
             m_Movement += m_currentImpact;
@@ -178,7 +165,6 @@ public class PlayerMovement : MonoBehaviour
 
         m_LastMovement = m_Movement;
 
-        //If we hit any roof...
         if ((l_CollisionFlags & CollisionFlags.CollidedAbove) != 0) m_VerticalVelocity = 0.0f;
     }
 
@@ -186,7 +172,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!m_CharacterController.isGrounded && hit.normal.y < 0.1f)
         {
-            //Wall Jump - doesn't work on FPS
             if (m_InputSystem.Gameplay.Jump.triggered)
             {
                 m_VerticalVelocity = m_PlayerJumpForce;
@@ -195,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Add "fake forces" to character controller
+   
     public void AddForceX(Vector3 direction, float magnitude)
     {
         m_currentImpact += direction.normalized * magnitude / m_Mass;

@@ -90,9 +90,6 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 ChangeState(State.WANDERING);
                 break;
 
-
-
-
             case State.WANDERING:
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
                 blackboard.navMesh.SetDestination(target.transform.position);
@@ -236,7 +233,6 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
             case State.ALERT:
                 Rotate();
-                //transform.LookAt(GM.GetPlayer().transform,transform.up);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 Invoke("StayAlert", 1);
                 break;
@@ -248,7 +244,6 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 if (rotating)
                 {
                     Rotate();
-                    //transform.LookAt(GM.GetPlayer().transform, transform.up);
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 } 
                 if (!GM.GetPlayer().GetComponent<PlayerController>().m_PlayerStunned)
@@ -408,7 +403,6 @@ public class FSM_CorpseSearcher : MonoBehaviour
                 Vector3 Direction = raycastPoint.position - castPosition.position;
                 Direction.Normalize();
                 Ray Ray = new Ray(castPosition.position, Direction);
-                //Debug.DrawRay(castPosition.position, Direction * blackboard.maxAttackDistance, Color.red);
                 RaycastHit l_RaycastHit;
 
                 if (Physics.Raycast(Ray, out l_RaycastHit, blackboard.maxAttackDistance,mask))
@@ -444,7 +438,6 @@ public class FSM_CorpseSearcher : MonoBehaviour
         if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
                    && GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState != FSM_SeekPlayer.State.ATTACKING)
         {
-            //Debug.Log("aTTACKING");
             ChangeState(State.ATTACKINGPLAYER);
         }
        else ChangeState(State.WANDERING);

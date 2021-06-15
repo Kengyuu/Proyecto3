@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class FSM_CorpseWander : MonoBehaviour
 {
-    // Start is called before the first frame update
+
 
     [Header("AI")]
     public NavMeshAgent enemy;
@@ -20,12 +20,6 @@ public class FSM_CorpseWander : MonoBehaviour
     float currentInvokeTime = 0f;
     public LayerMask layer;
 
-    
-
-    //float closeEnoughTarget;
-
-
-
     public enum State {INITIAL, WANDERING, GOINGTOCORPSE, GRABBINGCORPSE};
     public State currentState;
 
@@ -39,8 +33,6 @@ public class FSM_CorpseWander : MonoBehaviour
         enemyType = transform.tag;
         absorbParticles.SetActive(false);
         if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
-        //target = behaviours.PickRandomWaypoint();
-        //enemy.SetDestination(target.transform.position);
     }
 
 
@@ -61,8 +53,6 @@ public class FSM_CorpseWander : MonoBehaviour
         currentState = State.INITIAL;
         absorbParticles.SetActive(false);
     }
-
-    // Update is called once per frame
     void Update()
     {
 
@@ -76,7 +66,6 @@ public class FSM_CorpseWander : MonoBehaviour
                 behaviours.SearchPlayer(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer);
                 enemy.SetDestination(target.transform.position);
                 corpse = behaviours.SearchObject("Corpse", blackboard.corpseDetectionRadius);
-                //Debug.Log(corpse.name);
                 if(corpse != null)
                 {
                     ChangeState(State.GOINGTOCORPSE);

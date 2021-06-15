@@ -9,7 +9,6 @@ using FMOD.Studio;
 public class GardenEffects : MonoBehaviour
 {
     public string cricketEvent;
-    //EventInstance rushedBreath;
     EventInstance crickets;
     private void OnTriggerEnter(Collider other)
     {

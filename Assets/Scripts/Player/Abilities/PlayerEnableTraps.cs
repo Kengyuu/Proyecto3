@@ -20,8 +20,6 @@ public class PlayerEnableTraps : MonoBehaviour
         m_PlayerMovement = GetComponent<PlayerMovement>();
         if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (m_PlayerMovement.m_InputSystem.Gameplay.EnableTrap.triggered)
@@ -38,7 +36,6 @@ public class PlayerEnableTraps : MonoBehaviour
             if (hit.collider.CompareTag("TrapDeactivated"))
             {
                 M_HudController.hasRepaired = true;
-                Debug.Log($"Trampa a distancia adecuada: {m_TrapDetectionDistance}");
                 hit.transform.GetComponent<PassiveTrap>().EnableTrap();
                 SoundManager.Instance.PlaySound(repairEvent, transform.position);
 

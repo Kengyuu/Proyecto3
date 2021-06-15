@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour, IScoreManager
 {
-    [Header("CAMBIAR EL START DEL SCRIPT!!!")]
+   
     [SerializeField] float m_PlayerCorpses;
     [SerializeField] float m_EnemyCorpses;
     [SerializeField] float m_RemainingCorpses;
@@ -14,8 +14,6 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     void Awake()
     {
         DependencyInjector.AddDependency<IScoreManager>(this);
-
-       
     }
 
     private void Start()
@@ -24,9 +22,6 @@ public class ScoreManager : MonoBehaviour, IScoreManager
         m_EnemyCorpses = 0f;
         m_PlayerHP = 3f;
     }
-
-    //Player
-    //gfrbfghb
     public void SetPlayerCorpses(float value)
     {
         this.m_PlayerCorpses = value;
@@ -35,7 +30,7 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     public void AddPlayerCorpse()
     {
         this.m_PlayerCorpses++;
-        //Debug.Log(this.m_RemainingCorpses);
+        
         this.m_RemainingCorpses--;
         scoreChangedDelegate?.Invoke(this);
 
@@ -43,7 +38,7 @@ public class ScoreManager : MonoBehaviour, IScoreManager
     public void RemovePlayerCorpse()
     {
         this.m_PlayerCorpses--;
-       // Debug.Log(this.m_RemainingCorpses);
+       
        this.m_RemainingCorpses++;
         scoreChangedDelegate?.Invoke(this);
     }
@@ -84,16 +79,7 @@ public class ScoreManager : MonoBehaviour, IScoreManager
         this.m_RemainingCorpses = value;
         scoreChangedDelegate?.Invoke(this);
     }
-   /*public void AddRemainingCorpse()
-    {
-        this.m_RemainingCorpses++;
-        scoreChangedDelegate?.Invoke(this);
-    }
-    public void RemoveRemainingCorpse()
-    {
-        this.m_RemainingCorpses--;
-        scoreChangedDelegate?.Invoke(this);
-    }*/
+  
     public float GetRemainingCorpses() { return m_RemainingCorpses; }
 }
 
@@ -116,8 +102,6 @@ public interface IScoreManager
 
     //Remaining corpses
     void SetRemainingCorpses(float f);
-    /*void AddRemainingCorpse();
-    void RemoveRemainingCorpse();*/
     float GetRemainingCorpses();
     event ScoreChanged scoreChangedDelegate;
 }

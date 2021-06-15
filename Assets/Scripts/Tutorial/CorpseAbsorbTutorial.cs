@@ -29,22 +29,13 @@ public class CorpseAbsorbTutorial : MonoBehaviour
 
     void OnEnable()
     {
-        /*if (system == null)
-			system = GetComponent<ParticleSystem>();
-
-		if (system == null){
-			this.enabled = false;
-		}*/
-        //lightAuraSystem.Play();
         auraSystem.Play();
         Target = null;
     }
 	void Start() {
-        GM = GameManager.Instance;
-        
+        GM = GameManager.Instance; 
 	}
 
-    // Update is called once per frame
     void Update()
     {
         if(systemActive && currentAbsorbTime <= absorbDuration)
@@ -76,10 +67,7 @@ public class CorpseAbsorbTutorial : MonoBehaviour
     {
         partSystem.transform.LookAt(Target.transform.position, partSystem.gameObject.transform.up);
         int length = partSystem.GetParticles (particles);
-        //ParticleSystem.ShapeModule shape = system.shape;
         Vector3 attractorPosition = Target.position;
-        //shape.length = Vector3.Distance(system.transform.position, attractorPosition);
-        //Debug.Log(attractorPosition + " " + Target.name);
         for (int i=0; i < length; i++) 
         {
             
@@ -87,11 +75,9 @@ public class CorpseAbsorbTutorial : MonoBehaviour
             {
                 particles[i].position = Target.position;
                 particles[i].velocity = new Vector3(0,0,0);
-                //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                 particles[i].remainingLifetime =  0;
-                //particles[i].position = Target.position;
             }
-            //Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
+            
         }
         system.SetParticles(particles, length);
        
@@ -133,24 +119,12 @@ public class CorpseAbsorbTutorial : MonoBehaviour
         if(Target != null && Target.CompareTag("AbsorbObjective"))
         {
             GameObject player = GM.GetPlayer();
-            //player.GetComponent<PlayerShoot>().ResetShoot();
         }
-        //wpControllerTutorial.RestartWeakPoints();
         if(subRoom != null)
         {
             subRoom.SetActive(true);
             roomDecal.SetActive(true);
         }
-        /*if(wpControllerTutorial.currentPhase < 3)
-        {
-            wpControllerTutorial.RestartWeakPoints();
-        }
-        else
-        {
-            wpControllerTutorial.TutorialControl();
-        }*/
-        
-            
-        //Target = null;
+      
     }
 }

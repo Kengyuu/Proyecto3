@@ -217,7 +217,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637592785292866758
+  lastModified: 637593485482097495
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -311,6 +311,29 @@ MonoBehaviour:
   MinDistance: 9
   MaxDistance: 30
   Length: 1483
+--- !u!114 &-5460592443366328937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/PlatformTutorial
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/PlatformTutorial
+  guid: 2464388d2f2a6b4fb9e42f0c35fd95e4
+  Banks:
+  - {fileID: -6255739868201589582}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2292
 --- !u!114 &-5065579645268794132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,6 +641,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1410
+--- !u!114 &-1047142959856345216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/4 ENVIRONMENT/Fire
+  m_EditorClassIdentifier: 
+  Path: event:/4 ENVIRONMENT/Fire
+  guid: 17209ce8811fe941ac6bb69902ac912a
+  Banks:
+  - {fileID: -6255739868201589582}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 11576
 --- !u!114 &-888464075285295646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,11 +702,11 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637592785292896767
+  lastModified: 637593485482117499
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 3656
+    Value: 3826
   Exists: 1
 --- !u!114 &-4901531312454227
 MonoBehaviour:
@@ -761,7 +807,7 @@ MonoBehaviour:
   - {fileID: -6255739868201589582}
   StringsBanks:
   - {fileID: -648328913144625985}
-  stringsBankWriteTime: 637592785292896767
+  stringsBankWriteTime: 637593485482117499
   cacheVersion: 6
 --- !u!114 &12481434093094410
 MonoBehaviour:
@@ -1245,7 +1291,7 @@ MonoBehaviour:
   - {fileID: -6255739868201589582}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 900

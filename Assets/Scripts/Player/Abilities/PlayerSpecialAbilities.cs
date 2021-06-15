@@ -9,7 +9,6 @@ using UnityEngine.Rendering.PostProcessing;
 public class PlayerSpecialAbilities : MonoBehaviour
 {
     private PlayerMovement m_PlayerMovement;
-    //private PlayerController m_PlayerController;
 
     private GameManager GM;
     private ScoreManager m_ScoreManager;
@@ -62,11 +61,9 @@ public class PlayerSpecialAbilities : MonoBehaviour
     public string unlockedModifierEvent;
     public string lockedModifierEvent;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
-        //m_PlayerController = GetComponent<PlayerController>();
 
         m_PostProVolume.weight = 0f;
 
@@ -77,26 +74,19 @@ public class PlayerSpecialAbilities : MonoBehaviour
 
         GM.OnMofidiersHandler += CheckModifiers;
 
-        //Disable special ability 1 @ startup
         m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Debug:
-        
-        //---
-
 
         if (m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.triggered && !m_AbilityOnCooldown && Skill_1)
         {
             SoundManager.Instance.PlaySound(cloakEvent, transform.position);
-            Debug.Log("He apretado la habilidad especial 1 con la letra 'Q'.");
             m_IsPlayerVisibleToEnemy = false;
             m_AbilityOnCooldown = true;
 
-            //POSTPRO:
+           
             StartCoroutine(FadePostProTo(1f, m_FadeSpeed));
 
             m_PlayerAnimations.StartStealth();
@@ -163,7 +153,6 @@ public class PlayerSpecialAbilities : MonoBehaviour
 
     public void ResetAbilityAndStartCooldown()
     {
-        Debug.Log("INVISIBILIDAD TERMINADA / INTERRUMPIDA");
         m_IsPlayerVisibleToEnemy = true;
         m_SliderOnCooldown = true;
         StartCoroutine(FadePostProTo(0f, m_FadeSpeed));
@@ -216,7 +205,6 @@ public class PlayerSpecialAbilities : MonoBehaviour
 
     private void CheckModifiers()
     {
-        //Debug.Log("CheckModifiers del player llamado");
 
         int l_Corpses = (int)m_ScoreManager.GetEnemyCorpses();
 
@@ -224,7 +212,6 @@ public class PlayerSpecialAbilities : MonoBehaviour
         {
             if (Skill_1 || m_SliderOnCooldown)
             {
-                //Debug.Log($"Habilidad 1 - Oraci�n Oculta DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Disable();
                 chainsInv.gameObject.SetActive(true);
                 chainsInvAnim.SetBool("Chain In", true);
@@ -235,7 +222,6 @@ public class PlayerSpecialAbilities : MonoBehaviour
             }
             if (Skill_2)
             {
-                //Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 Skill_2 = false;
                 chainsTrace.gameObject.SetActive(true);
                 chainsTraceAnim.SetBool("Chain In", true);
@@ -248,7 +234,6 @@ public class PlayerSpecialAbilities : MonoBehaviour
         {
             if (!Skill_1)
             {
-                //Debug.Log($"Habilidad 1 - Oraci�n Oculta ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                 m_PlayerMovement.m_InputSystem.Gameplay.SpecialAbility_1.Enable();
                 chainsInvAnim.SetBool("Chain Out", true);
                 q.gameObject.SetActive(true);
@@ -261,7 +246,6 @@ public class PlayerSpecialAbilities : MonoBehaviour
             {
                 if (!Skill_2)
                 {
-                    //Debug.Log($"Habilidad 2 - pasiva ACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = true;
                     chainsTraceAnim.SetBool("Chain Out", true);
                     SoundManager.Instance.PlayEvent(unlockedModifierEvent, transform);
@@ -274,7 +258,6 @@ public class PlayerSpecialAbilities : MonoBehaviour
             {
                 if (Skill_2)
                 {
-                    //Debug.Log($"Habilidad 2 - pasiva DESACTIVADA con {m_ScoreManager.GetPlayerCorpses()} cuerpos.");
                     Skill_2 = false;
                     chainsTrace.gameObject.SetActive(true);
                     chainsTraceAnim.SetBool("Chain In", true);

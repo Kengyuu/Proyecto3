@@ -5,24 +5,12 @@ using UnityEngine.AI;
 
 public class EnemyArmController : MonoBehaviour
 {
-    // Start is called before the first frame update
     public NavMeshAgent enemyNavMesh;
 
     public Enemy_BLACKBOARD blackboard;
     public float XForceImpulseDamage = 5f;
     public float YForceImpulseDamage = 5f;
     public bool canDoDamage = true; 
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,23 +19,14 @@ public class EnemyArmController : MonoBehaviour
         {
 
             GetComponent<BoxCollider>().enabled = false;
-               // Debug.Log(name);
-                //Debug.Log("hit");
-                other.gameObject.GetComponent<PlayerController>().TakeDamage(1, gameObject, XForceImpulseDamage, YForceImpulseDamage);
-                //GetComponent<BoxCollider>().enabled = false;
-                if (other.GetComponent<PlayerController>().m_PlayerStunned)
-                {
-                    blackboard.animatorController.PlayerStunned();
-                Debug.Log("Stunned");
-                    //GetComponent<Animation>().Play("ArmAnimationPlayerStunned");
-                }
-                //StartCoroutine(WaitToGetStunned());
-            
-
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(1, gameObject, XForceImpulseDamage, YForceImpulseDamage);
+            if (other.GetComponent<PlayerController>().m_PlayerStunned)
+            {
+                 blackboard.animatorController.PlayerStunned();
+ 
+            }
         }
     }
-
-    
 
     IEnumerator WaitToGetStunned()
     {

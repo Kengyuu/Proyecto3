@@ -48,8 +48,6 @@ public class MainMenu : MonoBehaviour
 
     public void HandleOnStateChange()
 	{
-		//Debug.Log("OnStateChange! Unfollowing event.");
-		//Apply this when we have a real scene change:
 		GM.OnStateChange -= HandleOnStateChange;
 	}
 
@@ -69,23 +67,15 @@ public class MainMenu : MonoBehaviour
 
 	public void PlayGame()
     {
-
-		//Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
-		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
 		music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		GM.SetGameState(GameState.GAME);
-		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
 		Initiate.Fade(m_SlidesScene, Color.black, 3f);
 	}
 
 	public void PlayTutorial()
 	{
-		//Debug.Log($"Veces jugadas: {GM.m_GamesPlayed}, cargando juego por defecto");
-		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
 		music.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 		GM.SetGameState(GameState.TUTORIAL);
-		
-		//Debug.Log($"Current GAMESTATE: {GM.gameState}");
 		Initiate.Fade(m_SlidesScene, Color.black, 3f);
 	}
 
@@ -93,7 +83,6 @@ public class MainMenu : MonoBehaviour
 
 	public void Quit()
 	{
-		//Debug.Log("Cerrando el juego");
 		SoundManager.Instance.PlaySound(exitSoundEvent, transform.position);
 		Application.Quit();
 	}
@@ -102,18 +91,15 @@ public class MainMenu : MonoBehaviour
     {
 		m_MaskAnimator.SetBool("On Hunt Button", true);
 		SoundManager.Instance.PlaySound(hoverSoundEvent, transform.position);
-		//Debug.Log("Raton encima");
     }
 
     public void MouseExitHunt()
     {
 		m_MaskAnimator.SetBool("On Hunt Button", false);
-		//Debug.Log("Raton fuera");
     }
 
 	public void MouseHoverSound()
     {
-		//Vector3 cuac = Camera.main.ScreenToWorldPoint(transform.position);
 		SoundManager.Instance.PlaySound(hoverSoundEvent, transform.position);
 	}
 

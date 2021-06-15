@@ -9,7 +9,6 @@ using FMOD.Studio;
 public class ForgeEffects : MonoBehaviour
 {
     public string lavaEvent;
-    //EventInstance rushedBreath;
     EventInstance lava;
     private void OnTriggerEnter(Collider other)
     {

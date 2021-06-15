@@ -32,7 +32,6 @@ public class PlayerAnimations : MonoBehaviour
 
     public void ResetShoot()
     {
-        //Debug.Log("Llamo al resetshoot");
         m_PlayerShoot.ResetShoot();
     }
 

@@ -107,7 +107,6 @@ public class FSM_TrapSearcher : MonoBehaviour
                 
                 if (trap != null)
                 {
-                    //if (trap.GetComponent<PassiveTrap>() != null && trap.GetComponent<PassiveTrap>().GetTrapActive())
                     ChangeState(State.GOINGTOTRAP);
                     break;
                 }
@@ -121,7 +120,6 @@ public class FSM_TrapSearcher : MonoBehaviour
                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
                     && GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState != FSM_SeekPlayer.State.ATTACKING)
                 {
-                    //Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
                     break;
                 }
@@ -153,7 +151,6 @@ public class FSM_TrapSearcher : MonoBehaviour
                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
                     && GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState != FSM_SeekPlayer.State.ATTACKING)
                 {
-                   // Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
                     break;
                 }
@@ -185,7 +182,6 @@ public class FSM_TrapSearcher : MonoBehaviour
 
             case State.ALERT:
                 Rotate();
-               // transform.LookAt(GM.GetPlayer().transform, transform.up);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 Invoke("StayAlert", 1);
                 break;
@@ -196,7 +192,6 @@ public class FSM_TrapSearcher : MonoBehaviour
                 if (rotating)
                 {
                     Rotate();
-                   // transform.LookAt(GM.GetPlayer().transform, transform.up);
                     transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 } 
 
@@ -227,7 +222,6 @@ public class FSM_TrapSearcher : MonoBehaviour
     void ChangeState(State newState)
     {
 
-        //EXIT LOGIC
         switch (currentState)
         {
             case State.INVOKING:
@@ -235,7 +229,6 @@ public class FSM_TrapSearcher : MonoBehaviour
                 blackboard.navMesh.isStopped = false;
                 break;
             case State.DEACTIVATINGTRAP:
-                //child.rotation = Quaternion.LookRotation(gameObject.transform.forward);
                 blackboard.navMesh.isStopped = false;
                 ReEnter();
                 break;
@@ -250,7 +243,6 @@ public class FSM_TrapSearcher : MonoBehaviour
                 break;
         }
 
-        // Enter logic
         switch (newState)
         {
             case State.INVOKING:
@@ -295,9 +287,6 @@ public class FSM_TrapSearcher : MonoBehaviour
         currentState = newState;
 
     }
-
-
-    //ATTACK FUNCTIONS
 
     public void StartChargeSound()
     {
@@ -377,7 +366,6 @@ public class FSM_TrapSearcher : MonoBehaviour
         if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
                    && GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState != FSM_SeekPlayer.State.ATTACKING)
         {
-            //Debug.Log("aTTACKING");
             ChangeState(State.ATTACKINGPLAYER);
         }
         else ChangeState(State.WANDERING);

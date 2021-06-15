@@ -7,7 +7,6 @@ using FMOD.Studio;
 
 public class SoundManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public static SoundManager instance = null;
 
     
@@ -40,7 +39,6 @@ public class SoundManager : MonoBehaviour
     public void PlaySound(string path, Vector3 trans)
     {
         FMODUnity.RuntimeManager.PlayOneShot(path, trans);
-        //UnityEngine.Debug.Log("Sound");
     }
 
     public EventInstance PlayEvent(string path,Transform trans)
@@ -48,7 +46,6 @@ public class SoundManager : MonoBehaviour
         EventInstance sound = RuntimeManager.CreateInstance(path);
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(sound, trans, trans.gameObject.GetComponent<Rigidbody>());
         sound.set3DAttributes(RuntimeUtils.To3DAttributes(trans));
-        
         sound.start();
         return sound;
     }

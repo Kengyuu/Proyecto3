@@ -27,11 +27,7 @@ public class PauseMenu : MonoBehaviour
         m_PlayerMovement = GM.GetPlayer().GetComponent<PlayerMovement>();
         currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
-        Debug.Log(sceneName);
-
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (m_PlayerMovement.m_InputSystem.Gameplay.Pause.triggered || m_PlayerMovement.m_InputSystem.Pause.Pause.triggered)
@@ -49,7 +45,6 @@ public class PauseMenu : MonoBehaviour
 
     private void Pause()
     {
-        //Debug.Log("entro a PAUSE");
         Time.timeScale = 0f;
         GM.SetGameState(GameState.PAUSE);
         m_GameIsPaused = true;
@@ -58,7 +53,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        Debug.Log("entro a RESUME");
         Time.timeScale = 1f;
         GM.SetGameState(GameState.GAME);
         m_GameIsPaused = false;
@@ -67,10 +61,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        Debug.Log("Paro musica");
         if (sceneName == "TutorialScene")
         {
-            Debug.Log("Paro musica");
             musicTutorial.music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
         else if (sceneName == "Game") 
@@ -84,12 +76,10 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Saliendo del juego");
         Application.Quit();
     }
     public void MouseHoverSound()
     {
-        //Vector3 cuac = Camera.main.ScreenToWorldPoint(transform.position);
         SoundManager.Instance.PlaySound(hoverSoundEvent, transform.position);
     }
 

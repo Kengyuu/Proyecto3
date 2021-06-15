@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ActivateTrailTutorial : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject hiderTrail;
     public GameObject attackTrail;
     public GameObject corpseTrail;
@@ -14,16 +13,6 @@ public class ActivateTrailTutorial : MonoBehaviour
 
     public GameObject promptStartRoomTwo;
     public GameObject enemy;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider col)
     {

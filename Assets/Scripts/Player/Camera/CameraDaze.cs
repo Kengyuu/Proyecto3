@@ -17,14 +17,4 @@ public class CameraDaze : MonoBehaviour
 
         m_Player.Rotate(Vector3.up * 20f *Mathf.Sin(Time.time * 5f) * Time.deltaTime);
     }
-
-    private void OnEnable()
-    {
-       // Debug.Log("Daze activado");
-    }
-
-    private void OnDisable()
-    {
-      //  Debug.Log("Daze desactivado");
-    }
 }

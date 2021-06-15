@@ -16,13 +16,10 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
 
     void Start()
     {
-        //blackboard.navMesh = GetComponent<NavMeshAgent>();
         blackboard = GetComponent<Orb_Blackboard>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
 
         corpseHide = GetComponent<FSM_CorpseHider>();
-
-
     }
 
     public void Exit()
@@ -95,7 +92,6 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
 
             case State.RETURNINGTOENEMY:
                 Spawn();
-               // gameObject.SetActive(false);
                 break;
             case State.DEAD:
                 blackboard.navMesh.isStopped = true;

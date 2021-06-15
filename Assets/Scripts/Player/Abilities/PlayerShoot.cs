@@ -65,10 +65,6 @@ public class PlayerShoot : MonoBehaviour
     public string shootEvent;
     public string absorbEvent;
 
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
@@ -78,31 +74,10 @@ public class PlayerShoot : MonoBehaviour
         if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         if (GM == null) GM = GameManager.Instance;
 
-        //GM.OnStateChange += StateChanged;
-        
-
     }
-
-    /*    private void StateChanged()
-        {
-            switch (GM.gameState)
-            {
-                case GameState.MAP:
-                    m_PlayerCanShoot = false;
-                    break;
-                case GameState.GAME:
-                    m_PlayerCanShoot = true;
-                    break;
-            }
-        }*/
-
-    // Update is called once per frame
     void Update()
     {
-        //if(m_PlayerCanShoot) CheckShootingCollisions();
-        //TutorialCheck();
-
-
+        
         if (m_PlayerMovement.m_InputSystem.Gameplay.Shoot.triggered && !m_IsPlayerShooting)
         {
             CheckTarget();
@@ -110,7 +85,6 @@ public class PlayerShoot : MonoBehaviour
 
         if (m_PlayerAnimations.m_Animator.GetBool("Absorb") && m_CurrentCorpseAbsortion != null)
         {
-            //Debug.Log("EL JUGADOR TIENE UN CADAVER CANALIZANDO");
             if (Vector3.Distance(transform.position, m_CurrentCorpseAbsortion.transform.position) > (m_CorpseDetectionDistance + m_CorpseDistanceOffset))
             {
                 if (m_CurrentCorpseAbsortion.CompareTag("Corpse"))
@@ -124,7 +98,6 @@ public class PlayerShoot : MonoBehaviour
                     m_CurrentCorpseAbsortion.GetComponent<CorpseAbsorbTutorial>().StopAbsortion();
                 }
                 
-                Debug.Log("JUGADOR ALEJADO DEL CADAVER; DEBERIA PARAR LA ABSORCION!");
                 m_PlayerAnimations.m_Animator.SetBool("Absorb", false);
                 absorbParticles.SetActive(false);
                 m_CurrentCorpseAbsortion = null;
@@ -134,77 +107,14 @@ public class PlayerShoot : MonoBehaviour
         }
 
     }
-
-    /*private void TutorialCheck()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
-        {
-            string tag = hit.collider.transform.tag;
-            switch (tag)
-            {
-                case "Corpse":
-                    if (firstTimeCorpse)
-                    {
-                        M_HudController.triggerShot = true;
-                        firstTimeCorpse = false;
-                    }
-
-                    break;
-                case "ActiveTrap":
-                    if (firstTimeTrap)
-                    {
-                        M_HudController.triggerShotTrap = true;
-                        firstTimeTrap = false;
-                    }
-                    break;
-                case "TrapDeactivated":
-                    if (firstTimeTrapD)
-                    {
-                        M_HudController.triggerShotTrapD = true;
-                        firstTimeTrapD = false;
-                    }
-                    break;
-
-                case "WeakPoint":
-                    if (firstTimeShootEnemy)
-                    {
-                        M_HudController.triggerShotEnemy = true;
-                        firstTimeShootEnemy = false;
-                    }
-                    break;
-
-                case "CorpseOrb":
-                    if (firstTimeShootEnemy)
-                    {
-                        M_HudController.triggerShotEnemy = true;
-                        firstTimeShootEnemy = false;
-                    }
-                    break;
-            }
-        }
-    }*/
-
-/*    private void StartCasting()
-    {
-        
-        
-        Shoot();
-        //Invoke("Shoot", m_ShootCastingTime);
-    }*/
-
     private void ShootAnimStart()
     {
-        //Debug.Log("PLAYER DISPARA");
         m_IsPlayerShooting = true;
         crosshairAnim.SetBool("Shot", true); 
     }
 
     private void CheckTarget()
     {
-        //SHOOT CASTING TIME FLOAT ANTERIOR -> 0.46f
-        //Debug.Log("Entro en CheckTarget Shoot");
-
         if (!m_PlayerStealth.m_IsPlayerVisibleToEnemy)
         {
             m_PlayerStealth.ResetAbilityAndStartCooldown();
@@ -212,57 +122,30 @@ public class PlayerShoot : MonoBehaviour
         GM.PlayerNoise(m_ShootNoise);
 
         RaycastHit hit;
-        //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit/*, m_ShootLayers*/))
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit))
         {
-            //Debug.Log("RAYCAST INICIAL DE SHOOT");
             string tag = hit.collider.transform.tag;
             float l_CurrentDistance = Vector3.Distance(hit.transform.position, transform.position);
 
             if ((tag == "Corpse" || tag == "CorpseTutorial") && l_CurrentDistance < m_CorpseDetectionDistance)
             {
-               // Debug.Log("DETECTO UN CADAVER");
                 CorpseAbsorb();
                 return;
             }
-            //Debug.Log("REALIZO DISPARO NORMAL AL NO SER UN CADAVER");
             Shoot();
             return;
-            /*else
-            {
-                Debug.Log("DETECTO LO QUE SEA");
-                Shoot();
-                return;
-            }*/
         }
-        else
-        {
-            //ResetShoot();
-            /*m_IsPlayerShooting = false;
-            crosshairAnim.SetBool("Shot", false);*/
-        }
-        //Shoot(0f, "", hit); //Random shoot to AIR
 
-        
     }
 
 
     private void CorpseAbsorb()
     {
-       // Debug.Log("Inicio absorción de CUERPO");
         ShootAnimStart();
         SoundManager.Instance.PlayEvent(absorbEvent, transform);
-        /*
-         * - start animacion
-	     -> eventos de animacion (FUNCIONES)
-	    - Al final Sumar cadaver por evento
-	    - al final de animacion ResetShoot() -> supuestamente hecho
-        */
-        RaycastHit hit;
-        //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_MaxShootDistance, m_ShootLayers))
+        RaycastHit hit; 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_ShootLayers))
         {
-            //Debug.Log("Esto es el raycast de Shoot");
             string tag = hit.collider.transform.tag;
             float l_CurrentDistance = Vector3.Distance(hit.transform.position, transform.position);
 
@@ -270,7 +153,6 @@ public class PlayerShoot : MonoBehaviour
             {
                 absorbParticles.SetActive(true);
                 M_HudController.hasShot = true;
-                //corpseHit = true;
                 m_CurrentCorpseAbsortion = hit.transform.gameObject;
                 m_PlayerAnimations.StartAbsorb();
                 if (hit.collider.CompareTag("Corpse"))
@@ -295,50 +177,25 @@ public class PlayerShoot : MonoBehaviour
     }
 
     private void Shoot()
-    {
-        //Debug.Log("Inicio FUNCION DE DISPARO");
+    {   
         ShootAnimStart();
-        /*
-         * 	- Play animacion Beam + particulas
-	    - Introducir el Switch actual de disparo
-	    - al final de animacion ResetShoot()
-        */
         chargeBeam.Play();
         handLight.Play();
         SoundManager.Instance.PlaySound(chargeEvent, transform.position);
-        //Invoke("ShootBeam", m_ShootCastingTime);
         m_PlayerAnimations.StartShoot();
 
         
     }
-
-
-/*    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(0.4f);
-        StopAnim();
-    }
-    private void StopAnim()
-    {
-        
-        ResetShoot();
-    }*/
-
     public void ResetShoot()
     {
         crosshairAnim.SetBool("Shot", false);
         m_IsPlayerShooting = false;
-        //m_PlayerAnimations.StopAbsorb();
     }
 
     public void ShootBeam()
     {
-        //Debug.Log("INICIO SHOOT_BEAM");
         ParticleSystem particles = beam.GetComponent<ParticleSystem>();
         ParticleSystem.ShapeModule shape = particles.shape;
-        //shape.length = distance/5;
-        //Debug.Log(distance);
-        //beam.transform.localScale =
 
         beam.SetActive(true);
         mainBeam.SetActive(true);
@@ -349,10 +206,8 @@ public class PlayerShoot : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, m_ShootLayers))
         {
-            //Debug.Log("DENTRO DE RAYCAST SHOOT BEAM");
             string tag = hit.collider.transform.tag;
             float l_CurrentDistance = Vector3.Distance(hit.transform.position, transform.position);
-            //Debug.Log($"DENTRO DE RAYCAST SHOOT BEAM con NAME: { hit.collider.transform.gameObject.name }");
             switch (tag)
             {
                 case "ActiveTrap":
@@ -371,7 +226,6 @@ public class PlayerShoot : MonoBehaviour
                     }
                     break;
                 case "WeakPointTutorial":
-                    //Debug.Log("ESTO ES UN WEAKPOINT DEL TUTORIAL");
                     if (l_CurrentDistance < m_WeakPointDetectionDistance)
                     {
                         WeakPointsTutorial wpt = hit.collider.GetComponent<WeakPointsTutorial>();
@@ -450,6 +304,5 @@ public class PlayerShoot : MonoBehaviour
         beam.SetActive(false);
         mainBeam.SetActive(false);
         splashBeam.SetActive(false);
-        //ResetShoot();
     }
 }

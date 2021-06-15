@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyPriorities : MonoBehaviour
 {
-    // Start is called before the first frame update
     public enum EnemyStates {LOOKFORPLAYER, SEARCHCORPSES}
     
     public EnemyStates currState;
@@ -27,10 +26,6 @@ public class EnemyPriorities : MonoBehaviour
 
     ScoreManager m_ScoreManager;
 
-     
-
-    //public delegate void Priority(EnemyStates state);
-    //public event Priority changePriority;
     void Start()
     {
         GM = GameManager.Instance;
@@ -46,7 +41,6 @@ public class EnemyPriorities : MonoBehaviour
         remainingCorpses = m_ScoreManager.GetRemainingCorpses();
         ActivateFSM();
 
-        //TEST DAVID:
         GM.OnPlayerNoise += DetectPlayerActions;
     }
 
@@ -81,7 +75,6 @@ public class EnemyPriorities : MonoBehaviour
 
    public void DetectPlayerActions(float playerDistance)
     {
-        //Debug.Log($"David: la distancia recibida por EVENTO es de: {playerDistance}");
         if(GM.gameState == GameState.GAME)
         {
             if(!playerSeen)
@@ -99,16 +92,8 @@ public class EnemyPriorities : MonoBehaviour
         }
         
     }
-
-    /*private void Update()
-    {
-        ChangePriority();
-    }*/
-
     public void ChangePriority()
     {
-        /*playerSeen = false;
-        playerDetected = false;*/
         if(m_ScoreManager != null)
         {
             playerCorpses = m_ScoreManager.GetPlayerCorpses();
@@ -132,7 +117,6 @@ public class EnemyPriorities : MonoBehaviour
                 {
                     currState = EnemyStates.SEARCHCORPSES;
                 }
-                //currState = EnemyStates.LOOKFORPLAYER;
             }
             else
             {
@@ -147,34 +131,16 @@ public class EnemyPriorities : MonoBehaviour
                     {
                         currState = EnemyStates.LOOKFORPLAYER;
                     }
-
-                    /*if(enemyCorpses > playerCorpses && (enemyCorpses - playerCorpses) == 1)
-                    {
-                        currState = EnemyStates.LOOKFORPLAYER;
-                    }
-                    if(enemyCorpses == playerCorpses && enemyCorpses == 6)
-                    {
-                        currState = EnemyStates.LOOKFORPLAYER;
-                    }*/
                 }
 
                 
                 
                 if(enemyCorpses >= 0 && enemyCorpses <= 5)
                 {
-                    /*if(playerCorpses < enemyCorpses && (enemyCorpses - playerCorpses) > 1)
-                    {
-                        currState = EnemyStates.SEARCHCORPSES;
-                    }*/
-
                     if (enemyCorpses > playerCorpses)
                     {
                         currState = EnemyStates.SEARCHCORPSES;
                     }
-                    /*if(enemyCorpses == playerCorpses && enemyCorpses == 6)
-                    {
-                        currState = EnemyStates.LOOKFORPLAYER;
-                    }*/
 
                     if (playerCorpses == enemyCorpses)
                     {
@@ -203,8 +169,6 @@ public class EnemyPriorities : MonoBehaviour
                 currState = EnemyStates.LOOKFORPLAYER;
             }
         }
-
-        //changePriority.Invoke(currState);
         if(currState != prevState || playerSeen || playerDetected)
             ActivateFSM();
     }
@@ -219,14 +183,11 @@ public class EnemyPriorities : MonoBehaviour
                     seekPlayer.Exit();
                     searchCorpse.ReEnter();
                 }
-                
-                //GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
+              
                 break;
             case EnemyStates.LOOKFORPLAYER:
                 searchCorpse.Exit();
                 seekPlayer.ReEnter();
-                //Debug.Log("entro aquí");
-                //GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                 break;
         }
     }

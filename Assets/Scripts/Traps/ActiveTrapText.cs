@@ -6,13 +6,11 @@ using UnityEngine.UI;
 
 public class ActiveTrapText : MonoBehaviour
 {
-    //Helpers
     public Canvas m_Canvas;
 
     private Camera m_Camera;
     PlayerShoot m_Player;
 
-    //public RawImage m_Image;
     [Header("Left Button tooltip")]
     public RawImage m_MouseButton;
     public ActiveTrap m_Controller;
@@ -38,7 +36,6 @@ public class ActiveTrapText : MonoBehaviour
         float l_Distance = Vector3.Distance(transform.position, m_Player.gameObject.transform.position);
         if (m_Controller.m_TrapCanBeEnabled && l_Distance < (m_Player.m_TrapDetectionDistance + m_DistanceOffset))
         {
-            //Debug.Log("OutLine ENABLED");
             if (!m_MouseButton.enabled)
             {
                 m_MouseButton.enabled = true;
@@ -46,7 +43,6 @@ public class ActiveTrapText : MonoBehaviour
         }
         else
         {
-            //Debug.Log("OutLine DISABLED");
             m_MouseButton.enabled = false;
         }
 

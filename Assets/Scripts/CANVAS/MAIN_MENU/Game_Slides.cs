@@ -47,11 +47,6 @@ public class Game_Slides : MonoBehaviour
 
 		Cursor.lockState = CursorLockMode.None;
 
-
-		//DEBUG GAME STATE - BORRAR AL TERMINAR!
-		//GM.SetGameState(GameState.GAME);
-		Debug.Log($"Current GAMESTATE en GAME_SLIDES: {GM.gameState}");
-
 		switch (GM.gameState)
         {
 			case GameState.GAME:
@@ -105,13 +100,11 @@ public class Game_Slides : MonoBehaviour
 			switch (GM.gameState)
 			{
 				case GameState.TUTORIAL:
-					//StartCoroutine(LoadAsyncOperation(m_TutorialScene));
 					MouseClickSound();
 					Invoke("LoadTutorial", 1f);
 					break;
 
 				case GameState.GAME:
-					//StartCoroutine(LoadAsyncOperation(m_GameScene));
 					MouseClickSound();
 					Invoke("LoadGame", 1f);
 					break;
@@ -124,13 +117,11 @@ public class Game_Slides : MonoBehaviour
 		switch (GM.gameState)
 		{
 			case GameState.TUTORIAL:
-				//StartCoroutine(LoadAsyncOperation(m_TutorialScene));
 				MouseClickSound();
 				Invoke("LoadTutorial", 1f);
 				break;
 
 			case GameState.GAME:
-				//StartCoroutine(LoadAsyncOperation(m_GameScene));
 				MouseClickSound();
 				Invoke("LoadGame", 1f);
 				break;
@@ -139,7 +130,6 @@ public class Game_Slides : MonoBehaviour
 
 	IEnumerator LoadAsyncOperation(string scene)
     {
-		//Async scene load
 		int y = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.UnloadSceneAsync(y);
 
@@ -149,24 +139,6 @@ public class Game_Slides : MonoBehaviour
 		{
 			yield return new WaitForEndOfFrame();
 		}
-		Debug.Log($"Loading Level { scene }");
-
-		/*switch (GM.gameState)
-		{
-			case GameState.TUTORIAL:
-				
-				
-				break;
-
-			case GameState.GAME:
-				AsyncOperation l_GameLevel = SceneManager.LoadSceneAsync(m_GameScene, LoadSceneMode.Additive);
-                while (!l_GameLevel.isDone)
-                {
-                    yield return null;
-                }
-				Debug.Log($"Loading Level { m_GameScene }");
-				break;
-		}*/
 	}
 
 
@@ -189,7 +161,6 @@ public class Game_Slides : MonoBehaviour
 
 	public void MouseHoverSound()
 	{
-		//Vector3 cuac = Camera.main.ScreenToWorldPoint(transform.position);
 		SoundManager.Instance.PlaySound(hoverSoundEvent, transform.position);
 	}
 

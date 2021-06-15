@@ -8,7 +8,6 @@ using FMOD.Studio;
 
 public class TutorialRoomController : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject sideWall;
 
     public GameObject subRoom;

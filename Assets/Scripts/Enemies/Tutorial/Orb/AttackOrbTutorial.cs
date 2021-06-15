@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AttackOrbTutorial : MonoBehaviour
 {
-    // Start is called before the first frame update
     Animator animator;
     public LineRenderer line;
     bool lookAtPlayer;
@@ -15,7 +14,6 @@ public class AttackOrbTutorial : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(lookAtPlayer)

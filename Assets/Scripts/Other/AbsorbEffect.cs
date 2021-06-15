@@ -17,13 +17,10 @@ public class AbsorbEffect : MonoBehaviour
     private GameManager GM;
     int count;
     private static ParticleSystem.Particle[] particles = new ParticleSystem.Particle[200];
-    // Start is called before the first frame update
     void Start()
     {
         GM = GameManager.Instance;
     }
-
-    // Update is called once per frame
 
     void OnEnable()
     {
@@ -33,7 +30,6 @@ public class AbsorbEffect : MonoBehaviour
 		if (mainParticles == null){
 			this.enabled = false;
 		}
-        //mainParticles.Play();
     }
     void Update()
     {
@@ -49,35 +45,12 @@ public class AbsorbEffect : MonoBehaviour
                     if(finalPoint.GetComponent<EnemyPriorities>().playerSeen || finalPoint.GetComponent<EnemyPriorities>().playerDetected)
                     {
                         particlesActive = false;
-                        //StopAbsortion();
                     }
                     break;
                 case "CorpseOrb":
                     absorberStunned = finalPoint.GetComponent<FSM_ReturnToSafety_Corpse>().killed;
                     break;
             }
-        }
-
-        if(!absorberStunned)
-        {
-            /*count = system.GetParticles(particles);
-                for (int i = 0; i < count; i++)
-                {
-                    
-                    /*ParticleSystem.Particle particle = particles[i];
-                    Vector3 v1 = system.transform.TransformPoint(particle.position);
-                    Vector3 v2 = Target.transform.position;
-                    Vector3 tarPosi = (v1 - v2) *  (particle.remainingLifetime / particle.startLifetime);
-                    particle.position = system.transform.InverseTransformPoint(v2 - tarPosi);
-                    particles[i] = particle;*/
-                    /*if((particles[i].position - Target.position).magnitude < 0.1f)
-                    {
-                        particles[i].remainingLifetime = 0;
-                    }
-                    
-                }
-                system.SetParticles(particles, count);
-                currentAbsorbTime += Time.deltaTime;*/
         }
     }
 
@@ -92,13 +65,5 @@ public class AbsorbEffect : MonoBehaviour
     IEnumerator Wait(float particleDuration)
     {
         yield return new WaitForSeconds(particleDuration);
-        /*if(systemActive)
-        {
-            StopAbsortion();
-            gameObject.SetActive(false);
-            GM.m_GameObjectSpawner.ClearBodys(gameObject.GetComponent<CorpseControl>().spawnPosition);
-            
-        }*/
-        
     }
 }

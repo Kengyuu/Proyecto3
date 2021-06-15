@@ -24,17 +24,11 @@ public class GameMusic : MonoBehaviour
     {
         if (GM == null) GM = GameManager.Instance;
     }
-    void Start()
-    {
-        //music = SoundManager.Instance.PlayEvent(regularMusicEvent, transform);
-
-    }
 
     private void Update()
     {
         if (enemy.currentState == HFSM_StunEnemy.State.SEARCHCORPSES)
         {
-            //UnityEngine.Debug.Log("PlayerNOTSeen");
             cooldownChaseMusic = 0;
             chase.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             if (cooldownRegularMusic <= 0)
@@ -46,7 +40,6 @@ public class GameMusic : MonoBehaviour
         }
         else if ((enemy.currentState == HFSM_StunEnemy.State.SEEKPLAYER))
         {
-           // UnityEngine.Debug.Log("PlayerSeen");
             cooldownRegularMusic = 0;
             music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             if (cooldownChaseMusic <= 0)

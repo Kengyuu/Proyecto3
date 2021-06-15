@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class FSM_SeekPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     public NavMeshAgent enemy;
     private Enemy_BLACKBOARD blackboard;
     GameObject Player;
@@ -28,7 +28,6 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     public GameObject stunnnedAbsorbParticles;
     int currentComboAttack = 0;
-    //Transform child;
     public GameObject rightArm;
     public GameObject leftArm;
     public enum State { INITIAL, WANDERING, SEEKINGPLAYER, GOTOLASTPLAYERPOSITION, ATTACKING, PROVOKING};
@@ -43,16 +42,13 @@ public class FSM_SeekPlayer : MonoBehaviour
         GM = GameManager.Instance;
 
         enemy = GetComponent<NavMeshAgent>();
-       // enemyType = transform.tag;
         Player = GM.GetPlayer();
         blackboard = GetComponent<Enemy_BLACKBOARD>();
-        //child = gameObject.transform.GetChild(2);
-        //Arm = child.gameObject;
+
     }
 
     public void Exit()
     {
-        //Arm.SetActive(false);
         GetComponent<EnemyPriorities>().playerSeen = false;
         GetComponent<EnemyPriorities>().playerDetected = false;
         target = null;
@@ -70,7 +66,6 @@ public class FSM_SeekPlayer : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -89,7 +84,6 @@ public class FSM_SeekPlayer : MonoBehaviour
                     ChangeState(State.SEEKINGPLAYER);
                 }
                 savedCorpse = DetectionFunctions.FindObjectInArea(gameObject, "Corpse", blackboard.corpseDetectionRadius);
-                //Debug.Log(corpse.name);
 
                 if (savedCorpse != null)
                 {
@@ -107,7 +101,6 @@ public class FSM_SeekPlayer : MonoBehaviour
 
             case State.SEEKINGPLAYER:
                     enemy.SetDestination(Player.transform.position);
-                //transform.LookAt(Player.transform,transform.up);
                 if (DetectionFunctions.DistanceToTarget(gameObject,Player) <= blackboard.distanceToAttack)
                 {
                     ChangeState(State.ATTACKING);
@@ -142,12 +135,10 @@ public class FSM_SeekPlayer : MonoBehaviour
                
             case State.ATTACKING:
 
-                //transform.LookAt(Player.transform,transform.up);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 if(isProvoking)
                 {
                     ChangeState(State.PROVOKING);
-                    Debug.Log("Lo provoco yo");
                 }
                 
                 
@@ -198,15 +189,7 @@ public class FSM_SeekPlayer : MonoBehaviour
         
         //EXIT LOGIC
         switch (currentState)
-        {
-            case State.SEEKINGPLAYER:
-                //blackboard.animatorController.WalkAgressiveExit();
-
-                break;
-            case State.GOTOLASTPLAYERPOSITION:
-
-
-                break;
+        {  
             case State.ATTACKING:
                 if(newState != State.ATTACKING && newState != State.PROVOKING)
                 {
@@ -218,9 +201,7 @@ public class FSM_SeekPlayer : MonoBehaviour
                 {
                     blackboard.animatorController.DecideComboAttack();
                 }
-                    
-                //blackboard.animatorController.TransitionWalkCalm(true);
-                //Arm.SetActive(false);
+
                 break;
             case State.PROVOKING:
                 isProvoking = false;
@@ -247,14 +228,11 @@ public class FSM_SeekPlayer : MonoBehaviour
 
             
             case State.ATTACKING:
-                //enemy.isStopped = true;
                 transform.LookAt(Player.transform,transform.up);
-                //Arm.SetActive(true);
                 currentAttackTime = 0f;
                 isAttacking = true;
                 if(Player.GetComponent<PlayerController>().m_Life > 0)
                 {
-                    //Arm.GetComponent<Animation>().Play();
                     blackboard.animatorController.AttackStart();
                 }
                 GetComponent<HFSM_StunEnemy>().canInvoke = false;
@@ -266,12 +244,8 @@ public class FSM_SeekPlayer : MonoBehaviour
                 break;
 
             case State.WANDERING:
-              //  Debug.Log("finding");
-                /*int spawnPosition = Random.Range(0, blackboard.waypointsList.GetComponent<RoomSpawner>().spawners.Count);
-                target = blackboard.waypointsList.GetComponent<RoomSpawner>().spawners[spawnPosition];*/
                 blackboard.animatorController.WalkAgressiveExit();
                 GetComponent<HFSM_StunEnemy>().canInvoke = true;
-                //enemy.SetDestination(target.transform.position);
                 if (!waypointSelected)
                 {
                     waypointsNearPlayer = DetectionFunctions.FindObjectsInArea(Player, "Waypoint", blackboard.waypointsNearPlayerRadius);
@@ -300,36 +274,14 @@ public class FSM_SeekPlayer : MonoBehaviour
         currentState = newState;
 
     }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("hit");
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(-1, gameObject);
-
-            StartCoroutine(WaitToGetStunned());
-        }
-    }
-
-    IEnumerator WaitToGetStunned()
-    {
-        enemy.isStopped = true;
-        yield return new WaitForSeconds(4);
-        enemy.isStopped = false;
-        
-    }*/
-        
+ 
     GameObject FindClosestWaypoint(List<GameObject> list, GameObject player)
         {
         
             GameObject closest = list[1];
-
-            //float minDistance = (closest.transform.position - user.transform.position).magnitude;
             float minDistance = (closest.transform.position - player.transform.position).magnitude;
             for (int i = 1; i < list.Count; i++)
             {
-                //dist = (targets[i].transform.position - user.transform.position).magnitude;
                 float dist = (list[i].transform.position - player.transform.position).magnitude; 
                 if (dist < minDistance)
                 {

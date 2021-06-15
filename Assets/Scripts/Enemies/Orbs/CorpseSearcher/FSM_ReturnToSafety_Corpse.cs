@@ -19,7 +19,6 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
     void Start()
     {
         blackboard = GetComponent<Orb_Blackboard>();
-        //blackboard.navMesh = GetComponent<NavMeshAgent>();
         if (M_HudController == null) M_HudController = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HudController>();
         blackboard.SetOrbHealth(blackboard.m_maxLife);
         m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
@@ -99,15 +98,12 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
-                
-                Debug.Log("RESPAWN");
                 if (blackboard.orbCorpseStored != null)
                 {
                     blackboard.orbCorpseStored = null;
                     GameManager.Instance.GetGameObjectSpawner().SpawnBodys(1, gameObject);
                 }
                 Spawn();
-               // gameObject.SetActive(false);
 
                 break;
             case State.DEAD:
@@ -125,7 +121,6 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
     {
         corpseSearch.m_Laser.enabled = false;
         blackboard.SetOrbHealth(blackboard.m_maxLife);
-        //corpseSearch.ChangeParticleColor();
         OrbEvents.current.RespawnOrbs(gameObject);
         blackboard.navMesh.isStopped = false;
         corpseSearch.enabled = true;
@@ -136,7 +131,6 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy" && currentState == State.NORMALBEHAVIOUR)
         {
-            Debug.Log("Colisionao");
             corpseSearch.target = blackboard.behaviours.PickRandomWaypointOrb();
         }
 

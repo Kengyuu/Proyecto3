@@ -24,7 +24,7 @@ public class HFSM_StunEnemy : MonoBehaviour
     float maxStunTime;
 
     NavMeshAgent navMesh;
-    // Start is called before the first frame update
+
     void Start()
     {
         isInvoking = false;
@@ -156,13 +156,6 @@ public class HFSM_StunEnemy : MonoBehaviour
                     GetComponent<EnemyPriorities>().ChangePriority();
                 }
                 break;
-            case State.DEAD:
-                Debug.Log("Jaja no hago nada equisde");
-                break;
-            case State.WIN:
-                Debug.Log("HE GANADO, PESADO");
-                break;
-
 
         }
     }
@@ -178,17 +171,17 @@ public class HFSM_StunEnemy : MonoBehaviour
                 seekPlayer.Exit();
                 break;
             case State.STUNNED:
-                //navMesh.isStopped = false;
+                
                 isStunned = false;
                 currentStunTime = 0f;
                 if(GetComponent<Enemy>().GetLife() <= 0)
                 {
                     GetComponent<Enemy>().SpawnWeakPoints();
                 }
-                //GetComponent<EnemyPriorities>().ChangePriority();
+                
                 break;
             case State.INVOKE:
-                //navMesh.isStopped = false;
+                
                 currentInvokeTime = 0f;
                 isInvoking = false;
                 canInvoke = false;
@@ -199,16 +192,16 @@ public class HFSM_StunEnemy : MonoBehaviour
         {
 
             case State.SEARCHCORPSES:
-                //navMesh.isStopped = false;
+                
                 corpseWander.ReEnter();
                 break;
             case State.SEEKPLAYER:
-                //navMesh.isStopped = false;
+               
                 seekPlayer.ReEnter();
                 break;
 
             case State.STUNNED:
-                //navMesh.isStopped = true;
+                
                 currentStunTime = 0f;
                 blackboard.animatorController.Stunned();
                 break;

@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class FSM_ReturnToSafety_Attacker : MonoBehaviour
 {
-    //public GameObject target;
     FSM_AttackerOrb Attacker;
     Orb_Blackboard blackboard;
 
@@ -15,10 +14,7 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
     void Start()
     {
         blackboard = GetComponent<Orb_Blackboard>();
-        //blackboard.navMesh = GetComponent<NavMeshAgent>();
-
         blackboard.SetOrbHealth(blackboard.m_maxLife);
-
         Attacker = GetComponent<FSM_AttackerOrb>();
 
 
@@ -94,8 +90,6 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
             case State.RETURNINGTOENEMY:
                 Attacker.anim.SetBool("AttackOrb", false);
                 Spawn();
-                //gameObject.SetActive(false);
-
                 break;
             case State.DEAD:
                 blackboard.navMesh.isStopped = true;
@@ -112,7 +106,6 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
     {
         Attacker.m_Laser.enabled = false;
         blackboard.SetOrbHealth(blackboard.m_maxLife);
-        //Attacker.ChangeParticleColor();
         OrbEvents.current.RespawnOrbs(gameObject);
         blackboard.navMesh.isStopped = false;
         

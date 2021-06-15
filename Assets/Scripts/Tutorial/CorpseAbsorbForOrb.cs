@@ -26,52 +26,24 @@ public class CorpseAbsorbForOrb : MonoBehaviour
 		if (system == null){
 			this.enabled = false;
 		}
-        //lightAuraSystem.Play();
         auraSystem.Play();
         system = orbSystem.GetComponent<ParticleSystem>();
         subSystem = orbSubSystem.GetComponent<ParticleSystem>();
         system.Play();
         subSystem.Play();
-        //StartCoroutine(Wait(absorbDuration));
-        //Target = null;
     }
-	void Start() 
-    {
-        
-	}
-
-    // Update is called once per frame
     void Update()
     {
         ParticlesEmission(system);
         ParticlesEmission(subSystem);
     }
-
-    /*public void AbsorbParticles(float particleDuration, GameObject target)
-    {
-        system.Play();
-        absorbDuration = particleDuration;
-        StartCoroutine(Wait(particleDuration));
-        Target = target.transform;
-        currentAbsorbTime = 0f;
-    }*/
-
-    /*public void AbsorbOrbParticles(GameObject target)
-    {
-        system.Play();
-        Target = target.transform;
-        currentAbsorbTime = 0f;
-        absorbDuration = 1;
-    }*/
-
     void ParticlesEmission(ParticleSystem partSystem)
     {
         partSystem.transform.LookAt(Target.transform.position, partSystem.gameObject.transform.up);
         int length = partSystem.GetParticles (particles);
-        //ParticleSystem.ShapeModule shape = system.shape;
+
         Vector3 attractorPosition = Target.position;
-        //shape.length = Vector3.Distance(system.transform.position, attractorPosition);
-        //Debug.Log(attractorPosition + " " + Target.name);
+
         for (int i=0; i < length; i++) 
         {
             
@@ -79,11 +51,8 @@ public class CorpseAbsorbForOrb : MonoBehaviour
             {
                 particles[i].position = Target.position;
                 particles[i].velocity = new Vector3(0,0,0);
-                //Debug.Log((transform.TransformPoint( particles[i].position) - Target.position).magnitude);
                 particles[i].remainingLifetime =  0;
-                //particles[i].position = Target.position;
             }
-            //Debug.Log(system.transform.TransformPoint(particles[i].position) + " " + attractorPosition + " " + (system.transform.TransformPoint( particles[i].position) - Target.position).magnitude);
         }
         partSystem.SetParticles (particles, length);
     }
@@ -101,7 +70,5 @@ public class CorpseAbsorbForOrb : MonoBehaviour
         system.Clear();
         system.Stop();
         currentAbsorbTime = 0f;
-            
-        //Target = null;
     }
 }

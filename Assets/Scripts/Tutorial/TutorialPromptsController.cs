@@ -7,16 +7,6 @@ using UnityEngine.UI;
 public class TutorialPromptsController : MonoBehaviour
 {
     public TextMeshProUGUI textWall;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider col)
     {

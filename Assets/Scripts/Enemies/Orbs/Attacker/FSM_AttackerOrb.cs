@@ -100,7 +100,6 @@ public class FSM_AttackerOrb : MonoBehaviour
                 if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer) &&
                     GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState != FSM_SeekPlayer.State.ATTACKING)
                 {
-                    //Debug.Log("aTTACKING");
                     ChangeState(State.ATTACKINGPLAYER);
                     break;
                 }
@@ -115,7 +114,6 @@ public class FSM_AttackerOrb : MonoBehaviour
 
             case State.ALERT:
                 Rotate();
-                //transform.LookAt(GM.GetPlayer().transform, transform.up);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 Invoke("StayAlert", 1);
                 break;
@@ -262,10 +260,8 @@ public class FSM_AttackerOrb : MonoBehaviour
                     {
                         Instantiate(blackboard.rayCollisionParticles, l_RaycastHit.point, Quaternion.identity);
                     }
-                    //Debug.Log(l_RaycastHit.collider.tag);
                     if (l_RaycastHit.collider.tag == "Player")
                     {
-                        //Debug.Log("Hit by orb");
                         if (l_RaycastHit.collider.gameObject.GetComponent<PlayerController>().m_Life >= 2)
                         {
                             GameManager.Instance.GetPlayer().GetComponent<PlayerController>().TakeDamage(2, gameObject, blackboard.XForceImpulseDamage, blackboard.YForceImpulseDamage);
@@ -293,7 +289,6 @@ public class FSM_AttackerOrb : MonoBehaviour
         if (behaviours.PlayerFound(blackboard.playerDetectionRadius, blackboard.angleDetectionPlayer)
                    && GM.GetEnemy().GetComponent<FSM_SeekPlayer>().currentState != FSM_SeekPlayer.State.ATTACKING)
         {
-            //Debug.Log("aTTACKING");
             ChangeState(State.ATTACKINGPLAYER);
         }
         else ChangeState(State.WANDERING);
