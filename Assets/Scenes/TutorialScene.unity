@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: f45f9aacb9c9196438879b22ee18935a, type: 2}
+--- !u!1 &2807669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5071463240967760261, guid: d78ba42401d96ae4bb83ae6085d15795, type: 3}
+  m_PrefabInstance: {fileID: 5625031680598682197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &15927295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1173,7 +1178,7 @@ MonoBehaviour:
   CollisionTag: 
   Event: event:/4 ENVIRONMENT/Fire
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -4026,6 +4031,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 396621539216513651, guid: fb95a008cae698a47981634c7c258606, type: 3}
   m_PrefabInstance: {fileID: 163262203}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &163262205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2096710299556433599, guid: fb95a008cae698a47981634c7c258606, type: 3}
+  m_PrefabInstance: {fileID: 163262203}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &163262206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163262205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/4 ENVIRONMENT/Fire
+  PlayEvent: 12
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!4 &163904819 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6417772844505810684, guid: 858f2e31713c0244e83beaee71610f87, type: 3}
@@ -7731,7 +7764,7 @@ MonoBehaviour:
   CollisionTag: 
   Event: event:/4 ENVIRONMENT/Fire
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -8096,6 +8129,11 @@ Transform:
   m_Father: {fileID: 1851255649}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &367426718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1557574046336344850, guid: b1691f0e687e2914991eb7235077a7f7, type: 3}
+  m_PrefabInstance: {fileID: 1483502225}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &370888045 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dc2e973477ed3647b8cdb0f47e7fb0a, type: 3}
@@ -8864,7 +8902,7 @@ MonoBehaviour:
   subRoom: {fileID: 0}
   corpseOrb: {fileID: 0}
   trapOrb: {fileID: 0}
-  trigger: {fileID: 414482632}
+  trigger: {fileID: 2048728764}
   platformEvent: event:/4 ENVIRONMENT/PlatformTutorial
 --- !u!95 &414482635
 Animator:
@@ -10655,7 +10693,7 @@ MonoBehaviour:
   subRoom: {fileID: 0}
   corpseOrb: {fileID: 818825412}
   trapOrb: {fileID: 709523034915080358}
-  trigger: {fileID: 482435845}
+  trigger: {fileID: 1923507564}
   platformEvent: event:/4 ENVIRONMENT/PlatformTutorial
 --- !u!95 &482435848
 Animator:
@@ -12665,7 +12703,7 @@ MonoBehaviour:
   subRoom: {fileID: 0}
   corpseOrb: {fileID: 0}
   trapOrb: {fileID: 0}
-  trigger: {fileID: 587991908}
+  trigger: {fileID: 2807669}
   platformEvent: event:/4 ENVIRONMENT/PlatformTutorial
 --- !u!95 &587991911
 Animator:
@@ -15548,7 +15586,7 @@ MonoBehaviour:
   CollisionTag: 
   Event: event:/4 ENVIRONMENT/Fire
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -15613,6 +15651,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 22.23681, y: 16.56299, z: 5.5000253}
   m_Center: {x: 6.0357885, y: -2.216259, z: 2.2500134}
+--- !u!1 &731907235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5934427964469582918, guid: 858f2e31713c0244e83beaee71610f87, type: 3}
+  m_PrefabInstance: {fileID: 1594462200}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &732091383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23430,6 +23473,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5121954292429158976, guid: dd706addf2151d445ba1cac6a1c55d36, type: 3}
   m_PrefabInstance: {fileID: 877256534}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &877256536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6899643922564547991, guid: dd706addf2151d445ba1cac6a1c55d36, type: 3}
+  m_PrefabInstance: {fileID: 877256534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &877256537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877256536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/4 ENVIRONMENT/Fire
+  PlayEvent: 1
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &879626044 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2406975544627933003, guid: 3831d04530a548d48a65b1c9e010bb57, type: 3}
@@ -30629,7 +30700,7 @@ MonoBehaviour:
   subRoom: {fileID: 0}
   corpseOrb: {fileID: 0}
   trapOrb: {fileID: 0}
-  trigger: {fileID: 1231054676}
+  trigger: {fileID: 731907235}
   platformEvent: event:/4 ENVIRONMENT/PlatformTutorial
 --- !u!1 &1231987204
 GameObject:
@@ -31572,7 +31643,7 @@ MonoBehaviour:
   CollisionTag: 
   Event: event:/4 ENVIRONMENT/Fire
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -33032,7 +33103,7 @@ MonoBehaviour:
   CollisionTag: 
   Event: event:/4 ENVIRONMENT/Fire
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -44029,6 +44100,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6059171970652173340, guid: 9b88808e81a59fd41be55973de7c81e1, type: 3}
   m_PrefabInstance: {fileID: 1829780624}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1829780626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 722293463984736201, guid: 9b88808e81a59fd41be55973de7c81e1, type: 3}
+  m_PrefabInstance: {fileID: 1829780624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1829780627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829780626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/4 ENVIRONMENT/Fire
+  PlayEvent: 1
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1001 &1830475001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44204,6 +44303,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7149314747695103815, guid: c5a829db7db0a2d498805bfff3e50e9d, type: 3}
   m_PrefabInstance: {fileID: 1832507505}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1832507507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5883341727393262743, guid: c5a829db7db0a2d498805bfff3e50e9d, type: 3}
+  m_PrefabInstance: {fileID: 1832507505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1832507508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832507507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/4 ENVIRONMENT/Fire
+  PlayEvent: 1
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &1837671604 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dc2e973477ed3647b8cdb0f47e7fb0a, type: 3}
@@ -46278,7 +46405,7 @@ MonoBehaviour:
   CollisionTag: 
   Event: event:/4 ENVIRONMENT/Fire
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -49141,7 +49268,7 @@ MonoBehaviour:
   subRoom: {fileID: 0}
   corpseOrb: {fileID: 0}
   trapOrb: {fileID: 0}
-  trigger: {fileID: 2093080610}
+  trigger: {fileID: 367426718}
   platformEvent: event:/4 ENVIRONMENT/PlatformTutorial
 --- !u!95 &2093080613
 Animator:
