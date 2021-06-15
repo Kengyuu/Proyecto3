@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     public int m_GamesPlayed = 0;
     public int m_CorpseObjective = 7;
 
+    public float musicVolume = 60;
+    public float effectVolume = 60;
+
 
     private void Awake()
     {

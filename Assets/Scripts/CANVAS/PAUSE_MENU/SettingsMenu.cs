@@ -32,10 +32,12 @@ public class SettingsMenu : MonoBehaviour
     void Start()
     {
         VcaControllerMusic = RuntimeManager.GetVCA("vca:/" + Vca_Music);
-        VcaControllerMusic.setVolume(m_MusicSlider.value);
-
+        VcaControllerMusic.setVolume(GameManager.Instance.musicVolume);
+        m_MusicSlider.value = GameManager.Instance.musicVolume;
+       
         VcaControllerSFX = RuntimeManager.GetVCA("vca:/" + Vca_SFX);
-        VcaControllerSFX.setVolume(m_EffectSlider.value);
+        VcaControllerSFX.setVolume(GameManager.Instance.effectVolume);
+        m_EffectSlider.value = GameManager.Instance.effectVolume;
     }
 
 
@@ -43,12 +45,14 @@ public class SettingsMenu : MonoBehaviour
     {
         m_MusicSlider.value += value;
         VcaControllerMusic.setVolume((float)m_MusicSlider.value);
+        GameManager.Instance.musicVolume = (float)m_MusicSlider.value;
     }
 
     public void ChangeEffectVolume(int value)
     {
         m_EffectSlider.value += value;
         VcaControllerSFX.setVolume((float)m_EffectSlider.value);
+        GameManager.Instance.effectVolume = (float)m_EffectSlider.value;
     }
 
     public void ChangeResolution(int value)
