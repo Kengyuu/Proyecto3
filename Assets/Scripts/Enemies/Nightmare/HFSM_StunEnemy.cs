@@ -213,6 +213,9 @@ public class HFSM_StunEnemy : MonoBehaviour
                 break;
             case State.DEAD:
                 blackboard.animatorController.Dead();
+                corpseWander.Exit();
+                seekPlayer.Exit();
+                GetComponent<EnemyPriorities>().enabled = false;
                 break;
             case State.WIN:
                 blackboard.animatorController.TransitionPesadillaWins();
