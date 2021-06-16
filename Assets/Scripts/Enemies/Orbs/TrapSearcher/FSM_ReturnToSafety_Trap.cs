@@ -53,7 +53,7 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
                 {
                     ChangeState(State.RETURNINGTOENEMY);
                 }
-                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER)
+                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER || GameManager.Instance.GetEnemy().GetComponent<HFSM_StunEnemy>().isDead)
                 {
                     ChangeState(State.DEAD);
                 }
@@ -62,7 +62,7 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
             case State.RETURNINGTOENEMY:
                
                 ReEnter();
-                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER)
+                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER || GameManager.Instance.GetEnemy().GetComponent<HFSM_StunEnemy>().isDead)
                 {
                     ChangeState(State.DEAD);
                 }
