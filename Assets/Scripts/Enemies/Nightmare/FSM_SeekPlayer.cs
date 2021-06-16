@@ -240,7 +240,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
             case State.PROVOKING:
                 currentProvokeTime = 0f;
-                Instantiate(stunnnedAbsorbParticles, GM.GetPlayer().GetComponent<PlayerShoot>().absorbObjective.transform.position, Quaternion.identity);
+                GM.GetPlayer().GetComponent<PlayerController>().AbsorbFail();
                 break;
 
             case State.WANDERING:
