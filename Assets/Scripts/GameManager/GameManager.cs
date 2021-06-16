@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        Debug.Log($"Current gamestate: {gameState}");
+    }
+
     public void SetGameState(GameState state)
     {
         oldGameState = this.gameState;

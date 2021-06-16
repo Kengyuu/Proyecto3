@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
         
         InitInputs();
+        //StateChanged();
 
         UpdatePlayerHealth();
     }
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
         m_PlayerMovement.m_InputSystem.NoInputs.Disable();
         m_PlayerMovement.m_InputSystem.Minimap.Disable();
         m_PlayerMovement.m_InputSystem.Pause.Disable();
+        m_PlayerMovement.m_InputSystem.TutorialInputs.Disable();
         m_PlayerMovement.m_InputSystem.Gameplay.Enable();
     }
 
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
         m_PlayerMovement.m_InputSystem.Minimap.Disable();
         m_PlayerMovement.m_InputSystem.Pause.Disable();
         m_PlayerMovement.m_InputSystem.Gameplay.Disable();
+        m_PlayerMovement.m_InputSystem.TutorialInputs.Disable();
     }
 
 
@@ -115,6 +118,10 @@ public class PlayerController : MonoBehaviour
 
             case GameState.MAP:
                 m_PlayerMovement.m_InputSystem.Minimap.Enable();
+                break;
+
+            case GameState.TUTORIAL:
+                m_PlayerMovement.m_InputSystem.TutorialInputs.Enable();
                 break;
 
             case GameState.PAUSE:
