@@ -116,6 +116,7 @@ public class GameObjectSpawner : MonoBehaviour
             {
                 GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().m_CharacterController.enabled = false;
                 GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().transform.position = roomsController.rooms[i].transform.position;
+                GameManager.Instance.GetPlayer().transform.rotation = roomsController.rooms[i].transform.localRotation;
                 GameManager.Instance.GetPlayer().GetComponent<PlayerMovement>().m_CharacterController.enabled = true;
             }
         }  
