@@ -222,7 +222,7 @@ public class HudController : MonoBehaviour
             objectiveAnim.SetTrigger("Hunt Corpse");
             objectiveAnim.SetBool("Can Kill Nightmare", false);
             GM.GetPlayer().GetComponent<PlayerController>().particlesWinCondition.SetActive(false);
-            if(GM.GetEnemy().GetComponent<Enemy_BLACKBOARD>().particlesWinCondition != null)
+            if(GM.GetEnemy() != null)
                 GM.GetEnemy().GetComponent<Enemy_BLACKBOARD>().particlesWinCondition.SetActive(false);
         }
         
