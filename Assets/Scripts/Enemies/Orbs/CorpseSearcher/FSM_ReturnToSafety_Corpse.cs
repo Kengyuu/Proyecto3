@@ -56,7 +56,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 {
                     ChangeState(State.RETURNINGTOENEMY);
                 }
-                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER || GameManager.Instance.GetEnemy().GetComponent<HFSM_StunEnemy>().isDead)
+                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER || GameManager.Instance.GetEnemy().GetComponent<HFSM_StunEnemy>().isDead || GameManager.Instance.GetEnemy().GetComponent<HFSM_StunEnemy>().hasWon)
                 {
                     ChangeState(State.DEAD);
                 }
@@ -65,7 +65,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
             case State.RETURNINGTOENEMY:
                 killed = false;
                 ReEnter();
-                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER || GameManager.Instance.GetEnemy().GetComponent<HFSM_StunEnemy>().isDead)
+                if (GameManager.Instance.gameState == GameState.WIN || GameManager.Instance.gameState == GameState.GAME_OVER || GameManager.Instance.GetEnemy().GetComponent<HFSM_StunEnemy>().isDead || GameManager.Instance.GetEnemy().GetComponent<HFSM_StunEnemy>().hasWon)
                 {
                     ChangeState(State.DEAD);
                 }
