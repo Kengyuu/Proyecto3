@@ -132,7 +132,7 @@ public class OrbSpawner : MonoBehaviour
     {
         orb.GetComponent<NavMeshAgent>().Warp(spawnPosition.position);
         orb.GetComponent<Orb_Blackboard>().SetOrbHealth(orb.GetComponent<Orb_Blackboard>().m_maxLife);
-        orb.SetActive(true);
+        //orb.SetActive(true);
     }
 
     public void SelectOrbs()

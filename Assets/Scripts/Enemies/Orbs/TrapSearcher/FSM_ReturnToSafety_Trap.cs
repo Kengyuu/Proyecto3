@@ -98,6 +98,7 @@ public class FSM_ReturnToSafety_Trap : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
+                trapSearch.ReEnter();
                 Spawn();
                 break;
             case State.DEAD:

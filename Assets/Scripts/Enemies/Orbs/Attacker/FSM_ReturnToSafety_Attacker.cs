@@ -88,6 +88,7 @@ public class FSM_ReturnToSafety_Attacker : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
+                Attacker.ReEnter();
                 Attacker.anim.SetBool("AttackOrb", false);
                 Spawn();
                 break;

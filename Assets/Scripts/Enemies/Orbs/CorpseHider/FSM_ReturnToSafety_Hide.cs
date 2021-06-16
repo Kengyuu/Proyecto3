@@ -91,6 +91,7 @@ public class FSM_ReturnToSafety_Hide : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
+                corpseHide.ReEnter();
                 Spawn();
                 break;
             case State.DEAD:

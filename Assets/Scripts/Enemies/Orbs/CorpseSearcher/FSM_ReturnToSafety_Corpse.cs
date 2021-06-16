@@ -98,6 +98,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
                 break;
 
             case State.RETURNINGTOENEMY:
+                corpseSearch.ReEnter();
                 if (blackboard.orbCorpseStored != null)
                 {
                     blackboard.orbCorpseStored = null;
@@ -119,6 +120,7 @@ public class FSM_ReturnToSafety_Corpse : MonoBehaviour
 
     void Spawn()
     {
+        
         corpseSearch.m_Laser.enabled = false;
         blackboard.SetOrbHealth(blackboard.m_maxLife);
         OrbEvents.current.RespawnOrbs(gameObject);

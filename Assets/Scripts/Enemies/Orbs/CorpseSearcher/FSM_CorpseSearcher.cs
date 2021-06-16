@@ -46,7 +46,7 @@ public class FSM_CorpseSearcher : MonoBehaviour
 
     [Header("State")]
     public State currentState;
-    public enum State { INITIAL, WANDERING, GOINGTOCORPSE, RETURNINGTOENEMY, GRABBINGCORPSE,ALERT, ATTACKINGPLAYER };
+    public enum State { INITIAL, INVOKING, WANDERING, GOINGTOCORPSE, RETURNINGTOENEMY, GRABBINGCORPSE,ALERT, ATTACKINGPLAYER };
     
 
 
@@ -87,7 +87,17 @@ public class FSM_CorpseSearcher : MonoBehaviour
         switch (currentState)
         {
             case State.INITIAL:
-                ChangeState(State.WANDERING);
+                ChangeState(State.INVOKING);
+                break;
+
+            case State.INVOKING:
+                blackboard.cooldownToReappear -= Time.deltaTime;
+                if (blackboard.cooldownToReappear <= 0)
+                {
+                    ChangeState(State.WANDERING);
+                    blackboard.cooldownToReappear = 4;
+                }
+
                 break;
 
             case State.WANDERING:
@@ -279,6 +289,10 @@ public class FSM_CorpseSearcher : MonoBehaviour
         //EXIT LOGIC
         switch (currentState)
         {
+            case State.INVOKING:
+                anim.SetBool("Invoke", false);
+                blackboard.navMesh.isStopped = false;
+                break;
             case State.WANDERING:
                 blackboard.lastCorpseSeen = null;
                 break;
@@ -311,7 +325,12 @@ public class FSM_CorpseSearcher : MonoBehaviour
         // Enter logic
         switch (newState)
         {
-
+            case State.INVOKING:
+                
+                anim.SetBool("Invoke", true);
+                blackboard.navMesh.isStopped = true;
+                blackboard.navMesh.Warp(blackboard.orbSpawner.transform.position);
+                break;
             case State.WANDERING:
                 blackboard.navMesh.isStopped = false;
                 target = behaviours.PickRandomWaypointOrb(); 
