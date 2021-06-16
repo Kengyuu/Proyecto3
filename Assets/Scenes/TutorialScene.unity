@@ -52296,12 +52296,61 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 104750298, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_text
+      value: 'The justice of the universe is mysterious. Whomever gets the upper
+        hand in the hunt, will give its opponent powerful tools and powers.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 458839260, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_text
+      value: "For you, powers that can turn the tides of battle. \nWhen the beast
+        is stronger, you can become invisible to its gaze.\nIf you find yourself
+        at a greater disadvantage, you will be able to see the trail of your enemies."
+      objectReference: {fileID: 0}
     - target: {fileID: 842674514, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_text
       value: "The souls will try to escape, and because of that, whoever gets momentarily
         defeated will lose some of the souls captured. \nYou need to endure, Hunter,
         from the enemies and other dangers that remain in the temple. Light and metal
         tools, which both can play on your side\u2026 or against you."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1081930040, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714882557627611, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714882557627611, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714882557627611, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714882557627611, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714882557627611, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714882557627611, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714882557627611, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714882743912258, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2718714883158351648, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -52330,6 +52379,50 @@ PrefabInstance:
     - target: {fileID: 2718714883158351648, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883404605934, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.602
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883404605934, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883533052472, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883533052472, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883812826994, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.602
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883812826994, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883812826994, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.602
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883812826994, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883812826994, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883812826994, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2718714883812826994, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2718714884166946371, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -52734,6 +52827,10 @@ PrefabInstance:
     - target: {fileID: 8161919145623925334, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8822253819955768518, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}

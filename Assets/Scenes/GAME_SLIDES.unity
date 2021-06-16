@@ -363,10 +363,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1647316819}
+    - target: {fileID: 576028150, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 576028152, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1647316819}
+    - target: {fileID: 670465146, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 670465148, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -495,17 +503,25 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1246414752, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_text
+      value: Disables Traps
+      objectReference: {fileID: 0}
     - target: {fileID: 1959271044, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1647316819}
+    - target: {fileID: 2065648795, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2065648797, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1647316819}
     - target: {fileID: 276601288310924682, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 856387274575947059, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_Name
@@ -633,7 +649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2405621939509863439, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7969765185610224251, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_IsActive
