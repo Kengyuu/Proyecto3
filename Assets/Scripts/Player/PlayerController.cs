@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private GameManager GM;
     private SoundManager SM;
     private HudController M_HudController;
+    public GameObject particlesWinCondition;
 
     [Header("Player Stats")]
     public float m_Life;

@@ -22,6 +22,8 @@ public class Enemy_BLACKBOARD : MonoBehaviour
     public GameObject corpse;
     
     public GameObject absorbObjective;
+
+    public GameObject particlesWinCondition;
     
 
     [Header("SeekPlayer")]

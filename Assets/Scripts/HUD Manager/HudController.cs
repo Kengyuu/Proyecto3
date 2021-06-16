@@ -68,6 +68,10 @@ public class HudController : MonoBehaviour
     {
         totalCorpses = GameObject.FindGameObjectsWithTag("Corpse");
         if (m_ScoreManager == null) m_ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        foreach(Image image in corpseTracker)
+        {
+            image.GetComponent<Animator>().keepAnimatorControllerStateOnDisable = true;
+        }
 
     }
     private void Start()
@@ -204,15 +208,22 @@ public class HudController : MonoBehaviour
         if (enemyCorpses >= GM.m_CorpseObjective)
         {
             objectiveAnim.SetTrigger("Hunt Nightmare");
+            if(GM.GetEnemy().GetComponent<Enemy_BLACKBOARD>().particlesWinCondition != null)
+                GM.GetEnemy().GetComponent<Enemy_BLACKBOARD>().particlesWinCondition.SetActive(true);
+            
         }
         else if (playerCorpses >= GM.m_CorpseObjective)
         {
             objectiveAnim.SetBool("Can Kill Nightmare", true);
+            GM.GetPlayer().GetComponent<PlayerController>().particlesWinCondition.SetActive(true);
         }
         else
         {
             objectiveAnim.SetTrigger("Hunt Corpse");
             objectiveAnim.SetBool("Can Kill Nightmare", false);
+            GM.GetPlayer().GetComponent<PlayerController>().particlesWinCondition.SetActive(false);
+            if(GM.GetEnemy().GetComponent<Enemy_BLACKBOARD>().particlesWinCondition != null)
+                GM.GetEnemy().GetComponent<Enemy_BLACKBOARD>().particlesWinCondition.SetActive(false);
         }
         
             
