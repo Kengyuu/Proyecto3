@@ -214,4 +214,10 @@ public class PlayerMovement : MonoBehaviour
     {
         m_InputSystem.Disable();
     }
+
+    private void OnDestroy()
+    {
+        breath.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        rushedBreath.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
 }
