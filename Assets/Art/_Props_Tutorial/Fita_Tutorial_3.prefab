@@ -333,6 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8048000911755715681}
+  - component: {fileID: 3600044092094670433}
   m_Layer: 0
   m_Name: Fita_Tutorial_3
   m_TagString: Untagged
@@ -360,6 +361,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 15, z: 0}
+--- !u!65 &3600044092094670433
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5071463240967760261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.86975664, y: 1.398821, z: 0.95449764}
+  m_Center: {x: 0.0409948, y: 0.14923675, z: 0.17250131}
 --- !u!1 &8588530954050913299
 GameObject:
   m_ObjectHideFlags: 0

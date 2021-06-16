@@ -253,6 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1110247494981186600}
   - component: {fileID: 4125800157696036687}
+  - component: {fileID: 6434253508415877032}
   m_Layer: 0
   m_Name: Animated_Fita_Tutorial2
   m_TagString: Untagged
@@ -297,6 +298,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &6434253508415877032
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6920189345206452128}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7650834, y: 2.7273822, z: 0.7596139}
+  m_Center: {x: 3.303297, y: 0.8636908, z: 1.1663866}
 --- !u!1 &9200722456343159904
 GameObject:
   m_ObjectHideFlags: 0
