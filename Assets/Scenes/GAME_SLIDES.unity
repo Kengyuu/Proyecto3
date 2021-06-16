@@ -464,9 +464,37 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1096154547, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096154547, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096154547, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1647316819}
+    - target: {fileID: 1096154547, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1647316819}
+    - target: {fileID: 1096154547, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096154547, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: MouseClickSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096154547, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Game_Slides, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096154547, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1959271044, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -477,7 +505,7 @@ PrefabInstance:
       objectReference: {fileID: 1647316819}
     - target: {fileID: 276601288310924682, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 856387274575947059, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_Name
@@ -599,9 +627,13 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1647316819}
+    - target: {fileID: 856387275032620307, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MouseHoverSound
+      objectReference: {fileID: 0}
     - target: {fileID: 2405621939509863439, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7969765185610224251, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
       propertyPath: m_IsActive
@@ -651,6 +683,40 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2405621939509863439, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
   m_PrefabInstance: {fileID: 856387275032620290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &856387275032620297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1096154545, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
+  m_PrefabInstance: {fileID: 856387275032620290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &856387275032620298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856387275032620297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1647316819}
+          m_TargetAssemblyTypeName: Game_Slides, Assembly-CSharp
+          m_MethodName: MouseHoverSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &856387275032620308 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 722975973, guid: b88a8c6bfb664eb40af9f60f567ca54f, type: 3}
