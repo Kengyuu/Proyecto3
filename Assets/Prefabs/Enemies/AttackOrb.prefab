@@ -14460,7 +14460,7 @@ GameObject:
   - component: {fileID: 3067788278810513601}
   m_Layer: 6
   m_Name: Ray
-  m_TagString: Untagged
+  m_TagString: MainRaycastOrbRay
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19687,6 +19687,7 @@ MonoBehaviour:
   XForceImpulseDamage: 5
   YForceImpulseDamage: 5
   angleDetectionPlayer: 45
+  rayCollisionParticles: {fileID: 0}
   hurtEvent: 
   disappearEvent: 
 --- !u!135 &6996427770133219172
