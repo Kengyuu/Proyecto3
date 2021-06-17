@@ -27,12 +27,12 @@ public class Intro : MonoBehaviour
 	public void HandleOnStateChange()
 	{
 		GM.OnStateChange -= HandleOnStateChange;
-		Invoke("LoadLevel", 3f);
+		Invoke("LoadLevel", 5f);
 	}
 
 	public void LoadLevel()
 	{
 
-		Initiate.Fade(m_NextScene, Color.black, 3f);
+		Initiate.Fade(m_NextScene, Color.black, 5f);
 	}
 }
