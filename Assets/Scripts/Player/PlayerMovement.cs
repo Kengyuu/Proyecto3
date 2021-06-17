@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //Player Run
-            if (m_RunPressed && m_InputMove.y != -1.0f)
+            if (m_RunPressed && m_InputMove.y > 0.0f)
             {
                 breath.setPaused(true);
                 m_TimeSinceLastRushedBreath -= Time.deltaTime;
