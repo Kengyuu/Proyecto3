@@ -39,7 +39,7 @@ public class SettingsMenu : MonoBehaviour
         VcaControllerSFX.setVolume(GameManager.Instance.effectVolume);
         m_EffectSlider.value = GameManager.Instance.effectVolume;
 
-        m_ResolutionText.SetText(m_ResolutionList[GameManager.Instance.m_Resolution]);
+        m_ResolutionText.SetText(m_ResolutionList[1]);
     }
 
     public void ChangeMusicVolume(int value)

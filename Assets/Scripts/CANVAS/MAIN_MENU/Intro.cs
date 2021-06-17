@@ -33,6 +33,6 @@ public class Intro : MonoBehaviour
 	public void LoadLevel()
 	{
 
-		Initiate.Fade(m_NextScene, Color.black, 1f);
+		Initiate.Fade(m_NextScene, Color.black, 3f);
 	}
 }

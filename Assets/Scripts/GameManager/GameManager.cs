@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         }
 
         m_Resolution = 0;
-        Screen.fullScreenMode = FullScreenMode.Windowed;
+        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
     }
 
     public static GameManager Instance

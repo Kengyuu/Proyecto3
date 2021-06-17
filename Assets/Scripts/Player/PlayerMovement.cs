@@ -115,22 +115,24 @@ public class PlayerMovement : MonoBehaviour
             //Player Run
             if (m_RunPressed && m_InputMove.y > 0.0f)
             {
-                breath.setPaused(true);
-                m_TimeSinceLastRushedBreath -= Time.deltaTime;
-                if (m_TimeSinceLastRushedBreath <= 0)
+                if (m_InputSystem.Gameplay.Move.ReadValue<Vector2>().magnitude != 0)
                 {
-                    rushedBreath = SM.PlayEvent(rushedBreathEvent,transform);
-                    m_TimeSinceLastRushedBreath = 3.7f;
-                }
+                    breath.setPaused(true);
+                    m_TimeSinceLastRushedBreath -= Time.deltaTime;
+                    if (m_TimeSinceLastRushedBreath <= 0)
+                    {
+                        rushedBreath = SM.PlayEvent(rushedBreathEvent, transform);
+                        m_TimeSinceLastRushedBreath = 3.7f;
+                    }
 
-                m_TimeSinceLastFootstepRun -= Time.deltaTime;
-                if (m_TimeSinceLastFootstepRun <= 0)
-                {
-                    SM.PlaySound(runEvent, transform.position);
-                    m_TimeSinceLastFootstepRun = 0.25f;
+                    m_TimeSinceLastFootstepRun -= Time.deltaTime;
+                    if (m_TimeSinceLastFootstepRun <= 0)
+                    {
+                        SM.PlaySound(runEvent, transform.position);
+                        m_TimeSinceLastFootstepRun = 0.25f;
+                    }
+                    GameManager.Instance.PlayerNoise(m_RunNoise);
                 }
-                GameManager.Instance.PlayerNoise(m_RunNoise);
-
                 l_PlayerCurrentSpeed = m_PlayerRunSpeed;
 
                 hud.hasRun = true;
