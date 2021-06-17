@@ -36646,7 +36646,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 466663128, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 382016680678554689, guid: cb180ae73c739f440bc799facfb47379, type: 3}
       propertyPath: frustumSettings.baseSettings
@@ -38227,46 +38227,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6747645147228646101, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
-      propertyPath: LightsModule.color
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747645147228646101, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
-      propertyPath: LightsModule.light
-      value: 
-      objectReference: {fileID: 1430934133364478060, guid: 64aae7e531ca4324696205b2c0d2fdcc, type: 3}
-    - target: {fileID: 6747645147228646101, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
-      propertyPath: LightsModule.range
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747645147228646101, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
-      propertyPath: LightsModule.ratio
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747645147228646101, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
-      propertyPath: LightsModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747645147228646101, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
-      propertyPath: LightsModule.maxLights
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747645147228646101, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
-      propertyPath: LightsModule.rangeCurve.scalar
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747645147228646101, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
-      propertyPath: LightsModule.randomDistribution
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747645147228646101, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
-      propertyPath: LightsModule.intensityCurve.scalar
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747645147336865678, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
-      propertyPath: LightsModule.intensityCurve.scalar
-      value: 8.2
-      objectReference: {fileID: 0}
     - target: {fileID: 8776251149090945997, guid: 513090ef0c4e31547b68c4bc8e015747, type: 3}
       propertyPath: m_Name
       value: WormHole_Particles
@@ -38365,6 +38325,10 @@ PrefabInstance:
     - target: {fileID: 241569152567425669, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_UpdateMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666918217260030775, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2718714882557627611, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_AnchorMax.x
@@ -38766,6 +38730,34 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3861491734987299506, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638629131875672299, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638629131875672299, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638629131875672299, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998371463691666319, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998371463691666319, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998371463691666319, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.01
+      objectReference: {fileID: 0}
     - target: {fileID: 7333189676901562472, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_Name
       value: CANVAS_GAME
@@ -38917,6 +38909,10 @@ PrefabInstance:
     - target: {fileID: 7333189677007486781, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_UpdateMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7333189677023363349, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7333189678311107774, guid: 6ff627cb681943647bd8339138b78ec6, type: 3}
       propertyPath: m_IsActive
