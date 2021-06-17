@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     private SoundManager SM;
     private HudController M_HudController;
     public GameObject particlesWinCondition;
-    public GameObject absorbFailEnemy;
 
     [Header("Player Stats")]
     public float m_Life;
@@ -284,14 +283,5 @@ public class PlayerController : MonoBehaviour
         Invoke("RestoreLife", m_MaxStunTime);
     }
 
-    public void AbsorbFail()
-    {
-        absorbFailEnemy.SetActive(true);
-        Invoke("EndAbsorbFail", 2f);
-    }
-
-    public void EndAbsorbFail()
-    {
-        absorbFailEnemy.SetActive(false);
-    }
+    
 }

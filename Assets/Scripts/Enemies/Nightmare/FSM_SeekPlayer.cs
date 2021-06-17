@@ -240,7 +240,7 @@ public class FSM_SeekPlayer : MonoBehaviour
 
             case State.PROVOKING:
                 currentProvokeTime = 0f;
-                GM.GetPlayer().GetComponent<PlayerController>().AbsorbFail();
+                AbsorbFail();
                 break;
 
             case State.WANDERING:
@@ -302,5 +302,16 @@ public class FSM_SeekPlayer : MonoBehaviour
     public void EnemyCantMove()
     {
         enemy.isStopped = true;
+    }
+
+    public void AbsorbFail()
+    {
+        blackboard.absorbFailParticles.SetActive(true);
+        Invoke("EndAbsorbFail", 2f);
+    }
+
+    public void EndAbsorbFail()
+    {
+        blackboard.absorbFailParticles.SetActive(false);
     }
 }
