@@ -2179,6 +2179,7 @@ Transform:
   m_Children:
   - {fileID: 32321776}
   - {fileID: 1554216198}
+  - {fileID: 1572911315}
   - {fileID: 103213937}
   - {fileID: 330642965}
   - {fileID: 1608873836}
@@ -2189,7 +2190,6 @@ Transform:
   - {fileID: 559117538}
   - {fileID: 1200556533}
   - {fileID: 825549256}
-  - {fileID: 1572911315}
   - {fileID: 1624194940}
   - {fileID: 694928615}
   m_Father: {fileID: 142739010}
@@ -46950,9 +46950,8 @@ MonoBehaviour:
   m_EffectSlider: {fileID: 6927389032908040285}
   m_ResolutionText: {fileID: 6927389032263170393}
   m_ResolutionList:
-  - Fullscreen
   - Windowed
-  - Windowed Fullscreen
+  - Fullscreen
   m_CurrentResolution: 0
   Vca_Music: Music
   Vca_SFX: SFX
@@ -48120,7 +48119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -7.000061}
+  m_AnchoredPosition: {x: -2, y: -7}
   m_SizeDelta: {x: 660, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &841860634492151147

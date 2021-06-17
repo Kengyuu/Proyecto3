@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float m_PlayerWalkSpeed = 8f;
     public float m_TimeSinceLastFootstep = 0.5f;
     public float m_PlayerRunSpeed = 16f;
+    public float m_BackwardsSpeedReduceFactor = 0.3f;
     public float m_TimeSinceLastBreath = 0f;
     private float m_TimeSinceLastRushedBreath = 0f;
     public float m_TimeSinceLastFootstepRun = 0.25f;
@@ -99,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
         m_InputMove = m_InputSystem.Gameplay.Move.ReadValue<Vector2>();
         m_Movement = (m_InputMove.y * transform.forward) + (m_InputMove.x * transform.right);
 
+        
 
         if (m_CharacterController.isGrounded)
         {
@@ -111,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //Player Run
-            if (m_RunPressed)
+            if (m_RunPressed && m_InputMove.y != -1.0f)
             {
                 breath.setPaused(true);
                 m_TimeSinceLastRushedBreath -= Time.deltaTime;
@@ -145,6 +147,11 @@ public class PlayerMovement : MonoBehaviour
             m_VerticalVelocity -= m_Gravity * Time.deltaTime;
             
             m_Movement = m_LastMovement; 
+        }
+
+        if (m_InputMove.y < 0.0f)
+        {
+            l_PlayerCurrentSpeed = l_PlayerCurrentSpeed * m_BackwardsSpeedReduceFactor;
         }
 
         m_Movement.y = 0;

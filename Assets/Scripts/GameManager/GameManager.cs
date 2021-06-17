@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject m_Enemy { get; set; }
     [SerializeField] public GameObjectSpawner m_GameObjectSpawner { get; set; }
     [SerializeField] public RoomSpawner m_WaypointsList { get; set; }
+    [SerializeField] public int m_Resolution { get; set; }
     public int m_GamesPlayed = 0;
     public int m_CorpseObjective = 7;
 
@@ -56,6 +57,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        m_Resolution = 0;
+        Screen.fullScreenMode = FullScreenMode.Windowed;
     }
 
     public static GameManager Instance
@@ -65,11 +69,6 @@ public class GameManager : MonoBehaviour
             if (instance == null) instance = new GameManager();
             return instance;
         }
-    }
-
-    private void Update()
-    {
-        Debug.Log($"Current gamestate: {gameState}");
     }
 
     public void SetGameState(GameState state)

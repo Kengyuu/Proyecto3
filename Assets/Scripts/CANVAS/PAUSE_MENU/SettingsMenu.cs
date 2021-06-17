@@ -17,7 +17,7 @@ public class SettingsMenu : MonoBehaviour
     [Header("Resolutions")]
     public TextMeshProUGUI m_ResolutionText;
     public List<string> m_ResolutionList;
-    public int m_CurrentResolution;
+    //public int m_CurrentResolution;
 
 
     [Header("FMOD")]
@@ -38,8 +38,9 @@ public class SettingsMenu : MonoBehaviour
         VcaControllerSFX = RuntimeManager.GetVCA("vca:/" + Vca_SFX);
         VcaControllerSFX.setVolume(GameManager.Instance.effectVolume);
         m_EffectSlider.value = GameManager.Instance.effectVolume;
-    }
 
+        m_ResolutionText.SetText(m_ResolutionList[GameManager.Instance.m_Resolution]);
+    }
 
     public void ChangeMusicVolume(int value)
     {
@@ -59,22 +60,28 @@ public class SettingsMenu : MonoBehaviour
     {
         if (value > 0)
         {
-            m_CurrentResolution++;
-            if (m_CurrentResolution >= m_ResolutionList.Count)
+            GameManager.Instance.m_Resolution++;
+            if (GameManager.Instance.m_Resolution >= m_ResolutionList.Count)
             {
-                m_CurrentResolution = 0;
+                GameManager.Instance.m_Resolution = 0;
             }
-            m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]);
+            m_ResolutionText.SetText(m_ResolutionList[GameManager.Instance.m_Resolution]);
         }
         else
         {
-            m_CurrentResolution--;
-            if (m_CurrentResolution < 0)
+            GameManager.Instance.m_Resolution--;
+            if (GameManager.Instance.m_Resolution < 0)
             {
-                m_CurrentResolution = m_ResolutionList.Count - 1;
+                GameManager.Instance.m_Resolution = m_ResolutionList.Count - 1;
             }
-            m_ResolutionText.SetText(m_ResolutionList[m_CurrentResolution]);
+            m_ResolutionText.SetText(m_ResolutionList[GameManager.Instance.m_Resolution]);
         }
+
+
+        if (GameManager.Instance.m_Resolution == 0)
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+        else if (GameManager.Instance.m_Resolution == 1)
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
     }
 
 }
