@@ -276,7 +276,7 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""41abeb14-4db1-49b2-bf83-258fda4547d0"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -353,7 +353,18 @@ public class @PlayerInputSystem : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""90ce022b-933e-4237-a21a-40d2adcf3ec9"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0176ce08-f62c-46f5-a70c-40c1be6b6b87"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
