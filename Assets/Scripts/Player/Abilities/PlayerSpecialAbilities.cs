@@ -109,12 +109,24 @@ public class PlayerSpecialAbilities : MonoBehaviour
 
     IEnumerator FadePostProTo(float aValue, float aTime)
     {
-        float alpha = m_PostProVolume.weight;
+        //float alpha = m_PostProVolume.weight;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
         {
             m_PostProVolume.weight = Mathf.Lerp(m_PostProVolume.weight, aValue, t);
             yield return null;
         }
+    }
+
+    IEnumerator FadePostProToCero(float aValue, float aTime)
+    {
+        //float alpha = m_PostProVolume.weight;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+        {
+            m_PostProVolume.weight = Mathf.Lerp(m_PostProVolume.weight, aValue, t);
+            yield return null;
+        }
+        Debug.Log("LLEGO AQUIIII");
+        m_PostProVolume.weight = 0f;
     }
 
     private void SwapTransparent()
@@ -155,7 +167,7 @@ public class PlayerSpecialAbilities : MonoBehaviour
     {
         m_IsPlayerVisibleToEnemy = true;
         m_SliderOnCooldown = true;
-        StartCoroutine(FadePostProTo(0f, m_FadeSpeed));
+        StartCoroutine(FadePostProToCero(0f, m_FadeSpeed));
         SoundManager.Instance.PlaySound(cloakEvent, transform.position);
         StartCoroutine(FadeTo(0.0f, 0.9f));
         SwapOpaque();

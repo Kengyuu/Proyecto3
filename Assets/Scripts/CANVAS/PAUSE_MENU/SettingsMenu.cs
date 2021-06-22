@@ -39,7 +39,7 @@ public class SettingsMenu : MonoBehaviour
         VcaControllerSFX.setVolume(GameManager.Instance.effectVolume);
         m_EffectSlider.value = GameManager.Instance.effectVolume;
 
-        m_ResolutionText.SetText(m_ResolutionList[1]);
+        m_ResolutionText.SetText(m_ResolutionList[GameManager.Instance.m_Resolution]);
     }
 
     public void ChangeMusicVolume(int value)
@@ -79,9 +79,9 @@ public class SettingsMenu : MonoBehaviour
 
 
         if (GameManager.Instance.m_Resolution == 0)
-            Screen.fullScreenMode = FullScreenMode.Windowed;
-        else if (GameManager.Instance.m_Resolution == 1)
             Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+        else if (GameManager.Instance.m_Resolution == 1)
+            Screen.fullScreenMode = FullScreenMode.Windowed;
     }
 
 }
